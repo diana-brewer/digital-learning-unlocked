@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Learning Unlocked — Presenter Notes</title>
+<style>
+  :root {
+    --primary: #2D5F7C;
+    --primary-dark: #1E4258;
+    --accent: #E8833A;
+    --accent-dark: #C66A28;
+    --bg: #FAFBFC;
+    --surface: #FFFFFF;
+    --surface-alt: #F0F4F8;
+    --text: #1A2332;
+    --text-muted: #5A6B7E;
+    --border: #D5DDE5;
+    --border-light: #E8EDF2;
+    --success: #2D8659;
+    --success-bg: #F0F8F4;
+    --warning: #D4A23A;
+    --radius: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+  .container { max-width: 850px; margin: 0 auto; padding: 0 20px; }
+  .hero { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; padding: 36px 0 24px; }
+  .hero h1 { font-size: 1.5rem; margin-bottom: 4px; }
+  .hero .subtitle { font-size: 0.92rem; opacity: 0.85; }
+  section { padding: 28px 0; border-bottom: 1px solid var(--border-light); }
+  section:last-child { border-bottom: none; }
+  h2 { font-size: 1.3rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px; }
+  h3 { font-size: 1rem; font-weight: 600; color: var(--primary); margin-top: 20px; margin-bottom: 6px; }
+  h4 { font-size: 0.92rem; font-weight: 600; margin-top: 14px; margin-bottom: 4px; }
+  p { margin-bottom: 12px; }
+  ul, ol { margin-left: 20px; margin-bottom: 12px; }
+  li { margin-bottom: 4px; }
+  .lead { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 16px; }
+  .slide-block { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); margin: 16px 0; overflow: hidden; }
+  .slide-header { background: var(--primary); color: white; padding: 8px 16px; display: flex; justify-content: space-between; align-items: center; }
+  .slide-header .slide-num { font-weight: 700; font-size: 0.82rem; }
+  .slide-header .slide-title { font-size: 0.92rem; }
+  .slide-header .slide-time { font-size: 0.78rem; opacity: 0.8; }
+  .slide-body { padding: 14px 16px; }
+  .role-box { border-radius: 6px; padding: 10px 14px; margin: 8px 0; font-size: 0.88rem; }
+  .speaker-box { background: #FDF6F0; border-left: 4px solid var(--accent); }
+  .audience-box { background: var(--surface-alt); border-left: 4px solid var(--primary); }
+  .role-label { font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+  .speaker-box .role-label { color: var(--accent-dark); }
+  .audience-box .role-label { color: var(--primary); }
+  .callout { background: var(--surface-alt); border-left: 4px solid var(--primary); border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 16px; margin: 12px 0; }
+  .callout.accent { border-left-color: var(--accent); background: #FDF6F0; }
+  .callout.success { border-left-color: var(--success); background: var(--success-bg); }
+  .callout.warning { border-left-color: var(--warning); background: #FDF9F0; }
+  .callout-title { font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 3px; color: var(--primary); }
+  .callout.accent .callout-title { color: var(--accent-dark); }
+  .callout.success .callout-title { color: var(--success); }
+  .callout.warning .callout-title { color: var(--warning); }
+  .agenda-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.85rem; box-shadow: var(--shadow); border-radius: var(--radius); overflow: hidden; }
+  .agenda-table thead { background: var(--primary); color: white; }
+  .agenda-table th { padding: 8px 12px; text-align: left; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.4px; }
+  .agenda-table td { padding: 8px 12px; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+  .agenda-table tr:last-child td { border-bottom: none; }
+  .agenda-table tr:nth-child(even) { background: var(--surface-alt); }
+  .time-col { font-weight: 600; color: var(--primary); white-space: nowrap; }
+  .file-list { margin: 10px 0; list-style: none; }
+  .file-list li { padding: 5px 0; border-bottom: 1px solid var(--border-light); }
+  .file-list li:last-child { border-bottom: none; }
+  .file-list a { color: var(--primary); text-decoration: none; font-weight: 600; }
+  .file-list a:hover { text-decoration: underline; }
+  .file-list .file-desc { font-size: 0.8rem; color: var(--text-muted); }
+  footer { background: var(--primary-dark); color: rgba(255,255,255,0.7); padding: 20px 0; text-align: center; font-size: 0.82rem; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="container">
+    <h1>Digital Learning Unlocked — Presenter Notes</h1>
+    <div class="subtitle">75-minute session · 29 slides · Diana Brewer, PA-C · September 2026</div>
+  </div>
+</div>
+
+<section><div class="container">
+  <h2>Your Three Deliverables</h2>
+  <p class="lead">These three files are everything you need for the entire workshop.</p>
+  <ul class="file-list">
+    <li><strong>1. Slide Deck:</strong> <a href="https://diana-brewer.github.io/digital-learning-unlocked/Digital%20Learning%20Unlocked%20-%20Slide%20Deck.pptx">Digital%20Learning%20Unlocked%20-%20Slide%20Deck.pptx</a> <span class="file-desc">— 29 slides with links to demos and anchored links to the Workshop Guide. Present from this.</span></li>
+    <li><strong>2. Workshop Guide:</strong> <a href="https://diana-brewer.github.io/digital-learning-unlocked/Digital%20Learning%20Unlocked%20-%20Workshop%20Guide.html">Digital%20Learning%20Unlocked%20-%20Workshop%20Guide.html</a> <span class="file-desc">— Audience-facing page. Attendees open this on their phones. Contains tool tables, demo links, prompt templates, worksheet, and all resources. Share via QR code.</span></li>
+    <li><strong>3. Presenter Notes:</strong> <a href="https://diana-brewer.github.io/digital-learning-unlocked/Digital%20Learning%20Unlocked%20-%20Presenter%20Notes.html">Digital%20Learning%20Unlocked%20-%20Presenter%20Notes.html</a> <span class="file-desc">— This document. Walks you through every slide with timing, what the audience does, and what you say.</span></li>
+  </ul>
+  <p><strong>Demo files</strong> (attendees access via links in the Workshop Guide, not directly):</p>
+  <ul class="file-list">
+    <li><a href="https://diana-brewer.github.io/digital-learning-unlocked/workshop-branching-demo.html">workshop-branching-demo.html</a> <span class="file-desc">— Branching clinical decision tree (confusion in 65yo)</span></li>
+    <li><a href="https://diana-brewer.github.io/digital-learning-unlocked/workshop-case-demo.html">workshop-case-demo.html</a> <span class="file-desc">— Interactive clinical reasoning case (pericarditis)</span></li>
+  </ul>
+</div></section>
+
+<section><div class="container">
+  <h2>Full Agenda at a Glance</h2>
+  <table class="agenda-table">
+    <thead><tr><th>Time</th><th>Min</th><th>Segment</th><th>Slides</th></tr></thead>
+    <tbody>
+      <tr><td class="time-col">0:00–0:05</td><td>5</td><td>Welcome & Framing</td><td>1–3</td></tr>
+      <tr><td class="time-col">0:05–0:18</td><td>13</td><td>Obj 1: Digital Tools (demo + TPS)</td><td>4–7</td></tr>
+      <tr><td class="time-col">0:18–0:33</td><td>15</td><td>Obj 2: AI Chatbots + Grounding (demo + TPS)</td><td>8–16</td></tr>
+      <tr><td class="time-col">0:33–0:43</td><td>10</td><td>Obj 3: Simulation Spectrum (demo + TPS)</td><td>17–24</td></tr>
+      <tr><td class="time-col">0:43–0:48</td><td>5</td><td>Transition to Capstone</td><td>25–26</td></tr>
+      <tr><td class="time-col">0:48–1:08</td><td>20</td><td>Capstone Design Sprint</td><td>26</td></tr>
+      <tr><td class="time-col">1:08–1:13</td><td>5</td><td>Share-Out</td><td>27</td></tr>
+      <tr><td class="time-col">1:13–1:15</td><td>2</td><td>Wrap-Up</td><td>28–29</td></tr>
+    </tbody>
+  </table>
+  <div class="callout">
+    <div class="callout-title">Flow Note</div>
+    <p>Attendees do Think · Pair · Share after <em>each</em> section (Obj 1, Obj 2, Obj 3). The Capstone Design Sprint at the end is <strong>not</strong> the first time they're planning — it's an extension of the mini-discussions they've been having all along. The capstone slide explicitly says: "You've been discussing tools and ideas after each section — now extend that into a full plan."</p>
+  </div>
+</div></section>
+
+<section><div class="container">
+  <h2>Slide-by-Slide Notes</h2>
+  
+  <!-- SLIDE 1 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 1</span><span class="slide-title">Title</span><span class="slide-time">0:00–0:01 (1 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker does</div>
+        <p>Display the title slide as people settle. Wait for the room to quiet. Show the QR code on screen (or display the URL for the Workshop Guide page). Ask people to open it on their phones now.</p>
+      </div>
+      <div class="role-box audience-box"><div class="role-label">Audience does</div>
+        <p>Opens the Workshop Guide page on their phone or laptop. Scans QR code or types URL.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 2</span><span class="slide-title">Welcome & Framing (Section 1)</span><span class="slide-time">0:01–0:03 (2 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"I'm a PA-C and a program director, not a technology expert. Everything I'm going to show you today, I learned because I needed it — not because I'm a tech person. In the next 75 minutes, I'll show you tools that can save you hours of curriculum development time, cost little to nothing, and are available right now. And then you're going to use one of them to build something you can take back to your program this week."</p>
+        <p><strong>Quick poll:</strong> "Raise your hand if you've used an AI tool for curriculum development in the last 30 days." Gauge the room.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 3</span><span class="slide-title">COI & Session Format</span><span class="slide-time">0:03–0:05 (2 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"I want to be transparent: my work in AI and simulation led to the co-development of a clinical reasoning assessment platform (Sapient Clinician). This session is vendor-neutral. We'll use the page you opened for the entire session — keep it on your phone. After each section, you'll do a quick Think · Pair · Share with your table. Everything stays available after the conference."</p>
+      </div>
+      <div class="role-box audience-box"><div class="role-label">Audience does</div>
+        <p>Scrolls to Section 1 on the Workshop Guide. Reads the COI disclosure and session format.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 4</span><span class="slide-title">Objective 1 — Digital Tools (Section 2)</span><span class="slide-time">0:05–0:06 (1 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"The full tool list with pricing and links is on the page in front of you — scroll to Section 2. I'm not going to read you a list. Instead, let me show you an example of what you can build with a free tool."</p>
+      </div>
+      <div class="role-box audience-box"><div class="role-label">Audience does</div>
+        <p>Scrolls to Section 2 on the Workshop Guide.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 5</span><span class="slide-title">Demo: Branching Scenario</span><span class="slide-time">0:06–0:10 (4 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker does</div>
+        <p>Click the demo link on the slide. Walk through one decision path on screen (projected). Show the consequence and teaching point. Then say: "Try this on your phone — the link is in the Workshop Guide, Section 2."</p>
+      </div>
+      <div class="role-box audience-box"><div class="role-label">Audience does</div>
+        <p>Clicks the demo link on their phone. Tries the branching scenario. Makes 1-2 decisions.</p>
+      </div>
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"This branching scenario took about an hour to build. In H5P, you'd use a visual editor — no code. Every decision is a clinical action with real consequences. No multiple choice. The reasoning path IS the assessment."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 6</span><span class="slide-title">Tool Reference — Content Creation</span><span class="slide-time">0:10–0:11 (1 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"Take 30 seconds to scroll through the tool tables in Section 2. You'll find content creation platforms, study tools, and open educational resources — all with pricing and links. You'll come back to these during the workshop."</p>
+        <p><strong>Note the distinction:</strong> "Study tools like Anki and Quizlet support memorization — they are NOT assessment tools. In the AI era, any assessment that asks students to select an answer can be solved by AI."</p>
+      </div>
+      <div class="role-box audience-box"><div class="role-label">Audience does</div>
+        <p>Scrolls through the tool tables. Notes tools they're interested in.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 7</span><span class="slide-title">Think · Pair · Share</span><span class="slide-time">0:11–0:14 (3 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"Turn to your table group. Share one tool you already use, one tool you're curious about, and one educational challenge you wish you had a tool for. Three minutes."</p>
+      </div>
+      <div class="role-box audience-box"><div class="role-label">Audience does</div>
+        <p>Discusses in table groups for 3 minutes. This is the first of four TPS sessions — they'll build on these discussions throughout.</p>
+      </div>
+      <div class="callout"><div class="callout-title">Time check</div><p>You should be at ~0:14 now. If you're behind, cut the tool scrolling time.</p></div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 8</span><span class="slide-title">Objective 2 — AI Chatbots (Section 3)</span><span class="slide-time">0:14–0:15 (1 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"AI tools fall into two categories. The first is conversational chatbots — ChatGPT, Claude, Gemini, Grok. They generate content. They're excellent for building educational materials. But they have a critical risk: hallucination."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 9</span><span class="slide-title">The Pedagogical Challenge</span><span class="slide-time">0:15–0:17 (2 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>Read the slide text aloud. Emphasize: "If we use AI to create multiple-choice quizzes, students will use AI to answer them. That's not education — that's an arms race we've already lost. Use AI to build the scaffolding, not to replace the thinking."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 10</span><span class="slide-title">Conversational Chatbots</span><span class="slide-time">0:17–0:18 (1 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>Briefly highlight ChatGPT (most versatile, file upload, voice mode) and Claude (best for long content, 200K context). Mention Copilot: "Many institutions already include it — check with your IT department before paying for anything else." Full list is in the Workshop Guide, Section 3.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 11 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 11</span><span class="slide-title">Objective 2 — Grounding AI (Section 4)</span><span class="slide-time">0:18–0:19 (1 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"The second category of AI tools: data aggregation and synthesis tools that ground responses in your source material. This is RAG — Retrieval-Augmented Generation — without writing a single line of code."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 12 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 12</span><span class="slide-title">Grounding Tools</span><span class="slide-time">0:19–0:20 (1 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"Google NotebookLM is the single most important tool in this session. It's free. You upload your source documents — guidelines, case notes, articles. The AI responds ONLY based on what you uploaded. If the answer isn't in your documents, it says so. Zero hallucination risk."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 13 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 13</span><span class="slide-title">The Grounded AI Workflow</span><span class="slide-time">0:20–0:21 (1 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>Walk through the 5 steps on the slide. Emphasize step 3: "The grounding instruction is one sentence: 'Base your response only on the attached documents.' That's the difference between a tool that hallucinates and one that doesn't."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 14 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 14</span><span class="slide-title">Live Demo: NotebookLM</span><span class="slide-time">0:21–0:26 (5 min)</span></div>
+    <div class="slide-body">
+      <div class="callout warning"><div class="callout-title">Have backup screenshots ready</div><p>If WiFi fails or the live demo breaks, switch to pre-loaded screenshots. The audience should never see you sweat.</p></div>
+      <div class="role-box speaker-box"><div class="role-label">Demo script (5 min)</div>
+        <ol>
+          <li><strong>(30 sec)</strong> Ask ChatGPT to "create a case of acute pericarditis with ECG findings" WITHOUT uploading sources. Point out any inaccuracies.</li>
+          <li><strong>(1 min)</strong> Open NotebookLM (pre-loaded with pericarditis guideline PDF). Ask the same question. Show how responses cite specific passages.</li>
+          <li><strong>(1 min)</strong> Ask NotebookLM to create a clinical reasoning exercise + feedback rubric. Show how each element traces to the source.</li>
+          <li><strong>(1 min)</strong> Click "Audio Overview" in NotebookLM. Play 15 seconds of the AI-generated podcast.</li>
+          <li><strong>(30 sec)</strong> "I just created a grounded, source-cited clinical reasoning case and feedback rubric in under 5 minutes — with zero hallucination risk. The exercise requires the learner to think and reason — not just pick an answer."</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 15 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 15</span><span class="slide-title">Prompt Templates</span><span class="slide-time">0:26–0:27 (1 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"Four ready-to-use prompts are in the Workshop Guide, Section 4. Each has a copy button — click it, paste into ChatGPT or NotebookLM. All include the grounding instruction."</p>
+      </div>
+      <div class="role-box audience-box"><div class="role-label">Audience does</div>
+        <p>Scrolls to Section 4 on the Workshop Guide. Sees the prompt cards with copy buttons.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 16 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 16</span><span class="slide-title">Think · Pair · Share — Try It Now</span><span class="slide-time">0:27–0:30 (3 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"On your phone or laptop, open ChatGPT, Claude, or Gemini — all free. Copy and paste Prompt #1 or #2 from the Workshop Guide. If you have a clinical guideline on your computer, upload it first. See what you get. Share with your table — what worked? What surprised you?"</p>
+      </div>
+      <div class="role-box audience-box"><div class="role-label">Audience does</div>
+        <p>Opens an AI tool on their device. Copies a prompt from the Workshop Guide. Pastes and tries it. Shares results with table group.</p>
+      </div>
+      <div class="callout"><div class="callout-title">Time check</div><p>You should be at ~0:30 now. Halfway through the presentation portion.</p></div>
+    </div>
+  </div>
+
+  <!-- SLIDE 17 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 17</span><span class="slide-title">Objective 3 — Simulation Spectrum (Section 5)</span><span class="slide-time">0:30–0:31 (1 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"Simulation is not just VR headsets. It's a spectrum — from text and audio through immersive VR. The most effective simulation matches the technology to the learning goal."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 18 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 18</span><span class="slide-title">A Clinician's Perspective</span><span class="slide-time">0:31–0:33 (2 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>Read the slide. Then add personally: "When I started building clinical reasoning simulations, I learned that immersion doesn't require a headset. A well-designed text-and-audio case can teach clinical reasoning as effectively as a $500 VR setup. What matters is the thinking the learner does, not the fidelity of the interface."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 19 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 19</span><span class="slide-title">The Fidelity Spectrum</span><span class="slide-time">0:33–0:34 (1 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>Walk left to right through the 5 levels. "Text and audio — free. Image-based — free or $25. Screen-based — free trials. AR on your phone — free or $25. Immive VR — $100 to $600 per headset. The question isn't 'what's the best technology?' It's 'what matches my learning goal and my budget?'"</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 20 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 20</span><span class="slide-title">Demo: Clinical Reasoning Case</span><span class="slide-time">0:34–0:38 (4 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"Try this on your phone right now — the link is in the Workshop Guide, Section 5. This is a text-and-audio simulation — no headset, no VR. It teaches the same skill that matters most: clinical reasoning."</p>
+      </div>
+      <div class="role-box audience-box"><div class="role-label">Audience does</div>
+        <p>Clicks the demo link. Tries the clinical reasoning case on their phone — interviews the patient, orders labs, interprets the ECG, builds a differential.</p>
+      </div>
+      <div class="role-box speaker-box"><div class="role-label">Speaker says (after 2-3 min)</div>
+        <p>"The assessment captures the learner's thinking process, not just the final answer. No multiple choice. The reasoning IS the assessment. This is what I mean by authentic assessment in the AI era."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 21 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 21</span><span class="slide-title">Simulation Tools by Fidelity</span><span class="slide-time">0:38–0:39 (1 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>Briefly highlight: ChatGPT as a patient simulator (free), H5P (free branching scenarios), BioDigital Human (free 3D anatomy), Body Interact (screen-based, targets PA programs). Full list with pricing in Workshop Guide, Sections 5 & 6.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 22 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 22</span><span class="slide-title">VR Hardware</span><span class="slide-time">0:39–0:40 (1 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"Use VR when: procedural skills, team scenarios, high-acuity rehearsal. Don't use VR when: the learning goal is clinical reasoning — text and screen-based tools do the job at a fraction of the cost."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 23 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 23</span><span class="slide-title">Starter Stack</span><span class="slide-time">0:40–0:41 (1 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"A program with zero budget can build a credible ecosystem: ChatGPT, BioDigital Human, Flip, NotebookLM, H5P — all free. Add $25 for Visible Body anatomy. Add $100 for a refurbished VR headset. You don't need a grant to start."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 24 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 24</span><span class="slide-title">Think · Pair · Share</span><span class="slide-time">0:41–0:43 (2 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"With your table group, think of a clinical skill your fellows need. Which fidelity level? Would text and audio work? Do you need images? AR? Or does this genuinely require VR? Share your reasoning — and what the free option would be."</p>
+      </div>
+      <div class="role-box audience-box"><div class="role-label">Audience does</div>
+        <p>Discusses in table groups for 2 minutes. This is their third TPS — they've been building ideas throughout.</p>
+      </div>
+      <div class="callout"><div class="callout-title">Time check</div><p>You should be at ~0:43. Transition to the capstone workshop now.</p></div>
+    </div>
+  </div>
+
+  <!-- SLIDE 25 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 25</span><span class="slide-title">Capstone Design Sprint (Section 7)</span><span class="slide-time">0:43–0:45 (2 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"You've been discussing tools and ideas with your table group after each section. Now let's turn one of those ideas into a plan you can take back to your program. This isn't the first time you've been planning today — you've been doing mini-design thinking all along. Now you'll extend that into a complete implementation plan."</p>
+        <p>"Pick the idea from your earlier discussions that feels most feasible and most useful. Scroll to Section 7 on the Workshop Guide. You'll find a fillable worksheet — type your answers directly on your phone."</p>
+      </div>
+      <div class="role-box audience-box"><div class="role-label">Audience does</div>
+        <p>Scrolls to Section 7 on the Workshop Guide. Sees the 5-step worksheet with fillable fields.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 26 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 26</span><span class="slide-title">Design Sprint Instructions</span><span class="slide-time">0:45–0:48 (3 min intro, then 17 min work)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>Walk through the 5 steps on the slide. "1. Identify a need. 2. Define learning goals. 3. Select a tool from the tables. 4. Map pedagogy to technology — why this tool? 5. Sketch your implementation plan. Use the tool tables on the Workshop Guide to pick your tools. I'll circulate to help."</p>
+        <p><strong>Then: "You have 20 minutes. Go."</strong></p>
+      </div>
+      <div class="role-box audience-box"><div class="role-label">Audience does (20 min)</div>
+        <p>Works in table groups. Fills in the worksheet on their phones. Uses the tool tables in the Workshop Guide to select tools. Discusses, decides, writes.</p>
+      </div>
+      <div class="role-box speaker-box"><div class="role-label">Speaker does (during the 20 min)</div>
+        <p>Circulate among tables. Coach stuck groups with seed ideas ("opioid stewardship conversations," "end-of-life discussions," "pediatric dosing"). Push back on cost ("Can this be done with a free tool?"). Watch for the VR trap. Announce time checks at 5, 10, 15, 18 minutes.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 27 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 27</span><span class="slide-title">Share-Out</span><span class="slide-time">1:08–1:13 (5 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"Let's hear from 2-3 groups. 60 seconds each — what's your educational need, what tool did you pick, and why? What's one barrier and how will you handle it?"</p>
+        <p>Pick groups with diverse tool choices — one text/audio, one screen-based, one AR/VR — for maximum cross-pollination.</p>
+      </div>
+      <div class="role-box audience-box"><div class="role-label">Audience does</div>
+        <p>2-3 groups share their plans. Others listen and ask questions.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 28 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 28</span><span class="slide-title">Wrap-Up</span><span class="slide-time">1:13–1:14 (1 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
+        <p>"Everything you saw today is in the Workshop Guide — bookmark it. Share it with your colleagues. Start with one tool, one need, one small experiment. You don't need a grant, an IT ticket, or a technology expert. You need to know what your learners need — and you already know that."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 29 -->
+  <div class="slide-block">
+    <div class="slide-header"><span class="slide-num">Slide 29</span><span class="slide-title">Thank You</span><span class="slide-time">1:14–1:15 (1 min)</span></div>
+    <div class="slide-body">
+      <div class="role-box speaker-box"><div class="role-label">Speaker does</div>
+        <p>Display contact info. Stay for questions. Thank the audience.</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="container">
+  <h2>Pre-Session Prep Checklist</h2>
+  <div class="callout success">
+    <div class="callout-title">One Week Before</div>
+    <ul>
+      <li>Set up Google NotebookLM notebook with pericarditis guideline + case notes (5 min — see below)</li>
+      <li>Test all demo links on your phone: workshop-branching-demo.html, workshop-case-demo.html</li>
+      <li>Generate a QR code linking to the Workshop Guide page (or use a short URL)</li>
+      <li>Confirm: projector, HDMI/USB-C, WiFi for attendees</li>
+      <li>Ask organizer: round tables? WiFi? Expected attendance?</li>
+    </ul>
+  </div>
+  <div class="callout success">
+    <div class="callout-title">Day Of — 20 Minutes Before</div>
+    <ul>
+      <li>Test WiFi and display</li>
+      <li>Pre-load browser tabs: Workshop Guide, NotebookLM, ChatGPT</li>
+      <li>Have backup screenshots of all demo outputs loaded in slides</li>
+      <li>Display the QR code / URL on the title slide</li>
+      <li>Set a timer on your phone for each section</li>
+    </ul>
+  </div>
+  <h3>NotebookLM Setup (5 Minutes, Day Before)</h3>
+  <ol>
+    <li>Go to notebooklm.google.com (free, Google account)</li>
+    <li>Create a new notebook called "Pericarditis Teaching Case"</li>
+    <li>Upload 2-3 source documents (I can provide a pericarditis guideline summary and case notes)</li>
+    <li>Wait for processing (~30 sec)</li>
+    <li>Test: "Create a clinical reasoning case of acute pericarditis based on the uploaded sources"</li>
+    <li>Click "Audio Overview" — let it generate. Have it ready to play 15 seconds.</li>
+    <li>Leave the notebook open on your laptop for the live demo.</li>
+  </ol>
+</div></section>
+
+<section><div class="container">
+  <h2>Key Messages to Reinforce</h2>
+  <div class="callout accent">
+    <div class="callout-title">The Five Things Attendees Should Remember</div>
+    <ol>
+      <li><strong>You don't need to be a technology expert.</strong> You need to be a clinician who knows what your learners need.</li>
+      <li><strong>Ground AI in your source material.</strong> Upload your guidelines. Say "base your response only on the attached documents." NotebookLM does this for free.</li>
+      <li><strong>Authentic assessment, not MCQs.</strong> Use AI to create clinical reasoning cases, simulated encounters, and reflective prompts that require the learner to demonstrate their thinking.</li>
+      <li><strong>Simulation is a spectrum.</strong> Text-and-audio is not "less than" VR — it's different. Match the fidelity to the learning goal.</li>
+      <li><strong>Start with one tool, one need, one small experiment.</strong> You don't need a grant or an IT ticket. You need to know what your learners need — and you already know that.</li>
+    </ol>
+  </div>
+</div></section>
+
+<footer>
+  <div class="container">
+    <p>Digital Learning Unlocked — Presenter Notes &nbsp;|&nbsp; Diana Brewer, PA-C &nbsp;|&nbsp; July 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>

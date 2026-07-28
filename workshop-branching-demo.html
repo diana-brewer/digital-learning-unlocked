@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Learning Unlocked — Branching Scenario Demo</title>
+<style>
+  :root {
+    --primary: #2D5F7C;
+    --primary-dark: #1E4258;
+    --accent: #E8833A;
+    --accent-dark: #C66A28;
+    --bg: #FAFBFC;
+    --surface: #FFFFFF;
+    --surface-alt: #F0F4F8;
+    --text: #1A2332;
+    --text-muted: #5A6B7E;
+    --border: #D5DDE5;
+    --success: #2D8659;
+    --success-bg: #F0F8F4;
+    --warning: #D4A23A;
+    --danger: #C44545;
+    --danger-bg: #FDF0F0;
+    --radius: 10px;
+    --shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; padding: 16px; max-width: 700px; margin: 0 auto; }
+  
+  .banner { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; padding: 20px; border-radius: var(--radius); margin-bottom: 16px; }
+  .banner h1 { font-size: 1.3rem; margin-bottom: 4px; }
+  .banner .subtitle { font-size: 0.88rem; opacity: 0.85; }
+  
+  .demo-note { background: #FDF9F0; border: 1px solid var(--warning); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 16px; font-size: 0.82rem; color: var(--text-muted); }
+  
+  .scenario-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; box-shadow: var(--shadow); }
+  .scenario-card .step-label { display: inline-block; background: var(--accent); color: white; padding: 2px 10px; border-radius: 12px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .scenario-card h3 { color: var(--primary-dark); margin-bottom: 10px; font-size: 1.1rem; }
+  .scenario-card .narrative { font-size: 0.92rem; margin-bottom: 12px; line-height: 1.6; }
+  .scenario-card .vitals { background: var(--surface-alt); border-radius: 6px; padding: 10px 14px; margin-bottom: 14px; font-size: 0.85rem; }
+  .scenario-card .vitals strong { color: var(--primary); }
+  
+  .choices { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+  .choice-btn { background: var(--surface); border: 2px solid var(--border); border-radius: 8px; padding: 12px 16px; font-family: inherit; font-size: 0.9rem; color: var(--text); cursor: pointer; text-align: left; transition: all 0.2s; }
+  .choice-btn:hover { border-color: var(--primary); background: var(--surface-alt); }
+  .choice-btn.selected { border-color: var(--accent); background: #FDF6F0; }
+  
+  .consequence { display: none; margin-top: 14px; }
+  .consequence.active { display: block; }
+  .consequence.optimal { background: var(--success-bg); border-left: 4px solid var(--success); border-radius: 0 6px 6px 0; padding: 14px 18px; }
+  .consequence.acceptable { background: #FDF9F0; border-left: 4px solid var(--warning); border-radius: 0 6px 6px 0; padding: 14px 18px; }
+  .consequence.problematic { background: var(--danger-bg); border-left: 4px solid var(--danger); border-radius: 0 6px 6px 0; padding: 14px 18px; }
+  .consequence .con-label { font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .consequence.optimal .con-label { color: var(--success); }
+  .consequence.acceptable .con-label { color: var(--warning); }
+  .consequence.problematic .con-label { color: var(--danger); }
+  .consequence .con-text { font-size: 0.88rem; margin-bottom: 10px; }
+  
+  .reflection { margin-top: 12px; }
+  .reflection label { display: block; font-weight: 600; font-size: 0.85rem; color: var(--primary-dark); margin-bottom: 4px; }
+  .reflection textarea { width: 100%; min-height: 80px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit; font-size: 0.88rem; resize: vertical; margin-bottom: 8px; }
+  .reflection .next-btn { background: var(--primary); color: white; border: none; padding: 8px 20px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
+  .reflection .next-btn:hover { background: var(--primary-dark); }
+  
+  .debrief { background: var(--surface); border: 2px solid var(--primary); border-radius: var(--radius); padding: 24px; margin-top: 16px; box-shadow: var(--shadow); }
+  .debrief h2 { color: var(--primary-dark); margin-bottom: 12px; font-size: 1.3rem; }
+  .debrief h3 { color: var(--primary); margin-top: 16px; margin-bottom: 8px; font-size: 1rem; }
+  .debrief .decision-log { margin: 12px 0; }
+  .debrief .decision-entry { border-bottom: 1px solid var(--border-light); padding: 10px 0; }
+  .debrief .decision-entry:last-child { border-bottom: none; }
+  .debrief .decision-entry .de-step { font-weight: 700; color: var(--accent); font-size: 0.78rem; text-transform: uppercase; }
+  .debrief .decision-entry .de-choice { font-weight: 600; color: var(--text); font-size: 0.9rem; margin: 2px 0; }
+  .debrief .decision-entry .de-rating { font-size: 0.82rem; margin-top: 2px; }
+  .debrief .decision-entry .de-rating.optimal { color: var(--success); }
+  .debrief .decision-entry .de-rating.acceptable { color: var(--warning); }
+  .debrief .decision-entry .de-rating.problematic { color: var(--danger); }
+  .debrief .decision-entry .de-reasoning { font-size: 0.84rem; color: var(--text-muted); margin-top: 4px; font-style: italic; }
+  .debrief .optimal-path { background: var(--success-bg); border-radius: 6px; padding: 14px 18px; margin: 12px 0; }
+  .debrief .optimal-path h4 { color: var(--success); margin-bottom: 6px; }
+  .debrief .reasoning-section { background: var(--surface-alt); border-radius: 6px; padding: 14px 18px; margin: 12px 0; }
+  .debrief .reasoning-section h4 { color: var(--primary); margin-bottom: 6px; }
+  .debrief .reasoning-entry { border-bottom: 1px solid var(--border-light); padding: 8px 0; font-size: 0.85rem; }
+  .debrief .reasoning-entry:last-child { border-bottom: none; }
+  .debrief .restart-btn { background: var(--accent); color: white; border: none; padding: 10px 24px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; cursor: pointer; margin-top: 16px; }
+  .debrief .restart-btn:hover { background: var(--accent-dark); }
+  
+  .progress-bar { height: 4px; background: var(--border-light); border-radius: 2px; margin-bottom: 16px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.4s; }
+  
+  @media (max-width: 600px) { body { padding: 10px; } .scenario-card { padding: 16px; } }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <h1>Digital Learning Unlocked — Branching Scenario Demo</h1>
+  <div class="subtitle">Make decisions. See consequences. Learn from the path.</div>
+</div>
+
+<div class="demo-note">
+  <strong>Demonstration note:</strong> This is a prototype built for the 2026 APP Fellowship Conference. In a real implementation, this would run in <a href="https://h5p.org">H5P</a> (free, open-source) embedded in your LMS. No programming required — H5P uses a visual editor. This demo shows the pedagogical concept: clinical decisions have consequences, and the reasoning path is the assessment.
+</div>
+
+<div class="progress-bar"><div class="progress-bar-fill" id="progressBar" style="width:0%;"></div></div>
+
+<div id="scenarioContainer"></div>
+
+<script>
+// BRANCHING SCENARIO DATA
+// Clinical case: 65-year-old presents to ED with acute confusion
+
+const scenarios = {
+  start: {
+    step: 1,
+    title: "65-Year-Old with Acute Confusion",
+    narrative: "Mrs. Patricia Chen, a 65-year-old female, is brought to the ED by her husband. He says she has been "increasingly confused" over the past 6 hours. She was in her usual state of health yesterday. This morning she seemed fine, but by afternoon she was asking the same questions repeatedly and couldn't remember what day it was. She has a history of type 2 diabetes, hypertension, and atrial fibrillation. Her medications include metformin, lisinopril, metoprolol, and warfarin.",
+    vitals: {
+      "BP": "134/82 mmHg",
+      "HR": "88 bpm (irregular)",
+      "RR": "18",
+      "Temp": "37.8°C (100.0°F)",
+      "SpO2": "95% on room air",
+      "Glucose": "68 mg/dL (point of care)",
+      "Mental status": "Alert but confused, oriented to person only"
+    },
+    prompt: "What do you do first?",
+    choices: [
+      { id: "assess_meds", text: "Review the medication list and check her home medication bottles her husband brought", path: "med_review", rating: "optimal" },
+      { id: "order_ct", text: "Order a stat head CT to rule out stroke", path: "ct_first", rating: "acceptable" },
+      { id: "give_d50", text: "Treat the hypoglycemia immediately with D50 IV push", path: "treat_hypo", rating: "optimal" },
+      { id: "order_labs", text: "Order a full lab panel (CBC, CMP, troponin, lactate, coagulation panel, urinalysis)", path: "labs_first", rating: "acceptable" }
+    ]
+  },
+  
+  // PATH: Treat hypoglycemia first (OPTIMAL)
+  treat_hypo: {
+    step: 2,
+    title: "Hypoglycemia Treatment — Good Call",
+    narrative: "You administer 25g of D50 IV push. Within 5 minutes, Mrs. Chen's glucose rises to 112 mg/dL. Her confusion begins to improve — she can now tell you the month and year, though she's still not fully oriented. The hypoglycemia was contributing to her altered mental status, but the underlying cause isn't clear yet.",
+    vitals: {
+      "Glucose": "112 mg/dL (post-treatment)",
+      "Mental status": "Improving — oriented to person and month, not yet to day",
+      "HR": "88 bpm (irregular)",
+      "Temp": "37.8°C"
+    },
+    consequence: { type: "optimal", text: "Excellent decision. Hypoglycemia is a rapidly reversible cause of altered mental status and should always be addressed immediately. The glucose of 68 mg/dL was low enough to cause symptoms, especially in a diabetic patient on metformin. However, the mild fever (37.8°C) and the gradual onset suggest there may be an underlying infection or other process. You still need to investigate the cause." },
+    prompt: "The hypoglycemia is treated but she's still mildly confused and has a low-grade fever. What's your next step?",
+    choices: [
+      { id: "review_meds", text: "Review the medication list — specifically the warfarin and metformin dosing", path: "med_review_after_hypo", rating: "optimal" },
+      { id: "workup_sepsis", text: "Begin a septic workup — blood cultures, urinalysis, lactate, chest X-ray", path: "sepsis_workup", rating: "optimal" },
+      { id: "order_ct", text: "Order a head CT now that she's more stable", path: "ct_after_stabilize", rating: "acceptable" }
+    ]
+  },
+  
+  // PATH: Medication review (OPTIMAL from start)
+  med_review: {
+    step: 2,
+    title: "Medication Review — The Right Foundation",
+    narrative: "You review the medication bottles her husband brought. Warfarin 5mg daily — last refill was 3 weeks ago, bottle looks appropriately full. Metformin 1000mg BID — bottle is nearly empty, and the husband says she may have taken an extra dose this morning because she "couldn't remember if she'd taken it." You check her INR: it's 7.2 (therapeutic range 2-3).",
+    vitals: {
+      "INR": "7.2 (therapeutic: 2-3)",
+      "Glucose": "68 mg/dL",
+      "HR": "88 bpm (irregular)",
+      "Temp": "37.8°C"
+    },
+    consequence: { type: "optimal", text: "Critical finding. The INR of 7.2 is dangerously high and could explain the altered mental status — she's at risk for intracranial bleeding. The husband's report of a possible extra metformin dose explains the hypoglycemia. This patient has TWO acute medication-related problems. The medication review was the highest-yield first step." },
+    prompt: "INR is 7.2. She has a supratherapeutic INR and hypoglycemia. What's your priority?",
+    choices: [
+      { id: "give_d50_and_vitk", text: "Treat the hypoglycemia with D50 AND give vitamin K for the elevated INR", path: "treat_both", rating: "optimal" },
+      { id: "head_ct_first", text: "Get a stat head CT to rule out intracranial hemorrhage before treating", path: "ct_urgent", rating: "optimal" },
+      { id: "hold_warfarin", text: "Hold warfarin, give D50, and consult the anticoagulation clinic", path: "hold_and_treat", rating: "acceptable" }
+    ]
+  },
+  
+  // PATH: CT first from start (acceptable but not optimal)
+  ct_first: {
+    step: 2,
+    title: "Head CT Ordered",
+    narrative: "You order a stat head CT. While waiting for transport, Mrs. Chen becomes more confused. The nurse rechecks her glucose: it's now 52 mg/dL. The CT is delayed because the scanner is busy with a trauma patient.",
+    vitals: {
+      "Glucose": "52 mg/dL (dropping)",
+      "Mental status": "Worsening — now oriented to person only",
+      "Time to CT": "Estimated 45+ minutes"
+    },
+    consequence: { type: "acceptable", text: "Head CT is a reasonable consideration in an elderly patient with acute confusion, especially on warfarin. However, you missed two immediate threats: her glucose is now dangerously low and dropping, and her INR hasn't been checked. Point-of-care glucose should always be checked immediately in any patient with altered mental status. The CT was important but not the first priority." },
+    prompt: "Her glucose is now 52 mg/dL and she's getting worse. What do you do?",
+    choices: [
+      { id: "treat_hypo_now", text: "Give D50 IV push immediately and check INR", path: "treat_hypo_late", rating: "optimal" },
+      { id: "wait_for_ct", text: "Continue waiting for the CT — she's being monitored", path: "wait_ct", rating: "problematic" }
+    ]
+  },
+  
+  // PATH: Labs first (acceptable)
+  labs_first: {
+    step: 2,
+    title: "Lab Panel Ordered",
+    narrative: "You order a comprehensive lab panel. Results come back in 45 minutes: WBC 14.2, glucose 61 mg/dL (down from 68), INR 6.8, lactate 2.1, urinalysis shows large leukocyte esterase and nitrites. While waiting for results, Mrs. Chen's confusion has worsened.",
+    vitals: {
+      "Glucose": "61 mg/dL (dropping)",
+      "WBC": "14.2 (elevated)",
+      "INR": "6.8 (supratherapeutic)",
+      "Lactate": "2.1 (mildly elevated)",
+      "UA": "Large leukocyte esterase, nitrites positive"
+    },
+    consequence: { type: "acceptable", text: "The labs were helpful and revealed multiple issues: hypoglycemia, supratherapeutic INR, leukocytosis, and a likely UTI. But waiting 45 minutes for results while her glucose was dropping was avoidable — a point-of-care glucose check takes 30 seconds and should have been done immediately. The labs confirmed the diagnosis but delayed the treatment." },
+    prompt: "Results are back: hypoglycemia, elevated INR, possible UTI with sepsis. What's your priority now?",
+    choices: [
+      { id: "treat_all", text: "Treat hypoglycemia with D50, give vitamin K for INR, start antibiotics and fluids", path: "treat_all_causes", rating: "optimal" },
+      { id: "treat_hypo_only", text: "Treat only the hypoglycemia — address other issues after she stabilizes", path: "treat_hypo_only2", rating: "acceptable" }
+    ]
+  },
+  
+  // CONVERGENCE POINTS (multiple paths lead here)
+  treat_both: {
+    step: 3,
+    title: "Treating Both Acute Issues",
+    narrative: "You give D50 IV push (glucose rises to 105) and vitamin K 10mg IV. You also order a stat head CT given the INR of 7.2. The CT shows no hemorrhage. Her confusion improves significantly after glucose correction. Blood cultures and urinalysis confirm a UTI as the precipitating cause — the infection likely caused her to take medications incorrectly, leading to hypoglycemia and a supratherapeutic INR.",
+    consequence: { type: "optimal", text: "Excellent management. You addressed both life-threatening issues simultaneously, then investigated the underlying cause. The UTI precipitated a cascade: illness → medication confusion → double metformin (hypoglycemia) + missed/extra warfarin dosing (supratherapeutic INR). This is a common pattern in elderly patients with acute illness." },
+    prompt: "She's stabilizing. What's your plan for the next 24 hours?",
+    choices: [
+      { id: "admit", text: "Admit for IV antibiotics, INR monitoring, and medication reconciliation", path: "final_good", rating: "optimal" },
+      { id: "discharge", text: "Discharge with oral antibiotics and close follow-up", path: "final_risky", rating: "problematic" }
+    ]
+  },
+  
+  ct_urgent: {
+    step: 3,
+    title: "Stat Head CT",
+    narrative: "You order a stat head CT to rule out intracranial hemorrhage given the INR of 7.2. You also give D50 for the hypoglycemia while waiting. CT result: small subdural hematoma with no midline shift. The confusion is multifactorial: subdural hematoma + hypoglycemia + supratherapeutic INR + likely UTI.",
+    consequence: { type: "optimal", text: "Critical finding. The subdural hematoma in the setting of a supratherapeutic INR is a neurosurgical emergency. Getting the CT before giving vitamin K was a reasonable choice — you needed to know if there was bleeding before reversing the anticoagulation. The decision to check INR first and then image was the right sequence." },
+    prompt: "CT shows a small subdural hematoma. INR is 7.2. Glucose has been corrected. What now?",
+    choices: [
+      { id: "neurosurg", text: "Urgent neurosurgery consult, reverse anticoagulation with vitamin K and PCC, ICU admission", path: "final_good", rating: "optimal" },
+      { id: "observe", text: "Admit for observation and repeat CT in 6 hours", path: "final_risky", rating: "problematic" }
+    ]
+  },
+  
+  sepsis_workup: {
+    step: 3,
+    title: "Septic Workup",
+    narrative: "You order blood cultures, urinalysis, lactate, and chest X-ray. Results: UA shows large leukocyte esterase and nitrites, WBC 14.2, lactate 2.1. She has a UTI with early sepsis. Meanwhile, her INR comes back at 7.2 — the infection has disrupted her warfarin metabolism and she may have taken extra doses due to confusion.",
+    consequence: { type: "optimal", text: "Good systemic thinking. The UTI is likely the precipitating event that caused the cascade: infection → medication confusion → hypoglycemia + supratherapeutic INR. You identified the root cause while also treating the acute issues. This is systems-level clinical reasoning." },
+    prompt: "UTI with early sepsis, INR 7.2, corrected glucose. What's your plan?",
+    choices: [
+      { id: "admit_full", text: "Admit: IV antibiotics, vitamin K, INR monitoring, medication reconciliation, head CT", path: "final_good", rating: "optimal" },
+      { id: "partial_treat", text: "Treat the UTI outpatient and refer to anticoagulation clinic for INR", path: "final_risky", rating: "problematic" }
+    ]
+  },
+  
+  hold_and_treat: {
+    step: 3,
+    title: "Hold Warfarin, Treat Hypoglycemia",
+    narrative: "You hold the warfarin, give D50 for hypoglycemia, and plan to consult the anticoagulation clinic. However, you don't give vitamin K yet — you plan to recheck the INR in the morning. The nurse asks if you want a head CT given the INR of 7.2.",
+    consequence: { type: "acceptable", text: "Holding warfarin and treating hypoglycemia were correct, but with an INR of 7.2 and acute confusion, you should give vitamin K now and get a head CT. Waiting overnight to recheck the INR risks missing an intracranial bleed. The anticoagulation clinic referral is for follow-up, not acute management." },
+    prompt: "The nurse reminds you the INR is 7.2. Do you want to do anything else?",
+    choices: [
+      { id: "add_vitk_ct", text: "Give vitamin K 10mg IV now and order a stat head CT", path: "final_good", rating: "optimal" },
+      { id: "wait_morning", text: "Wait until morning to recheck INR and decide then", path: "final_risky", rating: "problematic" }
+    ]
+  },
+  
+  // LATE TREATMENT PATHS
+  treat_hypo_late: {
+    step: 3,
+    title: "Treating Hypoglycemia (Late)",
+    narrative: "You give D50 IV push. Glucose rises to 98. You check the INR: 7.2. Her confusion improves somewhat but not completely. You order a stat head CT which shows a small subdural hematoma.",
+    consequence: { type: "acceptable", text: "You eventually did the right things, but the delay in treating hypoglycemia allowed it to worsen to 52 mg/dL, which could have caused harm. The lesson: always check a point-of-care glucose immediately in any patient with altered mental status. It takes 30 seconds and costs almost nothing." },
+    prompt: "CT shows a small subdural hematoma. INR is 7.2. Glucose is corrected. What now?",
+    choices: [
+      { id: "neurosurg_late", text: "Neurosurgery consult, vitamin K, PCC, ICU admission", path: "final_good", rating: "optimal" },
+      { id: "observe_late", text: "Admit for observation only", path: "final_risky", rating: "problematic" }
+    ]
+  },
+  
+  // PROBLEMATIC PATHS
+  wait_ct: {
+    step: 3,
+    title: "Waiting for CT",
+    narrative: "While waiting for the CT, Mrs. Chen becomes unresponsive. Glucose is rechecked: 38 mg/dL. She is now in a hypoglycemic coma.",
+    consequence: { type: "problematic", text: "This was preventable. The glucose was 52 mg/dL and dropping. Waiting for a CT while a reversible cause of altered mental status goes untreated is a serious error. Always check and treat glucose first — it takes 30 seconds and can prevent catastrophic deterioration." },
+    prompt: "She's unresponsive with glucose 38 mg/dL. What do you do?",
+    choices: [
+      { id: "stat_d50", text: "Give D50 IV push stat, then check INR and order head CT", path: "final_recovered", rating: "optimal" }
+    ]
+  },
+  
+  // FINAL OUTCOMES
+  final_good: {
+    step: 4,
+    title: "Good Outcome",
+    narrative: "Mrs. Chen is admitted to the ICU. She receives IV antibiotics for the UTI, vitamin K and PCC for anticoagulation reversal, and has neurosurgery evaluate the subdural. Over 48 hours, her INR normalizes, her infection clears, and her confusion resolves. She is discharged on a reduced warfarin dose with a medication management plan and home health follow-up.",
+    consequence: { type: "optimal", text: "Excellent outcome. The key decisions were: (1) checking glucose early, (2) checking INR early, (3) recognizing the UTI as the precipitating cause, (4) getting a head CT when the INR was supratherapeutic, and (5) admitting for comprehensive care. The cascade was: UTI → medication confusion → hypoglycemia + supratherapeutic INR → subdural hematoma. Multiple system-level interventions were needed." }
+  },
+  
+  final_risky: {
+    step: 4,
+    title: "Risky Disposition",
+    narrative: "Mrs. Chen was discharged with oral antibiotics. She returned 12 hours later with worsening confusion, glucose of 44 mg/dL, and an expanding subdural hematoma requiring emergency neurosurgery. She survived but had a prolonged hospitalization and permanent cognitive deficits.",
+    consequence: { type: "problematic", text: "This outcome was avoidable. An elderly patient with acute confusion, supratherapeutic INR, hypoglycemia, and a subdural hematoma requires inpatient admission. The combination of medication toxicity, infection, and bleeding risk is too complex for outpatient management. Discharging was premature and dangerous." }
+  },
+  
+  final_recovered: {
+    step: 4,
+    title: "Recovery After Delay",
+    narrative: "D50 was given immediately. Glucose recovered to 110. INR was checked: 7.2. Head CT was ordered and showed a small subdural. She was admitted, received vitamin K and PCC, IV antibiotics for the UTI, and neurosurgical monitoring. She recovered but the delay in glucose treatment contributed to a longer cognitive recovery.",
+    consequence: { type: "acceptable", text: "The patient recovered, but the delay in checking and treating glucose caused unnecessary harm. The teaching point: in any patient with altered mental status, check glucose immediately. It's the fastest, cheapest, and most impactful intervention you can do." }
+  },
+  
+  treat_all_causes: {
+    step: 3,
+    title: "Comprehensive Treatment",
+    narrative: "You give D50 for hypoglycemia, vitamin K for the supratherapeutic INR, start IV fluids and antibiotics for the UTI, and order a head CT to check for bleeding. CT shows no hemorrhage. Over 24 hours, her INR improves, glucose stabilizes, infection clears, and mental status returns to baseline.",
+    consequence: { type: "optimal", text: "Comprehensive and correct. You addressed all three acute issues simultaneously: hypoglycemia, supratherapeutic INR, and sepsis from UTI. This is the benefit of a broad initial workup — when you finally got the results, you could treat everything at once." }
+  },
+  
+  treat_hypo_only2: {
+    step: 3,
+    title: "Treating Hypoglycemia Only",
+    narrative: "You give D50 and her glucose improves to 105. Her confusion partially improves but doesn't fully resolve. You plan to address the INR and UTI later. Two hours later, she develops a severe headache and vomiting. Repeat CT (which you hadn't ordered) would have shown an expanding subdural hematoma.",
+    consequence: { type: "acceptable", text: "Treating hypoglycemia was correct and necessary. But delaying evaluation of the supratherapeutic INR was risky. With INR 6.8 and acute confusion, a head CT was indicated. The partial improvement in mental status after glucose correction should have prompted investigation of other causes — it's unusual for hypoglycemia alone to cause persistent confusion after correction if there isn't another underlying process." },
+    prompt: "She still has a headache and isn't fully back to baseline. What now?",
+    choices: [
+      { id: "ct_now", text: "Order a stat head CT and give vitamin K for the INR", path: "final_good", rating: "optimal" },
+      { id: "wait_see", text: "Continue to observe — she's improving", path: "final_risky", rating: "problematic" }
+    ]
+  },
+  
+  med_review_after_hypo: {
+    step: 3,
+    title: "Medication Review After Glucose Correction",
+    narrative: "You review medications. The husband confirms she may have taken an extra metformin dose. You check INR: 7.2. The warfarin bottle looks full — she may have missed doses due to confusion from the UTI, causing erratic INR. You order a head CT: no hemorrhage. UA confirms UTI. You treat with vitamin K, IV antibiotics, and admit for monitoring.",
+    consequence: { type: "optimal", text: "Thorough and systematic. After treating the immediate threat (hypoglycemia), you investigated the root cause through medication review, identified the supratherapeutic INR, got a CT to rule out bleeding, and identified the UTI as the precipitating event. This is the full diagnostic cascade done correctly." }
+  },
+  
+  ct_after_stabilize: {
+    step: 3,
+    title: "Head CT After Stabilization",
+    narrative: "You order a head CT now that glucose is corrected. CT shows no hemorrhage. INR comes back at 7.2. You give vitamin K, start antibiotics for the UTI found on urinalysis, and admit for monitoring. She recovers fully.",
+    consequence: { type: "optimal", text: "Appropriate sequencing. You stabilized the patient first (glucose), then investigated other causes. The CT was reasonable given her age, confusion, and the fact that she's on warfarin. Finding the supratherapeutic INR and UTI completed the picture." }
+  }
+};
+
+// STATE
+let currentStep = "start";
+let decisionLog = [];
+let reasoningLog = [];
+let totalSteps = 4;
+
+// RENDER
+function render() {
+  const s = scenarios[currentStep];
+  if (!s) return;
+  
+  const container = document.getElementById('scenarioContainer');
+  
+  // Check if this is a final step (no choices)
+  if (!s.choices || s.choices.length === 0) {
+    renderDebrief();
+    return;
+  }
+  
+  // Update progress
+  const progress = ((s.step - 1) / totalSteps) * 100;
+  document.getElementById('progressBar').style.width = progress + '%';
+  
+  let html = `<div class="scenario-card">`;
+  html += `<div class="step-label">Decision Point ${s.step} of ${totalSteps}</div>`;
+  html += `<h3>${s.title}</h3>`;
+  html += `<p class="narrative">${s.narrative}</p>`;
+  
+  // Vitals
+  if (s.vitals) {
+    html += `<div class="vitals"><strong>Vital Signs:</strong><br>`;
+    for (const [key, val] of Object.entries(s.vitals)) {
+      html += `${key}: ${val}<br>`;
+    }
+    html += `</div>`;
+  }
+  
+  // Consequence (if this is a mid-scenario step from a previous choice)
+  if (s.consequence) {
+    html += `<div class="consequence ${s.consequence.type}">`;
+    html += `<div class="con-label">${s.consequence.type === 'optimal' ? '✓ Optimal Choice' : s.consequence.type === 'acceptable' ? '⚠ Acceptable Choice' : '✗ Problematic Choice'}</div>`;
+    html += `<div class="con-text">${s.consequence.text}</div>`;
+    html += `</div>`;
+  }
+  
+  // Prompt
+  html += `<p style="font-weight:600; color:var(--primary-dark); margin-top:14px;">${s.prompt}</p>`;
+  
+  // Choices
+  html += `<div class="choices">`;
+  s.choices.forEach((c, i) => {
+    html += `<button class="choice-btn" onclick="selectChoice('${c.id}', '${c.path}', '${c.rating}', this)">${c.text}</button>`;
+  });
+  html += `</div>`;
+  
+  // Reflection (hidden until choice made)
+  html += `<div class="reflection" id="reflection" style="display:none;">`;
+  html += `<label>Why did you choose this? Type your reasoning:</label>`;
+  html += `<textarea id="reasoningInput" placeholder="My reasoning..."></textarea>`;
+  html += `<button class="next-btn" onclick="proceed()">Continue →</button>`;
+  html += `</div>`;
+  
+  html += `</div>`;
+  
+  container.innerHTML = html;
+  container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+let selectedChoice = null;
+
+function selectChoice(choiceId, path, rating, btn) {
+  // Visual selection
+  document.querySelectorAll('.choice-btn').forEach(b => {
+    b.classList.remove('selected');
+    b.style.opacity = '0.5';
+  });
+  btn.classList.add('selected');
+  btn.style.opacity = '1';
+  
+  selectedChoice = { choiceId, path, rating, choiceText: btn.textContent };
+  
+  // Show reflection
+  document.getElementById('reflection').style.display = 'block';
+  document.getElementById('reasoningInput').focus();
+}
+
+function proceed() {
+  const reasoning = document.getElementById('reasoningInput').value.trim();
+  
+  // Log decision
+  const s = scenarios[currentStep];
+  const choice = selectedChoice;
+  decisionLog.push({
+    step: s.step,
+    title: s.title,
+    choice: choice.choiceText,
+    rating: choice.rating,
+    reasoning: reasoning || '(no reasoning provided)'
+  });
+  
+  // Move to next scenario
+  currentStep = choice.path;
+  selectedChoice = null;
+  render();
+}
+
+function renderDebrief() {
+  const s = scenarios[currentStep];
+  const progress = 100;
+  document.getElementById('progressBar').style.width = '100%';
+  
+  let html = `<div class="debrief">`;
+  html += `<h2>Scenario Debrief</h2>`;
+  
+  // Final outcome
+  if (s.consequence) {
+    html += `<div class="consequence ${s.consequence.type}" style="display:block;">`;
+    html += `<div class="con-label">${s.consequence.type === 'optimal' ? '✓ Optimal Path' : s.consequence.type === 'acceptable' ? '⚠ Acceptable Path' : '✗ Problematic Path'}</div>`;
+    html += `<div class="con-text">${s.consequence.text}</div>`;
+    html += `</div>`;
+  }
+  
+  if (s.narrative) {
+    html += `<p style="margin:14px 0;">${s.narrative}</p>`;
+  }
+  
+  // Decision log
+  html += `<h3>Your Decisions</h3>`;
+  html += `<div class="decision-log">`;
+  decisionLog.forEach(d => {
+    html += `<div class="decision-entry">`;
+    html += `<div class="de-step">Decision ${d.step}</div>`;
+    html += `<div class="de-choice">${d.choice}</div>`;
+    html += `<div class="de-rating ${d.rating}">${d.rating === 'optimal' ? '✓ Optimal' : d.rating === 'acceptable' ? '⚠ Acceptable' : '✗ Problematic'}</div>`;
+    html += `<div class="de-reasoning">Your reasoning: ${d.reasoning}</div>`;
+    html += `</div>`;
+  });
+  html += `</div>`;
+  
+  // Optimal pathway
+  html += `<div class="optimal-path">`;
+  html += `<h4>Optimal Decision Pathway</h4>`;
+  html += `<p><strong>Step 1:</strong> Treat hypoglycemia immediately with D50 AND/OR review medications (both reveal critical findings: glucose 68, INR 7.2)</p>`;
+  html += `<p><strong>Step 2:</strong> Address supratherapeutic INR (vitamin K), continue septic workup (UTI is precipitating cause)</p>`;
+  html += `<p><strong>Step 3:</strong> Get head CT given INR 7.2 + confusion → admit for comprehensive care</p>`;
+  html += `<p><strong>Key teaching:</strong> In any patient with altered mental status: (1) check glucose immediately, (2) review medications, (3) check INR if on warfarin, (4) look for infection. The UTI caused medication confusion → hypoglycemia + supratherapeutic INR → risk of intracranial bleed. Multiple problems needed simultaneous management.</p>`;
+  html += `</div>`;
+  
+  // Reasoning section
+  html += `<div class="reasoning-section">`;
+  html += `<h4>Your Reasoning Process</h4>`;
+  html += `<p style="font-size:0.85rem; color:var(--text-muted);">This is what you wrote at each decision point. In a real platform, your instructor would see this — showing not just what you decided, but how you reasoned.</p>`;
+  decisionLog.forEach(d => {
+    html += `<div class="reasoning-entry"><strong>Decision ${d.step}:</strong> ${d.reasoning}</div>`;
+  });
+  html += `</div>`;
+  
+  html += `<button class="restart-btn" onclick="restart()">↺ Start Over</button>`;
+  html += `</div>`;
+  
+  document.getElementById('scenarioContainer').innerHTML = html;
+  document.getElementById('scenarioContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function restart() {
+  currentStep = "start";
+  decisionLog = [];
+  reasoningLog = [];
+  selectedChoice = null;
+  render();
+}
+
+// INIT
+render();
+</script>
+
+</body>
+</html>

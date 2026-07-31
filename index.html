@@ -1,295 +1,1012 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Learning Unlocked — Workshop Guide</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --primary: #0F5257;
-    --primary-light: #1B747B;
-    --primary-dark: #0A3538;
-    --accent: #C99A3C;
-    --accent-light: #E2BE6B;
-    --accent-dark: #9E7625;
-    --bg: #F7F5F0;
-    --surface: #FFFFFF;
-    --surface-alt: #EDF3F3;
-    --text: #1C2A2C;
-    --text-muted: #5F7173;
-    --border: #D3DDDC;
-    --border-light: #E5EBEA;
-    --success: #2F6B4F;
-    --success-bg: #EDF4EF;
-    --warning: #D4A23A;
-    --radius: 12px;
-    --shadow: 0 2px 14px rgba(15,82,87,0.08);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.7; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
-  h1, h2, h3, h4, .topic-number { font-family: 'Lora', Georgia, 'Times New Roman', serif; }
-  .hero { background: linear-gradient(150deg, var(--primary-dark) 0%, var(--primary) 55%, var(--primary-light) 100%); color: white; padding: 56px 24px 44px; text-align: center; position: relative; overflow: hidden; }
-  .hero::before { content: ''; position: absolute; top: -70px; left: -70px; width: 240px; height: 240px; border-radius: 50%; border: 42px solid rgba(201,154,60,0.10); }
-  .hero::after { content: ''; position: absolute; bottom: -50px; right: -50px; width: 190px; height: 190px; border-radius: 50%; background: rgba(255,255,255,0.06); }
-  .hero h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.3px; position: relative; }
-  .hero .subtitle { font-size: 1rem; opacity: 0.88; margin-bottom: 12px; font-style: italic; font-family: 'Lora', Georgia, serif; }
-  .hero .presenter { font-size: 0.82rem; opacity: 0.75; letter-spacing: 0.3px; }
-  .progress-track { position: sticky; top: 0; z-index: 100; background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 16px; display: flex; align-items: center; gap: 12px; box-shadow: 0 1px 4px rgba(15,82,87,0.05); }
-  .progress-bar { flex: 1; height: 6px; background: var(--border-light); border-radius: 4px; overflow: hidden; }
-  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent-dark), var(--accent)); border-radius: 4px; transition: width 0.4s ease; width: 0%; }
-  .progress-label { font-size: 0.7rem; color: var(--text-muted); font-weight: 700; white-space: nowrap; letter-spacing: 0.4px; text-transform: uppercase; }
-  .section-nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 10px 16px; display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .section-nav a { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--surface-alt); color: var(--primary); text-decoration: none; font-size: 0.78rem; font-weight: 700; flex-shrink: 0; transition: all 0.2s; border: 2px solid transparent; font-family: 'Lora', serif; }
-  .section-nav a:hover, .section-nav a.active { background: var(--primary); color: white; border-color: var(--accent); }
-  section.topic { padding: 34px 20px; border-bottom: 1px solid var(--border-light); max-width: 780px; margin: 0 auto; }
-  section.topic:last-child { border-bottom: none; }
-  .topic-number { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: white; font-size: 1.05rem; font-weight: 700; margin-bottom: 12px; box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--accent); }
-  .topic h2 { font-size: 1.45rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px; letter-spacing: -0.2px; }
-  .topic .lead { font-size: 1rem; color: var(--text-muted); margin-bottom: 20px; font-style: italic; font-family: 'Lora', serif; }
-  .topic h3 { font-size: 1.08rem; font-weight: 600; color: var(--primary); margin-top: 26px; margin-bottom: 8px; }
-  .topic h4 { font-size: 0.94rem; font-weight: 700; margin-top: 16px; margin-bottom: 5px; font-family: 'Lato', sans-serif; color: var(--primary-dark); }
-  .topic p { margin-bottom: 12px; }
-  .topic ul, .topic ol { margin-left: 20px; margin-bottom: 12px; }
-  .topic li { margin-bottom: 4px; }
-  .demo-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin: 16px 0; box-shadow: var(--shadow); }
-  .demo-card .demo-title { font-weight: 700; font-size: 1.02rem; color: var(--primary-dark); margin-bottom: 6px; font-family: 'Lora', serif; }
-  .demo-card .demo-desc { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px; }
-  .demo-card .demo-link { display: inline-block; background: var(--primary); color: white; text-decoration: none; padding: 9px 18px; border-radius: 7px; font-size: 0.85rem; font-weight: 700; transition: background 0.2s; letter-spacing: 0.2px; }
-  .demo-card .demo-link:hover { background: var(--primary-dark); }
-  .demo-card .demo-meta { font-size: 0.76rem; color: var(--text-muted); margin-top: 8px; }
-  .tool-table { width: 100%; border-collapse: collapse; margin: 12px 0 18px; font-size: 0.84rem; box-shadow: var(--shadow); border-radius: var(--radius); overflow: hidden; }
-  .tool-table thead { background: var(--primary); color: white; }
-  .tool-table th { padding: 9px 12px; text-align: left; font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; }
-  .tool-table td { padding: 9px 12px; border-bottom: 1px solid var(--border-light); vertical-align: top; background: var(--surface); }
-  .tool-table tr:last-child td { border-bottom: none; }
-  .tool-table tr:nth-child(even) td { background: var(--surface-alt); }
-  .tool-name { font-weight: 700; color: var(--primary-dark); }
-  .price-free { color: var(--success); font-weight: 700; }
-  .price-freemium { color: var(--accent-dark); font-weight: 700; }
-  .callout { background: var(--surface-alt); border-left: 4px solid var(--primary); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 18px; margin: 16px 0; }
-  .callout.accent { border-left-color: var(--accent); background: #F8F2E5; }
-  .callout.success { border-left-color: var(--success); background: var(--success-bg); }
-  .callout-title { font-weight: 700; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 5px; color: var(--primary); }
-  .callout.accent .callout-title { color: var(--accent-dark); }
-  .callout.success .callout-title { color: var(--success); }
-  .group-prompt { background: linear-gradient(150deg, var(--primary-dark), var(--primary)); color: white; border-radius: var(--radius); padding: 20px 22px; margin: 18px 0 20px; box-shadow: var(--shadow); }
-  .group-prompt .label { display: inline-block; background: var(--accent); color: var(--primary-dark); padding: 3px 12px; border-radius: 12px; font-size: 0.66rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
-  .group-prompt h3 { color: white; margin: 5px 0 7px; font-size: 1.08rem; }
-  .group-prompt p { color: rgba(255,255,255,0.92); font-size: 0.9rem; }
-  .group-prompt ol { color: rgba(255,255,255,0.92); margin-left: 18px; }
-  .group-prompt li { margin-bottom: 5px; font-size: 0.9rem; }
-  .prompt-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; margin: 14px 0; box-shadow: var(--shadow); }
-  .prompt-card .prompt-title { font-weight: 700; color: var(--primary-dark); margin-bottom: 5px; font-size: 0.96rem; font-family: 'Lora', serif; }
-  .prompt-card .prompt-desc { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 10px; }
-  .prompt-card pre { background: var(--primary-dark); color: #DCEDEB; border-radius: 8px; padding: 12px 14px; font-size: 0.78rem; white-space: pre-wrap; font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; line-height: 1.55; margin-bottom: 10px; overflow-x: auto; }
-  .prompt-card .copy-btn { background: var(--primary); color: white; border: none; padding: 7px 16px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: background 0.2s; }
-  .prompt-card .copy-btn:hover { background: var(--primary-dark); }
-  .prompt-card .copy-btn.copied { background: var(--success); }
-  .fidelity-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 16px 0; }
-  .fidelity-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); border-top: 4px solid var(--primary); }
-  .fidelity-card .fid-level { font-size: 0.66rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; color: var(--accent-dark); margin-bottom: 4px; }
-  .fidelity-card .fid-title { font-weight: 700; color: var(--primary-dark); margin-bottom: 7px; font-size: 0.92rem; font-family: 'Lora', serif; }
-  .fidelity-card .fid-desc { font-size: 0.79rem; color: var(--text-muted); margin-bottom: 7px; }
-  .fidelity-card .fid-cost { font-size: 0.76rem; font-weight: 700; color: var(--success); }
-  .resource-section { margin: 14px 0; }
-  .resource-section h4 { font-size: 0.88rem; color: var(--primary); margin-bottom: 5px; font-weight: 700; }
-  .resource-list { list-style: none; margin-left: 0; }
-  .resource-list li { padding: 7px 0; border-bottom: 1px solid var(--border-light); font-size: 0.85rem; }
-  .resource-list li:last-child { border-bottom: none; }
-  .resource-list a { color: var(--primary); text-decoration: none; font-weight: 700; }
-  .resource-list a:hover { text-decoration: underline; }
-  .resource-list .price-tag { font-size: 0.73rem; color: var(--text-muted); margin-left: 7px; font-weight: 400; }
-  .worksheet { background: var(--surface); border: 2px dashed var(--primary-light); border-radius: var(--radius); padding: 24px; margin: 20px 0; }
-  .worksheet h3 { text-align: center; margin-bottom: 14px; }
-  .ws-field { margin-bottom: 16px; }
-  .ws-field label { display: block; font-weight: 700; font-size: 0.87rem; color: var(--primary-dark); margin-bottom: 3px; }
-  .ws-field .hint { font-size: 0.77rem; color: var(--text-muted); margin-bottom: 6px; }
-  .ws-field input[type="text"], .ws-field textarea, .ws-field select { width: 100%; padding: 8px 11px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.87rem; font-family: inherit; background: var(--surface-alt); }
-  .ws-field input:focus, .ws-field textarea:focus, .ws-field select:focus { outline: 2px solid var(--primary-light); border-color: var(--primary-light); background: var(--surface); }
-  .ws-field textarea { min-height: 72px; resize: vertical; }
-  footer { background: var(--primary-dark); color: rgba(255,255,255,0.72); padding: 26px 20px; text-align: center; font-size: 0.83rem; }
-  footer a { color: var(--accent-light); text-decoration: none; }
-  .badge { display: inline-block; padding: 1px 8px; border-radius: 9px; font-size: 0.64rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3px; margin-left: 4px; }
-  .badge-free { background: #D8EAD8; color: #205B38; }
-  .badge-freemium { background: #F8EECD; color: #7A5C12; }
-  hr.divider { border: none; border-top: 1px dashed var(--border); margin: 26px 0; }
-  strong { color: inherit; }
-  @media (max-width: 600px) { .hero { padding: 40px 20px 32px; } .hero h1 { font-size: 1.45rem; } section.topic { padding: 24px 15px; } .fidelity-grid { grid-template-columns: 1fr; } }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Learning Unlocked — Workshop Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:wght@400;700;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0F5257;
+      --primary-light: #1B747B;
+      --primary-dark: #0A3538;
+      --accent: #C99A3C;
+      --accent-light: #E2BE6B;
+      --accent-dark: #9E7625;
+      --bg: #F7F5F0;
+      --surface: #FFFFFF;
+      --surface-alt: #EDF3F3;
+      --text: #1C2A2C;
+      --text-muted: #5F7173;
+      --border: #D3DDDC;
+      --border-light: #E5EBEA;
+      --success: #2F6B4F;
+      --success-bg: #EDF4EF;
+      --warning: #D4A23A;
+      --radius: 12px;
+      --shadow: 0 2px 14px rgba(15, 82, 87, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .topic-number {
+      font-family: 'Lora', Georgia, 'Times New Roman', serif;
+    }
+
+    .hero {
+      background: linear-gradient(150deg, var(--primary-dark) 0%, var(--primary) 55%, var(--primary-light) 100%);
+      color: white;
+      padding: 56px 24px 44px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -70px;
+      left: -70px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      border: 42px solid rgba(201, 154, 60, 0.10);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      right: -50px;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .hero h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+      position: relative;
+    }
+
+    .hero .subtitle {
+      font-size: 1rem;
+      opacity: 0.88;
+      margin-bottom: 12px;
+      font-style: italic;
+      font-family: 'Lora', Georgia, serif;
+    }
+
+    .hero .presenter {
+      font-size: 0.82rem;
+      opacity: 0.75;
+      letter-spacing: 0.3px;
+    }
+
+    .progress-track {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 1px 4px rgba(15, 82, 87, 0.05);
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 6px;
+      background: var(--border-light);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-dark), var(--accent));
+      border-radius: 4px;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+
+    .progress-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      white-space: nowrap;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .section-nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .section-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--surface-alt);
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+      font-family: 'Lora', serif;
+    }
+
+    .section-nav a:hover,
+    .section-nav a.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    section.topic {
+      padding: 34px 20px;
+      border-bottom: 1px solid var(--border-light);
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    section.topic:last-child {
+      border-bottom: none;
+    }
+
+    .topic-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--accent);
+    }
+
+    .topic h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+      letter-spacing: -0.2px;
+    }
+
+    .topic .lead {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-style: italic;
+      font-family: 'Lora', serif;
+    }
+
+    .topic h3 {
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: 26px;
+      margin-bottom: 8px;
+    }
+
+    .topic h4 {
+      font-size: 0.94rem;
+      font-weight: 700;
+      margin-top: 16px;
+      margin-bottom: 5px;
+      font-family: 'Lato', sans-serif;
+      color: var(--primary-dark);
+    }
+
+    .topic p {
+      margin-bottom: 12px;
+    }
+
+    .topic ul,
+    .topic ol {
+      margin-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    .topic li {
+      margin-bottom: 4px;
+    }
+
+    .demo-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin: 16px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .demo-card .demo-title {
+      font-weight: 700;
+      font-size: 1.02rem;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+      font-family: 'Lora', serif;
+    }
+
+    .demo-card .demo-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .demo-card .demo-link {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      padding: 9px 18px;
+      border-radius: 7px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: background 0.2s;
+      letter-spacing: 0.2px;
+    }
+
+    .demo-card .demo-link:hover {
+      background: var(--primary-dark);
+    }
+
+    .demo-card .demo-meta {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .tool-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 18px;
+      font-size: 0.84rem;
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .tool-table thead {
+      background: var(--primary);
+      color: white;
+    }
+
+    .tool-table th {
+      padding: 9px 12px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tool-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--border-light);
+      vertical-align: top;
+      background: var(--surface);
+    }
+
+    .tool-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .tool-table tr:nth-child(even) td {
+      background: var(--surface-alt);
+    }
+
+    .tool-name {
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .price-free {
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .price-freemium {
+      color: var(--accent-dark);
+      font-weight: 700;
+    }
+
+    .callout {
+      background: var(--surface-alt);
+      border-left: 4px solid var(--primary);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+    }
+
+    .callout.accent {
+      border-left-color: var(--accent);
+      background: #F8F2E5;
+    }
+
+    .callout.success {
+      border-left-color: var(--success);
+      background: var(--success-bg);
+    }
+
+    .callout-title {
+      font-weight: 700;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 5px;
+      color: var(--primary);
+    }
+
+    .callout.accent .callout-title {
+      color: var(--accent-dark);
+    }
+
+    .callout.success .callout-title {
+      color: var(--success);
+    }
+
+    .group-prompt {
+      background: linear-gradient(150deg, var(--primary-dark), var(--primary));
+      color: white;
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      margin: 18px 0 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .group-prompt .label {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--primary-dark);
+      padding: 3px 12px;
+      border-radius: 12px;
+      font-size: 0.66rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .group-prompt h3 {
+      color: white;
+      margin: 5px 0 7px;
+      font-size: 1.08rem;
+    }
+
+    .group-prompt p {
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 0.9rem;
+    }
+
+    .group-prompt ol {
+      color: rgba(255, 255, 255, 0.92);
+      margin-left: 18px;
+    }
+
+    .group-prompt li {
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+    }
+
+    .prompt-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      margin: 14px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .prompt-card .prompt-title {
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 5px;
+      font-size: 0.96rem;
+      font-family: 'Lora', serif;
+    }
+
+    .prompt-card .prompt-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .prompt-card pre {
+      background: var(--primary-dark);
+      color: #DCEDEB;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 0.78rem;
+      white-space: pre-wrap;
+      font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+      line-height: 1.55;
+      margin-bottom: 10px;
+      overflow-x: auto;
+    }
+
+    .prompt-card .copy-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .prompt-card .copy-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .prompt-card .copy-btn.copied {
+      background: var(--success);
+    }
+
+    .fidelity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .fidelity-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      border-top: 4px solid var(--primary);
+    }
+
+    .fidelity-card .fid-level {
+      font-size: 0.66rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent-dark);
+      margin-bottom: 4px;
+    }
+
+    .fidelity-card .fid-title {
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 7px;
+      font-size: 0.92rem;
+      font-family: 'Lora', serif;
+    }
+
+    .fidelity-card .fid-desc {
+      font-size: 0.79rem;
+      color: var(--text-muted);
+      margin-bottom: 7px;
+    }
+
+    .fidelity-card .fid-cost {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--success);
+    }
+
+    .resource-section {
+      margin: 14px 0;
+    }
+
+    .resource-section h4 {
+      font-size: 0.88rem;
+      color: var(--primary);
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+
+    .resource-list {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .resource-list li {
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 0.85rem;
+    }
+
+    .resource-list li:last-child {
+      border-bottom: none;
+    }
+
+    .resource-list a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .resource-list a:hover {
+      text-decoration: underline;
+    }
+
+    .resource-list .price-tag {
+      font-size: 0.73rem;
+      color: var(--text-muted);
+      margin-left: 7px;
+      font-weight: 400;
+    }
+
+    .worksheet {
+      background: var(--surface);
+      border: 2px dashed var(--primary-light);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 20px 0;
+    }
+
+    .worksheet h3 {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .ws-field {
+      margin-bottom: 16px;
+    }
+
+    .ws-field label {
+      display: block;
+      font-weight: 700;
+      font-size: 0.87rem;
+      color: var(--primary-dark);
+      margin-bottom: 3px;
+    }
+
+    .ws-field .hint {
+      font-size: 0.77rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .ws-field input[type="text"],
+    .ws-field textarea,
+    .ws-field select {
+      width: 100%;
+      padding: 8px 11px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.87rem;
+      font-family: inherit;
+      background: var(--surface-alt);
+    }
+
+    .ws-field input:focus,
+    .ws-field textarea:focus,
+    .ws-field select:focus {
+      outline: 2px solid var(--primary-light);
+      border-color: var(--primary-light);
+      background: var(--surface);
+    }
+
+    .ws-field textarea {
+      min-height: 72px;
+      resize: vertical;
+    }
+
+    footer {
+      background: var(--primary-dark);
+      color: rgba(255, 255, 255, 0.72);
+      padding: 26px 20px;
+      text-align: center;
+      font-size: 0.83rem;
+    }
+
+    footer a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 1px 8px;
+      border-radius: 9px;
+      font-size: 0.64rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-left: 4px;
+    }
+
+    .badge-free {
+      background: #D8EAD8;
+      color: #205B38;
+    }
+
+    .badge-freemium {
+      background: #F8EECD;
+      color: #7A5C12;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px dashed var(--border);
+      margin: 26px 0;
+    }
+
+    strong {
+      color: inherit;
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 40px 20px 32px;
+      }
+
+      .hero h1 {
+        font-size: 1.45rem;
+      }
+
+      section.topic {
+        padding: 24px 15px;
+      }
+
+      .fidelity-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="hero">
-  <h1>Digital Learning Unlocked</h1>
-  <div class="subtitle">Affordable Tools and Tech for Next-Gen APP Education</div>
-  <div class="presenter">Diana Brewer, PA-C &nbsp;·&nbsp; September 2026 APP Fellowship Conference</div>
-</div>
+  <div class="hero">
+    <h1>Digital Learning Unlocked</h1>
+    <div class="subtitle">Affordable Tools and Tech for Next-Gen APP Education</div>
+    <div class="presenter">Diana Brewer, PA-C &nbsp;·&nbsp; September 2026 APP Fellowship Conference</div>
+  </div>
 
-<div class="progress-track" id="progressTrack">
-  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-  <div class="progress-label" id="progressLabel">Section 1 of 8</div>
-</div>
+  <div class="progress-track" id="progressTrack">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-label" id="progressLabel">Section 1 of 8</div>
+  </div>
 
-<div class="section-nav" id="sectionNav">
-  <a href="#topic1" data-section="1" title="Welcome">1</a>
-  <a href="#topic2" data-section="2" title="Digital Tools">2</a>
-  <a href="#topic3" data-section="3" title="AI Chatbots">3</a>
-  <a href="#topic4" data-section="4" title="AI Grounding">4</a>
-  <a href="#topic5" data-section="5" title="Simulation Spectrum">5</a>
-  <a href="#topic6" data-section="6" title="VR/AR">6</a>
-  <a href="#topic7" data-section="7" title="Capstone Workshop">7</a>
-  <a href="#topic8" data-section="8" title="Resources">8</a>
-</div>
+  <div class="section-nav" id="sectionNav">
+    <a href="#topic1" data-section="1" title="Welcome">1</a>
+    <a href="#topic2" data-section="2" title="Digital Tools">2</a>
+    <a href="#topic3" data-section="3" title="AI Chatbots">3</a>
+    <a href="#topic4" data-section="4" title="AI Grounding">4</a>
+    <a href="#topic5" data-section="5" title="Simulation Spectrum">5</a>
+    <a href="#topic6" data-section="6" title="VR/AR">6</a>
+    <a href="#topic7" data-section="7" title="Capstone Workshop">7</a>
+    <a href="#topic8" data-section="8" title="Resources">8</a>
+  </div>
 
-<!-- TOPIC 1: WELCOME -->
-<section class="topic" id="topic1">
-  <div class="topic-number">1</div>
-  <h2>Welcome & Framing</h2>
-  <p class="lead">You don't need to be a technology expert to use these tools. You need to be a clinician who knows what your learners need.</p>
-  
-  <div class="callout accent">
-    <div class="callout-title">Conflict of Interest Disclosure</div>
-    <p>Diana Brewer is co-founder of Sapient Clinician, an AI-powered clinical reasoning assessment platform. This session is vendor-neutral and focuses on the broader landscape of affordable tools available to all educators.</p>
-  </div>
-  
-  <div class="callout">
-    <div class="callout-title">How This Session Works</div>
-    <p>This page is your guide for the entire session. Keep it open on your phone or laptop. As we move through each section, scroll to follow along. You'll find:</p>
-    <ul>
-      <li>Live demo links you can try yourself</li>
-      <li>Tool reference tables with pricing and links</li>
-      <li>Copy-paste AI prompt templates</li>
-      <li>Table group discussion prompts after each section</li>
-      <li>A design sprint worksheet you'll complete with your group</li>
-    </ul>
-    <p><strong>Everything on this page stays available after the conference.</strong> Bookmark it, share it with colleagues, use it Monday morning.</p>
-  </div>
-</section>
+  <!-- TOPIC 1: WELCOME -->
+  <section class="topic" id="topic1">
+    <div class="topic-number">1</div>
+    <h2>Welcome & Framing</h2>
+    <p class="lead">You don't need to be a technology expert to use these tools. You need to be a clinician who knows
+      what your learners need.</p>
 
-<!-- TOPIC 2: DIGITAL TOOLS -->
-<section class="topic" id="topic2">
-  <div class="topic-number">2</div>
-  <h2>Objective 1 — Digital Tools for Interactive Content</h2>
-  <p class="lead">Free or low-cost platforms for creating interactive content — not just consuming it.</p>
-  
-  <div class="callout">
-    <div class="callout-title">Explore the Tools</div>
-    <p>The tool tables below include pricing, links, and use cases for every tool mentioned today. Take a moment to scroll through — you'll come back to these during the workshop when selecting tools for your design sprint.</p>
-  </div>
-  
-  <h3>Live Demo: Branching Clinical Scenario</h3>
-  <div class="demo-card">
-    <div class="demo-title">Interactive Branching Clinical Decision Tree</div>
-    <div class="demo-desc">A 65-year-old presents to the ED with acute confusion. Make decisions. See consequences. Learn from the path. This demonstrates what you can build with H5P (free, open-source) — no programming required.</div>
-    <a href="workshop-branching-demo.html" class="demo-link" target="_blank">▶ Try the Branching Scenario Demo</a>
-    <div class="demo-meta">Built with: HTML/JS (demonstrates H5P concept) · Cost to recreate: $0 · Time to build: ~1 hour</div>
-  </div>
-  
-  <h3>Tool Reference: Content Creation Platforms</h3>
-  <table class="tool-table">
-    <thead><tr><th>Tool</th><th>Cost</th><th>Best For</th></tr></thead>
-    <tbody>
-      <tr><td class="tool-name">Canva</td><td class="price-freemium">Free / ~$14/mo (edu may be free)</td><td>Infographics, visual case presentations, AI-assisted design</td></tr>
-      <tr><td class="tool-name">H5P <span class="badge badge-free">OSS</span></td><td class="price-free">Free (self-hosted)</td><td>Branching clinical scenarios, interactive content, image annotation</td></tr>
-      <tr><td class="tool-name">Nearpod</td><td class="price-freemium">Free / $120/yr</td><td>Live interactive lectures, real-time formative assessment</td></tr>
-      <tr><td class="tool-name">Pear Deck</td><td class="price-freemium">Free / $150/yr</td><td>Interactive Google Slides/PowerPoint with embedded questions</td></tr>
-      <tr><td class="tool-name">Gamma</td><td class="price-freemium">Free / $10/mo</td><td>AI-generated presentations from a topic prompt</td></tr>
-    </tbody>
-  </table>
-  
-  <h3>Tool Reference: Study Tools (Not Assessment Tools)</h3>
-  <div class="callout accent">
-    <div class="callout-title">Important Distinction</div>
-    <p>These tools support memorization and self-paced study. They are <strong>not</strong> assessment tools. In the AI era, any assessment that asks a student to select an answer can be solved by AI in seconds. Use these for formative self-study only.</p>
-  </div>
-  <table class="tool-table">
-    <thead><tr><th>Tool</th><th>Cost</th><th>Best For</th></tr></thead>
-    <tbody>
-      <tr><td class="tool-name">Anki <span class="badge badge-free">OSS</span></td><td class="price-free">Free</td><td>Long-term retention, spaced repetition, image occlusion for anatomy</td></tr>
-      <tr><td class="tool-name">Quizlet Q-Chat</td><td class="price-freemium">Free / $36/yr</td><td>Socratic AI study partner for self-paced learning</td></tr>
-      <tr><td class="tool-name">Brainscape</td><td class="price-freemium">Free / $10/mo</td><td>Confidence-based repetition flashcards</td></tr>
-    </tbody>
-  </table>
-  
-  <h3>Tool Reference: Open Educational Resources</h3>
-  <table class="tool-table">
-    <thead><tr><th>Resource</th><th>Cost</th><th>What It Offers</th></tr></thead>
-    <tbody>
-      <tr><td class="tool-name">MedEdPORTAL</td><td class="price-free">Free</td><td>AAMC peer-reviewed repository — thousands of ready-to-use teaching modules, cases, simulations</td></tr>
-      <tr><td class="tool-name">OER Commons</td><td class="price-free">Free</td><td>Open educational resource library — searchable, adaptable</td></tr>
-      <tr><td class="tool-name">OpenStax</td><td class="price-free">Free</td><td>Free peer-reviewed textbooks (includes A&amp;P, health science titles)</td></tr>
-      <tr><td class="tool-name">MERLOT</td><td class="price-free">Free</td><td>Curated OER library with simulations, animations, case studies</td></tr>
-    </tbody>
-  </table>
-  
-  <div class="group-prompt">
-    <div class="label">Think · Pair · Share — 3 min</div>
-    <h3>Quick Share</h3>
-    <p>Turn to your table group. Share one tool you already use and one tool from the list above that you're curious about. What's one educational challenge you wish you had a tool for?</p>
-  </div>
-</section>
+    <div class="callout accent">
+      <div class="callout-title">Conflict of Interest Disclosure</div>
+      <p>Diana Brewer is co-founder of Sapient Clinician, an AI-powered clinical reasoning assessment platform. This
+        session is vendor-neutral and focuses on the broader landscape of affordable tools available to all educators.
+      </p>
+    </div>
 
-<!-- TOPIC 3: AI CHATBOTS -->
-<section class="topic" id="topic3">
-  <div class="topic-number">3</div>
-  <h2>Objective 2 — AI Tools: Conversational Chatbots</h2>
-  <p class="lead">Tools that generate new content — case scenarios, clinical reasoning exercises, feedback rubrics. The key risk: hallucination.</p>
-  
-  <div class="callout accent">
-    <div class="callout-title">The Pedagogical Challenge in the AI Era</div>
-    <p>If we use AI to create multiple-choice quizzes, students will use AI to answer them. That's not education — that's an arms race we've already lost. The opportunity is to use AI to create <strong>cognitively demanding, authentic learning experiences</strong> that AI <em>can't</em> do for the student: simulated patient encounters, reflective writing, clinical reasoning cases, formative feedback on authentic work. <strong>Use AI to build the scaffolding, not to replace the thinking.</strong></p>
-  </div>
-  
-  <h3>Conversational Chatbots</h3>
-  <table class="tool-table">
-    <thead><tr><th>Tool</th><th>Cost</th><th>Key Features</th></tr></thead>
-    <tbody>
-      <tr><td class="tool-name">ChatGPT (OpenAI)</td><td class="price-freemium">Free (GPT-5) / $20/mo Plus</td><td>Most versatile. File upload for grounding. Voice mode for simulated patient encounters. Custom GPTs for repeatable workflows.</td></tr>
-      <tr><td class="tool-name">Claude (Anthropic)</td><td class="price-freemium">Free / $17/mo (annual)</td><td>Best for long-form content and complex reasoning. 200K context window. Extended thinking mode.</td></tr>
-      <tr><td class="tool-name">Gemini (Google)</td><td class="price-freemium">Free / $20/mo</td><td>Google Workspace integration. Deep Research mode with citations. Image generation.</td></tr>
-      <tr><td class="tool-name">Grok (xAI)</td><td class="price-freemium">Free w/ X / ~$30/mo</td><td>Real-time web search. Reasoning mode. No enterprise/EDU plan.</td></tr>
-      <tr><td class="tool-name">Microsoft Copilot</td><td class="price-freemium">Free / $10/mo Pro</td><td>M365 integration. Many institutions already include it — check with IT.</td></tr>
-    </tbody>
-  </table>
-</section>
+    <div class="callout">
+      <div class="callout-title">How This Session Works</div>
+      <p>This page is your guide for the entire session. Keep it open on your phone or laptop. As we move through each
+        section, scroll to follow along. You'll find:</p>
+      <ul>
+        <li>Live demo links you can try yourself</li>
+        <li>Tool reference tables with pricing and links</li>
+        <li>Copy-paste AI prompt templates</li>
+        <li>Table group discussion prompts after each section</li>
+        <li>A design sprint worksheet you'll complete with your group</li>
+      </ul>
+      <p><strong>Everything on this page stays available after the conference.</strong> Bookmark it, share it with
+        colleagues, use it Monday morning.</p>
+    </div>
+  </section>
 
-<!-- TOPIC 4: AI GROUNDING -->
-<section class="topic" id="topic4">
-  <div class="topic-number">4</div>
-  <h2>Objective 2 — AI Tools: Grounding to Prevent Hallucinations</h2>
-  <p class="lead">The second category: data aggregation and synthesis tools that ground responses in your source material. This is RAG without writing code.</p>
-  
-  <h3>Data Aggregation & Synthesis Tools (Grounding Tools)</h3>
-  <table class="tool-table">
-    <thead><tr><th>Tool</th><th>Cost</th><th>Why It Matters</th></tr></thead>
-    <tbody>
-      <tr><td class="tool-name">Google NotebookLM <span class="badge badge-free">Best for grounding</span></td><td class="price-free">Free</td><td><strong>The single most important tool in this session.</strong> Upload your source documents. AI responses are grounded ONLY in what you uploaded. Generates study guides, FAQs, audio podcast discussions. Zero hallucination risk. RAG without writing code.</td></tr>
-      <tr><td class="tool-name">Perplexity</td><td class="price-freemium">Free / $20/mo</td><td>AI answer engine that cites every source. Deep Research generates reports with 30+ cited sources. Best for evidence-based medicine exercises.</td></tr>
-      <tr><td class="tool-name">DeepSeek</td><td class="price-free">Free</td><td>Free reasoning model with visible chain-of-thought. Self-hostable for data privacy. Privacy note: based in China.</td></tr>
-    </tbody>
-  </table>
-  
-  <div class="callout success">
-    <div class="callout-title">The "Grounded AI" Workflow — No Code Required</div>
-    <ol>
-      <li><strong>Prepare your source material:</strong> Clinical guidelines, your case notes, journal articles, lecture slides</li>
-      <li><strong>Upload to a grounding tool:</strong> NotebookLM (free) or ChatGPT/Claude with file upload + grounding instruction</li>
-      <li><strong>Add the grounding instruction:</strong> <em>"Base your response only on the attached documents. If the answer is not in the attached material, say so rather than generating from your training data."</em></li>
-      <li><strong>Generate and verify:</strong> Always spot-check lab values, drug dosages, and clinical facts against your source</li>
-      <li><strong>Refine and reuse:</strong> Save the notebook/prompt. It becomes your personal AI case library, grounded in material you trust.</li>
-    </ol>
-  </div>
-  
-  <h3>Copy-Paste AI Prompt Templates</h3>
-  <p>Try these now on your laptop. Each prompt includes the grounding instruction that prevents hallucinations.</p>
-  
-  <div class="prompt-card">
-    <div class="prompt-title">1. Grounded Clinical Reasoning Case</div>
-    <div class="prompt-desc">For use with NotebookLM (upload sources first) or ChatGPT/Claude (attach files first)</div>
-    <pre>FIRST: Upload your source material (clinical guideline PDF, your 
+  <!-- TOPIC 2: DIGITAL TOOLS -->
+  <section class="topic" id="topic2">
+    <div class="topic-number">2</div>
+    <h2>Objective 1 — Digital Tools for Interactive Content</h2>
+    <p class="lead">Free or low-cost platforms for creating interactive content — not just consuming it.</p>
+
+    <div class="callout">
+      <div class="callout-title">Explore the Tools</div>
+      <p>The tool tables below include pricing, links, and use cases for every tool mentioned today. Take a moment to
+        scroll through — you'll come back to these during the workshop when selecting tools for your design sprint.</p>
+    </div>
+
+    <h3>Live Demo: Branching Clinical Scenario</h3>
+    <div class="demo-card">
+      <div class="demo-title">Interactive Branching Clinical Decision Tree</div>
+      <div class="demo-desc">A 65-year-old presents to the ED with acute confusion. Make decisions. See consequences.
+        Learn from the path. This demonstrates what you can build with H5P (free, open-source) — no programming
+        required.</div>
+      <a href="workshop-case-demo.html" class="demo-link" target="_blank">▶ Try the Branching Scenario Demo</a>
+      <div class="demo-meta">Built with: HTML/JS (demonstrates H5P concept) · Cost to recreate: $0 · Time to build: ~1
+        hour</div>
+    </div>
+
+    <h3>Tool Reference: Content Creation Platforms</h3>
+    <table class="tool-table">
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Cost</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tool-name">Canva</td>
+          <td class="price-freemium">Free / ~$14/mo (edu may be free)</td>
+          <td>Infographics, visual case presentations, AI-assisted design</td>
+        </tr>
+        <tr>
+          <td class="tool-name">H5P <span class="badge badge-free">OSS</span></td>
+          <td class="price-free">Free (self-hosted)</td>
+          <td>Branching clinical scenarios, interactive content, image annotation</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Nearpod</td>
+          <td class="price-freemium">Free / $120/yr</td>
+          <td>Live interactive lectures, real-time formative assessment</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Pear Deck</td>
+          <td class="price-freemium">Free / $150/yr</td>
+          <td>Interactive Google Slides/PowerPoint with embedded questions</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Gamma</td>
+          <td class="price-freemium">Free / $10/mo</td>
+          <td>AI-generated presentations from a topic prompt</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Tool Reference: Study Tools (Not Assessment Tools)</h3>
+    <div class="callout accent">
+      <div class="callout-title">Important Distinction</div>
+      <p>These tools support memorization and self-paced study. They are <strong>not</strong> assessment tools. In the
+        AI era, any assessment that asks a student to select an answer can be solved by AI in seconds. Use these for
+        formative self-study only.</p>
+    </div>
+    <table class="tool-table">
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Cost</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tool-name">Anki <span class="badge badge-free">OSS</span></td>
+          <td class="price-free">Free</td>
+          <td>Long-term retention, spaced repetition, image occlusion for anatomy</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Quizlet Q-Chat</td>
+          <td class="price-freemium">Free / $36/yr</td>
+          <td>Socratic AI study partner for self-paced learning</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Brainscape</td>
+          <td class="price-freemium">Free / $10/mo</td>
+          <td>Confidence-based repetition flashcards</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Tool Reference: Open Educational Resources</h3>
+    <table class="tool-table">
+      <thead>
+        <tr>
+          <th>Resource</th>
+          <th>Cost</th>
+          <th>What It Offers</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tool-name">MedEdPORTAL</td>
+          <td class="price-free">Free</td>
+          <td>AAMC peer-reviewed repository — thousands of ready-to-use teaching modules, cases, simulations</td>
+        </tr>
+        <tr>
+          <td class="tool-name">OER Commons</td>
+          <td class="price-free">Free</td>
+          <td>Open educational resource library — searchable, adaptable</td>
+        </tr>
+        <tr>
+          <td class="tool-name">OpenStax</td>
+          <td class="price-free">Free</td>
+          <td>Free peer-reviewed textbooks (includes A&amp;P, health science titles)</td>
+        </tr>
+        <tr>
+          <td class="tool-name">MERLOT</td>
+          <td class="price-free">Free</td>
+          <td>Curated OER library with simulations, animations, case studies</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="group-prompt">
+      <div class="label">Think · Pair · Share — 3 min</div>
+      <h3>Quick Share</h3>
+      <p>Turn to your table group. Share one tool you already use and one tool from the list above that you're curious
+        about. What's one educational challenge you wish you had a tool for?</p>
+    </div>
+  </section>
+
+  <!-- TOPIC 3: AI CHATBOTS -->
+  <section class="topic" id="topic3">
+    <div class="topic-number">3</div>
+    <h2>Objective 2 — AI Tools: Conversational Chatbots</h2>
+    <p class="lead">Tools that generate new content — case scenarios, clinical reasoning exercises, feedback rubrics.
+      The key risk: hallucination.</p>
+
+    <div class="callout accent">
+      <div class="callout-title">The Pedagogical Challenge in the AI Era</div>
+      <p>If we use AI to create multiple-choice quizzes, students will use AI to answer them. That's not education —
+        that's an arms race we've already lost. The opportunity is to use AI to create <strong>cognitively demanding,
+          authentic learning experiences</strong> that AI <em>can't</em> do for the student: simulated patient
+        encounters, reflective writing, clinical reasoning cases, formative feedback on authentic work. <strong>Use AI
+          to build the scaffolding, not to replace the thinking.</strong></p>
+    </div>
+
+    <h3>Conversational Chatbots</h3>
+    <table class="tool-table">
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Cost</th>
+          <th>Key Features</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tool-name">ChatGPT (OpenAI)</td>
+          <td class="price-freemium">Free (GPT-5) / $20/mo Plus</td>
+          <td>Most versatile. File upload for grounding. Voice mode for simulated patient encounters. Custom GPTs for
+            repeatable workflows.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Claude (Anthropic)</td>
+          <td class="price-freemium">Free / $17/mo (annual)</td>
+          <td>Best for long-form content and complex reasoning. 200K context window. Extended thinking mode.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Gemini (Google)</td>
+          <td class="price-freemium">Free / $20/mo</td>
+          <td>Google Workspace integration. Deep Research mode with citations. Image generation.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Grok (xAI)</td>
+          <td class="price-freemium">Free w/ X / ~$30/mo</td>
+          <td>Real-time web search. Reasoning mode. No enterprise/EDU plan.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Microsoft Copilot</td>
+          <td class="price-freemium">Free / $10/mo Pro</td>
+          <td>M365 integration. Many institutions already include it — check with IT.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- TOPIC 4: AI GROUNDING -->
+  <section class="topic" id="topic4">
+    <div class="topic-number">4</div>
+    <h2>Objective 2 — AI Tools: Grounding to Prevent Hallucinations</h2>
+    <p class="lead">The second category: data aggregation and synthesis tools that ground responses in your source
+      material. This is RAG without writing code.</p>
+
+    <h3>Data Aggregation & Synthesis Tools (Grounding Tools)</h3>
+    <table class="tool-table">
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Cost</th>
+          <th>Why It Matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tool-name">Google NotebookLM <span class="badge badge-free">Best for grounding</span></td>
+          <td class="price-free">Free</td>
+          <td><strong>The single most important tool in this session.</strong> Upload your source documents. AI
+            responses are grounded ONLY in what you uploaded. Generates study guides, FAQs, audio podcast discussions.
+            Zero hallucination risk. RAG without writing code.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Perplexity</td>
+          <td class="price-freemium">Free / $20/mo</td>
+          <td>AI answer engine that cites every source. Deep Research generates reports with 30+ cited sources. Best for
+            evidence-based medicine exercises.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">DeepSeek</td>
+          <td class="price-free">Free</td>
+          <td>Free reasoning model with visible chain-of-thought. Self-hostable for data privacy. Privacy note: based in
+            China.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout success">
+      <div class="callout-title">The "Grounded AI" Workflow — No Code Required</div>
+      <ol>
+        <li><strong>Prepare your source material:</strong> Clinical guidelines, your case notes, journal articles,
+          lecture slides</li>
+        <li><strong>Upload to a grounding tool:</strong> NotebookLM (free) or ChatGPT/Claude with file upload +
+          grounding instruction</li>
+        <li><strong>Add the grounding instruction:</strong> <em>"Base your response only on the attached documents. If
+            the answer is not in the attached material, say so rather than generating from your training data."</em>
+        </li>
+        <li><strong>Generate and verify:</strong> Always spot-check lab values, drug dosages, and clinical facts against
+          your source</li>
+        <li><strong>Refine and reuse:</strong> Save the notebook/prompt. It becomes your personal AI case library,
+          grounded in material you trust.</li>
+      </ol>
+    </div>
+
+    <h3>Copy-Paste AI Prompt Templates</h3>
+    <p>Try these now on your laptop. Each prompt includes the grounding instruction that prevents hallucinations.</p>
+
+    <div class="prompt-card">
+      <div class="prompt-title">1. Grounded Clinical Reasoning Case</div>
+      <div class="prompt-desc">For use with NotebookLM (upload sources first) or ChatGPT/Claude (attach files first)
+      </div>
+      <pre>FIRST: Upload your source material (clinical guideline PDF, your 
 case notes, a journal article, or your lecture slides).
 
 THEN ASK:
@@ -313,13 +1030,23 @@ Include:
 IMPORTANT: Base all clinical content ONLY on the attached 
 document(s). If information is not in the attachments, say so. 
 Cite which section each element comes from."</pre>
-    <button class="copy-btn" onclick="copyPrompt(this, `FIRST: Upload your source material (clinical guideline PDF, your case notes, a journal article, or your lecture slides).\n\nTHEN ASK:\n\"Based ONLY on the attached document(s), create a clinical reasoning case for APP fellows. Create a case of [CONDITION] presenting to [SETTING].\n\nInclude:\n- Patient demographic and chief complaint\n- Focused history consistent with the attached source material\n- Physical exam findings consistent with the attached source\n- Initial lab/imaging results from the attached source\n- 1 clinical reasoning exercise where the learner must:\n  (a) Interview the patient (what questions would you ask?)\n  (b) Build a prioritized differential with reasoning\n  (c) Order and interpret relevant diagnostics\n  (d) Justify their assessment with evidence\n- A structured feedback rubric that evaluates the REASONING PROCESS, not just the final answer\n\nIMPORTANT: Base all clinical content ONLY on the attached document(s). If information is not in the attachments, say so. Cite which section each element comes from.`)">Copy Prompt</button>
-  </div>
-  
-  <div class="prompt-card">
-    <div class="prompt-title">2. Simulated Patient Encounter</div>
-    <div class="prompt-desc">For ChatGPT (voice mode if available) or Claude</div>
-    <pre>"You will role-play as a patient in a clinical encounter for 
+      <button class="copy-btn"
+        onclick="copyPrompt(this, `FIRST: Upload your source material (clinical guideline PDF, your case notes, a journal article, or your lecture slides).\n\nTHEN ASK:\n\"
+        Based ONLY on the attached document(s), create a clinical reasoning case for APP fellows. Create a case of
+        [CONDITION] presenting to [SETTING].\n\nInclude:\n- Patient demographic and chief complaint\n- Focused history
+        consistent with the attached source material\n- Physical exam findings consistent with the attached source\n-
+        Initial lab/imaging results from the attached source\n- 1 clinical reasoning exercise where the learner must:\n
+        (a) Interview the patient (what questions would you ask?)\n (b) Build a prioritized differential with
+        reasoning\n (c) Order and interpret relevant diagnostics\n (d) Justify their assessment with evidence\n- A
+        structured feedback rubric that evaluates the REASONING PROCESS, not just the final answer\n\nIMPORTANT: Base
+        all clinical content ONLY on the attached document(s). If information is not in the attachments, say so. Cite
+        which section each element comes from.`)">Copy Prompt</button>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-title">2. Simulated Patient Encounter</div>
+      <div class="prompt-desc">For ChatGPT (voice mode if available) or Claude</div>
+      <pre>"You will role-play as a patient in a clinical encounter for 
 educational purposes. You are [NAME], a [AGE] y/o [GENDER] 
 presenting with [CHIEF COMPLAINT].
 
@@ -333,13 +1060,18 @@ feedback on:
 - Clinical reasoning demonstrated
 - Communication and rapport
 - Areas for improvement"</pre>
-    <button class="copy-btn" onclick="copyPrompt(this, `\"You will role-play as a patient in a clinical encounter for educational purposes. You are [NAME], a [AGE] y/o [GENDER] presenting with [CHIEF COMPLAINT].\n\nStay in character throughout. Reveal information progressively based on what the learner asks. Do not volunteer unprompted information. Show appropriate emotional response.\n\nWhen the learner indicates the encounter is complete, provide feedback on:\n- Information gathering completeness\n- Clinical reasoning demonstrated\n- Communication and rapport\n- Areas for improvement\"`)">Copy Prompt</button>
-  </div>
-  
-  <div class="prompt-card">
-    <div class="prompt-title">3. Structured Feedback Rubric</div>
-    <div class="prompt-desc">For generating rubrics that evaluate reasoning, not just answers</div>
-    <pre>"Create a grading rubric for [ASSESSMENT TYPE: simulated 
+      <button class="copy-btn" onclick="copyPrompt(this, `\" You will role-play as a patient in a clinical encounter for
+        educational purposes. You are [NAME], a [AGE] y/o [GENDER] presenting with [CHIEF COMPLAINT].\n\nStay in
+        character throughout. Reveal information progressively based on what the learner asks. Do not volunteer
+        unprompted information. Show appropriate emotional response.\n\nWhen the learner indicates the encounter is
+        complete, provide feedback on:\n- Information gathering completeness\n- Clinical reasoning demonstrated\n-
+        Communication and rapport\n- Areas for improvement\"`)">Copy Prompt</button>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-title">3. Structured Feedback Rubric</div>
+      <div class="prompt-desc">For generating rubrics that evaluate reasoning, not just answers</div>
+      <pre>"Create a grading rubric for [ASSESSMENT TYPE: simulated 
 encounter / written case / oral presentation] evaluating APP 
 fellows on [COMPETENCY DOMAIN].
 
@@ -352,13 +1084,18 @@ Structure the rubric with:
 - Weight guidance
 
 Format as a table. Ensure language is observable and measurable."</pre>
-    <button class="copy-btn" onclick="copyPrompt(this, `\"Create a grading rubric for [ASSESSMENT TYPE: simulated encounter / written case / oral presentation] evaluating APP fellows on [COMPETENCY DOMAIN].\n\nStructure the rubric with:\n- 4 competency levels (Novice → Advanced Beginner → Competent → Proficient)\n- 5 assessment domains: history-taking, physical exam, diagnostic reasoning, communication, clinical decision-making\n- Behavioral descriptors for each level in each domain\n- Weight guidance\n\nFormat as a table. Ensure language is observable and measurable.\"`)">Copy Prompt</button>
-  </div>
-  
-  <div class="prompt-card">
-    <div class="prompt-title">4. Reflective Writing Prompt Generator</div>
-    <div class="prompt-desc">Creates prompts that require critical thinking, not AI-answerable questions</div>
-    <pre>"Create 3 reflective writing prompts for APP fellows who have 
+      <button class="copy-btn" onclick="copyPrompt(this, `\" Create a grading rubric for [ASSESSMENT TYPE: simulated
+        encounter / written case / oral presentation] evaluating APP fellows on [COMPETENCY DOMAIN].\n\nStructure the
+        rubric with:\n- 4 competency levels (Novice → Advanced Beginner → Competent → Proficient)\n- 5 assessment
+        domains: history-taking, physical exam, diagnostic reasoning, communication, clinical decision-making\n-
+        Behavioral descriptors for each level in each domain\n- Weight guidance\n\nFormat as a table. Ensure language is
+        observable and measurable.\"`)">Copy Prompt</button>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-title">4. Reflective Writing Prompt Generator</div>
+      <div class="prompt-desc">Creates prompts that require critical thinking, not AI-answerable questions</div>
+      <pre>"Create 3 reflective writing prompts for APP fellows who have 
 just completed [CLINICAL EXPERIENCE: a patient encounter / 
 a rotation week / a simulation case].
 
@@ -373,332 +1110,590 @@ Each prompt should:
   the actual experience
 
 Format as a numbered list with a brief rationale for each."</pre>
-    <button class="copy-btn" onclick="copyPrompt(this, `\"Create 3 reflective writing prompts for APP fellows who have just completed [CLINICAL EXPERIENCE: a patient encounter / a rotation week / a simulation case].\n\nEach prompt should:\n- Require the learner to draw on their specific personal experience (not generalizable knowledge AI could generate)\n- Ask them to identify a specific moment where they felt uncertain, made a decision, or learned something new\n- Require them to connect the experience to evidence or guidelines\n- Be impossible to answer meaningfully without having had the actual experience\n\nFormat as a numbered list with a brief rationale for each.\"`)">Copy Prompt</button>
-  </div>
-  
-  <div class="group-prompt">
-    <div class="label">Think · Pair · Share — 3 min</div>
-    <h3>Try It Now</h3>
-    <p>On your laptop or phone, open one of the chatbot tools (ChatGPT, Claude, or Gemini — all free). Copy and paste Prompt #1 or #2 above. If you have a clinical guideline or case note on your computer, upload it first. See what you get. Share with your table — what worked? What surprised you?</p>
-  </div>
-</section>
+      <button class="copy-btn" onclick="copyPrompt(this, `\" Create 3 reflective writing prompts for APP fellows who
+        have just completed [CLINICAL EXPERIENCE: a patient encounter / a rotation week / a simulation case].\n\nEach
+        prompt should:\n- Require the learner to draw on their specific personal experience (not generalizable knowledge
+        AI could generate)\n- Ask them to identify a specific moment where they felt uncertain, made a decision, or
+        learned something new\n- Require them to connect the experience to evidence or guidelines\n- Be impossible to
+        answer meaningfully without having had the actual experience\n\nFormat as a numbered list with a brief rationale
+        for each.\"`)">Copy Prompt</button>
+    </div>
 
-<!-- TOPIC 5: SIMULATION SPECTRUM -->
-<section class="topic" id="topic5">
-  <div class="topic-number">5</div>
-  <h2>Objective 3 — Simulation Across the Fidelity Spectrum</h2>
-  <p class="lead">Simulation is not just VR headsets. The most effective simulation matches the technology to the learning goal — from text-and-audio cases to immersive VR.</p>
-  
-  <div class="callout accent">
-    <div class="callout-title">A Clinician's Perspective</div>
-    <p>Immersion doesn't require a headset. A well-designed text-and-audio case — where a learner interviews a patient, orders labs, interprets an ECG, and builds a differential — can teach clinical reasoning as effectively as a $500 VR setup. Sometimes more effectively, because the cognitive load goes to <em>reasoning</em>, not <em>navigating a virtual environment</em>. What matters is the thinking the learner does, not the fidelity of the interface.</p>
-  </div>
-  
-  <h3>The Fidelity Spectrum</h3>
-  <p>Match the tool to the goal. The most expensive simulation is not the best simulation.</p>
-  
-  <div class="fidelity-grid">
-    <div class="fidelity-card"><div class="fid-level">Level 1 — Free</div><div class="fid-title">Text & Audio</div><div class="fid-desc">Learner interacts with a patient case via text or voice. Orders labs, interprets results, builds differential. May include static images (ECG, X-ray).</div><div class="fid-cost">Cost: $0 — $20/mo</div></div>
-    <div class="fidelity-card" style="border-top-color: var(--accent);"><div class="fid-level">Level 2 — Free/Low</div><div class="fid-title">Image-Based</div><div class="fid-desc">Case presents with diagnostic images. Learner interprets images in clinical context. ECGs, radiology, lab panels.</div><div class="fid-cost">Cost: $0 — $25/app</div></div>
-    <div class="fidelity-card"><div class="fid-level">Level 3 — Free/Low</div><div class="fid-title">Screen-Based Virtual Patients</div><div class="fid-desc">Interactive patient simulator on web/tablet/phone. Dynamic vitals, labs, interventions. Branching scenarios.</div><div class="fid-cost">Cost: Free trial — institutional</div></div>
-    <div class="fidelity-card" style="border-top-color: var(--accent);"><div class="fid-level">Level 4 — Free/Low</div><div class="fid-title">AR (Phone-Based)</div><div class="fid-desc">3D anatomy models overlaid on real surfaces through phone camera. No headset needed.</div><div class="fid-cost">Cost: $0 — $25/app</div></div>
-    <div class="fidelity-card"><div class="fid-level">Level 5 — Investment</div><div class="fid-title">Immersive VR</div><div class="fid-desc">Full head-mounted display. 6DoF movement, hand tracking. Physical interaction in virtual clinical environment.</div><div class="fid-cost">Cost: $100 — $600/headset</div></div>
-  </div>
-  
-  <h3>Live Demo: Interactive Clinical Reasoning Case</h3>
-  <div class="demo-card">
-    <div class="demo-title">Text-Based Clinical Reasoning Case (No VR Needed)</div>
-    <div class="demo-desc">A 19-year-old male presents to the ED with sharp chest pain worse with deep breathing. Interview the patient, order labs, interpret an ECG, build your differential, write your assessment. Receive structured feedback on your reasoning process — not just your final answer.</div>
-    <a href="workshop-case-demo.html" class="demo-link" target="_blank">▶ Try the Clinical Reasoning Case Demo</a>
-    <div class="demo-meta">This is what "authentic assessment in the AI era" looks like. No multiple choice. The reasoning IS the assessment.</div>
-  </div>
-  
-  <h3>Simulation Tools by Fidelity Level</h3>
-  
-  <h4>Text & Audio Simulation</h4>
-  <table class="tool-table">
-    <thead><tr><th>Tool</th><th>Cost</th><th>What It Does</th></tr></thead>
-    <tbody>
-      <tr><td class="tool-name">ChatGPT (as patient simulator)</td><td class="price-freemium">Free / $20/mo</td><td>Structured prompt turns ChatGPT into a simulated patient. Voice mode for realistic phone-based interviews. <strong>Free, immediate, zero setup beyond a good prompt.</strong></td></tr>
-      <tr><td class="tool-name">Claude (as patient simulator)</td><td class="price-freemium">Free / $17/mo</td><td>Strong long-context reasoning for complex cases. Extended thinking for detailed feedback.</td></tr>
-      <tr><td class="tool-name">Flip (video reflection)</td><td class="price-free">100% Free</td><td>Learners record themselves doing patient counseling, case presentations. Peer/faculty video feedback.</td></tr>
-      <tr><td class="tool-name">Sketchy</td><td class="price-freemium">Subscription</td><td>Visual mnemonic learning — animated scenes teach microbiology, pharmacology, and pathology through memorable stories. Video-based with integrated quizzes.</td></tr>
-      <tr><td class="tool-name">Xuron</td><td class="price-freemium">Subscription</td><td>AI-powered virtual patient encounters. Learners interview, examine, and build differentials with adaptive AI patients via text or voice.</td></tr>
-      <tr><td class="tool-name">SimConverse</td><td class="price-freemium">Subscription</td><td>AI-powered communication skills simulator. Practice patient counseling, breaking bad news, and OSCE-style encounters with AI avatars.</td></tr>
-      <tr><td class="tool-name">Geeky Medics</td><td class="price-freemium">Free / Premium</td><td>OSCE guides, interactive clinical cases, and exam prep. Text-based scenarios with step-by-step clinical reasoning walkthroughs.</td></tr>
-      <tr><td class="tool-name">Lecturio</td><td class="price-freemium">Subscription</td><td>Medical education video library with interactive clinical cases, spaced repetition quizzes, and a USMLE/NCLEX question bank.</td></tr>
-      <tr><td class="tool-name">Sapient Clinician</td><td class="price-freemium">Subscription</td><td>Clinical reasoning assessment platform — 300+ cases with structured feedback rubrics, custom case creation, and image interpretation (ECG, radiology). Text and audio-based.</td></tr>
-    </tbody>
-  </table>
-  
-  <h4>Image-Based & Screen-Based Simulation</h4>
-  <table class="tool-table">
-    <thead><tr><th>Tool</th><th>Cost</th><th>What It Does</th></tr></thead>
-    <tbody>
-      <tr><td class="tool-name">H5P (self-hosted)</td><td class="price-free">Free</td><td>Branching clinical scenarios, interactive content, image annotation. No programming — visual editor.</td></tr>
-      <tr><td class="tool-name">Body Interact</td><td class="price-freemium">Free trial / institutional</td><td>Screen-based virtual patient simulator. No VR needed. Targets PA programs. OSCE prep.</td></tr>
-    </tbody>
-  </table>
-  
-  <h4>3D Anatomy & AR (Phone/Tablet — No Headset)</h4>
-  <table class="tool-table">
-    <thead><tr><th>Tool</th><th>Cost</th><th>What It Does</th></tr></thead>
-    <tbody>
-      <tr><td class="tool-name">BioDigital Human</td><td class="price-free">Free basic</td><td>Browser-based 3D anatomy. Zero install — works on any computer. AR mode on mobile.</td></tr>
-      <tr><td class="tool-name">Human Anatomy Atlas (Visible Body)</td><td class="price-freemium">$25 one-time</td><td>24,000+ anatomical assets. One-time purchase — no subscription. AR on mobile.</td></tr>
-      <tr><td class="tool-name">Complete Anatomy (Elsevier)</td><td class="price-freemium">$39.99 first yr / $74.99/yr</td><td>Industry standard — 500+ universities. AR mode, VR version, curriculum manager.</td></tr>
-      <tr><td class="tool-name">3D Slicer</td><td class="price-free">Free (OSS)</td><td>Import real CT/MRI DICOM data. VR support for Quest. 3D-printable export. Best free tool — needs a tech-comfortable champion.</td></tr>
-      <tr><td class="tool-name">OpenAnatomy (Harvard)</td><td class="price-free">Free</td><td>Free anatomy atlases from real imaging data. Creative Commons licensed.</td></tr>
-    </tbody>
-  </table>
-  
-  <div class="group-prompt">
-    <div class="label">Think · Pair · Share — 3 min</div>
-    <h3>Match the Tool to the Goal</h3>
-    <p>With your table group, think of a clinical skill your fellows need to learn. Which fidelity level would you choose? Would text-and-audio work? Do you need images? Would AR anatomy help? Or does this skill genuinely require VR? Discuss why — and what the free or low-cost option would be.</p>
-  </div>
-</section>
+    <div class="group-prompt">
+      <div class="label">Think · Pair · Share — 3 min</div>
+      <h3>Try It Now</h3>
+      <p>On your laptop or phone, open one of the chatbot tools (ChatGPT, Claude, or Gemini — all free). Copy and paste
+        Prompt #1 or #2 above. If you have a clinical guideline or case note on your computer, upload it first. See what
+        you get. Share with your table — what worked? What surprised you?</p>
+    </div>
+  </section>
 
-<!-- TOPIC 6: VR/AR -->
-<section class="topic" id="topic6">
-  <div class="topic-number">6</div>
-  <h2>Objective 3 — Immersive VR: When It's Worth It</h2>
-  <p class="lead">VR adds genuine value when the learning goal requires spatial interaction, physical procedure practice, or team-based immersive scenarios. For pure clinical reasoning, screen-based tools are equally effective at a fraction of the cost.</p>
-  
-  <h3>Hardware Options</h3>
-  <table class="tool-table">
-    <thead><tr><th>Hardware</th><th>Cost</th><th>What It Enables</th></tr></thead>
-    <tbody>
-      <tr><td class="tool-name">Google Cardboard / phone VR</td><td class="price-free">$5–$25/viewer</td><td>Basic VR using a phone. 360° anatomy, immersive videos. Great for demos. No interaction controllers.</td></tr>
-      <tr><td class="tool-name">Meta Quest 2 (refurbished)</td><td class="price-freemium">~$100–$150</td><td><strong>Lowest-cost entry to standalone VR.</strong> Runs most medical VR apps. No color passthrough.</td></tr>
-      <tr><td class="tool-name">Meta Quest 3S</td><td class="price-freemium">$349.99</td><td><strong>Best value for new purchase.</strong> Color passthrough AR. Full Quest store.</td></tr>
-      <tr><td class="tool-name">Meta Quest 3</td><td class="price-freemium">$599.99</td><td>Premium display. Not necessary for most programs — 3S delivers 90% of capability at 60% of cost.</td></tr>
-    </tbody>
-  </table>
-  
-  <h3>VR Simulation Platforms</h3>
-  <table class="tool-table">
-    <thead><tr><th>Platform</th><th>Cost</th><th>Use Case</th></tr></thead>
-    <tbody>
-      <tr><td class="tool-name">Body Interact</td><td class="price-freemium">Free trial / institutional</td><td>Screen-based + VR. Clinical reasoning. No VR required. Targets PA programs.</td></tr>
-      <tr><td class="tool-name">Oxford Medical Simulation (OMS)</td><td class="price-freemium">Institutional</td><td><strong>Explicitly targets PA/APP programs.</strong> AI-driven patients. 74% reduction in onboarding costs.</td></tr>
-      <tr><td class="tool-name">VRpatients</td><td class="price-freemium">Institutional</td><td><strong>No-code authoring</strong> — faculty create custom simulations. Web + VR + Mixed Reality.</td></tr>
-      <tr><td class="tool-name">Osso VR</td><td class="price-freemium">Institutional</td><td>Procedural skills training. Peer-validated: 92% step accuracy, 67% fewer errors.</td></tr>
-      <tr><td class="tool-name">SimX</td><td class="price-freemium">Institutional</td><td>Largest VR patient library (150+ scenarios). Multiplayer for team training.</td></tr>
-    </tbody>
-  </table>
-  
-  <div class="callout accent">
-    <div class="callout-title">Decision Framework — Which Fidelity Do You Need?</div>
-    <h4 style="margin-top:0">Use text/audio when:</h4>
-    <ul><li>Learning goal is clinical reasoning, history-taking, or communication</li><li>You want unlimited repetition at near-zero cost</li></ul>
-    <h4>Use image-based/screen-based when:</h4>
-    <ul><li>Learning goal involves interpreting visual data (ECGs, radiology, labs)</li><li>You want branching decision trees with consequences</li></ul>
-    <h4>Use AR (phone-based) when:</h4>
-    <ul><li>Learning goal is 3D spatial understanding (anatomy, structural relationships)</li><li>Students have smartphones (no additional hardware)</li></ul>
-    <h4>Use immersive VR when:</h4>
-    <ul><li>Learning goal is procedural (physical steps, hand movements)</li><li>You need team-based immersive scenarios</li><li>High-acuity, low-occurrence event rehearsal</li><li>The program will use it regularly (ROI justifies hardware cost)</li></ul>
-  </div>
-  
-  <div class="callout success">
-    <div class="callout-title">Recommended Starter Stack for Low-Resource Programs</div>
-    <ol>
-      <li><strong>Free entry:</strong> ChatGPT (patient simulator) + BioDigital Human + Flip + NotebookLM + H5P → <strong>$0</strong></li>
-      <li><strong>Minimal investment:</strong> Above + Visible Body Atlas ($25, includes AR) → <strong>$25</strong></li>
-      <li><strong>One-headset program:</strong> Above + 1 refurbished Meta Quest 2 (~$100-150) → <strong>~$125-175</strong></li>
-      <li><strong>Small program:</strong> Above + 2-3 Meta Quest 3S (~$350 each) → <strong>~$700-1,100</strong></li>
-    </ol>
-  </div>
-  
-</section>
+  <!-- TOPIC 5: SIMULATION SPECTRUM -->
+  <section class="topic" id="topic5">
+    <div class="topic-number">5</div>
+    <h2>Objective 3 — Simulation Across the Fidelity Spectrum</h2>
+    <p class="lead">Simulation is not just VR headsets. The most effective simulation matches the technology to the
+      learning goal — from text-and-audio cases to immersive VR.</p>
 
-<!-- TOPIC 7: CAPSTONE WORKSHOP -->
-<section class="topic" id="topic7">
-  <div class="topic-number">7</div>
-  <h2>Capstone Design Sprint</h2>
-  <p class="lead">You've been discussing tools and ideas with your table group throughout this session. Now let's turn one of those ideas into a plan you can take back to your program.</p>
-  
-  <div class="callout accent">
-    <div class="callout-title">What This Is — and What It Isn't</div>
-    <p>This isn't the first time you've been planning today — you've been doing mini-design thinking after each section. Now you'll extend that into a complete implementation plan. Pick the idea from your earlier discussions that feels most feasible and most useful. Use the tool tables on this page to select your tools. Fill in the worksheet below — type your answers directly on your phone.</p>
-  </div>
-  
-  <div class="group-prompt">
-    <div class="label">Table Group Activity — 20 min</div>
-    <h3>The 5-Step Design Sprint</h3>
-    <p>Work through these 5 steps with your table group. You'll have 20 minutes. Write your answers in the worksheet below.</p>
-  </div>
-  
-  <div class="worksheet">
-    <h3 style="text-align:center; color:var(--primary-dark);">Digital Learning Activity Blueprint</h3>
-    <p style="text-align:center; font-size:0.82rem; color:var(--text-muted); margin-bottom:18px;">2026 APP Fellowship Conference — Design Sprint Worksheet</p>
-    
-    <div class="ws-field">
-      <label>Step 1: Educational Need</label>
-      <div class="hint">What specific learning challenge or gap will this address? From your own program.</div>
-      <textarea placeholder="e.g., Fellows struggle with breaking bad news in oncology settings..." id="ws1"></textarea>
+    <div class="callout accent">
+      <div class="callout-title">A Clinician's Perspective</div>
+      <p>Immersion doesn't require a headset. A well-designed text-and-audio case — where a learner interviews a
+        patient, orders labs, interprets an ECG, and builds a differential — can teach clinical reasoning as effectively
+        as a $500 VR setup. Sometimes more effectively, because the cognitive load goes to <em>reasoning</em>, not
+        <em>navigating a virtual environment</em>. What matters is the thinking the learner does, not the fidelity of
+        the interface.
+      </p>
     </div>
-    <div class="ws-field">
-      <label>Step 2: Learning Goal(s)</label>
-      <div class="hint">By the end of this activity, learners will be able to... (1-3 measurable objectives)</div>
-      <textarea placeholder="e.g., By the end, learners will be able to conduct a goals-of-care conversation..." id="ws2"></textarea>
-    </div>
-    <div class="ws-field">
-      <label>Step 3: Selected Tool/Modality</label>
-      <div class="hint">Which fidelity level? Which specific tool? Why this tool for this need?</div>
-      <select id="ws3">
-        <option value="">Select a fidelity level...</option>
-        <option>Text & Audio (ChatGPT as patient simulator, Flip)</option>
-        <option>Image-Based (H5P branching scenario)</option>
-        <option>Screen-Based (Body Interact, interactive case)</option>
-        <option>AR / Phone-Based (BioDigital Human, Visible Body)</option>
-        <option>Immersive VR (Meta Quest + simulation platform)</option>
-        <option>Combination / Not sure yet</option>
-      </select>
-      <textarea style="margin-top:6px;" placeholder="Why this tool for this need?" id="ws3b"></textarea>
-    </div>
-    <div class="ws-field">
-      <label>Step 4: Pedagogical Rationale</label>
-      <div class="hint">How does this tool support learning? Deliberate practice? Feedback? Engagement? Assessment?</div>
-      <textarea placeholder="e.g., Text-and-audio simulation keeps cognitive load on the communication skill..." id="ws4"></textarea>
-    </div>
-    <div class="ws-field">
-      <label>Step 5: Implementation Plan</label>
-      <div class="hint">Platform, build time, learner time, cost, assessment approach</div>
-      <input type="text" placeholder="Platform: ____________" id="ws5a" style="margin-bottom:5px;">
-      <input type="text" placeholder="Time to build: ____________" id="ws5b" style="margin-bottom:5px;">
-      <input type="text" placeholder="Learner time: ____________" id="ws5c" style="margin-bottom:5px;">
-      <input type="text" placeholder="Estimated cost: ____________" id="ws5d" style="margin-bottom:5px;">
-      <textarea placeholder="Assessment approach: How will you evaluate the learner's reasoning process?" id="ws5e"></textarea>
-    </div>
-    <div class="ws-field">
-      <label>Potential Barrier & Mitigation</label>
-      <textarea placeholder="Barrier: ..." id="ws6a" style="margin-bottom:5px;"></textarea>
-      <textarea placeholder="Mitigation: ..." id="ws6b"></textarea>
-    </div>
-    <div class="ws-field">
-      <label>Group Members</label>
-      <input type="text" placeholder="Names..." id="ws7">
-    </div>
-    <button class="demo-link" style="width:100%; text-align:center;" onclick="saveWorksheet()">Save Worksheet (downloads as text file)</button>
-  </div>
-</section>
 
-<!-- TOPIC 8: RESOURCES -->
-<section class="topic" id="topic8">
-  <div class="topic-number">8</div>
-  <h2>Resources & Wrap-Up</h2>
-  <p class="lead">Everything from today, organized for Monday morning.</p>
-  
-  <h3>The "Zero Dollar" Starter Kit</h3>
-  <div class="callout success">
-    <div class="callout-title">If your program has exactly $0, here's what you can use today</div>
-    <ul>
-      <li><strong>ChatGPT (free tier):</strong> Simulated patient encounters, clinical reasoning cases, structured feedback.</li>
-      <li><strong>Google NotebookLM (free):</strong> Upload course readings → AI generates study guides, audio podcasts — grounded only in your sources.</li>
-      <li><strong>DeepSeek (free):</strong> GPT-4-class AI with visible chain-of-thought reasoning. Self-hostable for data privacy.</li>
-      <li><strong>BioDigital Human (free):</strong> Browser-based 3D anatomy. No install needed.</li>
-      <li><strong>3D Slicer (free, OSS):</strong> Import real CT/MRI scans, explore in VR.</li>
-      <li><strong>Flip (100% free):</strong> Video discussion for reflections and OSCE practice.</li>
-      <li><strong>H5P (free, self-hosted):</strong> Branching clinical scenarios, interactive content.</li>
-      <li><strong>Canva for Education (free if eligible):</strong> Infographics, presentations, videos.</li>
-      <li><strong>MedEdPORTAL (free):</strong> Thousands of peer-reviewed teaching materials.</li>
-    </ul>
-    <p style="margin-top:8px"><strong>Bottom line:</strong> A program with zero budget can build a credible simulation and AI-assisted learning ecosystem. You don't need to be a technology expert to use any of these.</p>
-  </div>
-  
-  <h3>All Resource Links</h3>
-  
-  <div class="resource-section"><h4>AI Assistants — Conversational Chatbots</h4>
-    <ul class="resource-list">
-      <li><a href="https://chatgpt.com" target="_blank">ChatGPT</a> <span class="price-tag">Free / $20/mo Plus</span></li>
-      <li><a href="https://claude.com" target="_blank">Claude</a> <span class="price-tag">Free / $17/mo (annual)</span></li>
-      <li><a href="https://gemini.google.com" target="_blank">Gemini</a> <span class="price-tag">Free / $20/mo</span></li>
-      <li><a href="https://grok.com" target="_blank">Grok</a> <span class="price-tag">Free w/ X / ~$30/mo</span></li>
-      <li><a href="https://copilot.microsoft.com" target="_blank">Microsoft Copilot</a> <span class="price-tag">Free / $10/mo Pro</span></li>
-    </ul>
-  </div>
-  <div class="resource-section"><h4>AI Assistants — Data Aggregation & Grounding</h4>
-    <ul class="resource-list">
-      <li><a href="https://notebooklm.google.com" target="_blank">Google NotebookLM</a> <span class="price-tag">Free — best for grounding</span></li>
-      <li><a href="https://perplexity.ai" target="_blank">Perplexity</a> <span class="price-tag">Free / $20/mo</span></li>
-      <li><a href="https://deepseek.com" target="_blank">DeepSeek</a> <span class="price-tag">Free</span></li>
-    </ul>
-  </div>
-  <div class="resource-section"><h4>Content Creation & Interactive Lessons</h4>
-    <ul class="resource-list">
-      <li><a href="https://canva.com" target="_blank">Canva</a> <span class="price-tag">Free / ~$14/mo (edu may be free)</span></li>
-      <li><a href="https://h5p.org" target="_blank">H5P</a> <span class="price-tag">Free (self-host)</span></li>
-      <li><a href="https://nearpod.com" target="_blank">Nearpod</a> <span class="price-tag">Free / $120/yr</span></li>
-      <li><a href="https://peardeck.com" target="_blank">Pear Deck</a> <span class="price-tag">Free / $150/yr</span></li>
-      <li><a href="https://gamma.app" target="_blank">Gamma</a> <span class="price-tag">Free / $10/mo</span></li>
-    </ul>
-  </div>
-  <div class="resource-section"><h4>Study Tools (Not Assessment)</h4>
-    <ul class="resource-list">
-      <li><a href="https://apps.ankiweb.net" target="_blank">Anki</a> <span class="price-tag">Free (OSS)</span></li>
-      <li><a href="https://quizlet.com" target="_blank">Quizlet Q-Chat</a> <span class="price-tag">Free / $36/yr</span></li>
-      <li><a href="https://brainscape.com" target="_blank">Brainscape</a> <span class="price-tag">Free / $10/mo</span></li>
-    </ul>
-  </div>
-  <div class="resource-section"><h4>Simulation — Text, Audio & Screen-Based</h4>
-    <ul class="resource-list">
-      <li><a href="https://bodyinteract.com" target="_blank">Body Interact</a> <span class="price-tag">Free trial / institutional</span></li>
-      <li><a href="https://oxfordmedicalsimulation.com" target="_blank">Oxford Medical Simulation</a> <span class="price-tag">Institutional (targets APP/PA)</span></li>
-      <li><a href="https://vrpatients.com" target="_blank">VRpatients</a> <span class="price-tag">Institutional (no-code authoring)</span></li>
-    </ul>
-  </div>
-  <div class="resource-section"><h4>3D Anatomy & AR</h4>
-    <ul class="resource-list">
-      <li><a href="https://human.biodigital.com" target="_blank">BioDigital Human</a> <span class="price-tag">Free / ~$5-15/mo</span></li>
-      <li><a href="https://visiblebody.com" target="_blank">Human Anatomy Atlas</a> <span class="price-tag">$25 one-time</span></li>
-      <li><a href="https://3d4medical.com" target="_blank">Complete Anatomy</a> <span class="price-tag">$39.99 first yr / $74.99/yr</span></li>
-      <li><a href="https://slicer.org" target="_blank">3D Slicer</a> <span class="price-tag">Free (OSS)</span></li>
-      <li><a href="https://openanatomy.org" target="_blank">OpenAnatomy</a> <span class="price-tag">Free</span></li>
-    </ul>
-  </div>
-  <div class="resource-section"><h4>Immersive VR Platforms</h4>
-    <ul class="resource-list">
-      <li><a href="https://ossovr.com" target="_blank">Osso VR</a> <span class="price-tag">Institutional (procedural)</span></li>
-      <li><a href="https://simxar.com" target="_blank">SimX</a> <span class="price-tag">Institutional (150+ scenarios)</span></li>
-    </ul>
-  </div>
-  <div class="resource-section"><h4>Open Educational Resources</h4>
-    <ul class="resource-list">
-      <li><a href="https://mededportal.org" target="_blank">MedEdPORTAL</a> <span class="price-tag">Free</span></li>
-      <li><a href="https://oercommons.org" target="_blank">OER Commons</a> <span class="price-tag">Free</span></li>
-      <li><a href="https://openstax.org" target="_blank">OpenStax</a> <span class="price-tag">Free</span></li>
-      <li><a href="https://merlot.org" target="_blank">MERLOT</a> <span class="price-tag">Free</span></li>
-    </ul>
-  </div>
-  
-  <hr class="divider">
-  
-  <div class="callout">
-    <div class="callout-title">Presenter Contact</div>
-    <p><strong>Diana Brewer, PA-C</strong><br>
-    Knight Cancer Institute Hem/Onc APP Fellowship Director, OHSU<br>
-    Co-Founder &amp; CMO, Sapient Clinician<br>
-    <a href="mailto:brewerd@ohsu.edu">brewerd@ohsu.edu</a> · <a href="https://sapientclinician.com" target="_blank">sapientclinician.com</a></p>
-  </div>
-  
-  <div class="callout accent" style="text-align:center;">
-    <p style="font-size:1.02rem; font-weight:600;">Start with one tool, one need, one small experiment.<br>You don't need to be a technology expert. You need to be the clinician you already are.</p>
-    <p style="margin-top:8px; font-size:0.85rem;">Bookmark this page. Share it with your colleagues. Everything here stays available after the conference.</p>
-  </div>
-</section>
+    <h3>The Fidelity Spectrum</h3>
+    <p>Match the tool to the goal. The most expensive simulation is not the best simulation.</p>
 
-<footer>
-  <p>Digital Learning Unlocked &nbsp;|&nbsp; 2026 APP Fellowship Conference &nbsp;|&nbsp; Diana Brewer, PA-C</p>
-  <p style="margin-top:4px; font-size:0.75rem;">This page remains available after the conference. Bookmark and share.</p>
-</footer>
+    <div class="fidelity-grid">
+      <div class="fidelity-card">
+        <div class="fid-level">Level 1 — Free</div>
+        <div class="fid-title">Text & Audio</div>
+        <div class="fid-desc">Learner interacts with a patient case via text or voice. Orders labs, interprets results,
+          builds differential. May include static images (ECG, X-ray).</div>
+        <div class="fid-cost">Cost: $0 — $20/mo</div>
+      </div>
+      <div class="fidelity-card" style="border-top-color: var(--accent);">
+        <div class="fid-level">Level 2 — Free/Low</div>
+        <div class="fid-title">Image-Based</div>
+        <div class="fid-desc">Case presents with diagnostic images. Learner interprets images in clinical context. ECGs,
+          radiology, lab panels.</div>
+        <div class="fid-cost">Cost: $0 — $25/app</div>
+      </div>
+      <div class="fidelity-card">
+        <div class="fid-level">Level 3 — Free/Low</div>
+        <div class="fid-title">Screen-Based Virtual Patients</div>
+        <div class="fid-desc">Interactive patient simulator on web/tablet/phone. Dynamic vitals, labs, interventions.
+          Branching scenarios.</div>
+        <div class="fid-cost">Cost: Free trial — institutional</div>
+      </div>
+      <div class="fidelity-card" style="border-top-color: var(--accent);">
+        <div class="fid-level">Level 4 — Free/Low</div>
+        <div class="fid-title">AR (Phone-Based)</div>
+        <div class="fid-desc">3D anatomy models overlaid on real surfaces through phone camera. No headset needed.</div>
+        <div class="fid-cost">Cost: $0 — $25/app</div>
+      </div>
+      <div class="fidelity-card">
+        <div class="fid-level">Level 5 — Investment</div>
+        <div class="fid-title">Immersive VR</div>
+        <div class="fid-desc">Full head-mounted display. 6DoF movement, hand tracking. Physical interaction in virtual
+          clinical environment.</div>
+        <div class="fid-cost">Cost: $100 — $600/headset</div>
+      </div>
+    </div>
 
-<script>
-(function(){var e=document.querySelectorAll('section.topic'),t=document.querySelectorAll('.section-nav a'),n=document.getElementById('progressFill'),o=document.getElementById('progressLabel'),c=e.length;function u(){var n=1,o=!1;e.forEach(function(e,t){e.getBoundingClientRect().top<=120&&!o&&(n=t+1)});var i=n/c*100;document.getElementById('progressFill').style.width=i+'%',o.textContent='Section '+n+' of '+c,t.forEach(function(e,t){e.classList.toggle('active',t+1===n)})}window.addEventListener('scroll',u,{passive:!0}),u()})();
-document.querySelectorAll('.section-nav a').forEach(function(e){e.addEventListener('click',function(t){t.preventDefault();var n=document.querySelector(this.getAttribute('href'));n&&n.scrollIntoView({behavior:'smooth',block:'start'})})});
-function copyPrompt(e,t){navigator.clipboard?navigator.clipboard.writeText(t).then(function(){e.textContent='✓ Copied!',e.classList.add('copied'),setTimeout(function(){e.textContent='Copy Prompt',e.classList.remove('copied')},2e3)}):function(){var n=document.createElement('textarea');n.value=t,n.style.position='fixed',n.style.opacity=0,document.body.appendChild(n),n.select(),document.execCommand('copy'),document.body.removeChild(n),e.textContent='✓ Copied!',e.classList.add('copied'),setTimeout(function(){e.textContent='Copy Prompt',e.classList.remove('copied')},2e3)}()}
-function saveWorksheet(){var e=['ws1','ws2','ws3','ws3b','ws4','ws5a','ws5b','ws5c','ws5d','ws5e','ws6a','ws6b','ws7'],t={ws1:'Educational Need',ws2:'Learning Goal(s)',ws3:'Selected Fidelity Level',ws3b:'Why This Tool',ws4:'Pedagogical Rationale',ws5a:'Platform',ws5b:'Build Time',ws5c:'Learner Time',ws5d:'Estimated Cost',ws5e:'Assessment Approach',ws6a:'Potential Barrier',ws6b:'Mitigation Strategy',ws7:'Group Members'},n='DIGITAL LEARNING ACTIVITY BLUEPRINT\n2026 APP Fellowship Conference — Design Sprint\n'+'='.repeat(50)+'\n\n';e.forEach(function(e){var o=document.getElementById(e);o&&o.value.trim()&&(n+=t[e]+':\n'+o.value+'\n\n')}),n+='\nSaved: '+new Date().toLocaleString();var o=new Blob([n],{type:'text/plain'}),i=URL.createObjectURL(o),s=document.createElement('a');s.href=i,s.download='Digital Learning Activity Blueprint.txt',s.click(),URL.revokeObjectURL(i)}
-</script>
+    <h3>Live Demo: Interactive Clinical Reasoning Case</h3>
+    <div class="demo-card">
+      <div class="demo-title">Text-Based Clinical Reasoning Case (No VR Needed)</div>
+      <div class="demo-desc">A 19-year-old male presents to the ED with sharp chest pain worse with deep breathing.
+        Interview the patient, order labs, interpret an ECG, build your differential, write your assessment. Receive
+        structured feedback on your reasoning process — not just your final answer.</div>
+      <a href="https://sapientclinician.com/demo" class="demo-link" target="_blank">▶ Try the Clinical Reasoning Case
+        Demo</a>
+      <div class="demo-meta">This is what "authentic assessment in the AI era" looks like. No multiple choice. The
+        reasoning IS the assessment.</div>
+    </div>
+
+    <h3>Simulation Tools by Fidelity Level</h3>
+
+    <h4>Text & Audio Simulation</h4>
+    <table class="tool-table">
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Cost</th>
+          <th>What It Does</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tool-name">ChatGPT (as patient simulator)</td>
+          <td class="price-freemium">Free / $20/mo</td>
+          <td>Structured prompt turns ChatGPT into a simulated patient. Voice mode for realistic phone-based interviews.
+            <strong>Free, immediate, zero setup beyond a good prompt.</strong>
+          </td>
+        </tr>
+        <tr>
+          <td class="tool-name">Claude (as patient simulator)</td>
+          <td class="price-freemium">Free / $17/mo</td>
+          <td>Strong long-context reasoning for complex cases. Extended thinking for detailed feedback.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Flip (video reflection)</td>
+          <td class="price-free">100% Free</td>
+          <td>Learners record themselves doing patient counseling, case presentations. Peer/faculty video feedback.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Sketchy</td>
+          <td class="price-freemium">Subscription</td>
+          <td>Visual mnemonic learning — animated scenes teach microbiology, pharmacology, and pathology through
+            memorable stories. Video-based with integrated quizzes.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Xuron</td>
+          <td class="price-freemium">Subscription</td>
+          <td>AI-powered virtual patient encounters. Learners interview, examine, and build differentials with adaptive
+            AI patients via text or voice.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">SimConverse</td>
+          <td class="price-freemium">Subscription</td>
+          <td>AI-powered communication skills simulator. Practice patient counseling, breaking bad news, and OSCE-style
+            encounters with AI avatars.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Geeky Medics</td>
+          <td class="price-freemium">Free / Premium</td>
+          <td>OSCE guides, interactive clinical cases, and exam prep. Text-based scenarios with step-by-step clinical
+            reasoning walkthroughs.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Lecturio</td>
+          <td class="price-freemium">Subscription</td>
+          <td>Medical education video library with interactive clinical cases, spaced repetition quizzes, and a
+            USMLE/NCLEX question bank.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Sapient Clinician</td>
+          <td class="price-freemium">Subscription</td>
+          <td>Clinical reasoning assessment platform — 300+ cases with structured feedback rubrics, custom case
+            creation, and image interpretation (ECG, radiology). Text and audio-based.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Image-Based & Screen-Based Simulation</h4>
+    <table class="tool-table">
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Cost</th>
+          <th>What It Does</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tool-name">H5P (self-hosted)</td>
+          <td class="price-free">Free</td>
+          <td>Branching clinical scenarios, interactive content, image annotation. No programming — visual editor.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Body Interact</td>
+          <td class="price-freemium">Free trial / institutional</td>
+          <td>Screen-based virtual patient simulator. No VR needed. Targets PA programs. OSCE prep.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>3D Anatomy & AR (Phone/Tablet — No Headset)</h4>
+    <table class="tool-table">
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Cost</th>
+          <th>What It Does</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tool-name">BioDigital Human</td>
+          <td class="price-free">Free basic</td>
+          <td>Browser-based 3D anatomy. Zero install — works on any computer. AR mode on mobile.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Human Anatomy Atlas (Visible Body)</td>
+          <td class="price-freemium">$25 one-time</td>
+          <td>24,000+ anatomical assets. One-time purchase — no subscription. AR on mobile.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Complete Anatomy (Elsevier)</td>
+          <td class="price-freemium">$39.99 first yr / $74.99/yr</td>
+          <td>Industry standard — 500+ universities. AR mode, VR version, curriculum manager.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">3D Slicer</td>
+          <td class="price-free">Free (OSS)</td>
+          <td>Import real CT/MRI DICOM data. VR support for Quest. 3D-printable export. Best free tool — needs a
+            tech-comfortable champion.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">OpenAnatomy (Harvard)</td>
+          <td class="price-free">Free</td>
+          <td>Free anatomy atlases from real imaging data. Creative Commons licensed.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="group-prompt">
+      <div class="label">Think · Pair · Share — 3 min</div>
+      <h3>Match the Tool to the Goal</h3>
+      <p>With your table group, think of a clinical skill your fellows need to learn. Which fidelity level would you
+        choose? Would text-and-audio work? Do you need images? Would AR anatomy help? Or does this skill genuinely
+        require VR? Discuss why — and what the free or low-cost option would be.</p>
+    </div>
+  </section>
+
+  <!-- TOPIC 6: VR/AR -->
+  <section class="topic" id="topic6">
+    <div class="topic-number">6</div>
+    <h2>Objective 3 — Immersive VR: When It's Worth It</h2>
+    <p class="lead">VR adds genuine value when the learning goal requires spatial interaction, physical procedure
+      practice, or team-based immersive scenarios. For pure clinical reasoning, screen-based tools are equally effective
+      at a fraction of the cost.</p>
+
+    <h3>Hardware Options</h3>
+    <table class="tool-table">
+      <thead>
+        <tr>
+          <th>Hardware</th>
+          <th>Cost</th>
+          <th>What It Enables</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tool-name">Google Cardboard / phone VR</td>
+          <td class="price-free">$5–$25/viewer</td>
+          <td>Basic VR using a phone. 360° anatomy, immersive videos. Great for demos. No interaction controllers.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Meta Quest 2 (refurbished)</td>
+          <td class="price-freemium">~$100–$150</td>
+          <td><strong>Lowest-cost entry to standalone VR.</strong> Runs most medical VR apps. No color passthrough.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Meta Quest 3S</td>
+          <td class="price-freemium">$349.99</td>
+          <td><strong>Best value for new purchase.</strong> Color passthrough AR. Full Quest store.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Meta Quest 3</td>
+          <td class="price-freemium">$599.99</td>
+          <td>Premium display. Not necessary for most programs — 3S delivers 90% of capability at 60% of cost.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>VR Simulation Platforms</h3>
+    <table class="tool-table">
+      <thead>
+        <tr>
+          <th>Platform</th>
+          <th>Cost</th>
+          <th>Use Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tool-name">Body Interact</td>
+          <td class="price-freemium">Free trial / institutional</td>
+          <td>Screen-based + VR. Clinical reasoning. No VR required. Targets PA programs.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Oxford Medical Simulation (OMS)</td>
+          <td class="price-freemium">Institutional</td>
+          <td><strong>Explicitly targets PA/APP programs.</strong> AI-driven patients. 74% reduction in onboarding
+            costs.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">VRpatients</td>
+          <td class="price-freemium">Institutional</td>
+          <td><strong>No-code authoring</strong> — faculty create custom simulations. Web + VR + Mixed Reality.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">Osso VR</td>
+          <td class="price-freemium">Institutional</td>
+          <td>Procedural skills training. Peer-validated: 92% step accuracy, 67% fewer errors.</td>
+        </tr>
+        <tr>
+          <td class="tool-name">SimX</td>
+          <td class="price-freemium">Institutional</td>
+          <td>Largest VR patient library (150+ scenarios). Multiplayer for team training.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout accent">
+      <div class="callout-title">Decision Framework — Which Fidelity Do You Need?</div>
+      <h4 style="margin-top:0">Use text/audio when:</h4>
+      <ul>
+        <li>Learning goal is clinical reasoning, history-taking, or communication</li>
+        <li>You want unlimited repetition at near-zero cost</li>
+      </ul>
+      <h4>Use image-based/screen-based when:</h4>
+      <ul>
+        <li>Learning goal involves interpreting visual data (ECGs, radiology, labs)</li>
+        <li>You want branching decision trees with consequences</li>
+      </ul>
+      <h4>Use AR (phone-based) when:</h4>
+      <ul>
+        <li>Learning goal is 3D spatial understanding (anatomy, structural relationships)</li>
+        <li>Students have smartphones (no additional hardware)</li>
+      </ul>
+      <h4>Use immersive VR when:</h4>
+      <ul>
+        <li>Learning goal is procedural (physical steps, hand movements)</li>
+        <li>You need team-based immersive scenarios</li>
+        <li>High-acuity, low-occurrence event rehearsal</li>
+        <li>The program will use it regularly (ROI justifies hardware cost)</li>
+      </ul>
+    </div>
+
+    <div class="callout success">
+      <div class="callout-title">Recommended Starter Stack for Low-Resource Programs</div>
+      <ol>
+        <li><strong>Free entry:</strong> ChatGPT (patient simulator) + BioDigital Human + Flip + NotebookLM + H5P →
+          <strong>$0</strong>
+        </li>
+        <li><strong>Minimal investment:</strong> Above + Visible Body Atlas ($25, includes AR) → <strong>$25</strong>
+        </li>
+        <li><strong>One-headset program:</strong> Above + 1 refurbished Meta Quest 2 (~$100-150) →
+          <strong>~$125-175</strong>
+        </li>
+        <li><strong>Small program:</strong> Above + 2-3 Meta Quest 3S (~$350 each) → <strong>~$700-1,100</strong></li>
+      </ol>
+    </div>
+
+  </section>
+
+  <!-- TOPIC 7: CAPSTONE WORKSHOP -->
+  <section class="topic" id="topic7">
+    <div class="topic-number">7</div>
+    <h2>Capstone Design Sprint</h2>
+    <p class="lead">You've been discussing tools and ideas with your table group throughout this session. Now let's turn
+      one of those ideas into a plan you can take back to your program.</p>
+
+    <div class="callout accent">
+      <div class="callout-title">What This Is — and What It Isn't</div>
+      <p>This isn't the first time you've been planning today — you've been doing mini-design thinking after each
+        section. Now you'll extend that into a complete implementation plan. Pick the idea from your earlier discussions
+        that feels most feasible and most useful. Use the tool tables on this page to select your tools. Fill in the
+        worksheet below — type your answers directly on your phone.</p>
+    </div>
+
+    <div class="group-prompt">
+      <div class="label">Table Group Activity — 20 min</div>
+      <h3>The 5-Step Design Sprint</h3>
+      <p>Work through these 5 steps with your table group. You'll have 20 minutes. Write your answers in the worksheet
+        below.</p>
+    </div>
+
+    <div class="worksheet">
+      <h3 style="text-align:center; color:var(--primary-dark);">Digital Learning Activity Blueprint</h3>
+      <p style="text-align:center; font-size:0.82rem; color:var(--text-muted); margin-bottom:18px;">2026 APP Fellowship
+        Conference — Design Sprint Worksheet</p>
+
+      <div class="ws-field">
+        <label>Step 1: Educational Need</label>
+        <div class="hint">What specific learning challenge or gap will this address? From your own program.</div>
+        <textarea placeholder="e.g., Fellows struggle with breaking bad news in oncology settings..."
+          id="ws1"></textarea>
+      </div>
+      <div class="ws-field">
+        <label>Step 2: Learning Goal(s)</label>
+        <div class="hint">By the end of this activity, learners will be able to... (1-3 measurable objectives)</div>
+        <textarea placeholder="e.g., By the end, learners will be able to conduct a goals-of-care conversation..."
+          id="ws2"></textarea>
+      </div>
+      <div class="ws-field">
+        <label>Step 3: Selected Tool/Modality</label>
+        <div class="hint">Which fidelity level? Which specific tool? Why this tool for this need?</div>
+        <select id="ws3">
+          <option value="">Select a fidelity level...</option>
+          <option>Text & Audio (ChatGPT as patient simulator, Flip)</option>
+          <option>Image-Based (H5P branching scenario)</option>
+          <option>Screen-Based (Body Interact, interactive case)</option>
+          <option>AR / Phone-Based (BioDigital Human, Visible Body)</option>
+          <option>Immersive VR (Meta Quest + simulation platform)</option>
+          <option>Combination / Not sure yet</option>
+        </select>
+        <textarea style="margin-top:6px;" placeholder="Why this tool for this need?" id="ws3b"></textarea>
+      </div>
+      <div class="ws-field">
+        <label>Step 4: Pedagogical Rationale</label>
+        <div class="hint">How does this tool support learning? Deliberate practice? Feedback? Engagement? Assessment?
+        </div>
+        <textarea placeholder="e.g., Text-and-audio simulation keeps cognitive load on the communication skill..."
+          id="ws4"></textarea>
+      </div>
+      <div class="ws-field">
+        <label>Step 5: Implementation Plan</label>
+        <div class="hint">Platform, build time, learner time, cost, assessment approach</div>
+        <input type="text" placeholder="Platform: ____________" id="ws5a" style="margin-bottom:5px;">
+        <input type="text" placeholder="Time to build: ____________" id="ws5b" style="margin-bottom:5px;">
+        <input type="text" placeholder="Learner time: ____________" id="ws5c" style="margin-bottom:5px;">
+        <input type="text" placeholder="Estimated cost: ____________" id="ws5d" style="margin-bottom:5px;">
+        <textarea placeholder="Assessment approach: How will you evaluate the learner's reasoning process?"
+          id="ws5e"></textarea>
+      </div>
+      <div class="ws-field">
+        <label>Potential Barrier & Mitigation</label>
+        <textarea placeholder="Barrier: ..." id="ws6a" style="margin-bottom:5px;"></textarea>
+        <textarea placeholder="Mitigation: ..." id="ws6b"></textarea>
+      </div>
+      <div class="ws-field">
+        <label>Group Members</label>
+        <input type="text" placeholder="Names..." id="ws7">
+      </div>
+      <button class="demo-link" style="width:100%; text-align:center;" onclick="saveWorksheet()">Save Worksheet
+        (downloads as text file)</button>
+    </div>
+  </section>
+
+  <!-- TOPIC 8: RESOURCES -->
+  <section class="topic" id="topic8">
+    <div class="topic-number">8</div>
+    <h2>Resources & Wrap-Up</h2>
+    <p class="lead">Everything from today, organized for Monday morning.</p>
+
+    <h3>The "Zero Dollar" Starter Kit</h3>
+    <div class="callout success">
+      <div class="callout-title">If your program has exactly $0, here's what you can use today</div>
+      <ul>
+        <li><strong>ChatGPT (free tier):</strong> Simulated patient encounters, clinical reasoning cases, structured
+          feedback.</li>
+        <li><strong>Google NotebookLM (free):</strong> Upload course readings → AI generates study guides, audio
+          podcasts — grounded only in your sources.</li>
+        <li><strong>DeepSeek (free):</strong> GPT-4-class AI with visible chain-of-thought reasoning. Self-hostable for
+          data privacy.</li>
+        <li><strong>BioDigital Human (free):</strong> Browser-based 3D anatomy. No install needed.</li>
+        <li><strong>3D Slicer (free, OSS):</strong> Import real CT/MRI scans, explore in VR.</li>
+        <li><strong>Flip (100% free):</strong> Video discussion for reflections and OSCE practice.</li>
+        <li><strong>H5P (free, self-hosted):</strong> Branching clinical scenarios, interactive content.</li>
+        <li><strong>Canva for Education (free if eligible):</strong> Infographics, presentations, videos.</li>
+        <li><strong>MedEdPORTAL (free):</strong> Thousands of peer-reviewed teaching materials.</li>
+      </ul>
+      <p style="margin-top:8px"><strong>Bottom line:</strong> A program with zero budget can build a credible simulation
+        and AI-assisted learning ecosystem. You don't need to be a technology expert to use any of these.</p>
+    </div>
+
+    <h3>All Resource Links</h3>
+
+    <div class="resource-section">
+      <h4>AI Assistants — Conversational Chatbots</h4>
+      <ul class="resource-list">
+        <li><a href="https://chatgpt.com" target="_blank">ChatGPT</a> <span class="price-tag">Free / $20/mo Plus</span>
+        </li>
+        <li><a href="https://claude.com" target="_blank">Claude</a> <span class="price-tag">Free / $17/mo
+            (annual)</span></li>
+        <li><a href="https://gemini.google.com" target="_blank">Gemini</a> <span class="price-tag">Free / $20/mo</span>
+        </li>
+        <li><a href="https://grok.com" target="_blank">Grok</a> <span class="price-tag">Free w/ X / ~$30/mo</span></li>
+        <li><a href="https://copilot.microsoft.com" target="_blank">Microsoft Copilot</a> <span class="price-tag">Free /
+            $10/mo Pro</span></li>
+      </ul>
+    </div>
+    <div class="resource-section">
+      <h4>AI Assistants — Data Aggregation & Grounding</h4>
+      <ul class="resource-list">
+        <li><a href="https://notebooklm.google.com" target="_blank">Google NotebookLM</a> <span class="price-tag">Free —
+            best for grounding</span></li>
+        <li><a href="https://perplexity.ai" target="_blank">Perplexity</a> <span class="price-tag">Free / $20/mo</span>
+        </li>
+        <li><a href="https://deepseek.com" target="_blank">DeepSeek</a> <span class="price-tag">Free</span></li>
+      </ul>
+    </div>
+    <div class="resource-section">
+      <h4>Content Creation & Interactive Lessons</h4>
+      <ul class="resource-list">
+        <li><a href="https://canva.com" target="_blank">Canva</a> <span class="price-tag">Free / ~$14/mo (edu may be
+            free)</span></li>
+        <li><a href="https://h5p.org" target="_blank">H5P</a> <span class="price-tag">Free (self-host)</span></li>
+        <li><a href="https://nearpod.com" target="_blank">Nearpod</a> <span class="price-tag">Free / $120/yr</span></li>
+        <li><a href="https://peardeck.com" target="_blank">Pear Deck</a> <span class="price-tag">Free / $150/yr</span>
+        </li>
+        <li><a href="https://gamma.app" target="_blank">Gamma</a> <span class="price-tag">Free / $10/mo</span></li>
+      </ul>
+    </div>
+    <div class="resource-section">
+      <h4>Study Tools (Not Assessment)</h4>
+      <ul class="resource-list">
+        <li><a href="https://apps.ankiweb.net" target="_blank">Anki</a> <span class="price-tag">Free (OSS)</span></li>
+        <li><a href="https://quizlet.com" target="_blank">Quizlet Q-Chat</a> <span class="price-tag">Free /
+            $36/yr</span></li>
+        <li><a href="https://brainscape.com" target="_blank">Brainscape</a> <span class="price-tag">Free / $10/mo</span>
+        </li>
+      </ul>
+    </div>
+    <div class="resource-section">
+      <h4>Simulation — Text, Audio & Screen-Based</h4>
+      <ul class="resource-list">
+        <li><a href="https://bodyinteract.com" target="_blank">Body Interact</a> <span class="price-tag">Free trial /
+            institutional</span></li>
+        <li><a href="https://oxfordmedicalsimulation.com" target="_blank">Oxford Medical Simulation</a> <span
+            class="price-tag">Institutional (targets APP/PA)</span></li>
+        <li><a href="https://vrpatients.com" target="_blank">VRpatients</a> <span class="price-tag">Institutional
+            (no-code authoring)</span></li>
+      </ul>
+    </div>
+    <div class="resource-section">
+      <h4>3D Anatomy & AR</h4>
+      <ul class="resource-list">
+        <li><a href="https://human.biodigital.com" target="_blank">BioDigital Human</a> <span class="price-tag">Free /
+            ~$5-15/mo</span></li>
+        <li><a href="https://visiblebody.com" target="_blank">Human Anatomy Atlas</a> <span class="price-tag">$25
+            one-time</span></li>
+        <li><a href="https://3d4medical.com" target="_blank">Complete Anatomy</a> <span class="price-tag">$39.99 first
+            yr / $74.99/yr</span></li>
+        <li><a href="https://slicer.org" target="_blank">3D Slicer</a> <span class="price-tag">Free (OSS)</span></li>
+        <li><a href="https://openanatomy.org" target="_blank">OpenAnatomy</a> <span class="price-tag">Free</span></li>
+      </ul>
+    </div>
+    <div class="resource-section">
+      <h4>Immersive VR Platforms</h4>
+      <ul class="resource-list">
+        <li><a href="https://ossovr.com" target="_blank">Osso VR</a> <span class="price-tag">Institutional
+            (procedural)</span></li>
+        <li><a href="https://simxar.com" target="_blank">SimX</a> <span class="price-tag">Institutional (150+
+            scenarios)</span></li>
+      </ul>
+    </div>
+    <div class="resource-section">
+      <h4>Open Educational Resources</h4>
+      <ul class="resource-list">
+        <li><a href="https://mededportal.org" target="_blank">MedEdPORTAL</a> <span class="price-tag">Free</span></li>
+        <li><a href="https://oercommons.org" target="_blank">OER Commons</a> <span class="price-tag">Free</span></li>
+        <li><a href="https://openstax.org" target="_blank">OpenStax</a> <span class="price-tag">Free</span></li>
+        <li><a href="https://merlot.org" target="_blank">MERLOT</a> <span class="price-tag">Free</span></li>
+      </ul>
+    </div>
+
+    <hr class="divider">
+
+    <div class="callout">
+      <div class="callout-title">Presenter Contact</div>
+      <p><strong>Diana Brewer, PA-C</strong><br>
+        Knight Cancer Institute Hem/Onc APP Fellowship Director, OHSU<br>
+        Co-Founder &amp; CMO, Sapient Clinician<br>
+        <a href="mailto:brewerd@ohsu.edu">brewerd@ohsu.edu</a>
+
+      </p>
+    </div>
+
+    <div class="callout accent" style="text-align:center;">
+      <p style="font-size:1.02rem; font-weight:600;">Start with one tool, one need, one small experiment.<br>You don't
+        need to be a technology expert. You need to be the clinician you already are.</p>
+      <p style="margin-top:8px; font-size:0.85rem;">Bookmark this page. Share it with your colleagues. Everything here
+        stays available after the conference.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Digital Learning Unlocked &nbsp;|&nbsp; 2026 APP Fellowship Conference &nbsp;|&nbsp; Diana Brewer, PA-C</p>
+    <p style="margin-top:4px; font-size:0.75rem;">This page remains available after the conference. Bookmark and share.
+    </p>
+  </footer>
+
+  <script>
+    (function () { var e = document.querySelectorAll('section.topic'), t = document.querySelectorAll('.section-nav a'), n = document.getElementById('progressFill'), o = document.getElementById('progressLabel'), c = e.length; function u() { var n = 1, o = !1; e.forEach(function (e, t) { e.getBoundingClientRect().top <= 120 && !o && (n = t + 1) }); var i = n / c * 100; document.getElementById('progressFill').style.width = i + '%', o.textContent = 'Section ' + n + ' of ' + c, t.forEach(function (e, t) { e.classList.toggle('active', t + 1 === n) }) } window.addEventListener('scroll', u, { passive: !0 }), u() })();
+    document.querySelectorAll('.section-nav a').forEach(function (e) { e.addEventListener('click', function (t) { t.preventDefault(); var n = document.querySelector(this.getAttribute('href')); n && n.scrollIntoView({ behavior: 'smooth', block: 'start' }) }) });
+    function copyPrompt(e, t) { navigator.clipboard ? navigator.clipboard.writeText(t).then(function () { e.textContent = '✓ Copied!', e.classList.add('copied'), setTimeout(function () { e.textContent = 'Copy Prompt', e.classList.remove('copied') }, 2e3) }) : function () { var n = document.createElement('textarea'); n.value = t, n.style.position = 'fixed', n.style.opacity = 0, document.body.appendChild(n), n.select(), document.execCommand('copy'), document.body.removeChild(n), e.textContent = '✓ Copied!', e.classList.add('copied'), setTimeout(function () { e.textContent = 'Copy Prompt', e.classList.remove('copied') }, 2e3) }() }
+    function saveWorksheet() { var e = ['ws1', 'ws2', 'ws3', 'ws3b', 'ws4', 'ws5a', 'ws5b', 'ws5c', 'ws5d', 'ws5e', 'ws6a', 'ws6b', 'ws7'], t = { ws1: 'Educational Need', ws2: 'Learning Goal(s)', ws3: 'Selected Fidelity Level', ws3b: 'Why This Tool', ws4: 'Pedagogical Rationale', ws5a: 'Platform', ws5b: 'Build Time', ws5c: 'Learner Time', ws5d: 'Estimated Cost', ws5e: 'Assessment Approach', ws6a: 'Potential Barrier', ws6b: 'Mitigation Strategy', ws7: 'Group Members' }, n = 'DIGITAL LEARNING ACTIVITY BLUEPRINT\n2026 APP Fellowship Conference — Design Sprint\n' + '='.repeat(50) + '\n\n'; e.forEach(function (e) { var o = document.getElementById(e); o && o.value.trim() && (n += t[e] + ':\n' + o.value + '\n\n') }), n += '\nSaved: ' + new Date().toLocaleString(); var o = new Blob([n], { type: 'text/plain' }), i = URL.createObjectURL(o), s = document.createElement('a'); s.href = i, s.download = 'Digital Learning Activity Blueprint.txt', s.click(), URL.revokeObjectURL(i) }
+  </script>
 
 </body>
+
 </html>

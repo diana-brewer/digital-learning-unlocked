@@ -15,7 +15,6 @@ A 75-minute presentation and workshop for the 2026 APP Fellowship Conference by 
 | `index.html` | Workshop Guide — the audience-facing page (this is the homepage) |
 | `Digital Learning Unlocked - Slide Deck.pptx` | Slide deck for presenting |
 | `Digital Learning Unlocked - Presenter Notes.html` | Facilitator guide with timing and scripts |
-| `Digital Learning Unlocked - Workshop Guide.html` | Same content as index.html (original filename) |
 | `workshop-case-demo.html` | Interactive clinical reasoning case demo |
 | `workshop-branching-demo.html` | Branching clinical decision tree demo |
 

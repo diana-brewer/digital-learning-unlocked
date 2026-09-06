@@ -2,7 +2,7 @@
 
 Affordable Tools and Tech for Next-Gen APP Education
 
-A 75-minute presentation and workshop for the 2026 APP Fellowship Conference by Diana Brewer, PA-C.
+A 60-minute presentation and workshop for the 2026 APP Fellowship Conference by Diana Brewer, PA-C.
 
 ## Live Site
 

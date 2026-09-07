@@ -703,6 +703,16 @@
   .beyond-table td { padding: 6px 10px; border-bottom: 1px solid #D5DDE5; vertical-align: top; }
   .beyond-table tr:nth-child(even) td { background: rgba(45,95,124,0.04); }
   .phn-note { background: #FDF0F0; border-left: 4px solid #C44545; padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 0.82rem; }
+
+/* prompt library accordion */
+details.prompt-card > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 20px; margin: -16px -20px 0 -20px; }
+details.prompt-card > summary::-webkit-details-marker { display: none; }
+details.prompt-card > summary .prompt-hint { font-size: 0.72rem; font-weight: 500; color: #7c8b99; white-space: nowrap; letter-spacing: 0.02em; }
+details.prompt-card > summary::after { content: '+'; font-size: 1.5rem; font-weight: 300; color: #2D5F7C; line-height: 1; }
+details.prompt-card[open] > summary::after { content: '\2212'; }
+details.prompt-card[open] > summary { border-bottom: 1px solid rgba(45, 95, 124, 0.18); margin-bottom: 14px; }
+details.prompt-card[open] { background: #fbfcfe; }
+
 </style>
 </head>
 
@@ -959,6 +969,13 @@
       material. This is RAG without writing code.</p>
 
       <p>Every major assistant can now work from your documents, not just the open internet. ChatGPT Projects holds your files and instructions in one workspace. Claude projects can point at a folder on your computer and work from it. Gemini answers grounded in your Google Drive. Copilot works from your files. NotebookLM is a dedicated example of the same idea, and the one we demo today: upload sources once, every answer traces back to them.</p>
+
+    <div class="demo-card" style="margin-top: 24px;">
+      <div class="demo-title">Live Demo: NotebookLM Grounding (the tool on screen now)</div>
+      <div class="demo-desc">Open <a href="https://notebooklm.google.com" target="_blank" rel="noopener">notebooklm.google.com</a>, create a notebook, and upload a guideline, a case file, or the MedEdPORTAL files from the Running Example above. Then ask a clinical question and watch every answer carry a citation back to your source. This is the same flow being demoed on screen, and you can run it on your phone during the Try It Now.</div>
+    </div>
+
+
     <h3>Data Aggregation & Synthesis Tools (Grounding Tools)</h3>
     <table class="tool-table">
       <thead>
@@ -1025,10 +1042,10 @@
     </div>
 
     <h3>Copy-Paste AI Prompt Templates</h3>
+      <p style="margin: 8px 0 18px; color: #5B6B7C; font-size: 0.9rem;">Nine prompts. Tap a title to expand it, then copy. They also print fully on paper.</p>
     <p>Try these now on your laptop. Templates 1–4 are <strong>grounded</strong>: each includes the grounding instruction that prevents hallucinations. The Case Generator family (5–8) is deliberately <strong>ungrounded</strong>, that is the demo, and its provenance warning is the point.</p>
 
-    <div class="prompt-card">
-      <div class="prompt-title">1. Grounded Clinical Reasoning Case</div>
+    <details class="prompt-card" id="prompt1"><summary><span class="prompt-title">1. Grounded Clinical Reasoning Case</span><span class="prompt-hint">tap to expand</span></summary>
       <div class="prompt-desc">For use with NotebookLM (upload sources first) or ChatGPT/Claude (attach files first)
       </div>
       <pre>FIRST: Upload your source material (clinical guideline PDF, your 
@@ -1056,10 +1073,9 @@ IMPORTANT: Base all clinical content ONLY on the attached
 document(s). If information is not in the attachments, say so. 
 Cite which section each element comes from."</pre>
       <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </div>
+    </details>
 
-    <div class="prompt-card">
-      <div class="prompt-title">2. Simulated Patient Encounter</div>
+    <details class="prompt-card" id="prompt2"><summary><span class="prompt-title">2. Simulated Patient Encounter</span><span class="prompt-hint">tap to expand</span></summary>
       <div class="prompt-desc">For ChatGPT (voice mode if available) or Claude</div>
       <pre>"You will role-play as a patient in a clinical encounter for 
 educational purposes. You are [NAME], a [AGE] y/o [GENDER] 
@@ -1076,10 +1092,9 @@ feedback on:
 - Communication and rapport
 - Areas for improvement"</pre>
       <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </div>
+    </details>
 
-    <div class="prompt-card">
-      <div class="prompt-title">3. Structured Feedback Rubric</div>
+    <details class="prompt-card" id="prompt3"><summary><span class="prompt-title">3. Structured Feedback Rubric</span><span class="prompt-hint">tap to expand</span></summary>
       <div class="prompt-desc">For generating rubrics that evaluate reasoning, not just answers</div>
       <pre>"Create a grading rubric for [ASSESSMENT TYPE: simulated 
 encounter / written case / oral presentation] evaluating APP 
@@ -1095,10 +1110,9 @@ Structure the rubric with:
 
 Format as a table. Ensure language is observable and measurable."</pre>
       <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </div>
+    </details>
 
-    <div class="prompt-card">
-      <div class="prompt-title">4. Reflective Writing Prompt Generator</div>
+    <details class="prompt-card" id="prompt4"><summary><span class="prompt-title">4. Reflective Writing Prompt Generator</span><span class="prompt-hint">tap to expand</span></summary>
       <div class="prompt-desc">Creates prompts that require critical thinking, not AI-answerable questions</div>
       <pre>"Create 3 reflective writing prompts for APP fellows who have 
 just completed [CLINICAL EXPERIENCE: a patient encounter / 
@@ -1116,11 +1130,10 @@ Each prompt should:
 
 Format as a numbered list with a brief rationale for each."</pre>
       <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </div>
+    </details>
 
 
-    <div class="prompt-card">
-      <div class="prompt-title">5. The Case Generator: An Interactive Case in 60 Seconds</div>
+    <details class="prompt-card" id="prompt5"><summary><span class="prompt-title">5. The Case Generator: An Interactive Case in 60 Seconds</span><span class="prompt-hint">tap to expand</span></summary>
       <div class="prompt-desc">The prompt from the live demo. Paste it into ChatGPT, Claude, Gemini, any chatbot. It produces a complete case, a ready-to-run student prompt with rubric-based feedback, and a provenance warning that is the whole point. Swap the bracketed variables for your topic and learners. This template is deliberately ungrounded, that's the elephant.</div>
       <pre>You are an expert clinical case designer for health professions education programs.
 
@@ -1151,10 +1164,9 @@ Part 2 will typically run 300–600 words because it embeds the case file and al
 PART 3, PROVENANCE NOTE
 Append exactly: "WARNING - Provenance: this case was AI-generated today and drawn from no published source. Clinical details are plausible but unverified. Verify against a guideline before use with learners."</pre>
       <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </div>
+    </details>
 
-        <div class="prompt-card">
-      <div class="prompt-title">5b. Today's Demo Case, Pre-Filled</div>
+        <details class="prompt-card" id="prompt5b"><summary><span class="prompt-title">5b. Today's Demo Case, Pre-Filled</span><span class="prompt-hint">tap to expand</span></summary>
       <div class="prompt-desc">The exact prompt from the live demo. Same skeleton as the Case Generator, with the variables pre-filled for today's sore throat case, the same presentation as the published MedEdPORTAL case in the Running Example above. After it generates, compare Part 1 of its blueprint against files 1 and 2. That comparison is the whole session in miniature.</div>
       <pre>You are an expert clinical case designer for health professions education programs.
 
@@ -1185,10 +1197,9 @@ Part 2 will typically run 300–600 words because it embeds the case file and al
 PART 3, PROVENANCE NOTE
 Append exactly: "WARNING - Provenance: this case was AI-generated today and drawn from no published source. Clinical details are plausible but unverified. Verify against a guideline before use with learners."</pre>
       <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </div>
+    </details>
 
-<div class="prompt-card">
-      <div class="prompt-title">6. Variant: New-Treatment Teaching Session</div>
+<details class="prompt-card" id="prompt6"><summary><span class="prompt-title">6. Variant: New-Treatment Teaching Session</span><span class="prompt-hint">tap to expand</span></summary>
       <div class="prompt-desc">Same skeleton for a drug or device update. Remember what ungrounded means here: it will invent dosing or trial numbers. Verify against the FDA label before it reaches a learner.</div>
       <pre>You are an expert CME designer for [PROGRAM, e.g., an APP fellowship].
 
@@ -1207,10 +1218,9 @@ Begin with the literal line: "Copy everything between the dotted lines into a ne
 PART 3, PROVENANCE NOTE
 Append exactly: "WARNING - Provenance: this session was AI-generated today and drawn from no published source. Dosing and trial data are plausible but unverified. Verify against the FDA label and current guideline before use with learners."</pre>
       <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </div>
+    </details>
 
-    <div class="prompt-card">
-      <div class="prompt-title">7. Variant: Subspecialty Rotation Overview</div>
+    <details class="prompt-card" id="prompt7"><summary><span class="prompt-title">7. Variant: Subspecialty Rotation Overview</span><span class="prompt-hint">tap to expand</span></summary>
       <div class="prompt-desc">A rotation orientation module in one paste. The ungrounded risk is scope drift, teaching the wrong level or citing stale recommendations. Ground the final product with your society guideline and assigned chapter.</div>
       <pre>You are an expert curriculum designer for [PROGRAM, e.g., an APP fellowship].
 
@@ -1228,10 +1238,9 @@ Begin with the literal line: "Copy everything between the dotted lines into a ne
 PART 3, PROVENANCE NOTE
 Append exactly: "WARNING - Provenance: this module was AI-generated today and drawn from no published source. Scope and recommendations are plausible but unverified. Review against your society guideline before use with learners."</pre>
       <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </div>
+    </details>
 
-    <div class="prompt-card">
-      <div class="prompt-title">8. Variant: Procedure Pre-Brief</div>
+    <details class="prompt-card" id="prompt8"><summary><span class="prompt-title">8. Variant: Procedure Pre-Brief</span><span class="prompt-hint">tap to expand</span></summary>
       <div class="prompt-desc">The safety-critical one: an ungrounded procedure trainer can scramble step order. Use it to see the power, then verify step order against your institutional protocol before any learner touches it.</div>
       <pre>You are an expert procedural educator for [PROGRAM, e.g., an APP fellowship].
 
@@ -1249,7 +1258,7 @@ Begin with the literal line: "Copy everything between the dotted lines into a ne
 PART 3, PROVENANCE NOTE
 Append exactly: "WARNING - Provenance: this trainer was AI-generated today and drawn from no published source. Step order and technique details are plausible but unverified. Verify against your institutional protocol before use with learners."</pre>
       <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </div>
+    </details>
 
     <div class="beyond-box">
       <h3>Beyond the Case: Same Tools, Any Curriculum</h3>
@@ -1865,7 +1874,11 @@ document.addEventListener('click', function (ev) {
   copyPrompt(b, pre.textContent.replace(/^\s+|\s+$/g, ''));
 });
     function saveWorksheet() { var e = ['ws1', 'ws2', 'ws3', 'ws3b', 'ws4', 'ws5a', 'ws5b', 'ws5c', 'ws5d', 'ws5e', 'ws6a', 'ws6b', 'ws7'], t = { ws1: 'Educational Need', ws2: 'Learning Goal(s)', ws3: 'Selected Fidelity Level', ws3b: 'Why This Tool', ws4: 'Pedagogical Rationale', ws5a: 'Platform', ws5b: 'Build Time', ws5c: 'Learner Time', ws5d: 'Estimated Cost', ws5e: 'Assessment Approach', ws6a: 'Potential Barrier', ws6b: 'Mitigation Strategy', ws7: 'Group Members' }, n = 'DIGITAL LEARNING ACTIVITY BLUEPRINT\n2026 APP Fellowship Conference, Design Sprint\n' + '='.repeat(50) + '\n\n'; e.forEach(function (e) { var o = document.getElementById(e); o && o.value.trim() && (n += t[e] + ':\n' + o.value + '\n\n') }), n += '\nSaved: ' + new Date().toLocaleString(); var o = new Blob([n], { type: 'text/plain' }), i = URL.createObjectURL(o), s = document.createElement('a'); s.href = i, s.download = 'Digital Learning Activity Blueprint.txt', s.click(), URL.revokeObjectURL(i) }
-  </script>
+  window.addEventListener('beforeprint', function () {
+  document.querySelectorAll('details.prompt-card').forEach(function (d) { d.open = true; });
+});
+
+</script>
 
 </body>
 

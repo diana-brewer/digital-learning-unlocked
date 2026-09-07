@@ -270,12 +270,11 @@
 <div class="callout warning"><div class="callout-title">Have backup screenshots ready</div><p>If WiFi fails or the live demo breaks, switch to pre-loaded screenshots, or a 90-second screen recording of the same flow. The audience should never see you sweat.</p></div>
       <div class="role-box speaker-box"><div class="role-label">Demo script (5 min)</div>
         <ol>
-          <li><strong>(30 sec)</strong> Ask ChatGPT to "create a case of acute pericarditis with ECG findings" WITHOUT uploading sources. Point out any inaccuracies.</li>
-          <li><strong>(1 min)</strong> Open NotebookLM (pre-loaded with pericarditis guideline PDF). Ask the same question. Show how responses cite specific passages.</li>
-          <li><strong>(1 min)</strong> Ask NotebookLM to create a clinical reasoning exercise + feedback rubric. Show how each element traces to the source.</li>
-          <li><strong>(Optional 60-sec variant)</strong> Frame it with the running example: upload the MedEdPORTAL case files 1 + 2 (download links: Guide → Section 4; NotebookLM: notebooklm.google.com) and ask "What four clinical states does this case move through?", grounding in <em>someone else's published work</em>, not your own files. That's the whole trick: go get the published material, then wire your teaching to it.</li>
-          <li><strong>(1 min)</strong> Click "Audio Overview" in NotebookLM. Play 15 seconds of the AI-generated podcast.</li>
-          <li><strong>(30 sec)</strong> "I just created a grounded, source-cited clinical reasoning case and feedback rubric in under 5 minutes, with near-zero hallucination risk because the AI worked only from my material. The exercise requires the learner to think and reason, not just pick an answer."</li>
+          <li><strong>(45 sec)</strong> Ungrounded, in ChatGPT: ask "A 19-year-old with a sore throat gets benzocaine spray before a peritonsillar abscess drainage. What happens next?" No sources uploaded. Point out the hedging or the confident guessing: no citations, no way to check.</li>
+          <li><strong>(90 sec)</strong> Same question, grounded: switch to the pre-built case notebook, "Running Example: The PTA Case (MedEdPORTAL)," all six published case files already in it. Every claim carries a numbered citation. Click one citation and show the highlighted passage in the actual case file.</li>
+          <li><strong>(60 sec)</strong> A rubric question: "What are the critical actions after the benzocaine spray, per the faculty checklist?" The answer traces to the faculty rubric file, and it will note the documented lidocaine allergy, the reason benzocaine was chosen. This is the beat where the room sees the tool reading the actual checklist, not vibes.</li>
+          <li><strong>(45 sec)</strong> Click Audio Overview in the notebook's Studio panel. Play 15 seconds of the two-host conversation about this exact case.</li>
+          <li><strong>(30 sec)</strong> Close: "Same case as the Realism Gap demo, but grounded in someone else's published work. The AI did not decide the treatment. It gave me the narrative, the labs, and the checklist, and I brought the judgment. This exact notebook is in the guide, Section 4, open it now. Prefer ChatGPT or Claude? Upload the same files there, the grounding is the same."</li>
         </ol>
       </div>
     </div>
@@ -287,7 +286,7 @@
     <div class="slide-body">
 
       <div class="role-box speaker-box"><div class="role-label">Speaker says</div>
-        <p>"Four minutes, table groups. On your phone: run Today's Demo Case, prompt 5b, in any chatbot. Then the grounded contrast: download the MedEdPORTAL case files from the Running Example, upload the case narrative and lab values into NotebookLM, and run Prompt #1 against them. Then two questions for your table: what did the AI invent, skip, or get right, compared with the published case? And what would you verify before this case touches a learner?"</p>
+        <p>"Four minutes, table groups. On your phone: run Today's Demo Case, prompt 5b, in any chatbot. Then the grounded contrast: open the pre-built case notebook, the link is in the guide (Section 4), or build your own: download the MedEdPORTAL case files from the Running Example, upload the case narrative and lab values into NotebookLM, a ChatGPT Project, or Claude, and run Prompt #1 against them. Then two questions for your table: what did the AI invent, skip, or get right, compared with the published case? And what would you verify before this case touches a learner?"</p>
       </div>
       <div class="role-box audience-box"><div class="role-label">Audience does</div>
         <p>Runs the demo prompt live, uploads the published files, compares the two cases side by side. Two runs of 5b at one table produce two different unreviewed cases, which is its own lesson.</p>
@@ -392,13 +391,15 @@
       <li><strong>Workshop Guide</strong>, projected; the tool tables and all prompts live here (attendees mirror it on phones via the QR)</li>
       <li><strong>Branching Scenario Demo</strong>, workshop-branching-demo.html (runs locally, wifi-independent)</li>
       <li><strong>ChatGPT</strong>, logged in, blank chat ready; Today's Demo Case prompt (Guide → Section 4, prompt 5b) copied to your clipboard</li>
-      <li><strong>NotebookLM</strong>, the "Pericarditis Teaching Case" notebook open</li>
+      <li><strong>NotebookLM</strong>, the pre-built case notebook open: "Running Example: The PTA Case (MedEdPORTAL)" (<a href="https://notebook.google.com/notebook/93b8b9b8-eb70-4a91-919c-9117d5d4fdd1">https://notebook.google.com/notebook/93b8b9b8-eb70-4a91-919c-9117d5d4fdd1</a>, link sharing on). Backup answers: notebooklm-sources/pta-case/demo-pre-run-answers.html</li>
       <li><strong>A 20-minute countdown</strong>, google.com/search?q=20 minute timer, open in the browser for the capstone sprint</li>
     </ul>
   <div class="callout success">
     <div class="callout-title">One Week Before</div>
     <ul>
       <li>✅ DONE, "Pericarditis Teaching Case" notebook is built: 3 sources uploaded, demo prompts pre-run, Audio Overview generated (build record below)</li>
+      <li>✅ DONE, the demo notebook is built: "Running Example: The PTA Case (MedEdPORTAL)," all six case files uploaded, both demo prompts pre-run, link sharing on (backup: notebooklm-sources/pta-case/)</li>
+      <li>✅ DONE, the AML notebook for Beyond the Case is built: "Ziftomenib: A New-Treatment Teaching Session," six sources, pre-run answers in notebooklm-sources/ziftomenib/ (build record there)</li>
       <li>Test all demo links on your phone: workshop-branching-demo.html, workshop-case-demo.html</li>
       <li>✅ DONE, QR code generated and embedded on slides 3 and 26 (workshop-guide-qr.png)</li>
       <li>✅ Pre-run demo answers saved at notebooklm-sources/demo-pre-run-answers.html · Audio Overview lives in the notebook ("When ST Elevation Isn't a Heart Attack"), grab the local backup: notebook → Studio → ⋮ on the audio → Download → save as notebooklm-sources/demo-audio-overview.mp3</li>
@@ -419,7 +420,13 @@
   <h3>NotebookLM Notebook, Build Record (and rebuild steps if ever needed)</h3>
   <div class="callout accent">
     <div class="callout-title">Status: Built (September 2026)</div>
-    <p><strong>"Pericarditis Teaching Case"</strong> is live in your Google account at notebooklm.google.com, recently renamed <strong>Gemini Notebook</strong>; same tool, same link. It contains the 3 teaching sources (pericarditis clinical reference, 19-year-old case notes, ECG-vs-STEMI guide). Both demo prompts have been pre-run (see <strong>notebooklm-sources/demo-pre-run-answers.html</strong>), and the Audio Overview is generated in the notebook, titled <strong>"When ST Elevation Isn't a Heart Attack."</strong> Before the session: download it from the Studio panel (⋮ → Download) to <strong>notebooklm-sources/</strong> for an offline backup, press play for 15 seconds to confirm it works, and leave the notebook tab open for the live demo.</p>
+    <p><strong>Your notebook inventory, all live in your Google account at notebooklm.google.com (recently renamed Gemini Notebook, same tool):</strong></p>
+      <ul style="margin-left:1.2rem;">
+        <li><strong>"Running Example: The PTA Case (MedEdPORTAL)"</strong> (<a href="https://notebook.google.com/notebook/93b8b9b8-eb70-4a91-919c-9117d5d4fdd1">https://notebook.google.com/notebook/93b8b9b8-eb70-4a91-919c-9117d5d4fdd1</a>) · THE DEMO NOTEBOOK. All six published case files: narrative, labs, EKG, CT, chest X-ray, faculty rubric. Both demo prompts pre-run (notebooklm-sources/pta-case/demo-pre-run-answers.html), Audio Overview generation launched from the Studio panel: confirm it finished and press play 15 seconds before the session. Link sharing is ON, attendees can open it from the guide.</li>
+        <li><strong>"Ziftomenib: A New-Treatment Teaching Session"</strong> (<a href="https://notebook.google.com/notebook/fa7fb716-e25b-45d1-98d8-84b6b1ce38bf">https://notebook.google.com/notebook/fa7fb716-e25b-45d1-98d8-84b6b1ce38bf</a>) · the AML notebook for Beyond the Case. Six sources (FDA label, approval letter, KOMET-001 trial, ELN 2022, NCI PDQ, ClinicalTrials.gov), pre-run answers in notebooklm-sources/ziftomenib/. Link sharing is ON.</li>
+        <li><strong>"Pericarditis Teaching Case"</strong> · the original demo notebook, now the backup if you ever want the cardiology flavor. Audio Overview "When ST Elevation Isn't a Heart Attack" is already generated in it; download from the Studio panel to notebooklm-sources/ for an offline backup.</li>
+      </ul>
+      <p>Before the session: press play on the PTA Audio Overview for 15 seconds to confirm it works, and leave the PTA notebook tab open for the live demo. If the Google session has expired by then, one 30-second login on the morning of the talk revives all three notebooks.</p>
   </div>
   <p><em>Rebuild steps (only if the notebook is ever lost):</em></p>
   <ol>

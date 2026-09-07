@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Learning Unlocked — Interactive Case Demo</title>
+<title>Digital Learning Unlocked, Interactive Case Demo</title>
 <style>
 /* ============================ GLOBAL ============================ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -542,11 +542,11 @@ label.field-label .req{color:var(--accent)}
 
 <!-- ==================== BANNERS ==================== -->
 <div class="banner-top">
-  <h1>Digital Learning Unlocked — Interactive Case Demo</h1>
-  <p class="subtitle">Try this yourself — no account needed.</p>
+  <h1>Digital Learning Unlocked, Interactive Case Demo</h1>
+  <p class="subtitle">Try this yourself, no account needed.</p>
 </div>
 <div class="banner-info">
-  <strong>This is a demonstration</strong> of a text-and-audio simulation built for the 2026 APP Fellowship Conference. A real platform would use AI to respond dynamically — this demo uses pre-scripted responses to show the pedagogical concept.
+  <strong>This is a demonstration</strong> of a text-and-audio simulation built for the 2026 APP Fellowship Conference. A real platform would use AI to respond dynamically, this demo uses pre-scripted responses to show the pedagogical concept.
 </div>
 
 <!-- ==================== STEPPER ==================== -->
@@ -565,14 +565,14 @@ label.field-label .req{color:var(--accent)}
     <div class="stage-header">
       <div class="stage-num">Stage 1 of 6</div>
       <h2>History Taking</h2>
-      <p>The patient is in the emergency department. Ask questions to gather history. Type naturally — the patient will respond.</p>
+      <p>The patient is in the emergency department. Ask questions to gather history. Type naturally, the patient will respond.</p>
     </div>
 
     <div class="field-group">
       <label class="field-label">Chief Complaint</label>
       <div class="progress-note">
         <div class="pn-label">Patient (Marcus, 19yo M)</div>
-        "My chest really hurts, doc. It started this morning and it's sharp — like someone's stabbing me on the left side. It gets way worse when I take a deep breath."
+        "My chest really hurts, doc. It started this morning and it's sharp, like someone's stabbing me on the left side. It gets way worse when I take a deep breath."
       </div>
     </div>
 
@@ -664,8 +664,8 @@ label.field-label .req{color:var(--accent)}
     </div>
 
     <div class="field-group">
-      <label class="field-label" for="diagOrders">Orders — list labs/imaging/studies <span class="req">*</span></label>
-      <textarea class="input-textarea" id="diagOrders" style="min-height:100px" placeholder="e.g.,&#10;12-lead ECG — expect diffuse ST elevations&#10;CBC — check for leukocytosis&#10;CRP/ESR — expect elevated inflammatory markers&#10;Troponin — rule out myocarditis/MI&#10;Chest X-ray — check heart size, rule out effusion&#10;Bedside echo — look for pericardial effusion"></textarea>
+      <label class="field-label" for="diagOrders">Orders, list labs/imaging/studies <span class="req">*</span></label>
+      <textarea class="input-textarea" id="diagOrders" style="min-height:100px" placeholder="e.g.,&#10;12-lead ECG, expect diffuse ST elevations&#10;CBC, check for leukocytosis&#10;CRP/ESR, expect elevated inflammatory markers&#10;Troponin, rule out myocarditis/MI&#10;Chest X-ray, check heart size, rule out effusion&#10;Bedside echo, look for pericardial effusion"></textarea>
     </div>
 
     <div class="field-group">
@@ -727,21 +727,21 @@ label.field-label .req{color:var(--accent)}
     <div class="stage-header">
       <div class="stage-num">Stage 5 of 6</div>
       <h2>Assessment & Plan</h2>
-      <p>Write your clinical assessment and management plan. This is your synthesis — demonstrate your clinical reasoning.</p>
+      <p>Write your clinical assessment and management plan. This is your synthesis, demonstrate your clinical reasoning.</p>
     </div>
 
     <div class="field-group">
       <label class="field-label" for="assessmentText">One-liner / Assessment <span class="req">*</span></label>
-      <textarea class="input-textarea" id="assessmentText" style="min-height:80px" placeholder="e.g., 19yo M presenting with pleuritic L-sided chest pain after viral URI, exam with pericardial friction rub, ECG with diffuse ST elevations and PR depressions — consistent with acute pericarditis."></textarea>
+      <textarea class="input-textarea" id="assessmentText" style="min-height:80px" placeholder="e.g., 19yo M presenting with pleuritic L-sided chest pain after viral URI, exam with pericardial friction rub, ECG with diffuse ST elevations and PR depressions, consistent with acute pericarditis."></textarea>
     </div>
 
     <div class="field-group">
-      <label class="field-label" for="planText">Plan — management steps <span class="req">*</span></label>
+      <label class="field-label" for="planText">Plan, management steps <span class="req">*</span></label>
       <textarea class="input-textarea" id="planText" style="min-height:120px" placeholder="e.g.,&#10;1. NSAIDs (ibuprofen 600mg q6h) for 7-14 days with gastroprotection&#10;2. Colchicine 0.6mg BID × 3 months to reduce recurrence&#10;3. Rest, avoid strenuous activity until symptom resolution&#10;4. Outpatient follow-up in 1 week; return if worsening&#10;5. Echo follow-up to ensure resolution of effusion&#10;6. Patient education: warning signs (worsening dyspnea, syncope)"></textarea>
     </div>
 
     <div class="field-group">
-      <label class="field-label" for="safetyText">Safety netting — what would change your plan? <span class="req">*</span></label>
+      <label class="field-label" for="safetyText">Safety netting, what would change your plan? <span class="req">*</span></label>
       <textarea class="input-textarea" id="safetyText" style="min-height:60px" placeholder="e.g., If patient develops tamponade physiology → urgent pericardiocentesis. If troponin markedly elevated → consider myocarditis, admit for monitoring. If fevers persist → consider bacterial pericarditis, blood cultures..."></textarea>
     </div>
 
@@ -804,7 +804,7 @@ var state = {
 var patientResponses = [
   {
     keywords: ['onset','started','begin','when did','timing','how long','duration'],
-    response: "It started this morning, around 7 AM. I woke up with it — it wasn't there when I went to sleep. It's been constant since then, maybe getting a bit worse over the day."
+    response: "It started this morning, around 7 AM. I woke up with it, it wasn't there when I went to sleep. It's been constant since then, maybe getting a bit worse over the day."
   },
   {
     keywords: ['quality','character','type','kind','describe','sharp','dull','burning'],
@@ -820,7 +820,7 @@ var patientResponses = [
   },
   {
     keywords: ['aggravat','worse','deep breath','inspir','breathe','breathing','lying','laying','position','positional'],
-    response: "Yeah, deep breaths make it way worse — that's the worst part. Also, if I lie flat on my back it hurts more. Sitting up and leaning forward helps a little, actually."
+    response: "Yeah, deep breaths make it way worse, that's the worst part. Also, if I lie flat on my back it hurts more. Sitting up and leaning forward helps a little, actually."
   },
   {
     keywords: ['alleviat','reliev','better','help','make it feel','ease'],
@@ -828,7 +828,7 @@ var patientResponses = [
   },
   {
     keywords: ['viral','sick','ill','cold','flu','fever','infection','cough','runny','recent illness',' URI','upper respir'],
-    response: "Yeah, actually I had a cold about a week and a half ago — runny nose, sore throat, felt crummy for a few days. It mostly went away, and then this started. No fever since then though."
+    response: "Yeah, actually I had a cold about a week and a half ago, runny nose, sore throat, felt crummy for a few days. It mostly went away, and then this started. No fever since then though."
   },
   {
     keywords: ['fever','temperature','hot','chills','rigors'],
@@ -860,7 +860,7 @@ var patientResponses = [
   },
   {
     keywords: ['medication','meds','taking','pills','prescription','ibuprofen','advil','tylenol'],
-    response: "I don't take any medications regularly. I took some ibuprofen this morning for the pain — maybe 400mg — but that's it. No supplements or anything."
+    response: "I don't take any medications regularly. I took some ibuprofen this morning for the pain, maybe 400mg, but that's it. No supplements or anything."
   },
   {
     keywords: ['allerg','allergic','reaction'],
@@ -876,7 +876,7 @@ var patientResponses = [
   },
   {
     keywords: ['exercise','activity','sports','athletic','exertion','workout'],
-    response: "I play basketball recreationally, usually twice a week. The pain doesn't seem related to exertion — it came on at rest this morning."
+    response: "I play basketball recreationally, usually twice a week. The pain doesn't seem related to exertion, it came on at rest this morning."
   },
   {
     keywords: ['travel','flight','long trip','road trip','immobiliz'],
@@ -888,11 +888,11 @@ var patientResponses = [
   },
   {
     keywords: ['sleep','rest','night','woke up','morning'],
-    response: "I slept fine last night — no pain. I woke up around 7 and the pain was just there. It didn't gradually come on; it was there when I opened my eyes."
+    response: "I slept fine last night, no pain. I woke up around 7 and the pain was just there. It didn't gradually come on; it was there when I opened my eyes."
   },
   {
     keywords: ['cough'],
-    response: "I had a cough with that cold last week, but it's mostly gone now. The cough wasn't bad — just a dry cough for a few days."
+    response: "I had a cough with that cold last week, but it's mostly gone now. The cough wasn't bad, just a dry cough for a few days."
   },
   {
     keywords: ['sore throat','pharyngitis','throat'],
@@ -904,7 +904,7 @@ var patientResponses = [
   }
 ];
 
-var defaultResponse = "I'm not sure how to answer that. Could you ask me something about the pain — like when it started, what it feels like, or about my recent illness? I can tell you about my symptoms, medical history, medications, or social history.";
+var defaultResponse = "I'm not sure how to answer that. Could you ask me something about the pain, like when it started, what it feels like, or about my recent illness? I can tell you about my symptoms, medical history, medications, or social history.";
 
 function matchResponse(question) {
   var q = question.toLowerCase();
@@ -986,7 +986,7 @@ var examFindingsData = {
     title: "Cardiac Exam",
     findings: [
       ["Inspection", "No visible precordial impulse abnormalities, no JVD"],
-      ["Auscultation", "Normal S1 and S2. **Audible pericardial friction rub** — a scratchy, grating, three-component sound best heard at the left sternal border with the patient leaning forward. Present throughout the cardiac cycle."],
+      ["Auscultation", "Normal S1 and S2. **Audible pericardial friction rub**, a scratchy, grating, three-component sound best heard at the left sternal border with the patient leaning forward. Present throughout the cardiac cycle."],
       ["Murmurs", "No murmurs, gallops, or rubs other than the friction rub described"],
       ["Point of maximal impulse", "Normal, 5th ICS midclavicular line, non-displaced"]
     ]
@@ -1121,7 +1121,7 @@ function submitOrders() {
   html += '<div class="findings-box mt-2"><h4>Imaging & Studies</h4>';
   html += '<ul>' +
     '<li><strong>Chest X-ray:</strong> Heart size normal (CTR 0.46). No pulmonary edema. No pneumothorax. No pleural effusion. Lung fields clear.</li>' +
-    '<li><strong>Bedside Echo:</strong> Small circumferential pericardial effusion (0.6 cm). No tamponade physiology — no RA/RV diastolic collapse, no IVC plethora. LV function normal (EF ~60%). No regional wall motion abnormalities.</li>' +
+    '<li><strong>Bedside Echo:</strong> Small circumferential pericardial effusion (0.6 cm). No tamponade physiology, no RA/RV diastolic collapse, no IVC plethora. LV function normal (EF ~60%). No regional wall motion abnormalities.</li>' +
     '<li><strong>Inflammatory markers:</strong> CRP and ESR significantly elevated, consistent with active pericardial inflammation.</li>' +
     '</ul></div>';
 
@@ -1180,7 +1180,7 @@ function generateECG() {
   for (var i = 0; i < complexes; i++) {
     var cx = startX + i * spacing;
 
-    // PR segment (slightly depressed) — small dip below baseline before P
+    // PR segment (slightly depressed), small dip below baseline before P
     pathPoints.push([cx, baseline]);
     pathPoints.push([cx + 5, baseline + 4]); // PR depression start
     pathPoints.push([cx + 10, baseline + 5]); // PR depression
@@ -1208,7 +1208,7 @@ function generateECG() {
     pathPoints.push([cx + 54, baseline + 22]); // S nadir
     pathPoints.push([cx + 56, baseline + 12]);
 
-    // ST segment (ELEVATED — the key finding) — concave upward
+    // ST segment (ELEVATED, the key finding), concave upward
     pathPoints.push([cx + 58, baseline + 10]);
     pathPoints.push([cx + 64, baseline - 5]); // ST elevation starts
     pathPoints.push([cx + 72, baseline - 10]); // ST elevation peak (concave)
@@ -1466,39 +1466,39 @@ function generateFeedback() {
   // History-Taking Feedback
   html += rubricSection('History Taking', getScore(qCount >= 5 && askedPleuritic && askedViral, 3), [
     {type: 'did-well', text: '<strong>You gathered ' + qCount + ' questions of history.</strong> ' + (qCount >= 5 ? 'This shows good initiative in characterizing the presenting complaint.' : 'A thorough history for chest pain typically requires 5–8 focused questions.')},
-    {type: askedPleuritic ? 'did-well' : 'could-improve', text: askedPleuritic ? 'You explored the pleuritic nature of the pain — essential for narrowing the differential.' : 'Consider asking about what aggravates the pain (deep inspiration, position) — this is the defining feature of pericarditis.'},
-    {type: askedViral ? 'did-well' : 'could-improve', text: askedViral ? 'You explored recent viral illness — a key risk factor for pericarditis.' : 'Ask about recent viral illness or URI symptoms — pericarditis commonly follows viral infection.'},
-    {type: askedPositional ? 'did-well' : 'could-improve', text: askedPositional ? 'You explored positional changes — pericarditis pain typically improves sitting forward and worsens lying flat.' : 'Positional quality is important — pericarditis pain classically improves with sitting forward.'},
+    {type: askedPleuritic ? 'did-well' : 'could-improve', text: askedPleuritic ? 'You explored the pleuritic nature of the pain, essential for narrowing the differential.' : 'Consider asking about what aggravates the pain (deep inspiration, position), this is the defining feature of pericarditis.'},
+    {type: askedViral ? 'did-well' : 'could-improve', text: askedViral ? 'You explored recent viral illness, a key risk factor for pericarditis.' : 'Ask about recent viral illness or URI symptoms, pericarditis commonly follows viral infection.'},
+    {type: askedPositional ? 'did-well' : 'could-improve', text: askedPositional ? 'You explored positional changes, pericarditis pain typically improves sitting forward and worsens lying flat.' : 'Positional quality is important, pericarditis pain classically improves with sitting forward.'},
     {type: 'ideal', text: 'Ideal: A complete history includes OPQRST (onset, provocation, quality, radiation, severity, time), associated symptoms, recent illness, PMH, medications, family history, and social history. For this case, confirming pleuritic/positional pain and recent viral illness are critical.'}
   ]);
 
   // Physical Exam Feedback
   html += rubricSection('Physical Exam', getScore(examinedCardiac && examinedVitals, 3), [
-    {type: examinedVitals ? 'did-well' : 'could-improve', text: examinedVitals ? 'You checked vital signs — always the first step.' : 'Vital signs are essential in any ED presentation, especially chest pain.'},
-    {type: examinedCardiac ? 'did-well' : 'could-improve', text: examinedCardiac ? 'You performed a cardiac exam — the pericardial friction rub is the key physical finding here. Listening with the patient leaning forward increases sensitivity.' : 'A cardiac exam is essential. The pericardial friction rub — a scratchy, three-component sound — is pathognomonic for pericarditis. Auscultate at the left sternal border with the patient leaning forward.'},
-    {type: 'ideal', text: 'Ideal: Cardiac (listening for friction rub with patient leaning forward), pulmonary (rule out effusion/pneumonia), MSK (rule out costochondritis — pain should NOT be reproducible with palpation), and extremities (rule out DVT) are the minimum for this presentation.'}
+    {type: examinedVitals ? 'did-well' : 'could-improve', text: examinedVitals ? 'You checked vital signs, always the first step.' : 'Vital signs are essential in any ED presentation, especially chest pain.'},
+    {type: examinedCardiac ? 'did-well' : 'could-improve', text: examinedCardiac ? 'You performed a cardiac exam, the pericardial friction rub is the key physical finding here. Listening with the patient leaning forward increases sensitivity.' : 'A cardiac exam is essential. The pericardial friction rub, a scratchy, three-component sound, is pathognomonic for pericarditis. Auscultate at the left sternal border with the patient leaning forward.'},
+    {type: 'ideal', text: 'Ideal: Cardiac (listening for friction rub with patient leaning forward), pulmonary (rule out effusion/pneumonia), MSK (rule out costochondritis, pain should NOT be reproducible with palpation), and extremities (rule out DVT) are the minimum for this presentation.'}
   ]);
 
   // Diagnostic Reasoning Feedback
   html += rubricSection('Diagnostic Reasoning', getScore(orderedECG && orderedCRP && orderedTroponin, 3), [
-    {type: orderedECG ? 'did-well' : 'could-improve', text: orderedECG ? 'You ordered an ECG — the hallmark finding is diffuse concave ST elevations with PR depressions.' : 'ECG is the most important diagnostic test. Acute pericarditis shows diffuse concave ST elevations and PR segment depressions, distinguishable from STEMI by the concave morphology and diffuse distribution.'},
-    {type: orderedCRP ? 'did-well' : 'could-improve', text: orderedCRP ? 'You ordered inflammatory markers (CRP/ESR) — these are typically elevated and help confirm active inflammation.' : 'Inflammatory markers (CRP, ESR) are typically elevated and support the diagnosis while helping monitor treatment response.'},
-    {type: orderedTroponin ? 'did-well' : 'could-improve', text: orderedTroponin ? 'You ordered troponin — this helps distinguish pericarditis from MI and detect myopericarditis.' : 'Troponin is important to rule out MI and detect myopericarditis. Mild elevation may occur in pericarditis; marked elevation suggests myocarditis or MI.'},
+    {type: orderedECG ? 'did-well' : 'could-improve', text: orderedECG ? 'You ordered an ECG, the hallmark finding is diffuse concave ST elevations with PR depressions.' : 'ECG is the most important diagnostic test. Acute pericarditis shows diffuse concave ST elevations and PR segment depressions, distinguishable from STEMI by the concave morphology and diffuse distribution.'},
+    {type: orderedCRP ? 'did-well' : 'could-improve', text: orderedCRP ? 'You ordered inflammatory markers (CRP/ESR), these are typically elevated and help confirm active inflammation.' : 'Inflammatory markers (CRP, ESR) are typically elevated and support the diagnosis while helping monitor treatment response.'},
+    {type: orderedTroponin ? 'did-well' : 'could-improve', text: orderedTroponin ? 'You ordered troponin, this helps distinguish pericarditis from MI and detect myopericarditis.' : 'Troponin is important to rule out MI and detect myopericarditis. Mild elevation may occur in pericarditis; marked elevation suggests myocarditis or MI.'},
     {type: 'ideal', text: 'Ideal workup: 12-lead ECG (diffuse ST elevations, PR depressions), CRP/ESR (elevated), troponin (may be mildly elevated), CBC (mild leukocytosis), chest X-ray (normal heart size, rule out effusion), and bedside echo (small effusion, no tamponade).'}
   ]);
 
   // Differential Diagnosis Feedback
   html += rubricSection('Differential Diagnosis', getScore(listedPericarditis && diffCount >= 3, 3), [
-    {type: listedPericarditis ? 'did-well' : 'could-improve', text: listedPericarditis ? 'You correctly included acute pericarditis in your differential — this is the leading diagnosis given the clinical picture.' : 'Acute pericarditis should be the leading differential given pleuritic chest pain, recent viral illness, friction rub, and diffuse ST elevations.'},
-    {type: diffCount >= 3 ? 'did-well' : 'could-improve', text: diffCount >= 3 ? 'You generated ' + diffCount + ' differentials — broad enough to demonstrate systematic reasoning.' : 'Consider generating at least 3 differentials to show systematic reasoning. For chest pain in a young adult: pericarditis, costochondritis, pneumonia/pleuritis, pneumothorax, pulmonary embolism, and MI (unlikely but must rule out).'},
-    {type: 'ideal', text: 'Ideal differentials: (1) Acute pericarditis (high), (2) Costochondritis (moderate, but pain should be reproducible on palpation), (3) Pleuritis/pneumonia (low — no cough/fever, clear lungs), (4) Pulmonary embolism (low — no risk factors), (5) STEMI (low — wrong demographic, ECG pattern is diffuse/concave not focal/convex).'}
+    {type: listedPericarditis ? 'did-well' : 'could-improve', text: listedPericarditis ? 'You correctly included acute pericarditis in your differential, this is the leading diagnosis given the clinical picture.' : 'Acute pericarditis should be the leading differential given pleuritic chest pain, recent viral illness, friction rub, and diffuse ST elevations.'},
+    {type: diffCount >= 3 ? 'did-well' : 'could-improve', text: diffCount >= 3 ? 'You generated ' + diffCount + ' differentials, broad enough to demonstrate systematic reasoning.' : 'Consider generating at least 3 differentials to show systematic reasoning. For chest pain in a young adult: pericarditis, costochondritis, pneumonia/pleuritis, pneumothorax, pulmonary embolism, and MI (unlikely but must rule out).'},
+    {type: 'ideal', text: 'Ideal differentials: (1) Acute pericarditis (high), (2) Costochondritis (moderate, but pain should be reproducible on palpation), (3) Pleuritis/pneumonia (low, no cough/fever, clear lungs), (4) Pulmonary embolism (low, no risk factors), (5) STEMI (low, wrong demographic, ECG pattern is diffuse/concave not focal/convex).'}
   ]);
 
   // Communication Feedback
   html += rubricSection('Communication & Documentation', getScore(hasAssessment && state.plan.length > 20, 3), [
-    {type: hasAssessment ? 'did-well' : 'could-improve', text: hasAssessment ? 'You wrote a clinical assessment — synthesizing findings into a diagnostic conclusion is the core of clinical reasoning.' : 'Writing a clear one-liner assessment demonstrates your ability to synthesize clinical data into a diagnostic conclusion.'},
-    {type: state.plan.length > 20 ? 'did-well' : 'could-improve', text: state.plan.length > 20 ? 'You provided a management plan — good. Treatment of pericarditis includes NSAIDs, colchicine, activity restriction, and follow-up.' : 'Include a specific management plan: NSAIDs (ibuprofen), colchicine (reduces recurrence), rest, and outpatient follow-up.'},
-    {type: state.safety.length > 10 ? 'did-well' : 'could-improve', text: state.safety.length > 10 ? 'You included safety netting — critical for ED dispositions. Watching for tamponade and monitoring for myopericarditis are key.' : 'Safety netting is essential: watch for tamponade (urgently), monitor troponin for myopericarditis, and return precautions for worsening dyspnea or syncope.'},
+    {type: hasAssessment ? 'did-well' : 'could-improve', text: hasAssessment ? 'You wrote a clinical assessment, synthesizing findings into a diagnostic conclusion is the core of clinical reasoning.' : 'Writing a clear one-liner assessment demonstrates your ability to synthesize clinical data into a diagnostic conclusion.'},
+    {type: state.plan.length > 20 ? 'did-well' : 'could-improve', text: state.plan.length > 20 ? 'You provided a management plan, good. Treatment of pericarditis includes NSAIDs, colchicine, activity restriction, and follow-up.' : 'Include a specific management plan: NSAIDs (ibuprofen), colchicine (reduces recurrence), rest, and outpatient follow-up.'},
+    {type: state.safety.length > 10 ? 'did-well' : 'could-improve', text: state.safety.length > 10 ? 'You included safety netting, critical for ED dispositions. Watching for tamponade and monitoring for myopericarditis are key.' : 'Safety netting is essential: watch for tamponade (urgently), monitor troponin for myopericarditis, and return precautions for worsening dyspnea or syncope.'},
     {type: 'ideal', text: 'Ideal documentation includes: a structured one-liner, a problem-oriented assessment, a numbered plan with pharmacologic and non-pharmacologic interventions, and explicit safety netting for red-flag complications.'}
   ]);
 
@@ -1539,7 +1539,7 @@ function renderReasoningCapture() {
   // History
   if (state.historyQuestions.length > 0) {
     hasContent = true;
-    html += '<div class="reasoning-entry"><div class="re-stage">Stage 1 — History (' + state.historyQuestions.length + ' questions)</div>';
+    html += '<div class="reasoning-entry"><div class="re-stage">Stage 1, History (' + state.historyQuestions.length + ' questions)</div>';
     state.historyQuestions.forEach(function(h) {
       html += '<div class="re-content"><strong>You:</strong> ' + escapeHtml(h.q) + '</div>';
       html += '<div class="re-content text-muted"><strong>Patient:</strong> ' + escapeHtml(h.a) + '</div>';
@@ -1550,7 +1550,7 @@ function renderReasoningCapture() {
   // Exam
   if (state.examSystems.length > 0) {
     hasContent = true;
-    html += '<div class="reasoning-entry"><div class="re-stage">Stage 2 — Physical Exam</div>';
+    html += '<div class="reasoning-entry"><div class="re-stage">Stage 2, Physical Exam</div>';
     html += '<div class="re-content"><strong>Systems examined:</strong> ' + state.examSystems.join(', ') + '</div>';
     if (state.examLooking) {
       html += '<div class="re-content"><strong>Looking for:</strong> ' + escapeHtml(state.examLooking) + '</div>';
@@ -1561,7 +1561,7 @@ function renderReasoningCapture() {
   // Diagnostics
   if (state.diagOrders) {
     hasContent = true;
-    html += '<div class="reasoning-entry"><div class="re-stage">Stage 3 — Diagnostic Orders</div>';
+    html += '<div class="reasoning-entry"><div class="re-stage">Stage 3, Diagnostic Orders</div>';
     html += '<div class="re-content"><strong>Orders:</strong> ' + escapeHtml(state.diagOrders) + '</div>';
     if (state.diagExpect) {
       html += '<div class="re-content"><strong>Expected findings:</strong> ' + escapeHtml(state.diagExpect) + '</div>';
@@ -1572,7 +1572,7 @@ function renderReasoningCapture() {
   // Differentials
   if (state.differentials.length > 0) {
     hasContent = true;
-    html += '<div class="reasoning-entry"><div class="re-stage">Stage 4 — Differential Diagnosis</div>';
+    html += '<div class="reasoning-entry"><div class="re-stage">Stage 4, Differential Diagnosis</div>';
     state.differentials.forEach(function(d) {
       var status = d.ruledOut ? ' [Ruled Out]' : '';
       html += '<div class="re-content"><strong>' + escapeHtml(d.name) + '</strong> (' + d.probability + ' probability)' + status + '</div>';
@@ -1585,7 +1585,7 @@ function renderReasoningCapture() {
   // Assessment
   if (state.assessment || state.plan || state.safety) {
     hasContent = true;
-    html += '<div class="reasoning-entry"><div class="re-stage">Stage 5 — Assessment & Plan</div>';
+    html += '<div class="reasoning-entry"><div class="re-stage">Stage 5, Assessment & Plan</div>';
     if (state.assessment) html += '<div class="re-content"><strong>Assessment:</strong> ' + escapeHtml(state.assessment) + '</div>';
     if (state.plan) html += '<div class="re-content"><strong>Plan:</strong> ' + escapeHtml(state.plan) + '</div>';
     if (state.safety) html += '<div class="re-content"><strong>Safety netting:</strong> ' + escapeHtml(state.safety) + '</div>';

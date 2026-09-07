@@ -12,16 +12,18 @@ A 60-minute presentation and workshop for the 2026 APP Fellowship Conference by 
 
 | File | Purpose |
 |------|---------|
-| `index.html` | Workshop Guide — the audience-facing page (this is the homepage) |
+| `index.html` | Workshop Guide, the audience-facing page (this is the homepage) |
 | `Digital Learning Unlocked - Slide Deck.pptx` | Slide deck for presenting |
 | `Digital Learning Unlocked - Presenter Notes.html` | Facilitator guide with timing and scripts |
 | `workshop-case-demo.html` | Interactive clinical reasoning case demo |
 | `workshop-branching-demo.html` | Branching clinical decision tree demo |
+| `design-sprint-timer.html` | 17-minute capstone sprint timer with check-in banners |
+| `case-materials/` | Published MedEdPORTAL case files (peritonsillar abscess), downloadable |
 
 ## How to Use
 
 1. **Present from** the slide deck (.pptx) in Keynote or PowerPoint
-2. **Share the live URL with attendees** — they open it on their phones: `https://diana-brewer.github.io/digital-learning-unlocked/`
+2. **Share the live URL with attendees**, they open it on their phones: `https://diana-brewer.github.io/digital-learning-unlocked/`
 3. **Follow the Presenter Notes** for timing, scripts, and facilitation guidance
 
 ## Setup

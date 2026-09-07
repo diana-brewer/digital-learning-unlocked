@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Learning Unlocked — Branching Scenario Demo</title>
+<title>Digital Learning Unlocked, Branching Scenario Demo</title>
 <style>
   :root {
     --primary: #2D5F7C;
@@ -94,12 +94,12 @@
 <body>
 
 <div class="banner">
-  <h1>Digital Learning Unlocked — Branching Scenario Demo</h1>
+  <h1>Digital Learning Unlocked, Branching Scenario Demo</h1>
   <div class="subtitle">Make decisions. See consequences. Learn from the path.</div>
 </div>
 
 <div class="demo-note">
-  <strong>Demonstration note:</strong> This is a prototype built for the 2026 APP Fellowship Conference. In a real implementation, this would run in <a href="https://h5p.org">H5P</a> (free, open-source) embedded in your LMS. No programming required — H5P uses a visual editor. What this demo does well: it captures clinical reasoning — every decision has consequences, and the reasoning path IS the assessment. What it cannot do: mimic reality. Real patients aren’t multiple choice, and this case only responds to what its author pre-imagined. It’s the pre-AI baseline for today’s live demo — see the Case Generator prompt (Workshop Guide, Section 4) for the open-ended AI version, and the grounding that follows it.
+  <strong>Demonstration note:</strong> This is a prototype built for the 2026 APP Fellowship Conference. In a real implementation, this would run in <a href="https://h5p.org">H5P</a> (free, open-source) embedded in your LMS. No programming required, H5P uses a visual editor. What this demo does well: it captures clinical reasoning, every decision has consequences, and the reasoning path IS the assessment. What it cannot do: mimic reality. Real patients aren’t multiple choice, and this case only responds to what its author pre-imagined. It’s the pre-AI baseline for today’s live demo, see the Case Generator prompt (Workshop Guide, Section 4) for the open-ended AI version, and the grounding that follows it.
 </div>
 
 <div class="progress-bar"><div class="progress-bar-fill" id="progressBar" style="width:0%;"></div></div>
@@ -138,19 +138,19 @@ const scenarios = {
   // PATH: Treat hypoglycemia first (OPTIMAL)
   treat_hypo: {
     step: 2,
-    title: "Hypoglycemia Treatment — Good Call",
-    narrative: "You administer 25g of D50 IV push. Within 5 minutes, Mrs. Chen's glucose rises to 112 mg/dL. Her confusion begins to improve — she can now tell you the month and year, though she's still not fully oriented. The hypoglycemia was contributing to her altered mental status, but the underlying cause isn't clear yet.",
+    title: "Hypoglycemia Treatment, Good Call",
+    narrative: "You administer 25g of D50 IV push. Within 5 minutes, Mrs. Chen's glucose rises to 112 mg/dL. Her confusion begins to improve, she can now tell you the month and year, though she's still not fully oriented. The hypoglycemia was contributing to her altered mental status, but the underlying cause isn't clear yet.",
     vitals: {
       "Glucose": "112 mg/dL (post-treatment)",
-      "Mental status": "Improving — oriented to person and month, not yet to day",
+      "Mental status": "Improving, oriented to person and month, not yet to day",
       "HR": "88 bpm (irregular)",
       "Temp": "37.8°C"
     },
-    consequence: { type: "optimal", text: "Excellent decision. Hypoglycemia is a rapidly reversible cause of altered mental status and should always be addressed immediately. The glucose of 68 mg/dL was low enough to cause symptoms, especially in a diabetic patient taking glipizide — a sulfonylurea, which is a classic cause of hypoglycemia in older adults, particularly when acute illness reduces oral intake. However, the mild fever (37.8°C) and the gradual onset suggest there may be an underlying infection or other process. You still need to investigate the cause." },
+    consequence: { type: "optimal", text: "Excellent decision. Hypoglycemia is a rapidly reversible cause of altered mental status and should always be addressed immediately. The glucose of 68 mg/dL was low enough to cause symptoms, especially in a diabetic patient taking glipizide, a sulfonylurea, which is a classic cause of hypoglycemia in older adults, particularly when acute illness reduces oral intake. However, the mild fever (37.8°C) and the gradual onset suggest there may be an underlying infection or other process. You still need to investigate the cause." },
     prompt: "The hypoglycemia is treated but she's still mildly confused and has a low-grade fever. What's your next step?",
     choices: [
-      { id: "review_meds", text: "Review the medication list — specifically the warfarin and metformin dosing", path: "med_review_after_hypo", rating: "optimal" },
-      { id: "workup_sepsis", text: "Begin a septic workup — blood cultures, urinalysis, lactate, chest X-ray", path: "sepsis_workup", rating: "optimal" },
+      { id: "review_meds", text: "Review the medication list, specifically the warfarin and metformin dosing", path: "med_review_after_hypo", rating: "optimal" },
+      { id: "workup_sepsis", text: "Begin a septic workup, blood cultures, urinalysis, lactate, chest X-ray", path: "sepsis_workup", rating: "optimal" },
       { id: "order_ct", text: "Order a head CT now that she's more stable", path: "ct_after_stabilize", rating: "acceptable" }
     ]
   },
@@ -158,15 +158,15 @@ const scenarios = {
   // PATH: Medication review (OPTIMAL from start)
   med_review: {
     step: 2,
-    title: "Medication Review — The Right Foundation",
-    narrative: "You review the medication bottles her husband brought. Warfarin 5mg daily — last refill was 3 weeks ago, bottle looks appropriately full. Glipizide 5mg daily — the husband says she may have taken an extra dose this morning because she “couldn’t remember if she’d taken it.” You check her INR: it's 7.2 (therapeutic range 2-3).",
+    title: "Medication Review, The Right Foundation",
+    narrative: "You review the medication bottles her husband brought. Warfarin 5mg daily, last refill was 3 weeks ago, bottle looks appropriately full. Glipizide 5mg daily, the husband says she may have taken an extra dose this morning because she “couldn’t remember if she’d taken it.” You check her INR: it's 7.2 (therapeutic range 2-3).",
     vitals: {
       "INR": "7.2 (therapeutic: 2-3)",
       "Glucose": "68 mg/dL",
       "HR": "88 bpm (irregular)",
       "Temp": "37.8°C"
     },
-    consequence: { type: "optimal", text: "Critical finding. The INR of 7.2 is dangerously high and could explain the altered mental status — she's at risk for intracranial bleeding. The husband's report of a possible extra glipizide dose explains the hypoglycemia. This patient has TWO acute medication-related problems. The medication review was the highest-yield first step." },
+    consequence: { type: "optimal", text: "Critical finding. The INR of 7.2 is dangerously high and could explain the altered mental status, she's at risk for intracranial bleeding. The husband's report of a possible extra glipizide dose explains the hypoglycemia. This patient has TWO acute medication-related problems. The medication review was the highest-yield first step." },
     prompt: "INR is 7.2. She has a supratherapeutic INR and hypoglycemia. What's your priority?",
     choices: [
       { id: "give_d50_and_vitk", text: "Treat the hypoglycemia with D50 AND give vitamin K for the elevated INR", path: "treat_both", rating: "optimal" },
@@ -182,14 +182,14 @@ const scenarios = {
     narrative: "You order a stat head CT. While waiting for transport, Mrs. Chen becomes more confused. The nurse rechecks her glucose: it's now 52 mg/dL. The CT is delayed because the scanner is busy with a trauma patient.",
     vitals: {
       "Glucose": "52 mg/dL (dropping)",
-      "Mental status": "Worsening — now oriented to person only",
+      "Mental status": "Worsening, now oriented to person only",
       "Time to CT": "Estimated 45+ minutes"
     },
     consequence: { type: "acceptable", text: "Head CT is a reasonable consideration in an elderly patient with acute confusion, especially on warfarin. However, you missed two immediate threats: her glucose is now dangerously low and dropping, and her INR hasn't been checked. Point-of-care glucose should always be checked immediately in any patient with altered mental status. The CT was important but not the first priority." },
     prompt: "Her glucose is now 52 mg/dL and she's getting worse. What do you do?",
     choices: [
       { id: "treat_hypo_now", text: "Give D50 IV push immediately and check INR", path: "treat_hypo_late", rating: "optimal" },
-      { id: "wait_for_ct", text: "Continue waiting for the CT — she's being monitored", path: "wait_ct", rating: "problematic" }
+      { id: "wait_for_ct", text: "Continue waiting for the CT, she's being monitored", path: "wait_ct", rating: "problematic" }
     ]
   },
   
@@ -205,11 +205,11 @@ const scenarios = {
       "Lactate": "2.1 (mildly elevated)",
       "UA": "Large leukocyte esterase, nitrites positive"
     },
-    consequence: { type: "acceptable", text: "The labs were helpful and revealed multiple issues: hypoglycemia, supratherapeutic INR, leukocytosis, and a likely UTI. But waiting 45 minutes for results while her glucose was dropping was avoidable — a point-of-care glucose check takes 30 seconds and should have been done immediately. The labs confirmed the diagnosis but delayed the treatment." },
+    consequence: { type: "acceptable", text: "The labs were helpful and revealed multiple issues: hypoglycemia, supratherapeutic INR, leukocytosis, and a likely UTI. But waiting 45 minutes for results while her glucose was dropping was avoidable, a point-of-care glucose check takes 30 seconds and should have been done immediately. The labs confirmed the diagnosis but delayed the treatment." },
     prompt: "Results are back: hypoglycemia, elevated INR, possible UTI with sepsis. What's your priority now?",
     choices: [
       { id: "treat_all", text: "Treat hypoglycemia with D50, give vitamin K for INR, start antibiotics and fluids", path: "treat_all_causes", rating: "optimal" },
-      { id: "treat_hypo_only", text: "Treat only the hypoglycemia — address other issues after she stabilizes", path: "treat_hypo_only2", rating: "acceptable" }
+      { id: "treat_hypo_only", text: "Treat only the hypoglycemia, address other issues after she stabilizes", path: "treat_hypo_only2", rating: "acceptable" }
     ]
   },
   
@@ -217,7 +217,7 @@ const scenarios = {
   treat_both: {
     step: 3,
     title: "Treating Both Acute Issues",
-    narrative: "You give D50 IV push (glucose rises to 105) and vitamin K 10mg IV. You also order a stat head CT given the INR of 7.2. The CT shows no hemorrhage. Her confusion improves significantly after glucose correction. Blood cultures and urinalysis confirm a UTI as the precipitating cause — the infection likely caused her to take medications incorrectly, leading to hypoglycemia and a supratherapeutic INR.",
+    narrative: "You give D50 IV push (glucose rises to 105) and vitamin K 10mg IV. You also order a stat head CT given the INR of 7.2. The CT shows no hemorrhage. Her confusion improves significantly after glucose correction. Blood cultures and urinalysis confirm a UTI as the precipitating cause, the infection likely caused her to take medications incorrectly, leading to hypoglycemia and a supratherapeutic INR.",
     consequence: { type: "optimal", text: "Excellent management. You addressed both life-threatening issues simultaneously, then investigated the underlying cause. The UTI precipitated a cascade: illness → poor intake + extra glipizide (hypoglycemia) + erratic warfarin dosing (supratherapeutic INR). This is a common pattern in elderly patients with acute illness." },
     prompt: "She's stabilizing. What's your plan for the next 24 hours?",
     choices: [
@@ -230,7 +230,7 @@ const scenarios = {
     step: 3,
     title: "Stat Head CT",
     narrative: "You order a stat head CT to rule out intracranial hemorrhage given the INR of 7.2. You also give D50 for the hypoglycemia while waiting. CT result: small subdural hematoma with no midline shift. The confusion is multifactorial: subdural hematoma + hypoglycemia + supratherapeutic INR + likely UTI.",
-    consequence: { type: "optimal", text: "Critical finding. The subdural hematoma in the setting of a supratherapeutic INR is a neurosurgical emergency. Getting the CT before giving vitamin K was a reasonable choice — you needed to know if there was bleeding before reversing the anticoagulation. The decision to check INR first and then image was the right sequence." },
+    consequence: { type: "optimal", text: "Critical finding. The subdural hematoma in the setting of a supratherapeutic INR is a neurosurgical emergency. Getting the CT before giving vitamin K was a reasonable choice, you needed to know if there was bleeding before reversing the anticoagulation. The decision to check INR first and then image was the right sequence." },
     prompt: "CT shows a small subdural hematoma. INR is 7.2. Glucose has been corrected. What now?",
     choices: [
       { id: "neurosurg", text: "Urgent neurosurgery consult, reverse anticoagulation with vitamin K and PCC, ICU admission", path: "final_good", rating: "optimal" },
@@ -241,7 +241,7 @@ const scenarios = {
   sepsis_workup: {
     step: 3,
     title: "Septic Workup",
-    narrative: "You order blood cultures, urinalysis, lactate, and chest X-ray. Results: UA shows large leukocyte esterase and nitrites, WBC 14.2, lactate 2.1. She has a UTI with early sepsis. Meanwhile, her INR comes back at 7.2 — the infection has disrupted her warfarin metabolism and she may have taken extra doses due to confusion.",
+    narrative: "You order blood cultures, urinalysis, lactate, and chest X-ray. Results: UA shows large leukocyte esterase and nitrites, WBC 14.2, lactate 2.1. She has a UTI with early sepsis. Meanwhile, her INR comes back at 7.2, the infection has disrupted her warfarin metabolism and she may have taken extra doses due to confusion.",
     consequence: { type: "optimal", text: "Good systemic thinking. The UTI is likely the precipitating event that caused the cascade: infection → medication confusion → hypoglycemia + supratherapeutic INR. You identified the root cause while also treating the acute issues. This is systems-level clinical reasoning." },
     prompt: "UTI with early sepsis, INR 7.2, corrected glucose. What's your plan?",
     choices: [
@@ -253,7 +253,7 @@ const scenarios = {
   hold_and_treat: {
     step: 3,
     title: "Hold Warfarin, Treat Hypoglycemia",
-    narrative: "You hold the warfarin, give D50 for hypoglycemia, and plan to consult the anticoagulation clinic. However, you don't give vitamin K yet — you plan to recheck the INR in the morning. The nurse asks if you want a head CT given the INR of 7.2.",
+    narrative: "You hold the warfarin, give D50 for hypoglycemia, and plan to consult the anticoagulation clinic. However, you don't give vitamin K yet, you plan to recheck the INR in the morning. The nurse asks if you want a head CT given the INR of 7.2.",
     consequence: { type: "acceptable", text: "Holding warfarin and treating hypoglycemia were correct, but with an INR of 7.2 and acute confusion, you should give vitamin K now and get a head CT. Waiting overnight to recheck the INR risks missing an intracranial bleed. The anticoagulation clinic referral is for follow-up, not acute management." },
     prompt: "The nurse reminds you the INR is 7.2. Do you want to do anything else?",
     choices: [
@@ -280,7 +280,7 @@ const scenarios = {
     step: 3,
     title: "Waiting for CT",
     narrative: "While waiting for the CT, Mrs. Chen becomes unresponsive. Glucose is rechecked: 38 mg/dL. She is now in a hypoglycemic coma.",
-    consequence: { type: "problematic", text: "This was preventable. The glucose was 52 mg/dL and dropping. Waiting for a CT while a reversible cause of altered mental status goes untreated is a serious error. Always check and treat glucose first — it takes 30 seconds and can prevent catastrophic deterioration." },
+    consequence: { type: "problematic", text: "This was preventable. The glucose was 52 mg/dL and dropping. Waiting for a CT while a reversible cause of altered mental status goes untreated is a serious error. Always check and treat glucose first, it takes 30 seconds and can prevent catastrophic deterioration." },
     prompt: "She's unresponsive with glucose 38 mg/dL. What do you do?",
     choices: [
       { id: "stat_d50", text: "Give D50 IV push stat, then check INR and order head CT", path: "final_recovered", rating: "optimal" }
@@ -313,25 +313,25 @@ const scenarios = {
     step: 3,
     title: "Comprehensive Treatment",
     narrative: "You give D50 for hypoglycemia, vitamin K for the supratherapeutic INR, start IV fluids and antibiotics for the UTI, and order a head CT to check for bleeding. CT shows no hemorrhage. Over 24 hours, her INR improves, glucose stabilizes, infection clears, and mental status returns to baseline.",
-    consequence: { type: "optimal", text: "Comprehensive and correct. You addressed all three acute issues simultaneously: hypoglycemia, supratherapeutic INR, and sepsis from UTI. This is the benefit of a broad initial workup — when you finally got the results, you could treat everything at once." }
+    consequence: { type: "optimal", text: "Comprehensive and correct. You addressed all three acute issues simultaneously: hypoglycemia, supratherapeutic INR, and sepsis from UTI. This is the benefit of a broad initial workup, when you finally got the results, you could treat everything at once." }
   },
   
   treat_hypo_only2: {
     step: 3,
     title: "Treating Hypoglycemia Only",
     narrative: "You give D50 and her glucose improves to 105. Her confusion partially improves but doesn't fully resolve. You plan to address the INR and UTI later. Two hours later, she develops a severe headache and vomiting. Repeat CT (which you hadn't ordered) would have shown an expanding subdural hematoma.",
-    consequence: { type: "acceptable", text: "Treating hypoglycemia was correct and necessary. But delaying evaluation of the supratherapeutic INR was risky. With INR 6.8 and acute confusion, a head CT was indicated. The partial improvement in mental status after glucose correction should have prompted investigation of other causes — it's unusual for hypoglycemia alone to cause persistent confusion after correction if there isn't another underlying process." },
+    consequence: { type: "acceptable", text: "Treating hypoglycemia was correct and necessary. But delaying evaluation of the supratherapeutic INR was risky. With INR 6.8 and acute confusion, a head CT was indicated. The partial improvement in mental status after glucose correction should have prompted investigation of other causes, it's unusual for hypoglycemia alone to cause persistent confusion after correction if there isn't another underlying process." },
     prompt: "She still has a headache and isn't fully back to baseline. What now?",
     choices: [
       { id: "ct_now", text: "Order a stat head CT and give vitamin K for the INR", path: "final_good", rating: "optimal" },
-      { id: "wait_see", text: "Continue to observe — she's improving", path: "final_risky", rating: "problematic" }
+      { id: "wait_see", text: "Continue to observe, she's improving", path: "final_risky", rating: "problematic" }
     ]
   },
   
   med_review_after_hypo: {
     step: 3,
     title: "Medication Review After Glucose Correction",
-    narrative: "You review medications. The husband confirms she may have taken an extra glipizide dose. You check INR: 7.2. The husband also reports she lost track of her warfarin this week and “may have doubled up” after her confusion started — erratic dosing pushed the INR supratherapeutic. You order a head CT: no hemorrhage. UA confirms UTI. You treat with vitamin K, IV antibiotics, and admit for monitoring.",
+    narrative: "You review medications. The husband confirms she may have taken an extra glipizide dose. You check INR: 7.2. The husband also reports she lost track of her warfarin this week and “may have doubled up” after her confusion started, erratic dosing pushed the INR supratherapeutic. You order a head CT: no hemorrhage. UA confirms UTI. You treat with vitamin K, IV antibiotics, and admit for monitoring.",
     consequence: { type: "optimal", text: "Thorough and systematic. After treating the immediate threat (hypoglycemia), you investigated the root cause through medication review, identified the supratherapeutic INR, got a CT to rule out bleeding, and identified the UTI as the precipitating event. This is the full diagnostic cascade done correctly." }
   },
   
@@ -494,7 +494,7 @@ function renderDebrief() {
   // Reasoning section
   html += `<div class="reasoning-section">`;
   html += `<h4>Your Reasoning Process</h4>`;
-  html += `<p style="font-size:0.85rem; color:var(--text-muted);">This is what you wrote at each decision point. In a real platform, your instructor would see this — showing not just what you decided, but how you reasoned.</p>`;
+  html += `<p style="font-size:0.85rem; color:var(--text-muted);">This is what you wrote at each decision point. In a real platform, your instructor would see this, showing not just what you decided, but how you reasoned.</p>`;
   decisionLog.forEach(d => {
     html += `<div class="reasoning-entry"><strong>Decision ${d.step}:</strong> ${d.reasoning}</div>`;
   });

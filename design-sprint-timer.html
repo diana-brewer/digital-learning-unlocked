@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Capstone Design Sprint — 17:00</title>
+<title>Capstone Design Sprint, 17:00</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: #0D1520; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; user-select: none; }
@@ -35,9 +35,9 @@
 (function () {
   const DURATION = 17 * 60 * 1000;
   const CHECKINS = [
-    { at: 12 * 60, msg: '5 min in — circulate and check on stuck groups' },
-    { at:  7 * 60, msg: '10 min in — groups should be selecting a tool' },
-    { at:  2 * 60, msg: '15 min in — push groups to write their implementation plan' }
+    { at: 12 * 60, msg: '5 min in, circulate and check on stuck groups' },
+    { at:  7 * 60, msg: '10 min in, groups should be selecting a tool' },
+    { at:  2 * 60, msg: '15 min in, push groups to write their implementation plan' }
   ];
   const el = document.getElementById('timer');
   const banner = document.getElementById('banner');
@@ -76,7 +76,7 @@
   }
   function tick(now) {
     remaining -= now - lastTick; lastTick = now;
-    if (remaining <= 0) { remaining = 0; render(); stop(); beep(440); setTimeout(() => beep(440), 350); showBanner('Time — move to the share-out'); return; }
+    if (remaining <= 0) { remaining = 0; render(); stop(); beep(440); setTimeout(() => beep(440), 350); showBanner('Time, move to the share-out'); return; }
     render(); requestAnimationFrame(tick);
   }
   function start() {

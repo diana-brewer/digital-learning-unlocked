@@ -338,7 +338,9 @@
       background: var(--surface-alt);
     }
 
-    .tool-name {
+    .tool-name a { color: var(--primary); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .tool-name a:hover { color: var(--accent); }
+  .tool-name {
       font-weight: 700;
       color: var(--primary-dark);
     }
@@ -785,27 +787,27 @@
       </thead>
       <tbody>
         <tr>
-          <td class="tool-name">Canva</td>
+          <td class="tool-name"><a href="https://www.canva.com/education/" target="_blank" rel="noopener">Canva</a></td>
           <td class="price-freemium">Free / ~$14/mo (edu may be free)</td>
           <td>Infographics, visual case presentations, AI-assisted design</td>
         </tr>
         <tr>
-          <td class="tool-name">H5P <span class="badge badge-free">OSS</span></td>
+          <td class="tool-name"><a href="https://h5p.org/" target="_blank" rel="noopener">H5P</a> <span class="badge badge-free">OSS</span></td>
           <td class="price-free">Free (self-hosted)</td>
           <td>Branching clinical scenarios, interactive content, image annotation</td>
         </tr>
         <tr>
-          <td class="tool-name">Nearpod</td>
+          <td class="tool-name"><a href="https://nearpod.com/" target="_blank" rel="noopener">Nearpod</a></td>
           <td class="price-freemium">Free / $120/yr</td>
           <td>Live interactive lectures, real-time formative assessment</td>
         </tr>
         <tr>
-          <td class="tool-name">Pear Deck</td>
+          <td class="tool-name"><a href="https://www.peardeck.com/" target="_blank" rel="noopener">Pear Deck</a></td>
           <td class="price-freemium">Free / $150/yr</td>
           <td>Interactive Google Slides/PowerPoint with embedded questions</td>
         </tr>
         <tr>
-          <td class="tool-name">Gamma</td>
+          <td class="tool-name"><a href="https://gamma.app/" target="_blank" rel="noopener">Gamma</a></td>
           <td class="price-freemium">Free / $10/mo</td>
           <td>AI-generated presentations from a topic prompt</td>
         </tr>
@@ -829,17 +831,17 @@
       </thead>
       <tbody>
         <tr>
-          <td class="tool-name">Anki <span class="badge badge-free">OSS</span></td>
+          <td class="tool-name"><a href="https://apps.ankiweb.net/" target="_blank" rel="noopener">Anki</a> <span class="badge badge-free">OSS</span></td>
           <td class="price-free">Free</td>
           <td>Long-term retention, spaced repetition, image occlusion for anatomy</td>
         </tr>
         <tr>
-          <td class="tool-name">Quizlet Q-Chat</td>
+          <td class="tool-name"><a href="https://quizlet.com/" target="_blank" rel="noopener">Quizlet</a></td>
           <td class="price-freemium">Free / $36/yr</td>
-          <td>Socratic AI study partner for self-paced learning</td>
+          <td>Digital flashcards, practice tests, study modes. (Its Q-Chat AI tutor was retired in 2025 — a live example of tool churn.)</td>
         </tr>
         <tr>
-          <td class="tool-name">Brainscape</td>
+          <td class="tool-name"><a href="https://www.brainscape.com/" target="_blank" rel="noopener">Brainscape</a></td>
           <td class="price-freemium">Free / $10/mo</td>
           <td>Confidence-based repetition flashcards</td>
         </tr>
@@ -857,22 +859,22 @@
       </thead>
       <tbody>
         <tr>
-          <td class="tool-name">MedEdPORTAL</td>
+          <td class="tool-name"><a href="https://mededportal.org/" target="_blank" rel="noopener">MedEdPORTAL</a></td>
           <td class="price-free">Free</td>
           <td>AAMC peer-reviewed repository — thousands of ready-to-use teaching modules, cases, simulations</td>
         </tr>
         <tr>
-          <td class="tool-name">OER Commons</td>
+          <td class="tool-name"><a href="https://www.oercommons.org/" target="_blank" rel="noopener">OER Commons</a></td>
           <td class="price-free">Free</td>
           <td>Open educational resource library — searchable, adaptable</td>
         </tr>
         <tr>
-          <td class="tool-name">OpenStax</td>
+          <td class="tool-name"><a href="https://openstax.org/" target="_blank" rel="noopener">OpenStax</a></td>
           <td class="price-free">Free</td>
           <td>Free peer-reviewed textbooks (includes A&amp;P, health science titles)</td>
         </tr>
         <tr>
-          <td class="tool-name">MERLOT</td>
+          <td class="tool-name"><a href="https://www.merlot.org/" target="_blank" rel="noopener">MERLOT</a></td>
           <td class="price-free">Free</td>
           <td>Curated OER library with simulations, animations, case studies</td>
         </tr>
@@ -914,28 +916,28 @@
       </thead>
       <tbody>
         <tr>
-          <td class="tool-name">ChatGPT (OpenAI)</td>
+          <td class="tool-name"><a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT (OpenAI)</a></td>
           <td class="price-freemium">Free (GPT-5) / $20/mo Plus</td>
           <td>Most versatile. File upload for grounding. Voice mode for simulated patient encounters. Custom GPTs for
             repeatable workflows.</td>
         </tr>
         <tr>
-          <td class="tool-name">Claude (Anthropic)</td>
+          <td class="tool-name"><a href="https://claude.ai/" target="_blank" rel="noopener">Claude (Anthropic)</a></td>
           <td class="price-freemium">Free / $17/mo (annual)</td>
           <td>Best for long-form content and complex reasoning. 200K context window. Extended thinking mode.</td>
         </tr>
         <tr>
-          <td class="tool-name">Gemini (Google)</td>
+          <td class="tool-name"><a href="https://gemini.google.com/" target="_blank" rel="noopener">Gemini (Google)</a></td>
           <td class="price-freemium">Free / $20/mo</td>
           <td>Google Workspace integration. Deep Research mode with citations. Image generation.</td>
         </tr>
         <tr>
-          <td class="tool-name">Grok (xAI)</td>
+          <td class="tool-name"><a href="https://grok.com/" target="_blank" rel="noopener">Grok (xAI)</a></td>
           <td class="price-freemium">Free w/ X / ~$30/mo</td>
           <td>Real-time web search. Reasoning mode. No enterprise/EDU plan.</td>
         </tr>
         <tr>
-          <td class="tool-name">Microsoft Copilot</td>
+          <td class="tool-name"><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener">Microsoft Copilot</a></td>
           <td class="price-freemium">Free / $10/mo Pro</td>
           <td>M365 integration. Many institutions already include it — check with IT.</td>
         </tr>
@@ -961,20 +963,20 @@
       </thead>
       <tbody>
         <tr>
-          <td class="tool-name">Google NotebookLM <span class="badge badge-free">Best for grounding</span></td>
+          <td class="tool-name"><a href="https://notebooklm.google.com/" target="_blank" rel="noopener">Google NotebookLM</a> <span class="badge badge-free">Best for grounding</span></td>
           <td class="price-free">Free</td>
           <td><strong>The single most important tool in this session.</strong> Upload your source documents. AI
             responses are grounded ONLY in what you uploaded. Generates study guides, FAQs, audio podcast discussions.
             Near-zero hallucination risk. RAG without writing code.</td>
         </tr>
         <tr>
-          <td class="tool-name">Perplexity</td>
+          <td class="tool-name"><a href="https://www.perplexity.ai/" target="_blank" rel="noopener">Perplexity</a></td>
           <td class="price-freemium">Free / $20/mo</td>
           <td>AI answer engine that cites every source. Deep Research generates reports with 30+ cited sources. Best for
             evidence-based medicine exercises.</td>
         </tr>
         <tr>
-          <td class="tool-name">DeepSeek</td>
+          <td class="tool-name"><a href="https://chat.deepseek.com/" target="_blank" rel="noopener">DeepSeek</a></td>
           <td class="price-free">Free</td>
           <td>Free reasoning model with visible chain-of-thought. Self-hostable for data privacy. Privacy note: based in
             China.</td>
@@ -1210,54 +1212,54 @@ Format as a numbered list with a brief rationale for each."</pre>
       </thead>
       <tbody>
         <tr>
-          <td class="tool-name">ChatGPT (as patient simulator)</td>
+          <td class="tool-name"><a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT (as patient simulator)</a></td>
           <td class="price-freemium">Free / $20/mo</td>
           <td>Structured prompt turns ChatGPT into a simulated patient. Voice mode for realistic phone-based interviews.
             <strong>Free, immediate, zero setup beyond a good prompt.</strong>
           </td>
         </tr>
         <tr>
-          <td class="tool-name">Claude (as patient simulator)</td>
+          <td class="tool-name"><a href="https://claude.ai/" target="_blank" rel="noopener">Claude (as patient simulator)</a></td>
           <td class="price-freemium">Free / $17/mo</td>
           <td>Strong long-context reasoning for complex cases. Extended thinking for detailed feedback.</td>
         </tr>
         <tr>
-          <td class="tool-name">Flip (video reflection)</td>
-          <td class="price-free">100% Free</td>
+          <td class="tool-name"><a href="https://padlet.com/" target="_blank" rel="noopener">Padlet (video reflection)</a></td>
+          <td class="price-free">Free (3 boards)</td>
           <td>Learners record themselves doing patient counseling, case presentations. Peer/faculty video feedback.</td>
         </tr>
         <tr>
-          <td class="tool-name">Sketchy</td>
+          <td class="tool-name"><a href="https://www.sketchy.com/" target="_blank" rel="noopener">Sketchy</a></td>
           <td class="price-freemium">Subscription</td>
           <td>Visual mnemonic learning — animated scenes teach microbiology, pharmacology, and pathology through
             memorable stories. Video-based with integrated quizzes.</td>
         </tr>
         <tr>
-          <td class="tool-name">Xuron</td>
+          <td class="tool-name"><a href="https://xuron.io/" target="_blank" rel="noopener">Xuron</a></td>
           <td class="price-freemium">Subscription</td>
           <td>AI-powered virtual patient encounters. Learners interview, examine, and build differentials with adaptive
             AI patients via text or voice.</td>
         </tr>
         <tr>
-          <td class="tool-name">SimConverse</td>
+          <td class="tool-name"><a href="https://www.simconverse.com/" target="_blank" rel="noopener">SimConverse</a></td>
           <td class="price-freemium">Subscription</td>
           <td>AI-powered communication skills simulator. Practice patient counseling, breaking bad news, and OSCE-style
             encounters with AI avatars.</td>
         </tr>
         <tr>
-          <td class="tool-name">Geeky Medics</td>
+          <td class="tool-name"><a href="https://geekymedics.com/" target="_blank" rel="noopener">Geeky Medics</a></td>
           <td class="price-freemium">Free / Premium</td>
           <td>OSCE guides, interactive clinical cases, and exam prep. Text-based scenarios with step-by-step clinical
             reasoning walkthroughs.</td>
         </tr>
         <tr>
-          <td class="tool-name">Lecturio</td>
+          <td class="tool-name"><a href="https://www.lecturio.com/" target="_blank" rel="noopener">Lecturio</a></td>
           <td class="price-freemium">Subscription</td>
           <td>Medical education video library with interactive clinical cases, spaced repetition quizzes, and a
             USMLE/NCLEX question bank.</td>
         </tr>
         <tr>
-          <td class="tool-name">Sapient Clinician</td>
+          <td class="tool-name"><a href="https://sapientclinician.com/" target="_blank" rel="noopener">Sapient Clinician</a></td>
           <td class="price-freemium">Subscription</td>
           <td>Clinical reasoning assessment platform — 300+ cases with structured feedback rubrics, custom case
             creation, and image interpretation (ECG, radiology). Text and audio-based.</td>
@@ -1276,12 +1278,12 @@ Format as a numbered list with a brief rationale for each."</pre>
       </thead>
       <tbody>
         <tr>
-          <td class="tool-name">H5P (self-hosted)</td>
+          <td class="tool-name"><a href="https://h5p.org/" target="_blank" rel="noopener">H5P (self-hosted)</a></td>
           <td class="price-free">Free</td>
           <td>Branching clinical scenarios, interactive content, image annotation. No programming — visual editor.</td>
         </tr>
         <tr>
-          <td class="tool-name">Body Interact</td>
+          <td class="tool-name"><a href="https://bodyinteract.com/" target="_blank" rel="noopener">Body Interact</a></td>
           <td class="price-freemium">Free trial / institutional</td>
           <td>Screen-based virtual patient simulator. No VR needed. Targets PA programs. OSCE prep.</td>
         </tr>
@@ -1299,28 +1301,28 @@ Format as a numbered list with a brief rationale for each."</pre>
       </thead>
       <tbody>
         <tr>
-          <td class="tool-name">BioDigital Human</td>
+          <td class="tool-name"><a href="https://www.biodigital.com/" target="_blank" rel="noopener">BioDigital Human</a></td>
           <td class="price-free">Free basic</td>
           <td>Browser-based 3D anatomy. Zero install — works on any computer. AR mode on mobile.</td>
         </tr>
         <tr>
-          <td class="tool-name">Human Anatomy Atlas (Visible Body)</td>
+          <td class="tool-name"><a href="https://www.visiblebody.com/" target="_blank" rel="noopener">Human Anatomy Atlas (Visible Body)</a></td>
           <td class="price-freemium">$25 one-time</td>
           <td>24,000+ anatomical assets. One-time purchase — no subscription. AR on mobile.</td>
         </tr>
         <tr>
-          <td class="tool-name">Complete Anatomy (Elsevier)</td>
+          <td class="tool-name"><a href="https://3d4medical.com/" target="_blank" rel="noopener">Complete Anatomy (Elsevier)</a></td>
           <td class="price-freemium">$39.99 first yr / $74.99/yr</td>
           <td>Industry standard — 500+ universities. AR mode, VR version, curriculum manager.</td>
         </tr>
         <tr>
-          <td class="tool-name">3D Slicer</td>
+          <td class="tool-name"><a href="https://slicer.org/" target="_blank" rel="noopener">3D Slicer</a></td>
           <td class="price-free">Free (OSS)</td>
           <td>Import real CT/MRI DICOM data. VR support for Quest. 3D-printable export. Best free tool — needs a
             tech-comfortable champion.</td>
         </tr>
         <tr>
-          <td class="tool-name">OpenAnatomy (Harvard)</td>
+          <td class="tool-name"><a href="https://openanatomy.org/" target="_blank" rel="noopener">OpenAnatomy (Harvard)</a></td>
           <td class="price-free">Free</td>
           <td>Free anatomy atlases from real imaging data. Creative Commons licensed.</td>
         </tr>
@@ -1355,22 +1357,22 @@ Format as a numbered list with a brief rationale for each."</pre>
       </thead>
       <tbody>
         <tr>
-          <td class="tool-name">Google Cardboard / phone VR</td>
+          <td class="tool-name"><a href="https://arvr.google.com/cardboard/" target="_blank" rel="noopener">Google Cardboard / phone VR</a></td>
           <td class="price-free">$5–$25/viewer</td>
           <td>Basic VR using a phone. 360° anatomy, immersive videos. Great for demos. No interaction controllers.</td>
         </tr>
         <tr>
-          <td class="tool-name">Meta Quest 2 (refurbished)</td>
+          <td class="tool-name"><a href="https://www.meta.com/quest/" target="_blank" rel="noopener">Meta Quest 2 (refurbished)</a></td>
           <td class="price-freemium">~$100–$150</td>
           <td><strong>Lowest-cost entry to standalone VR.</strong> Runs most medical VR apps. No color passthrough.</td>
         </tr>
         <tr>
-          <td class="tool-name">Meta Quest 3S</td>
+          <td class="tool-name"><a href="https://www.meta.com/quest/" target="_blank" rel="noopener">Meta Quest 3S</a></td>
           <td class="price-freemium">$349.99</td>
           <td><strong>Best value for new purchase.</strong> Color passthrough AR. Full Quest store.</td>
         </tr>
         <tr>
-          <td class="tool-name">Meta Quest 3</td>
+          <td class="tool-name"><a href="https://www.meta.com/quest/" target="_blank" rel="noopener">Meta Quest 3</a></td>
           <td class="price-freemium">$599.99</td>
           <td>Premium display. Not necessary for most programs — 3S delivers 90% of capability at 60% of cost.</td>
         </tr>
@@ -1388,28 +1390,28 @@ Format as a numbered list with a brief rationale for each."</pre>
       </thead>
       <tbody>
         <tr>
-          <td class="tool-name">Body Interact</td>
+          <td class="tool-name"><a href="https://bodyinteract.com/" target="_blank" rel="noopener">Body Interact</a></td>
           <td class="price-freemium">Free trial / institutional</td>
           <td>Screen-based + VR. Clinical reasoning. No VR required. Targets PA programs.</td>
         </tr>
         <tr>
-          <td class="tool-name">Oxford Medical Simulation (OMS)</td>
+          <td class="tool-name"><a href="https://oxfordmedicalsimulation.com/" target="_blank" rel="noopener">Oxford Medical Simulation (OMS)</a></td>
           <td class="price-freemium">Institutional</td>
           <td><strong>Explicitly targets PA/APP programs.</strong> AI-driven patients. 74% reduction in onboarding
             costs.</td>
         </tr>
         <tr>
-          <td class="tool-name">VRpatients</td>
+          <td class="tool-name"><a href="https://vrpatients.com/" target="_blank" rel="noopener">VRpatients</a></td>
           <td class="price-freemium">Institutional</td>
           <td><strong>No-code authoring</strong> — faculty create custom simulations. Web + VR + Mixed Reality.</td>
         </tr>
         <tr>
-          <td class="tool-name">Osso VR</td>
+          <td class="tool-name"><a href="https://www.ossovr.com/" target="_blank" rel="noopener">Osso VR</a></td>
           <td class="price-freemium">Institutional</td>
           <td>Procedural skills training. Peer-validated: 92% step accuracy, 67% fewer errors.</td>
         </tr>
         <tr>
-          <td class="tool-name">SimX</td>
+          <td class="tool-name"><a href="https://www.simxar.com/" target="_blank" rel="noopener">SimX</a></td>
           <td class="price-freemium">Institutional</td>
           <td>Largest VR patient library (150+ scenarios). Multiplayer for team training.</td>
         </tr>
@@ -1445,7 +1447,7 @@ Format as a numbered list with a brief rationale for each."</pre>
     <div class="callout success">
       <div class="callout-title">Recommended Starter Stack for Low-Resource Programs</div>
       <ol>
-        <li><strong>Free entry:</strong> ChatGPT (patient simulator) + BioDigital Human + Flip + NotebookLM + H5P →
+        <li><strong>Free entry:</strong> ChatGPT (patient simulator) + BioDigital Human + Padlet + NotebookLM + H5P →
           <strong>$0</strong>
         </li>
         <li><strong>Minimal investment:</strong> Above + Visible Body Atlas ($25, includes AR) → <strong>$25</strong>
@@ -1503,7 +1505,7 @@ Format as a numbered list with a brief rationale for each."</pre>
         <div class="hint">Which fidelity level? Which specific tool? Why this tool for this need?</div>
         <select id="ws3">
           <option value="">Select a fidelity level...</option>
-          <option>Text & Audio (ChatGPT as patient simulator, Flip)</option>
+          <option>Text & Audio (ChatGPT as patient simulator, Padlet)</option>
           <option>Image-Based (H5P branching scenario)</option>
           <option>Screen-Based (Body Interact, interactive case)</option>
           <option>AR / Phone-Based (BioDigital Human, Visible Body)</option>
@@ -1561,7 +1563,7 @@ Format as a numbered list with a brief rationale for each."</pre>
           data privacy.</li>
         <li><strong>BioDigital Human (free):</strong> Browser-based 3D anatomy. No install needed.</li>
         <li><strong>3D Slicer (free, OSS):</strong> Import real CT/MRI scans, explore in VR.</li>
-        <li><strong>Flip (100% free):</strong> Video discussion for reflections and OSCE practice.</li>
+        <li><strong>Padlet (free, 3 boards):</strong> Video discussion for reflections and OSCE practice.</li>
         <li><strong>H5P (free, self-hosted):</strong> Branching clinical scenarios, interactive content.</li>
         <li><strong>Canva for Education (free if eligible):</strong> Infographics, presentations, videos.</li>
         <li><strong>MedEdPORTAL (free):</strong> Thousands of peer-reviewed teaching materials.</li>
@@ -1612,7 +1614,7 @@ Format as a numbered list with a brief rationale for each."</pre>
       <h4>Study Tools (Not Assessment)</h4>
       <ul class="resource-list">
         <li><a href="https://apps.ankiweb.net" target="_blank">Anki</a> <span class="price-tag">Free (OSS)</span></li>
-        <li><a href="https://quizlet.com" target="_blank">Quizlet Q-Chat</a> <span class="price-tag">Free /
+        <li><a href="https://quizlet.com" target="_blank">Quizlet</a> <span class="price-tag">Free /
             $36/yr</span></li>
         <li><a href="https://brainscape.com" target="_blank">Brainscape</a> <span class="price-tag">Free / $10/mo</span>
         </li>

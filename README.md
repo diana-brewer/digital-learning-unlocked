@@ -17,7 +17,6 @@ A 60-minute presentation and workshop for the 2026 APP Fellowship Conference by 
 | `Digital Learning Unlocked - Presenter Notes.html` | Facilitator guide with timing and scripts |
 | `workshop-case-demo.html` | Interactive clinical reasoning case demo |
 | `workshop-branching-demo.html` | Branching clinical decision tree demo |
-| `design-sprint-timer.html` | 17-minute capstone sprint timer with check-in banners |
 | `case-materials/` | Published MedEdPORTAL case files (peritonsillar abscess), downloadable |
 
 ## How to Use

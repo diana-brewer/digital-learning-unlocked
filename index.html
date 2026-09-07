@@ -694,7 +694,16 @@
         grid-template-columns: 1fr;
       }
     }
-  </style>
+  
+  .beyond-box { background: #F0F4F8; border: 1px solid #D5DDE5; border-radius: 10px; padding: 18px 20px; margin: 24px 0; }
+  .beyond-box h3 { color: #1E4258; margin-bottom: 8px; font-size: 1.05rem; }
+  .beyond-box p { font-size: 0.88rem; margin-bottom: 10px; }
+  .beyond-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin: 10px 0; }
+  .beyond-table th { text-align: left; background: #2D5F7C; color: white; padding: 6px 10px; }
+  .beyond-table td { padding: 6px 10px; border-bottom: 1px solid #D5DDE5; vertical-align: top; }
+  .beyond-table tr:nth-child(even) td { background: rgba(45,95,124,0.04); }
+  .phn-note { background: #FDF0F0; border-left: 4px solid #C44545; padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 0.82rem; }
+</style>
 </head>
 
 <body>
@@ -768,12 +777,10 @@
     <h3>Live Demo: Branching Clinical Scenario</h3>
     <div class="demo-card">
       <div class="demo-title">Interactive Branching Clinical Decision Tree</div>
-      <div class="demo-desc">A 65-year-old presents to the ED with acute confusion. Make decisions. See consequences.
-        Learn from the path. This demonstrates what you can build with H5P (free, open-source) — no programming
-        required.</div>
+      <div class="demo-desc">A 65-year-old presents to the ED with acute confusion. Make decisions. See consequences. Learn from the path. What this demo does well: it captures clinical reasoning, and it is grounded — a human vetted every branch. What it cannot do is mimic reality: real patients aren't multiple choice, and this case only responds to what its author pre-imagined. That's the pre-AI world at its best — the live demo shows what changes when the case becomes open-ended, and the grounding problem that follows (see the Case Generator, Section 4).</div>
       <a href="workshop-branching-demo.html" class="demo-link" target="_blank">▶ Try the Branching Scenario Demo</a>
       <div class="demo-meta">Built with: HTML/JS (demonstrates H5P concept) · Cost to recreate: $0 · Time to build: ~1
-        hour</div>
+        hour, every branch hand-written</div>
     </div>
 
     <h3>Tool Reference: Content Creation Platforms</h3>
@@ -1002,7 +1009,7 @@
     </div>
 
     <h3>Copy-Paste AI Prompt Templates</h3>
-    <p>Try these now on your laptop. Each prompt includes the grounding instruction that prevents hallucinations.</p>
+    <p>Try these now on your laptop. Templates 1–4 are <strong>grounded</strong>: each includes the grounding instruction that prevents hallucinations. The Case Generator family (5–8) is deliberately <strong>ungrounded</strong> — that is the demo — and its provenance warning is the point.</p>
 
     <div class="prompt-card">
       <div class="prompt-title">1. Grounded Clinical Reasoning Case</div>
@@ -1032,17 +1039,7 @@ Include:
 IMPORTANT: Base all clinical content ONLY on the attached 
 document(s). If information is not in the attachments, say so. 
 Cite which section each element comes from."</pre>
-      <button class="copy-btn"
-        onclick="copyPrompt(this, `FIRST: Upload your source material (clinical guideline PDF, your case notes, a journal article, or your lecture slides).\n\nTHEN ASK:\n\"
-        Based ONLY on the attached document(s), create a clinical reasoning case for APP fellows. Create a case of
-        [CONDITION] presenting to [SETTING].\n\nInclude:\n- Patient demographic and chief complaint\n- Focused history
-        consistent with the attached source material\n- Physical exam findings consistent with the attached source\n-
-        Initial lab/imaging results from the attached source\n- 1 clinical reasoning exercise where the learner must:\n
-        (a) Interview the patient (what questions would you ask?)\n (b) Build a prioritized differential with
-        reasoning\n (c) Order and interpret relevant diagnostics\n (d) Justify their assessment with evidence\n- A
-        structured feedback rubric that evaluates the REASONING PROCESS, not just the final answer\n\nIMPORTANT: Base
-        all clinical content ONLY on the attached document(s). If information is not in the attachments, say so. Cite
-        which section each element comes from.`)">Copy Prompt</button>
+      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
     </div>
 
     <div class="prompt-card">
@@ -1062,12 +1059,7 @@ feedback on:
 - Clinical reasoning demonstrated
 - Communication and rapport
 - Areas for improvement"</pre>
-      <button class="copy-btn" onclick="copyPrompt(this, `\" You will role-play as a patient in a clinical encounter for
-        educational purposes. You are [NAME], a [AGE] y/o [GENDER] presenting with [CHIEF COMPLAINT].\n\nStay in
-        character throughout. Reveal information progressively based on what the learner asks. Do not volunteer
-        unprompted information. Show appropriate emotional response.\n\nWhen the learner indicates the encounter is
-        complete, provide feedback on:\n- Information gathering completeness\n- Clinical reasoning demonstrated\n-
-        Communication and rapport\n- Areas for improvement\"`)">Copy Prompt</button>
+      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
     </div>
 
     <div class="prompt-card">
@@ -1086,12 +1078,7 @@ Structure the rubric with:
 - Weight guidance
 
 Format as a table. Ensure language is observable and measurable."</pre>
-      <button class="copy-btn" onclick="copyPrompt(this, `\" Create a grading rubric for [ASSESSMENT TYPE: simulated
-        encounter / written case / oral presentation] evaluating APP fellows on [COMPETENCY DOMAIN].\n\nStructure the
-        rubric with:\n- 4 competency levels (Novice → Advanced Beginner → Competent → Proficient)\n- 5 assessment
-        domains: history-taking, physical exam, diagnostic reasoning, communication, clinical decision-making\n-
-        Behavioral descriptors for each level in each domain\n- Weight guidance\n\nFormat as a table. Ensure language is
-        observable and measurable.\"`)">Copy Prompt</button>
+      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
     </div>
 
     <div class="prompt-card">
@@ -1112,20 +1099,128 @@ Each prompt should:
   the actual experience
 
 Format as a numbered list with a brief rationale for each."</pre>
-      <button class="copy-btn" onclick="copyPrompt(this, `\" Create 3 reflective writing prompts for APP fellows who
-        have just completed [CLINICAL EXPERIENCE: a patient encounter / a rotation week / a simulation case].\n\nEach
-        prompt should:\n- Require the learner to draw on their specific personal experience (not generalizable knowledge
-        AI could generate)\n- Ask them to identify a specific moment where they felt uncertain, made a decision, or
-        learned something new\n- Require them to connect the experience to evidence or guidelines\n- Be impossible to
-        answer meaningfully without having had the actual experience\n\nFormat as a numbered list with a brief rationale
-        for each.\"`)">Copy Prompt</button>
+      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
     </div>
 
+
+    <div class="prompt-card">
+      <div class="prompt-title">5. The Case Generator — an Interactive Case in 60 Seconds</div>
+      <div class="prompt-desc">The prompt from the live demo. Paste it into ChatGPT, Claude, Gemini — any chatbot. It produces a complete case, a ready-to-run student prompt with rubric-based feedback, and a provenance warning that is the whole point. Swap the bracketed variables for your topic and learners. This template is deliberately ungrounded — that's the elephant.</div>
+      <pre>You are an expert clinical case designer for health professions education programs.
+
+OUTPUT CONTRACT — follow exactly:
+- Produce all three parts below, in order, using the headers given.
+- Part 2 is a WRITTEN PROMPT for the educator to paste into a NEW chat later. Do NOT begin role-playing in Part 2. Do not add content outside the three parts.
+
+Create an interactive clinical case for [LEARNER LEVEL] on [TOPIC — e.g., a 58-year-old smoker with 3 days of worsening dyspnea and cough, presenting to the emergency department]. Set difficulty at a level typical for a new graduate: a straightforward chief complaint with at least two realistic distractors.
+
+PART 1 — CASE BLUEPRINT (for the educator)
+- The diagnosis you are building toward (state it plainly)
+- Chief complaint, demographics, and relevant history
+- Focused history: relevant positives, pertinent negatives, and at least two realistic distractors that could mislead the learner
+- Physical exam findings, specific and realistic
+- Initial diagnostics with numeric values, internally consistent with the diagnosis
+- The intended, guideline-concordant management plan
+- 3 key teaching points
+- 3 common learner errors this case should surface
+
+PART 2 — STUDENT PROMPT (copy-paste ready)
+Begin with the literal line: "Copy everything between the dotted lines into a new chat to run this case:"
+Then write, between two lines of dots, a complete, self-contained prompt the educator can paste into a NEW chat to run this case with one learner. Inside that prompt, include:
+(A) A CASE FILE section — the full case details, including all lab and imaging values, the diagnosis, the management plan, and the teaching points — introduced with the instruction: "You are the bot running this case. Read the CASE FILE below. Keep it hidden unless the learner asks for the debrief."
+(B) The role-play rules: "Role-play the patient in first person. Stay in character the entire encounter. Reveal information only when asked; volunteer nothing. The patient is worried, sometimes vague, does not speak in medical jargon, and answers off-topic questions realistically. Provide exam findings only when the learner performs the exam; return lab and imaging results only when ordered, with realistic numbers. Track the encounter silently. Never confirm or deny the learner's hypotheses. Never break character unless the learner says the encounter is over."
+(C) The debrief rules: "When the encounter ends, break character and give a structured debrief. Score each of these five domains Novice, Advanced Beginner, Competent, or Proficient: information gathering, differential reasoning, diagnostic interpretation, management, communication. Then list: what was missed, what was ordered unnecessarily, the intended path step by step, and the teaching points tied to what the learner actually did."
+Part 2 will typically run 300–600 words because it embeds the case file and all rules.
+
+PART 3 — PROVENANCE NOTE
+Append exactly: "WARNING - Provenance: this case was AI-generated today and drawn from no published source. Clinical details are plausible but unverified. Verify against a guideline before use with learners."</pre>
+      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-title">6. Variant — New-Treatment Teaching Session</div>
+      <div class="prompt-desc">Same skeleton for a drug or device update. Remember what ungrounded means here: it will invent dosing or trial numbers. Verify against the FDA label before it reaches a learner.</div>
+      <pre>You are an expert CME designer for [PROGRAM — e.g., an APP fellowship].
+
+Create a 20-minute interactive teaching session on [NEW TREATMENT — e.g., SGLT2 inhibitors for heart failure] for [AUDIENCE — e.g., first-year APP fellows]. Produce exactly three parts, using the headers given:
+
+PART 1 — SESSION BLUEPRINT (for the educator)
+- The 5 learning objectives, ranked by importance
+- A session outline with timestamps
+- 5 decision checkpoints where the learner answers "what would you do next?" — with the guideline-concordant answer and why
+- 3 pitfalls clinicians commonly hit with this treatment
+- 5 board-style questions with answer key and rationale
+
+PART 2 — LEARNER PROMPT (copy-paste ready)
+Begin with the literal line: "Copy everything between the dotted lines into a new chat to run this session:" — then write, between two lines of dots, a self-contained prompt that instructs a chatbot to run the session interactively: present one segment at a time, quiz the learner at each checkpoint, adapt follow-ups to the learner's answers, and end with a structured debrief scoring information recall, clinical application, and decision-making (Novice / Advanced Beginner / Competent / Proficient) plus the intended answers.
+
+PART 3 — PROVENANCE NOTE
+Append exactly: "WARNING - Provenance: this session was AI-generated today and drawn from no published source. Dosing and trial data are plausible but unverified. Verify against the FDA label and current guideline before use with learners."</pre>
+      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-title">7. Variant — Subspecialty Rotation Overview</div>
+      <div class="prompt-desc">A rotation orientation module in one paste. The ungrounded risk is scope drift — teaching the wrong level or citing stale recommendations. Ground the final product with your society guideline and assigned chapter.</div>
+      <pre>You are an expert curriculum designer for [PROGRAM — e.g., an APP fellowship].
+
+Create a rotation orientation module for [SUBSPECIALTY — e.g., cardiology] for [LEARNER LEVEL — e.g., new APP fellows starting the rotation]. Produce exactly three parts, using the headers given:
+
+PART 1 — MODULE BLUEPRINT (for the educator)
+- The 10 problems a learner at this level must be competent in on this rotation, ranked by frequency and stakes
+- For each: the one scenario that best represents it
+- A preceptor-ready checklist of observable behaviors for the rotation
+- The 3 rotation goals you would put on one page
+
+PART 2 — LEARNER PROMPT (copy-paste ready)
+Begin with the literal line: "Copy everything between the dotted lines into a new chat to run this orientation:" — then write, between two lines of dots, a self-contained prompt that instructs a chatbot to run a "day one on the rotation" experience: introduce the unit's workflow through one realistic scenario per problem family, quiz the learner after each, and end with a structured debrief scoring preparation, clinical reasoning, and communication (Novice / Advanced Beginner / Competent / Proficient) plus the rotation goals.
+
+PART 3 — PROVENANCE NOTE
+Append exactly: "WARNING - Provenance: this module was AI-generated today and drawn from no published source. Scope and recommendations are plausible but unverified. Review against your society guideline before use with learners."</pre>
+      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-title">8. Variant — Procedure Pre-Brief</div>
+      <div class="prompt-desc">The safety-critical one: an ungrounded procedure trainer can scramble step order. Use it to see the power — then verify step order against your institutional protocol before any learner touches it.</div>
+      <pre>You are an expert procedural educator for [PROGRAM — e.g., an APP fellowship].
+
+Create a pre-procedure decision trainer for [PROCEDURE — e.g., ultrasound-guided central venous access] at [LEARNER LEVEL — e.g., first-year APP fellows]. Produce exactly three parts, using the headers given:
+
+PART 1 — TRAINER BLUEPRINT (for the educator)
+- The full step sequence, numbered, with the rationale for each step
+- The 4 highest-yield decision checkpoints where the learner must choose the next step — with options and the correct answer, and why
+- Complications with their earliest warning signs and the response to each
+- A scoring rubric a faculty observer can use at the bedside
+
+PART 2 — LEARNER PROMPT (copy-paste ready)
+Begin with the literal line: "Copy everything between the dotted lines into a new chat to run this trainer:" — then write, between two lines of dots, a self-contained prompt that instructs a chatbot to quiz the learner through the procedure one decision at a time: pose each checkpoint with 3 answer options, do not reveal the answer until the learner commits, and end with a structured debrief scoring preparation, sterile technique, sequence, and complication response (Novice / Advanced Beginner / Competent / Proficient) plus the full correct sequence.
+
+PART 3 — PROVENANCE NOTE
+Append exactly: "WARNING - Provenance: this trainer was AI-generated today and drawn from no published source. Step order and technique details are plausible but unverified. Verify against your institutional protocol before use with learners."</pre>
+      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
+    </div>
+
+    <div class="beyond-box">
+      <h3>Beyond the Case: Same Tools, Any Curriculum</h3>
+      <p>The OSCE case is one archetype. Every format in your curriculum has the same three-beat upgrade: <em>hand-built and static → AI-generated but ungrounded → grounded and trustworthy.</em> And the pitfall scales with the stakes — an ungrounded case is embarrassing; an ungrounded treatment update invents dosing; an ungrounded procedure pre-brief scrambles step order. In education, an error propagates to every learner who meets it.</p>
+      <table class="beyond-table">
+        <tr><th>Format</th><th>Ungrounded pitfall</th><th>Ground it with</th></tr>
+        <tr><td>New-treatment teaching session</td><td>Invented dosing or trial results</td><td>FDA label, pivotal trial, society guideline</td></tr>
+        <tr><td>Subspecialty rotation overview</td><td>Scope drift, stale recommendations</td><td>Society guidelines, assigned chapter</td></tr>
+        <tr><td>Journal club prep</td><td>Hallucinated study findings</td><td>The actual PDF, citation-forced prompts</td></tr>
+        <tr><td>Procedure pre-brief</td><td>Scrambled step order, wrong landmark</td><td>Institutional protocol, ATLS/society refs</td></tr>
+        <tr><td>Patient education handout</td><td>Invented statistics, wrong precautions</td><td>Society patient-facing guideline</td></tr>
+        <tr><td>Difficult-conversation roleplay</td><td>Cultural clichés, non-evidence framing</td><td>Published communication curricula</td></tr>
+        <tr><td>"Chat with your handbook"</td><td>Policy paraphrase drift</td><td>The handbook itself (the NotebookLM pattern)</td></tr>
+        <tr><td>Board / in-service review questions</td><td>Wrong answer keys, outdated guidelines</td><td>Published review resources</td></tr>
+      </table>
+      <p class="phn-note"><strong>If you adapt this to real clinical material: de-identify everything.</strong> Never paste PHI into a public chatbot — that's a different elephant, and the one you can't ground your way out of.</p>
+    </div>
     <div class="group-prompt">
       <div class="label">Think · Pair · Share — 2 min</div>
       <h3>Try It Now</h3>
-      <p>On your laptop or phone, open one of the chatbot tools (ChatGPT, Claude, or Gemini — all free). Copy and paste
-        Prompt #1 or #2 above. If you have a clinical guideline or case note on your computer, upload it first. See what
+      <p>On your laptop or phone, open one of the chatbot tools (ChatGPT, Claude, or Gemini — all free). Try the Case Generator above (no sources needed) — or copy Prompt #1 or #2 if you have a guideline or case note to upload first. If you have a clinical guideline or case note on your computer, upload it first. See what
         you get. Share with your table — what worked? What surprised you?</p>
     </div>
   </section>
@@ -1479,6 +1574,7 @@ Format as a numbered list with a brief rationale for each."</pre>
     <div class="group-prompt">
       <div class="label">Table Group Activity — 17 min</div>
       <h3>The 5-Step Design Sprint</h3>
+      <p><strong>Project the sprint timer:</strong> <a href="design-sprint-timer.html" target="_blank">design-sprint-timer.html</a> — a 17:00 countdown with check-in banners at the 5/10/15-minute marks (12:00, 7:00, and 2:00 remaining).</p>
       <p>Work through these 5 steps with your table group. You'll have 17 minutes. Write your answers in the worksheet
         below.</p>
     </div>
@@ -1692,7 +1788,27 @@ Format as a numbered list with a brief rationale for each."</pre>
   <script>
     (function () { var e = document.querySelectorAll('section.topic'), t = document.querySelectorAll('.section-nav a'), n = document.getElementById('progressFill'), o = document.getElementById('progressLabel'), c = e.length; function u() { var n = 1, o = !1; e.forEach(function (e, t) { e.getBoundingClientRect().top <= 120 && !o && (n = t + 1) }); var i = n / c * 100; document.getElementById('progressFill').style.width = i + '%', o.textContent = 'Section ' + n + ' of ' + c, t.forEach(function (e, t) { e.classList.toggle('active', t + 1 === n) }) } window.addEventListener('scroll', u, { passive: !0 }), u() })();
     document.querySelectorAll('.section-nav a').forEach(function (e) { e.addEventListener('click', function (t) { t.preventDefault(); var n = document.querySelector(this.getAttribute('href')); n && n.scrollIntoView({ behavior: 'smooth', block: 'start' }) }) });
-    function copyPrompt(e, t) { navigator.clipboard ? navigator.clipboard.writeText(t).then(function () { e.textContent = '✓ Copied!', e.classList.add('copied'), setTimeout(function () { e.textContent = 'Copy Prompt', e.classList.remove('copied') }, 2e3) }) : function () { var n = document.createElement('textarea'); n.value = t, n.style.position = 'fixed', n.style.opacity = 0, document.body.appendChild(n), n.select(), document.execCommand('copy'), document.body.removeChild(n), e.textContent = '✓ Copied!', e.classList.add('copied'), setTimeout(function () { e.textContent = 'Copy Prompt', e.classList.remove('copied') }, 2e3) }() }
+    function copyPrompt(e, t) {
+  var done = function () { e.textContent = '✓ Copied!'; e.classList.add('copied'); setTimeout(function () { e.textContent = 'Copy Prompt'; e.classList.remove('copied'); }, 2000); };
+  var manual = function () { e.textContent = 'Select the text + copy manually'; setTimeout(function () { e.textContent = 'Copy Prompt'; e.classList.remove('copied'); }, 3500); };
+  var fallback = function () {
+    var n = document.createElement('textarea');
+    n.value = t; n.setAttribute('readonly', ''); n.style.position = 'fixed'; n.style.top = '0'; n.style.opacity = '0';
+    document.body.appendChild(n); n.focus(); n.select(); n.setSelectionRange(0, t.length);
+    var ok = false; try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+    document.body.removeChild(n);
+    if (ok) { done(); } else { manual(); }
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(t).then(function () { done(); }, fallback);
+  } else { fallback(); }
+}
+document.addEventListener('click', function (ev) {
+  var b = ev.target.closest && ev.target.closest('[data-copy-from-card]');
+  if (!b) return;
+  var pre = b.closest('.prompt-card').querySelector('pre');
+  copyPrompt(b, pre.textContent.replace(/^\s+|\s+$/g, ''));
+});
     function saveWorksheet() { var e = ['ws1', 'ws2', 'ws3', 'ws3b', 'ws4', 'ws5a', 'ws5b', 'ws5c', 'ws5d', 'ws5e', 'ws6a', 'ws6b', 'ws7'], t = { ws1: 'Educational Need', ws2: 'Learning Goal(s)', ws3: 'Selected Fidelity Level', ws3b: 'Why This Tool', ws4: 'Pedagogical Rationale', ws5a: 'Platform', ws5b: 'Build Time', ws5c: 'Learner Time', ws5d: 'Estimated Cost', ws5e: 'Assessment Approach', ws6a: 'Potential Barrier', ws6b: 'Mitigation Strategy', ws7: 'Group Members' }, n = 'DIGITAL LEARNING ACTIVITY BLUEPRINT\n2026 APP Fellowship Conference — Design Sprint\n' + '='.repeat(50) + '\n\n'; e.forEach(function (e) { var o = document.getElementById(e); o && o.value.trim() && (n += t[e] + ':\n' + o.value + '\n\n') }), n += '\nSaved: ' + new Date().toLocaleString(); var o = new Blob([n], { type: 'text/plain' }), i = URL.createObjectURL(o), s = document.createElement('a'); s.href = i, s.download = 'Digital Learning Activity Blueprint.txt', s.click(), URL.revokeObjectURL(i) }
   </script>
 

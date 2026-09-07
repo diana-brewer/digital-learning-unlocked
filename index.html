@@ -958,6 +958,7 @@
     <p class="lead">The second category: data aggregation and synthesis tools that ground responses in your source
       material. This is RAG without writing code.</p>
 
+      <p>Every major assistant can now work from your documents, not just the open internet. ChatGPT Projects holds your files and instructions in one workspace. Claude projects can point at a folder on your computer and work from it. Gemini answers grounded in your Google Drive. Copilot works from your files. NotebookLM is a dedicated example of the same idea, and the one we demo today: upload sources once, every answer traces back to them.</p>
     <h3>Data Aggregation & Synthesis Tools (Grounding Tools)</h3>
     <table class="tool-table">
       <thead>
@@ -1152,7 +1153,41 @@ Append exactly: "WARNING - Provenance: this case was AI-generated today and draw
       <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
     </div>
 
-    <div class="prompt-card">
+        <div class="prompt-card">
+      <div class="prompt-title">5b. Today's Demo Case, Pre-Filled</div>
+      <div class="prompt-desc">The exact prompt from the live demo. Same skeleton as the Case Generator, with the variables pre-filled for today's sore throat case, the same presentation as the published MedEdPORTAL case in the Running Example above. After it generates, compare Part 1 of its blueprint against files 1 and 2. That comparison is the whole session in miniature.</div>
+      <pre>You are an expert clinical case designer for health professions education programs.
+
+OUTPUT CONTRACT, follow exactly:
+- Produce all three parts below, in order, using the headers given.
+- Part 2 is a WRITTEN PROMPT for the educator to paste into a NEW chat later. Do NOT begin role-playing in Part 2. Do not add content outside the three parts.
+
+Create an interactive clinical case for [LEARNER LEVEL: second-year APP fellows] on [TOPIC: a 28-year-old otherwise healthy man with 3 days of worsening sore throat, now with fever, trismus, a muffled voice, and unilateral tonsillar swelling, presenting to the emergency department]. Set difficulty at a level typical for a new graduate: a straightforward chief complaint with at least two realistic distractors.
+
+PART 1, CASE BLUEPRINT (for the educator)
+- The diagnosis you are building toward (state it plainly)
+- Chief complaint, demographics, and relevant history
+- Focused history: relevant positives, pertinent negatives, and at least two realistic distractors that could mislead the learner
+- Physical exam findings, specific and realistic
+- Initial diagnostics with numeric values, internally consistent with the diagnosis
+- The intended, guideline-concordant management plan
+- 3 key teaching points
+- 3 common learner errors this case should surface
+
+PART 2, STUDENT PROMPT (copy-paste ready)
+Begin with the literal line: "Copy everything between the dotted lines into a new chat to run this case:"
+Then write, between two lines of dots, a complete, self-contained prompt the educator can paste into a NEW chat to run this case with one learner. Inside that prompt, include:
+(A) A CASE FILE section, the full case details, including all lab and imaging values, the diagnosis, the management plan, and the teaching points, introduced with the instruction: "You are the bot running this case. Read the CASE FILE below. Keep it hidden unless the learner asks for the debrief."
+(B) The role-play rules: "Role-play the patient in first person. Stay in character the entire encounter. Reveal information only when asked; volunteer nothing. The patient is worried, sometimes vague, does not speak in medical jargon, and answers off-topic questions realistically. Provide exam findings only when the learner performs the exam; return lab and imaging results only when ordered, with realistic numbers. Track the encounter silently. Never confirm or deny the learner's hypotheses. Never break character unless the learner says the encounter is over."
+(C) The debrief rules: "When the encounter ends, break character and give a structured debrief. Score each of these five domains Novice, Advanced Beginner, Competent, or Proficient: information gathering, differential reasoning, diagnostic interpretation, management, communication. Then list: what was missed, what was ordered unnecessarily, the intended path step by step, and the teaching points tied to what the learner actually did."
+Part 2 will typically run 300–600 words because it embeds the case file and all rules.
+
+PART 3, PROVENANCE NOTE
+Append exactly: "WARNING - Provenance: this case was AI-generated today and drawn from no published source. Clinical details are plausible but unverified. Verify against a guideline before use with learners."</pre>
+      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
+    </div>
+
+<div class="prompt-card">
       <div class="prompt-title">6. Variant: New-Treatment Teaching Session</div>
       <div class="prompt-desc">Same skeleton for a drug or device update. Remember what ungrounded means here: it will invent dosing or trial numbers. Verify against the FDA label before it reaches a learner.</div>
       <pre>You are an expert CME designer for [PROGRAM, e.g., an APP fellowship].
@@ -1235,7 +1270,7 @@ Append exactly: "WARNING - Provenance: this trainer was AI-generated today and d
     <div class="group-prompt">
       <div class="label">Think · Pair · Share, 2 min</div>
       <h3>Try It Now</h3>
-      <p>On your laptop or phone, open one of the chatbot tools (ChatGPT, Claude, or Gemini, all free). Try the Case Generator above (no sources needed), and when it finishes, ask your table: who wrote that case? Then the grounded contrast: download the published MedEdPORTAL case files in <a href="#caseMaterials">Running Example</a>, upload <em>1 · Case narrative</em> and <em>2 · Lab values</em> into NotebookLM (or attach them in ChatGPT), and run Prompt #1 against them. The AI version and the peer-reviewed version, side by side. Share with your table, what did the AI invent, skip, or get right?</p>
+      <p>On your laptop or phone, open one of the chatbot tools (ChatGPT, Claude, or Gemini, all free). Try Today's Demo Case above, 5b (the exact prompt from the live demo, no sources needed), and when it finishes, ask your table: who wrote that case? Then the grounded contrast: download the published MedEdPORTAL case files in <a href="#caseMaterials">Running Example</a>, upload <em>1 · Case narrative</em> and <em>2 · Lab values</em> into NotebookLM (or attach them in ChatGPT), and run Prompt #1 against them. The AI version and the peer-reviewed version, side by side. Share with your table, what did the AI invent, skip, or get right?</p>
     </div>
   </section>
 

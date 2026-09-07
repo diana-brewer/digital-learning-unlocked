@@ -1008,6 +1008,22 @@
       </ol>
     </div>
 
+        <div class="beyond-box" id="caseMaterials" style="margin-top: 28px;">
+      <h3>Running Example — A Real, Peer-Reviewed Case (Download It)</h3>
+      <p>Everything in this objective uses one running example: a published MedEdPORTAL simulation case — <strong>Peritonsillar Abscess / Methemoglobinemia</strong> (Ashurst J, Goyke TE. <em>MedEdPORTAL.</em> 2013;9:9364. <a href="https://doi.org/10.15766/mep_2374-8265.9364" target="_blank" rel="noopener">doi:10.15766/mep_2374-8265.9364</a>, used under its Creative Commons license for this non-commercial educational session). A sore throat becomes a peritonsillar abscess — and benzocaine spray during drainage triggers medication-induced methemoglobinemia. Four clinical states, a critical-actions checklist, real lab values, imaging, and a faculty evaluation rubric. <strong>This is what ground truth looks like:</strong> peer-reviewed, citable, expert-vetted.</p>
+      <table class="beyond-table">
+        <tr><th>Download</th><th>What's inside</th></tr>
+        <tr><td><a href="case-materials/pta-1-case-narrative.docx" download>1 · Case narrative</a></td><td>Learning objectives, 4 clinical states, critical-actions checklist, room and manikin setup</td></tr>
+        <tr><td><a href="case-materials/pta-2-lab-values.docx" download>2 · Lab values</a></td><td>CBC + CMP with deranged values (WBC 22.2, bands 12%)</td></tr>
+        <tr><td><a href="case-materials/pta-3-ekg.docx" download>3 · EKG</a></td><td>Sinus tachycardia rhythm strip</td></tr>
+        <tr><td><a href="case-materials/pta-4-ct-images.docx" download>4 · CT images</a></td><td>Neck imaging of the abscess</td></tr>
+        <tr><td><a href="case-materials/pta-5-chest-xray.docx" download>5 · Chest X-ray</a></td><td>Comparison film</td></tr>
+        <tr><td><a href="case-materials/pta-6-faculty-rubric.docx" download>6 · Faculty evaluation rubric</a></td><td>The published checklist for assessing learners on this case</td></tr>
+      </table>
+      <p><strong>How it threads through today:</strong> ① In the realism-gap demo, we generate the <em>ungrounded</em> AI version of this kind of case — nobody wrote it. ② In the Try It Now below, you upload these published files into NotebookLM or ChatGPT and run a grounded prompt against them — the AI version and the peer-reviewed version, side by side. ③ In the capstone sprint, your group can use these files as ready-made source material.</p>
+      <p><em>De-identification note: these files are published teaching material with no real-patient identifiers. Your own case notes are not — de-identify before uploading anything to a consumer AI tool.</em></p>
+    </div>
+
     <h3>Copy-Paste AI Prompt Templates</h3>
     <p>Try these now on your laptop. Templates 1–4 are <strong>grounded</strong>: each includes the grounding instruction that prevents hallucinations. The Case Generator family (5–8) is deliberately <strong>ungrounded</strong> — that is the demo — and its provenance warning is the point.</p>
 
@@ -1220,8 +1236,7 @@ Append exactly: "WARNING - Provenance: this trainer was AI-generated today and d
     <div class="group-prompt">
       <div class="label">Think · Pair · Share — 2 min</div>
       <h3>Try It Now</h3>
-      <p>On your laptop or phone, open one of the chatbot tools (ChatGPT, Claude, or Gemini — all free). Try the Case Generator above (no sources needed) — or copy Prompt #1 or #2 if you have a guideline or case note to upload first. If you have a clinical guideline or case note on your computer, upload it first. See what
-        you get. Share with your table — what worked? What surprised you?</p>
+      <p>On your laptop or phone, open one of the chatbot tools (ChatGPT, Claude, or Gemini — all free). Try the Case Generator above (no sources needed) — and when it finishes, ask your table: who wrote that case? Then the grounded contrast: download the published MedEdPORTAL case files in <a href="#caseMaterials">Running Example</a>, upload <em>1 · Case narrative</em> and <em>2 · Lab values</em> into NotebookLM (or attach them in ChatGPT), and run Prompt #1 against them. The AI version and the peer-reviewed version, side by side. Share with your table — what did the AI invent, skip, or get right?</p>
     </div>
   </section>
 
@@ -1560,6 +1575,7 @@ Append exactly: "WARNING - Provenance: this trainer was AI-generated today and d
   <section class="topic" id="topic7">
     <div class="topic-number">7</div>
     <h2>Capstone Design Sprint</h2>
+      <div class="phn-note"><strong>Need source material for your sprint?</strong> Use the published MedEdPORTAL case files in <a href="#caseMaterials">Section 4 → Running Example</a> — a complete, peer-reviewed simulation case ready to adapt.</div>
     <p class="lead">You've been discussing tools and ideas with your table group throughout this session. Now let's turn
       one of those ideas into a plan you can take back to your program.</p>
 

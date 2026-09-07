@@ -145,6 +145,7 @@
       text-transform: uppercase;
     }
 
+    .nav-legend { font-size: 0.68rem; color: var(--text-muted); background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 16px 8px; letter-spacing: 0.01em; }
     .section-nav {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
@@ -741,6 +742,7 @@ details.prompt-card[open] { background: #fbfcfe; }
     <a href="#topic7" data-section="7" title="Capstone Workshop">7</a>
     <a href="#topic8" data-section="8" title="Resources">8</a>
   </div>
+  <div class="nav-legend">1 Welcome &middot; 2 Digital Tools &middot; 3 AI Chatbots &middot; 4 AI Grounding &middot; 5 Simulation Spectrum &middot; 6 VR/AR &middot; 7 Capstone &middot; 8 Resources</div>
 
   <!-- TOPIC 1: WELCOME -->
   <section class="topic" id="topic1">
@@ -1008,8 +1010,8 @@ Append exactly: "WARNING - Provenance: this case was AI-generated today and draw
       <p>Every major assistant can now work from your documents, not just the open internet. ChatGPT Projects holds your files and instructions in one workspace. Claude projects can point at a folder on your computer and work from it. Gemini answers grounded in your Google Drive. Copilot works from your files. NotebookLM is a dedicated example of the same idea, and the one we demo today: upload sources once, every answer traces back to them.</p>
 
     <div class="demo-card" style="margin-top: 24px;">
-      <div class="demo-title">The demo notebook is already built: the 19-year-old with a sore throat</div>
-      <div class="demo-desc">Open it: <a href="https://notebook.google.com/notebook/93b8b9b8-eb70-4a91-919c-9117d5d4fdd1" target="_blank" rel="noopener">Running Example: The PTA Case (MedEdPORTAL)</a>. All six published case files are already in it: the narrative, the labs, the EKG, the CT, the chest X-ray, and the faculty rubric. Ask what happens after the benzocaine spray and watch every answer cite the file it came from. This is the same notebook being demoed on screen, and you can run it on your phone during the Try It Now. No NotebookLM account? The same flow works in a ChatGPT Project or a Claude project: upload the same files from the Running Example, ask the same question, expect the same citations.</div>
+      <div class="demo-title">Open the Case Notebook: the 19-Year-Old with a Sore Throat</div>
+      <div class="demo-desc">Open it: <a href="https://notebook.google.com/notebook/93b8b9b8-eb70-4a91-919c-9117d5d4fdd1" target="_blank" rel="noopener">Running Example: The PTA Case (MedEdPORTAL)</a>. All six published case files are already in it: the narrative, the labs, the EKG, the CT, the chest X-ray, and the faculty rubric. Ask what happens after the benzocaine spray and watch every answer cite the file it came from. This is the same notebook being demoed on screen, and you can run it on your phone during the Try It Now. Prefer your existing assistant? The same flow works in a ChatGPT Project or a Claude project: upload the same files from the Running Example, ask the same question, expect the same citations.</div>
       <a class="demo-link" href="https://notebook.google.com/notebook/93b8b9b8-eb70-4a91-919c-9117d5d4fdd1" target="_blank" rel="noopener">Open the case notebook</a>
     </div>
 
@@ -1281,14 +1283,14 @@ Append exactly: "WARNING - Provenance: this trainer was AI-generated today and d
       </table>
 
       <div class="demo-card" style="margin-top: 18px;">
-      <div class="demo-title">The AML notebook is already built: try any format from the table now</div>
-      <div class="demo-desc">Open it: <a href="https://notebook.google.com/notebook/fa7fb716-e25b-45d1-98d8-84b6b1ce38bf" target="_blank" rel="noopener">Ziftomenib: A New-Treatment Teaching Session</a>. It holds six free, published sources: the FDA label, the approval letter, the pivotal trial (KOMET-001), the ELN 2022 guideline, the NCI PDQ, and the trial registry record. Pick any row from the table above, a journal club prep on the pivotal trial, a new-treatment teaching session, board-style questions, and either use one of the prompts above (Section 4) or skip prompt-writing entirely and use the notebook's built-in creators: Reports, Flashcards, a Quiz, a Mind Map, a Slide Deck, or an Audio Overview, a two-host audio conversation you could play at journal club. Don't want another account? The same six sources work as attachments in ChatGPT or Claude.</div>
+      <div class="demo-title">Try Any Format From the Table: the AML Notebook</div>
+      <div class="demo-desc">Open it: <a href="https://notebook.google.com/notebook/fa7fb716-e25b-45d1-98d8-84b6b1ce38bf" target="_blank" rel="noopener">Ziftomenib: A New-Treatment Teaching Session</a>. It holds six free, published sources: the FDA label, the approval letter, the pivotal trial (KOMET-001), the ELN 2022 guideline, the NCI PDQ, and the trial registry record. Pick any row from the table above, a journal club prep on the pivotal trial, a new-treatment teaching session, board-style questions, and either use one of the prompts above (Section 4) or skip prompt-writing entirely and use the notebook's built-in creators: Reports, Flashcards, a Quiz, a Mind Map, a Slide Deck, or an Audio Overview, a two-host audio conversation you could play at journal club. Prefer your existing assistant? The same six sources work as attachments in ChatGPT or Claude.</div>
       <a class="demo-link" href="https://notebook.google.com/notebook/fa7fb716-e25b-45d1-98d8-84b6b1ce38bf" target="_blank" rel="noopener">Open the AML notebook</a>
     </div>
       <p class="phn-note"><strong>If you adapt this to real clinical material: de-identify everything.</strong> Never paste PHI into a public chatbot, that's a different elephant, and the one you can't ground your way out of.</p>
     </div>
     <div class="group-prompt">
-      <div class="label">Think · Pair · Share, 2 min</div>
+      <div class="label">Think · Pair · Share, 4 min</div>
       <h3>Try It Now</h3>
       <p>You have already run Today's Demo Case in Section 3 and seen the run-to-run inconsistency. Now the grounded contrast: open the pre-built case notebook (the link above, all six published files already in it), or build your own: download the MedEdPORTAL case files in <a href="#caseMaterials">Running Example</a>, upload <em>1 · Case narrative</em> and <em>2 · Lab values</em> into NotebookLM, a ChatGPT Project, or Claude, and run Prompt #1 against them. The AI version and the peer-reviewed version, side by side. Share with your table: what did the AI invent, skip, or get right, and how does the cited version answer the same question?</p>
     </div>
@@ -1318,7 +1320,7 @@ Append exactly: "WARNING - Provenance: this trainer was AI-generated today and d
       <div class="fidelity-card">
         <div class="fid-level">Free / Low</div>
         <div class="fid-title">Text & Audio</div>
-        <div class="fid-desc">Learner interacts with a patient case via text or voice, with images in the case: ECGs, X-rays, CTs, lab panels. Orders labs, interprets results, builds differential. Sapient Clinician and most tools in this family include image interpretation.</div>
+        <div class="fid-desc">Learner interacts with a patient case via text or voice, with images in the case: ECGs, X-rays, CTs, lab panels. Orders labs, interprets results, builds differential. Most tools in this family include image interpretation.</div>
         <div class="fid-cost">Cost: $0 to $20/mo</div>
       </div>
       <div class="fidelity-card" style="border-top-color: var(--accent);">
@@ -1495,7 +1497,7 @@ Append exactly: "WARNING - Provenance: this trainer was AI-generated today and d
     <div class="group-prompt">
       <div class="label">Think · Pair · Share, 2 min</div>
       <h3>Match the Tool to the Goal</h3>
-      <p>With your table group, think of a clinical skill your fellows need to learn. Which point on the fidelity spectrum fits? Would text-and-audio do the job? Text-and-audio cases include images: ECGs, X-rays, CTs, lab panels (Sapient Clinician does this well). Would AR anatomy add something those images don't already give you? Or does this skill genuinely require VR? Discuss why, and what the free or low-cost option would be.</p>
+      <p>With your table group, think of a clinical skill your fellows need to learn. Which point on the fidelity spectrum fits? Would text-and-audio do the job? Text-and-audio cases include images: ECGs, X-rays, CTs, lab panels; some tools in this family already do this well. Would AR anatomy add something those images don't already give you? Or does this skill genuinely require VR? Discuss why, and what the free or low-cost option would be.</p>
     </div>
   </section>
 
@@ -1608,7 +1610,7 @@ Append exactly: "WARNING - Provenance: this trainer was AI-generated today and d
     <div class="callout success">
       <div class="callout-title">Recommended Starter Stack for Low-Resource Programs</div>
       <ol>
-        <li><strong>Free entry:</strong> ChatGPT (patient simulator) + BioDigital Human + Padlet + NotebookLM + H5P →
+        <li><strong>Free entry:</strong> ChatGPT + NotebookLM + DeepSeek + BioDigital Human + Padlet + H5P + 3D Slicer (real CT/MRI, VR-ready) + Canva for Education + MedEdPORTAL (peer-reviewed cases) →
           <strong>$0</strong>
         </li>
         <li><strong>Minimal investment:</strong> Above + Visible Body Atlas ($25, includes AR) → <strong>$25</strong>
@@ -1717,23 +1719,8 @@ Append exactly: "WARNING - Provenance: this trainer was AI-generated today and d
     <h3>The "Zero Dollar" Starter Kit</h3>
     <div class="callout success">
       <div class="callout-title">If your program has exactly $0, here's what you can use today</div>
-      <ul>
-        <li><strong>ChatGPT:</strong> Simulated patient encounters, clinical reasoning cases, structured
-          feedback.</li>
-        <li><strong>Google NotebookLM:</strong> Upload course readings → AI generates study guides, audio
-          podcasts, grounded only in your sources.</li>
-        <li><strong>DeepSeek:</strong> GPT-4-class AI with visible chain-of-thought reasoning. Self-hostable for
-          data privacy.</li>
-        <li><strong>BioDigital Human:</strong> Browser-based 3D anatomy. No install needed.</li>
-        <li><strong>3D Slicer:</strong> Import real CT/MRI scans, explore in VR.</li>
-        <li><strong>Padlet (free tier: 3 boards):</strong> Video discussion for reflections and OSCE practice.</li>
-        <li><strong>H5P (free, self-hosted):</strong> Branching clinical scenarios, interactive content.</li>
-        <li><strong>Canva for Education (free if eligible):</strong> Infographics, presentations, videos.</li>
-        <li><strong>MedEdPORTAL:</strong> Thousands of peer-reviewed teaching materials.</li>
-      </ul>
-      <p style="margin-top:8px"><strong>Bottom line:</strong> A program with zero budget can build a credible simulation
-        and AI-assisted learning ecosystem. You don't need to be a technology expert to use any of these.</p>
-    </div>
+      <p>Start in one place: the <strong>Recommended Starter Stack in Section 6</strong> is the list we maintain. Its $0 tier is the complete free ecosystem: chatbots, NotebookLM, DeepSeek, anatomy, branching scenarios, VR-ready image viewers, design tools, and MedEdPORTAL's peer-reviewed library. A program with zero budget can build a credible simulation and AI-assisted learning ecosystem, and you don't need to be a technology expert to use any of these.</p>
+          </div>
 
     <h3>All Resource Links</h3>
 

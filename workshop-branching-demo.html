@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Learning Unlocked, Branching Scenario Demo</title>
+<title>The Sore Throat Case, Hand-Built: Branching Scenario Demo</title>
 <style>
   :root {
     --primary: #2D5F7C;
@@ -94,12 +94,12 @@
 <body>
 
 <div class="banner">
-  <h1>Digital Learning Unlocked, Branching Scenario Demo</h1>
-  <div class="subtitle">Make decisions. See consequences. Learn from the path.</div>
+  <h1>The Sore Throat Case, Hand-Built: A Branching Scenario Demo</h1>
+  <div class="subtitle">A 19-year-old with a sore throat he cannot swallow around. Make decisions. See consequences. Learn from the path.</div>
 </div>
 
 <div class="demo-note">
-  <strong>Demonstration note:</strong> This is a prototype built for the 2026 APP Fellowship Conference. In a real implementation, this would run in <a href="https://h5p.org">H5P</a> (free, open-source) embedded in your LMS. No programming required, H5P uses a visual editor. What this demo does well: it captures clinical reasoning, every decision has consequences, and the reasoning path IS the assessment. What it cannot do: mimic reality. Real patients aren’t multiple choice, and this case only responds to what its author pre-imagined. It’s the pre-AI baseline for today’s live demo, see the Case Generator prompt (Workshop Guide, Section 4) for the open-ended AI version, and the grounding that follows it.
+  <strong>Demonstration note:</strong> This is a prototype built for the 2026 APP Fellowship Conference, adapted from the published MedEdPORTAL case in the Workshop Guide's Running Example (the same 19-year-old you will meet twice more today: as an AI-generated case in Section 3, and grounded in the published case files in Section 4). In a real implementation, this would run in <a href="https://h5p.org">H5P</a> (free, open-source) embedded in your LMS. No programming required, H5P uses a visual editor. What this demo does well: it captures clinical reasoning, every decision has consequences, the numbers are identical for every learner, and the reasoning path IS the assessment. What it cannot do: mimic reality. Real patients are not multiple choice, and this case only responds to what its author pre-imagined.
 </div>
 
 <div class="progress-bar"><div class="progress-bar-fill" id="progressBar" style="width:0%;"></div></div>
@@ -110,244 +110,396 @@
 
 <script>
 // BRANCHING SCENARIO DATA
-// Clinical case: 65-year-old presents to ED with acute confusion
+// Clinical case: 19-year-old with a peritonsillar abscess (published MedEdPORTAL case)
 
 const scenarios = {
   start: {
     step: 1,
-    title: "65-Year-Old with Acute Confusion",
-    narrative: "Mrs. Patricia Chen, a 65-year-old female, is brought to the ED by her husband. He says she has been “increasingly confused” over the past 6 hours. She was in her usual state of health yesterday. This morning she seemed fine, but by afternoon she was asking the same questions repeatedly and couldn't remember what day it was. She has a history of type 2 diabetes, hypertension, and atrial fibrillation. Her medications include metformin, glipizide, lisinopril, metoprolol, and warfarin.",
+    title: "19-Year-Old with a Sore Throat He Cannot Swallow Around",
+    narrative: "A 19-year-old male is brought to the ED by his roommate. One week of sore throat, and for several hours he has been unable to swallow his own saliva, so he is sitting up, leaning forward, and spitting into a plastic cup. Fever at home yesterday to 103.2. He saw his primary care doctor four days ago and was started on azithromycin and a steroid course, with no improvement. Dry cough for several days. <strong>Allergy: lidocaine.</strong> Past history: appendectomy. No medications otherwise. He denies drug and alcohol use.",
     vitals: {
-      "BP": "134/82 mmHg",
-      "HR": "88 bpm (irregular)",
-      "RR": "18",
-      "Temp": "37.8°C (100.0°F)",
-      "SpO2": "95% on room air",
-      "Glucose": "68 mg/dL (point of care)",
-      "Mental status": "Alert but confused, oriented to person only"
+      "Temp": "102.4 \u00b0F",
+      "HR": "118 bpm",
+      "RR": "19",
+      "BP": "135/92 mmHg",
+      "SpO2": "100% on room air",
+      "Point-of-care glucose": "112 mg/dL"
     },
     prompt: "What do you do first?",
     choices: [
-      { id: "assess_meds", text: "Review the medication list and check her home medication bottles her husband brought", path: "med_review", rating: "optimal" },
-      { id: "order_ct", text: "Order a stat head CT to rule out stroke", path: "ct_first", rating: "acceptable" },
-      { id: "give_d50", text: "Treat the hypoglycemia immediately with D50 IV push", path: "treat_hypo", rating: "optimal" },
-      { id: "order_labs", text: "Order a full lab panel (CBC, CMP, troponin, lactate, coagulation panel, urinalysis)", path: "labs_first", rating: "acceptable" }
+      { id: "hx_exam", text: "Place him on the monitor, take a focused history, and inspect the oral pharynx", path: "hx_exam", rating: "optimal" },
+      { id: "ct_first", text: "Order a CT of the neck with IV contrast", path: "ct_first", rating: "acceptable" },
+      { id: "intubate", text: "Intubate now for airway protection", path: "intubate", rating: "problematic" },
+      { id: "discharge", text: "IV antibiotics and steroids, discharge home with ENT follow-up", path: "discharge_home", rating: "problematic" }
     ]
   },
-  
-  // PATH: Treat hypoglycemia first (OPTIMAL)
-  treat_hypo: {
+
+  hx_exam: {
     step: 2,
-    title: "Hypoglycemia Treatment, Good Call",
-    narrative: "You administer 25g of D50 IV push. Within 5 minutes, Mrs. Chen's glucose rises to 112 mg/dL. Her confusion begins to improve, she can now tell you the month and year, though she's still not fully oriented. The hypoglycemia was contributing to her altered mental status, but the underlying cause isn't clear yet.",
+    title: "The Oropharynx Tells the Story",
+    narrative: "The exam reveals the diagnosis: a bulging mass over the left pharyngeal arch with the uvula deviated to the right, trismus limiting his mouth opening, and a muffled, hot-potato voice. Mild erythema of the posterior pharynx. No sinus tenderness, no dental caries. He is tachycardic but protecting his airway: leaning forward, spitting saliva. One odd finding for a sore throat: his finger-to-nose is abnormal on the left. This is a peritonsillar abscess.",
     vitals: {
-      "Glucose": "112 mg/dL (post-treatment)",
-      "Mental status": "Improving, oriented to person and month, not yet to day",
-      "HR": "88 bpm (irregular)",
-      "Temp": "37.8°C"
+      "Temp": "102.4 \u00b0F",
+      "HR": "118 bpm",
+      "RR": "19",
+      "BP": "135/92 mmHg",
+      "SpO2": "100% on room air",
+      "Exam": "Left tonsillar mass, uvular deviation to the right, trismus, muffled voice"
     },
-    consequence: { type: "optimal", text: "Excellent decision. Hypoglycemia is a rapidly reversible cause of altered mental status and should always be addressed immediately. The glucose of 68 mg/dL was low enough to cause symptoms, especially in a diabetic patient taking glipizide, a sulfonylurea, which is a classic cause of hypoglycemia in older adults, particularly when acute illness reduces oral intake. However, the mild fever (37.8°C) and the gradual onset suggest there may be an underlying infection or other process. You still need to investigate the cause." },
-    prompt: "The hypoglycemia is treated but she's still mildly confused and has a low-grade fever. What's your next step?",
+    consequence: { type: "optimal", text: "Excellent decision. Monitor plus focused history plus oropharyngeal inspection is exactly the published critical action for this presentation, and it is where the diagnosis lives. The abnormal finger-to-nose is a published distractor: a red herring that is easy to chase into an unnecessary neurologic workup while the patient continues to drool into a cup." },
+    prompt: "You diagnose a peritonsillar abscess. What is your management?",
     choices: [
-      { id: "review_meds", text: "Review the medication list, specifically the warfarin and metformin dosing", path: "med_review_after_hypo", rating: "optimal" },
-      { id: "workup_sepsis", text: "Begin a septic workup, blood cultures, urinalysis, lactate, chest X-ray", path: "sepsis_workup", rating: "optimal" },
-      { id: "order_ct", text: "Order a head CT now that she's more stable", path: "ct_after_stabilize", rating: "acceptable" }
+      { id: "abx_id", text: "Start IV antibiotics (ampicillin-sulbactam) and obtain consent for incision and drainage", path: "prep_drainage", rating: "optimal" },
+      { id: "abx_only", text: "IV antibiotics alone, no drainage", path: "abx_only", rating: "acceptable" },
+      { id: "needle_no_guard", text: "Needle aspiration immediately, no guard on the needle", path: "no_guard", rating: "problematic" },
+      { id: "ent_or", text: "Call ENT and hold all bedside interventions for the operating room", path: "or_transfer", rating: "acceptable" }
     ]
   },
-  
-  // PATH: Medication review (OPTIMAL from start)
-  med_review: {
-    step: 2,
-    title: "Medication Review, The Right Foundation",
-    narrative: "You review the medication bottles her husband brought. Warfarin 5mg daily, last refill was 3 weeks ago, bottle looks appropriately full. Glipizide 5mg daily, the husband says she may have taken an extra dose this morning because she “couldn’t remember if she’d taken it.” You check her INR: it's 7.2 (therapeutic range 2-3).",
-    vitals: {
-      "INR": "7.2 (therapeutic: 2-3)",
-      "Glucose": "68 mg/dL",
-      "HR": "88 bpm (irregular)",
-      "Temp": "37.8°C"
-    },
-    consequence: { type: "optimal", text: "Critical finding. The INR of 7.2 is dangerously high and could explain the altered mental status, she's at risk for intracranial bleeding. The husband's report of a possible extra glipizide dose explains the hypoglycemia. This patient has TWO acute medication-related problems. The medication review was the highest-yield first step." },
-    prompt: "INR is 7.2. She has a supratherapeutic INR and hypoglycemia. What's your priority?",
-    choices: [
-      { id: "give_d50_and_vitk", text: "Treat the hypoglycemia with D50 AND give vitamin K for the elevated INR", path: "treat_both", rating: "optimal" },
-      { id: "head_ct_first", text: "Get a stat head CT to rule out intracranial hemorrhage before treating", path: "ct_urgent", rating: "optimal" },
-      { id: "hold_warfarin", text: "Hold warfarin, give D50, and consult the anticoagulation clinic", path: "hold_and_treat", rating: "acceptable" }
-    ]
-  },
-  
-  // PATH: CT first from start (acceptable but not optimal)
+
   ct_first: {
     step: 2,
-    title: "Head CT Ordered",
-    narrative: "You order a stat head CT. While waiting for transport, Mrs. Chen becomes more confused. The nurse rechecks her glucose: it's now 52 mg/dL. The CT is delayed because the scanner is busy with a trauma patient.",
+    title: "Imaging First, Exam Later",
+    narrative: "The CT of the neck with IV contrast shows what you suspected: a large left-sided peritonsillar abscess. On your way back from radiology, you notice he is still leaning forward, spitting into his cup, and the nurse mentions he has not moved his bowels of saliva in an hour.",
     vitals: {
-      "Glucose": "52 mg/dL (dropping)",
-      "Mental status": "Worsening, now oriented to person only",
-      "Time to CT": "Estimated 45+ minutes"
+      "CT neck w/ contrast": "Large left-sided peritonsillar abscess",
+      "Temp": "102.4 \u00b0F",
+      "HR": "118 bpm",
+      "SpO2": "100% on room air"
     },
-    consequence: { type: "acceptable", text: "Head CT is a reasonable consideration in an elderly patient with acute confusion, especially on warfarin. However, you missed two immediate threats: her glucose is now dangerously low and dropping, and her INR hasn't been checked. Point-of-care glucose should always be checked immediately in any patient with altered mental status. The CT was important but not the first priority." },
-    prompt: "Her glucose is now 52 mg/dL and she's getting worse. What do you do?",
+    consequence: { type: "acceptable", text: "Reasonable, and the CT is confirmatory, but the oropharyngeal exam was diagnostic here and could have been done in thirty seconds at the bedside. Imaging a stable patient who is protecting his airway costs time, IV contrast, and a trip away from the resuscitation area. The exam comes first." },
+    prompt: "The CT confirms a large left-sided peritonsillar abscess. What is your management?",
     choices: [
-      { id: "treat_hypo_now", text: "Give D50 IV push immediately and check INR", path: "treat_hypo_late", rating: "optimal" },
-      { id: "wait_for_ct", text: "Continue waiting for the CT, she's being monitored", path: "wait_ct", rating: "problematic" }
+      { id: "abx_id2", text: "Start IV antibiotics and obtain consent for incision and drainage", path: "prep_drainage", rating: "optimal" },
+      { id: "abx_only2", text: "IV antibiotics alone, no drainage", path: "abx_only", rating: "acceptable" },
+      { id: "needle_no_guard2", text: "Needle aspiration immediately, no guard on the needle", path: "no_guard", rating: "problematic" },
+      { id: "ent_or2", text: "Call ENT and hold all bedside interventions for the operating room", path: "or_transfer", rating: "acceptable" }
     ]
   },
-  
-  // PATH: Labs first (acceptable)
-  labs_first: {
+
+  intubate: {
     step: 2,
-    title: "Lab Panel Ordered",
-    narrative: "You order a comprehensive lab panel. Results come back in 45 minutes: WBC 14.2, glucose 61 mg/dL (down from 68), INR 6.8, lactate 2.1, urinalysis shows large leukocyte esterase and nitrites. While waiting for results, Mrs. Chen's confusion has worsened.",
+    title: "The Airway That Is Already Protected",
+    narrative: "Your senior stops you at the head of the bed. Look at him again: sitting up, leaning forward, spitting into a cup, saturating 100% on room air. He is managing his own airway better than any position you could put him in. The stridorous, exhausted patient who cannot protect an airway is a different case.",
     vitals: {
-      "Glucose": "61 mg/dL (dropping)",
-      "WBC": "14.2 (elevated)",
-      "INR": "6.8 (supratherapeutic)",
-      "Lactate": "2.1 (mildly elevated)",
-      "UA": "Large leukocyte esterase, nitrites positive"
+      "SpO2": "100% on room air",
+      "Mental status": "Anxious, uncomfortable, alert and oriented",
+      "Airway": "Patent, protecting it himself: leaning forward, spitting saliva"
     },
-    consequence: { type: "acceptable", text: "The labs were helpful and revealed multiple issues: hypoglycemia, supratherapeutic INR, leukocytosis, and a likely UTI. But waiting 45 minutes for results while her glucose was dropping was avoidable, a point-of-care glucose check takes 30 seconds and should have been done immediately. The labs confirmed the diagnosis but delayed the treatment." },
-    prompt: "Results are back: hypoglycemia, elevated INR, possible UTI with sepsis. What's your priority now?",
+    consequence: { type: "problematic", text: "This patient is protecting his airway: that leaning-forward, spitting posture IS his airway plan, and it is working, 100% on room air, no stridor, no drooling he cannot manage. Sedation and intubation in a distorted airway with a peritonsillar abscess is high-risk, and the published critical action is monitor, focused exam, and drainage. Intubation is for the patient who is failing, not the one who looks alarming." },
+    prompt: "What now?",
     choices: [
-      { id: "treat_all", text: "Treat hypoglycemia with D50, give vitamin K for INR, start antibiotics and fluids", path: "treat_all_causes", rating: "optimal" },
-      { id: "treat_hypo_only", text: "Treat only the hypoglycemia, address other issues after she stabilizes", path: "treat_hypo_only2", rating: "acceptable" }
+      { id: "step_back", text: "Step back from the head of the bed: complete the focused exam and plan drainage", path: "hx_exam", rating: "optimal" },
+      { id: "push_intubation", text: "Push the sedatives and intubate anyway", path: "intubate_bad", rating: "problematic" }
     ]
   },
-  
-  // CONVERGENCE POINTS (multiple paths lead here)
-  treat_both: {
+
+  intubate_bad: {
+    step: 2,
+    title: "A Hard Airway Made Harder",
+    narrative: "Sedation blunts his compensatory posture. His anatomy, deviated uvula, trismus, and a bulging abscess, defeats your first look and your second. The cricoid pressure does not help. He is eventually intubated after a difficult, traumatic attempt, and now he is in the ICU with a swollen, instrumented airway and a still-undrained abscess.",
+    vitals: {
+      "SpO2": "94% on the ventilator",
+      "Course": "Difficult intubation, ICU admission, abscess still undrained"
+    },
+    consequence: { type: "problematic", text: "You converted a patient who was protecting his own airway into a difficult airway with an undrained source. The published case reserves intubation for deterioration after the primary disease is being treated: monitor, examine, drain, and observe. When a stable patient looks scary, treat the disease, not the appearance." }
+  },
+
+  discharge_home: {
+    step: 2,
+    title: "The Abscess That Came Back",
+    narrative: "He returns six hours later, by ambulance, unable to swallow at all, with a fever of 104 and a muffled voice that has become muffled speech. The roommate says he could not lie down at home.",
+    vitals: {
+      "Temp": "104.0 \u00b0F",
+      "HR": "131 bpm",
+      "RR": "26",
+      "BP": "142/94 mmHg",
+      "SpO2": "96% on room air, intermittent stridor at rest"
+    },
+    consequence: { type: "problematic", text: "A peritonsillar abscess with trismus and uvular deviation needs source control, drainage, not just antibiotics, and an undrained abscess can progress to airway obstruction and deep neck space infection. Discharging him was the decision the published case exists to prevent: the presentation looks like a sore throat, but the trismus, drooling, and uvular deviation say otherwise." },
+    prompt: "He is back and worse. What do you do?",
+    choices: [
+      { id: "recall_id", text: "Admit, start IV antibiotics, and drain the abscess now", path: "prep_drainage", rating: "optimal" },
+      { id: "discharge_again", text: "Change the antibiotic and discharge again", path: "discharge_bad", rating: "problematic" }
+    ]
+  },
+
+  discharge_bad: {
+    step: 2,
+    title: "The Second Miss",
+    narrative: "He is intubated in another city three days later, after presenting with sepsis and airway compromise. The case is reviewed at morbidity and mortality conference. The learning point is printed in bold: trismus plus uvular deviation plus inability to swallow saliva is an abscess that needs drainage, on the first visit.",
+    vitals: {
+      "Outcome": "Airway obstruction and sepsis, transfer, ICU"
+    },
+    consequence: { type: "problematic", text: "Two visits, two dispositions that ignored the exam findings. The published case's critical action list is short because the findings are short: the patient who cannot swallow his own saliva with a deviated uvula gets drained. No antibiotic replaces source control." }
+  },
+
+  abx_only: {
     step: 3,
-    title: "Treating Both Acute Issues",
-    narrative: "You give D50 IV push (glucose rises to 105) and vitamin K 10mg IV. You also order a stat head CT given the INR of 7.2. The CT shows no hemorrhage. Her confusion improves significantly after glucose correction. Blood cultures and urinalysis confirm a UTI as the precipitating cause, the infection likely caused her to take medications incorrectly, leading to hypoglycemia and a supratherapeutic INR.",
-    consequence: { type: "optimal", text: "Excellent management. You addressed both life-threatening issues simultaneously, then investigated the underlying cause. The UTI precipitated a cascade: illness → poor intake + extra glipizide (hypoglycemia) + erratic warfarin dosing (supratherapeutic INR). This is a common pattern in elderly patients with acute illness." },
-    prompt: "She's stabilizing. What's your plan for the next 24 hours?",
+    title: "Antibiotics Without Source Control",
+    narrative: "You start ampicillin-sulbactam. The fever drifts down over the next few hours, but the trismus, the drooling, and the uvular deviation do not budge. The abscess is a collection under pressure, and antibiotics penetrate collections poorly.",
+    vitals: {
+      "Temp": "101.6 \u00b0F (down from 102.4)",
+      "HR": "112 bpm",
+      "Exam": "No change: left tonsillar mass, uvular deviation, trismus"
+    },
+    consequence: { type: "acceptable", text: "Antibiotics are correct and necessary, but incomplete: the published critical actions pair IV antibiotics with incision and drainage. An abscess is a mechanical problem requiring a mechanical solution, and small PTA studies show antibiotics alone fail when the collection is established." },
+    prompt: "He is not deteriorating, but he is not improving. What now?",
     choices: [
-      { id: "admit", text: "Admit for IV antibiotics, INR monitoring, and medication reconciliation", path: "final_good", rating: "optimal" },
-      { id: "discharge", text: "Discharge with oral antibiotics and close follow-up", path: "final_risky", rating: "problematic" }
+      { id: "drain_now", text: "Obtain consent and drain the abscess at the bedside", path: "prep_drainage", rating: "optimal" },
+      { id: "keep_watching", text: "Continue antibiotics alone and observe overnight", path: "abx_only_bad", rating: "problematic" }
     ]
   },
-  
-  ct_urgent: {
+
+  abx_only_bad: {
     step: 3,
-    title: "Stat Head CT",
-    narrative: "You order a stat head CT to rule out intracranial hemorrhage given the INR of 7.2. You also give D50 for the hypoglycemia while waiting. CT result: small subdural hematoma with no midline shift. The confusion is multifactorial: subdural hematoma + hypoglycemia + supratherapeutic INR + likely UTI.",
-    consequence: { type: "optimal", text: "Critical finding. The subdural hematoma in the setting of a supratherapeutic INR is a neurosurgical emergency. Getting the CT before giving vitamin K was a reasonable choice, you needed to know if there was bleeding before reversing the anticoagulation. The decision to check INR first and then image was the right sequence." },
-    prompt: "CT shows a small subdural hematoma. INR is 7.2. Glucose has been corrected. What now?",
-    choices: [
-      { id: "neurosurg", text: "Urgent neurosurgery consult, reverse anticoagulation with vitamin K and PCC, ICU admission", path: "final_good", rating: "optimal" },
-      { id: "observe", text: "Admit for observation and repeat CT in 6 hours", path: "final_risky", rating: "problematic" }
-    ]
+    title: "The Overnight Abscess",
+    narrative: "By morning the abscess has tracked into the parapharyngeal space. He is in the ICU on broad-spectrum coverage, and ENT takes him to the OR for open drainage.",
+    vitals: {
+      "Temp": "103.8 \u00b0F",
+      "HR": "128 bpm",
+      "SpO2": "94% on room air",
+      "Neck": "Increased swelling, torticollis, deep space extension on repeat CT"
+    },
+    consequence: { type: "problematic", text: "Delay let a drainable bedside abscess become a deep neck infection requiring operative drainage. The published case gives antibiotics a supporting role only: source control is the treatment." }
   },
-  
-  sepsis_workup: {
+
+  no_guard: {
     step: 3,
-    title: "Septic Workup",
-    narrative: "You order blood cultures, urinalysis, lactate, and chest X-ray. Results: UA shows large leukocyte esterase and nitrites, WBC 14.2, lactate 2.1. She has a UTI with early sepsis. Meanwhile, her INR comes back at 7.2, the infection has disrupted her warfarin metabolism and she may have taken extra doses due to confusion.",
-    consequence: { type: "optimal", text: "Good systemic thinking. The UTI is likely the precipitating event that caused the cascade: infection → medication confusion → hypoglycemia + supratherapeutic INR. You identified the root cause while also treating the acute issues. This is systems-level clinical reasoning." },
-    prompt: "UTI with early sepsis, INR 7.2, corrected glucose. What's your plan?",
+    title: "The Carotid Is Posterior, and It Does Not Negotiate",
+    narrative: "The senior resident catches your hand as you draw up the syringe. An 18-gauge needle, unguarded, advanced into a bulging peritonsillar abscess, and the internal carotid artery lies approximately 2.5 cm posterior to the tonsil, closer in some patients, sometimes tortuous, sometimes exactly where you would least like it.",
+    vitals: {
+      "Risk": "Needle penetration of the internal carotid artery: hemorrhage, pseudoaneurysm, stroke"
+    },
+    consequence: { type: "problematic", text: "This is the step the published case guards literally: place an 18-gauge needle on a 10 mL syringe, cut 1 cm off the needle cap, and use the cap as a guard so no more than 1 cm of needle can ever enter the tissue. The carotid vessels lie posterior to the abscess, and the guard is the difference between aspirating an abscess and lacerating an artery. If you remember one procedural detail from this case, remember the guard." },
+    prompt: "The resident is still holding your wrist. What do you do?",
     choices: [
-      { id: "admit_full", text: "Admit: IV antibiotics, vitamin K, INR monitoring, medication reconciliation, head CT", path: "final_good", rating: "optimal" },
-      { id: "partial_treat", text: "Treat the UTI outpatient and refer to anticoagulation clinic for INR", path: "final_risky", rating: "problematic" }
+      { id: "build_guard", text: "Cut 1 cm off the needle cap and use it as a guard before aspirating", path: "prep_drainage", rating: "optimal" },
+      { id: "no_guard_still", text: "Withdraw and re-attempt without any guard", path: "carotid_bad", rating: "problematic" }
     ]
   },
-  
-  hold_and_treat: {
+
+  carotid_bad: {
     step: 3,
-    title: "Hold Warfarin, Treat Hypoglycemia",
-    narrative: "You hold the warfarin, give D50 for hypoglycemia, and plan to consult the anticoagulation clinic. However, you don't give vitamin K yet, you plan to recheck the INR in the morning. The nurse asks if you want a head CT given the INR of 7.2.",
-    consequence: { type: "acceptable", text: "Holding warfarin and treating hypoglycemia were correct, but with an INR of 7.2 and acute confusion, you should give vitamin K now and get a head CT. Waiting overnight to recheck the INR risks missing an intracranial bleed. The anticoagulation clinic referral is for follow-up, not acute management." },
-    prompt: "The nurse reminds you the INR is 7.2. Do you want to do anything else?",
-    choices: [
-      { id: "add_vitk_ct", text: "Give vitamin K 10mg IV now and order a stat head CT", path: "final_good", rating: "optimal" },
-      { id: "wait_morning", text: "Wait until morning to recheck INR and decide then", path: "final_risky", rating: "problematic" }
-    ]
+    title: "Two and a Half Centimeters",
+    narrative: "The needle passes the depth where the guard would have stopped it. Brisk red blood fills the syringe. Your pressure does not stop it. The patient is in the OR within the hour with a lacerated internal carotid, and in the stroke unit a week after that.",
+    vitals: {
+      "Outcome": "Carotid laceration, operative repair, stroke unit"
+    },
+    consequence: { type: "problematic", text: "The published case's critical action list puts the guard next to the needle for a reason. Depth control is the whole safety case for bedside peritonsillar aspiration: 1 cm of exposed needle can drain an abscess and cannot reach a carotid." }
   },
-  
-  // LATE TREATMENT PATHS
-  treat_hypo_late: {
+
+  or_transfer: {
     step: 3,
-    title: "Treating Hypoglycemia (Late)",
-    narrative: "You give D50 IV push. Glucose rises to 98. You check the INR: 7.2. Her confusion improves somewhat but not completely. You order a stat head CT which shows a small subdural hematoma.",
-    consequence: { type: "acceptable", text: "You eventually did the right things, but the delay in treating hypoglycemia allowed it to worsen to 52 mg/dL, which could have caused harm. The lesson: always check a point-of-care glucose immediately in any patient with altered mental status. It takes 30 seconds and costs almost nothing." },
-    prompt: "CT shows a small subdural hematoma. INR is 7.2. Glucose is corrected. What now?",
+    title: "Waiting for the OR",
+    narrative: "ENT agrees to see him and schedules the OR in the morning: his airway is stable, the abscess is drainable at the bedside, and the OR is a resource, not a requirement. The resident asks whether this patient needs to spend the night in pain, drooling into a cup, waiting for an operating room, when the treatment is a 1 cm guarded needle.",
+    vitals: {
+      "Temp": "102.4 \u00b0F",
+      "SpO2": "100% on room air",
+      "OR availability": "Tomorrow morning"
+    },
+    consequence: { type: "acceptable", text: "Not wrong, and for some patients, severe trismus, coagulopathy, a combative patient, this is the right call. But this case is a textbook bedside peritonsillar aspiration: cooperative, stable, and miserable. The published critical action is bedside drainage with a guarded needle, today." },
+    prompt: "The OR is twelve hours away. What do you do?",
     choices: [
-      { id: "neurosurg_late", text: "Neurosurgery consult, vitamin K, PCC, ICU admission", path: "final_good", rating: "optimal" },
-      { id: "observe_late", text: "Admit for observation only", path: "final_risky", rating: "problematic" }
+      { id: "bedside_now", text: "Do the guarded bedside drainage now, with ENT aware", path: "prep_drainage", rating: "optimal" },
+      { id: "keep_waiting", text: "Keep him NPO, analgesed, and waiting for the OR", path: "ent_wait", rating: "acceptable" }
     ]
   },
-  
-  // PROBLEMATIC PATHS
-  wait_ct: {
+
+  ent_wait: {
     step: 3,
-    title: "Waiting for CT",
-    narrative: "While waiting for the CT, Mrs. Chen becomes unresponsive. Glucose is rechecked: 38 mg/dL. She is now in a hypoglycemic coma.",
-    consequence: { type: "problematic", text: "This was preventable. The glucose was 52 mg/dL and dropping. Waiting for a CT while a reversible cause of altered mental status goes untreated is a serious error. Always check and treat glucose first, it takes 30 seconds and can prevent catastrophic deterioration." },
-    prompt: "She's unresponsive with glucose 38 mg/dL. What do you do?",
+    title: "Drained in the Morning",
+    narrative: "He is drained under general anesthesia at 8 a.m., uneventfully, after a rough night of pain and drooling. He does well. The case appears on the department's quality dashboard as a delayed source control, and not as a complication.",
+    vitals: {
+      "Outcome": "Uneventful OR drainage after a 12-hour delay, admitted for observation"
+    },
+    consequence: { type: "acceptable", text: "The outcome is fine and the route was safe, but compare the two paths: a cooperative, stable patient spent twelve hours of a curable, bedside-treatable condition waiting for a resource he never needed. Drainage technique follows patient factors, not availability." }
+  },
+
+  prep_drainage: {
+    step: 3,
+    title: "Consent Signed, Guard Cut, One Detail Left",
+    narrative: "Consent is signed. The nurse places him on a nasal cannula. Ampicillin-sulbactam is running. You have an 18-gauge needle on a 10 mL syringe, and you have cut 1 cm off the needle cap and fitted it over the needle as a guard, the resident checks it, and the patient opens his mouth as widely as trismus allows. The oropharynx needs topical anesthesia before the needle. His allergy list reads: <strong>lidocaine</strong>.",
+    vitals: {
+      "Temp": "102.4 \u00b0F",
+      "HR": "118 bpm",
+      "SpO2": "100% on nasal cannula (2 L/min)",
+      "Allergy": "Lidocaine, documented"
+    },
+    consequence: { type: "optimal", text: "Textbook preparation, and notice what just happened quietly: the needle guard is in place, the antibiotics are running, and the allergy list is in front of you BEFORE the topical anesthetic is chosen, not after. The published case specifies this exact setup, and the lidocaine allergy is the hinge of everything that follows." },
+    prompt: "The oropharynx needs topical anesthesia before the needle. Which agent?",
     choices: [
-      { id: "stat_d50", text: "Give D50 IV push stat, then check INR and order head CT", path: "final_recovered", rating: "optimal" }
+      { id: "benzocaine", text: "Benzocaine spray: his documented lidocaine allergy makes benzocaine the alternative", path: "benzocaine_applied", rating: "optimal" },
+      { id: "lidocaine_anyway", text: "Lidocaine spray anyway, the allergy is probably not real", path: "lidocaine_allergy", rating: "problematic" },
+      { id: "no_topical", text: "No topical anesthetic, proceed with the needle directly", path: "no_anesthesia", rating: "acceptable" }
     ]
   },
-  
-  // FINAL OUTCOMES
-  final_good: {
+
+  lidocaine_allergy: {
+    step: 3,
+    title: "The Allergy List Was There the Whole Time",
+    narrative: "Urticaria climb his neck within two minutes and his voice thickens. Epinephrine, diphenhydramine, and a very quiet discussion about who reads allergy lists. The reaction resolves. His throat still needs draining, and now it needs draining on top of an allergic reaction.",
+    vitals: {
+      "Reaction": "Urticaria, voice change, treated with epinephrine and antihistamines",
+      "HR": "126 bpm (transient)"
+    },
+    consequence: { type: "problematic", text: "The documented lidocaine allergy is the published reason this case uses benzocaine, the entire twist of this scenario depends on it. Documented allergies are not negotiating positions, and topical alternatives exist precisely for this situation. The error here is not the spray, it is deciding the allergy was probably not real." },
+    prompt: "The reaction is treated and resolving. The abscess still needs drainage. Now what?",
+    choices: [
+      { id: "switch_benzocaine", text: "Proceed with benzocaine spray for topical anesthesia", path: "benzocaine_applied", rating: "optimal" },
+      { id: "no_topical_after", text: "Proceed with no topical anesthetic at all", path: "no_anesthesia", rating: "acceptable" }
+    ]
+  },
+
+  no_anesthesia: {
     step: 4,
-    title: "Good Outcome",
-    narrative: "Mrs. Chen is admitted to the ICU. She receives IV antibiotics for the UTI, vitamin K and PCC for anticoagulation reversal, and has neurosurgery evaluate the subdural. Over 48 hours, her INR normalizes, her infection clears, and her confusion resolves. She is discharged on a reduced warfarin dose with a medication management plan and home health follow-up.",
-    consequence: { type: "optimal", text: "Excellent outcome. The key decisions were: (1) checking glucose early, (2) checking INR early, (3) recognizing the UTI as the precipitating cause, (4) getting a head CT when the INR was supratherapeutic, and (5) admitting for comprehensive care. The cascade was: UTI → medication confusion → hypoglycemia + supratherapeutic INR → subdural hematoma. Multiple system-level interventions were needed." }
+    title: "A Dry Needle and a Brave Patient",
+    narrative: "The guarded needle enters the abscess without any topical anesthesia. It works: 8 mL of purulent material, immediate relief of pressure, and a patient who forgives you slightly less than the abscess does. No topical agent was ever sprayed, which means the twist of this case, the one that follows every published version of this scenario, never arrives.",
+    vitals: {
+      "Temp": "101.2 \u00b0F (draining)",
+      "HR": "108 bpm",
+      "SpO2": "100% on nasal cannula",
+      "Aspirate": "8 mL purulent material, immediate symptomatic relief"
+    },
+    consequence: { type: "acceptable", text: "Safe and effective, and a real choice clinicians make. Hold onto what just did NOT happen: with no benzocaine on the mucosa, there is no methemoglobinemia, and the scenario ends here, admitted for antibiotics and observation. In the published case, the benzocaine spray is not an optional comfort step, it is the trigger for the second half of the learning objectives." }
   },
-  
-  final_risky: {
+
+  benzocaine_applied: {
     step: 4,
-    title: "Risky Disposition",
-    narrative: "Mrs. Chen was discharged with oral antibiotics. She returned 12 hours later with worsening confusion, glucose of 44 mg/dL, and an expanding subdural hematoma requiring emergency neurosurgery. She survived but had a prolonged hospitalization and permanent cognitive deficits.",
-    consequence: { type: "problematic", text: "This outcome was avoidable. An elderly patient with acute confusion, supratherapeutic INR, hypoglycemia, and a subdural hematoma requires inpatient admission. The combination of medication toxicity, infection, and bleeding risk is too complex for outpatient management. Discharging was premature and dangerous." }
-  },
-  
-  final_recovered: {
-    step: 4,
-    title: "Recovery After Delay",
-    narrative: "D50 was given immediately. Glucose recovered to 110. INR was checked: 7.2. Head CT was ordered and showed a small subdural. She was admitted, received vitamin K and PCC, IV antibiotics for the UTI, and neurosurgical monitoring. She recovered but the delay in glucose treatment contributed to a longer cognitive recovery.",
-    consequence: { type: "acceptable", text: "The patient recovered, but the delay in checking and treating glucose caused unnecessary harm. The teaching point: in any patient with altered mental status, check glucose immediately. It's the fastest, cheapest, and most impactful intervention you can do." }
-  },
-  
-  treat_all_causes: {
-    step: 3,
-    title: "Comprehensive Treatment",
-    narrative: "You give D50 for hypoglycemia, vitamin K for the supratherapeutic INR, start IV fluids and antibiotics for the UTI, and order a head CT to check for bleeding. CT shows no hemorrhage. Over 24 hours, her INR improves, glucose stabilizes, infection clears, and mental status returns to baseline.",
-    consequence: { type: "optimal", text: "Comprehensive and correct. You addressed all three acute issues simultaneously: hypoglycemia, supratherapeutic INR, and sepsis from UTI. This is the benefit of a broad initial workup, when you finally got the results, you could treat everything at once." }
-  },
-  
-  treat_hypo_only2: {
-    step: 3,
-    title: "Treating Hypoglycemia Only",
-    narrative: "You give D50 and her glucose improves to 105. Her confusion partially improves but doesn't fully resolve. You plan to address the INR and UTI later. Two hours later, she develops a severe headache and vomiting. Repeat CT (which you hadn't ordered) would have shown an expanding subdural hematoma.",
-    consequence: { type: "acceptable", text: "Treating hypoglycemia was correct and necessary. But delaying evaluation of the supratherapeutic INR was risky. With INR 6.8 and acute confusion, a head CT was indicated. The partial improvement in mental status after glucose correction should have prompted investigation of other causes, it's unusual for hypoglycemia alone to cause persistent confusion after correction if there isn't another underlying process." },
-    prompt: "She still has a headache and isn't fully back to baseline. What now?",
+    title: "Minutes After the Spray: A Sat That Will Not Move",
+    narrative: "You spray the oropharynx with benzocaine, confirm anesthesia, and pass the guarded needle: 8 mL of purulent material, immediate relief of the pressure. You are writing the procedure note when the nurse calls you back: he says he is short of breath. His lips are slate-gray. There is peri-oral and peripheral cyanosis. You put him on a non-rebreather, and the saturation reads 85%, and it stays 85% no matter how much oxygen you give. Breath sounds are decreased bilaterally, no wheeze, no rales. The chest X-ray is normal. The monitor shows sinus tachycardia.",
+    vitals: {
+      "Temp": "101.2 \u00b0F",
+      "HR": "115 bpm",
+      "RR": "22",
+      "BP": "184/86 mmHg",
+      "SpO2": "85% on a non-rebreather",
+      "CXR": "Normal",
+      "EKG": "Sinus tachycardia"
+    },
+    consequence: { type: "optimal", text: "This is the published clinical state 3, arriving on schedule. Hold the pieces together: gray cyanosis that does not match a normal lung exam, a normal chest X-ray, and a saturation that ignores high-flow oxygen. Oxygen saturation probes read what hemoglobin can carry, not what is dissolved in plasma, and an agent on the mucosa minutes ago is in the differential. What single test settles it?" },
+    prompt: "SpO2 85% that will not climb on high-flow oxygen. What is happening, and what do you do?",
     choices: [
-      { id: "ct_now", text: "Order a stat head CT and give vitamin K for the INR", path: "final_good", rating: "optimal" },
-      { id: "wait_see", text: "Continue to observe, she's improving", path: "final_risky", rating: "problematic" }
+      { id: "coox", text: "Draw a blood gas with co-oximetry: a sat that ignores oxygen after benzocaine is methemoglobinemia", path: "coox", rating: "optimal" },
+      { id: "intubate_methb", text: "Intubate for refractory hypoxia", path: "intubate_metHb", rating: "problematic" },
+      { id: "wheeze_path", text: "Treat it as bronchospasm: nebulizers and reassess", path: "wheeze_path", rating: "acceptable" }
     ]
   },
-  
-  med_review_after_hypo: {
-    step: 3,
-    title: "Medication Review After Glucose Correction",
-    narrative: "You review medications. The husband confirms she may have taken an extra glipizide dose. You check INR: 7.2. The husband also reports she lost track of her warfarin this week and “may have doubled up” after her confusion started, erratic dosing pushed the INR supratherapeutic. You order a head CT: no hemorrhage. UA confirms UTI. You treat with vitamin K, IV antibiotics, and admit for monitoring.",
-    consequence: { type: "optimal", text: "Thorough and systematic. After treating the immediate threat (hypoglycemia), you investigated the root cause through medication review, identified the supratherapeutic INR, got a CT to rule out bleeding, and identified the UTI as the precipitating event. This is the full diagnostic cascade done correctly." }
+
+  wheeze_path: {
+    step: 4,
+    title: "Nebulizers Do Not Fix Hemoglobin",
+    narrative: "Two albuterol-nebulizer rounds later: no wheeze to begin with, no change in the gray lips, and the sat still reads 85% on the non-rebreather. The nurse points at the empty benzocaine canister on the counter.",
+    vitals: {
+      "SpO2": "85% on a non-rebreather (unchanged)",
+      "Exam": "No wheeze, no rales, decreased breath sounds bilaterally, peri-oral cyanosis"
+    },
+    consequence: { type: "acceptable", text: "A fair reflex in a patient who reports shortness of breath, but the data argue against it: no wheeze on exam, a normal chest X-ray, and a saturation completely indifferent to oxygen. When hypoxia ignores oxygen delivery, the problem is not the airway, it is the hemoglobin." },
+    prompt: "No improvement. The benzocaine canister is on the counter. What now?",
+    choices: [
+      { id: "coox_now", text: "Draw a blood gas with co-oximetry: this is methemoglobinemia until proven otherwise", path: "coox", rating: "optimal" },
+      { id: "keep_nebulizing", text: "Continue bronchodilators and escalate oxygen", path: "wheeze_bad", rating: "problematic" }
+    ]
   },
-  
-  ct_after_stabilize: {
-    step: 3,
-    title: "Head CT After Stabilization",
-    narrative: "You order a head CT now that glucose is corrected. CT shows no hemorrhage. INR comes back at 7.2. You give vitamin K, start antibiotics for the UTI found on urinalysis, and admit for monitoring. She recovers fully.",
-    consequence: { type: "optimal", text: "Appropriate sequencing. You stabilized the patient first (glucose), then investigated other causes. The CT was reasonable given her age, confusion, and the fact that she's on warfarin. Finding the supratherapeutic INR and UTI completed the picture." }
+
+  wheeze_bad: {
+    step: 4,
+    title: "Treating the Wrong Organ",
+    narrative: "An hour of nebulizers and a helium-oxygen trial later, his lips are grayer. The sat reads 85% with a metronome's indifference. He is starting to look tired, and the compensating tachypnea is not compensating anymore.",
+    vitals: {
+      "SpO2": "85% (unchanged on 100% oxygen)",
+      "RR": "28 and labored",
+      "HR": "122 bpm"
+    },
+    consequence: { type: "problematic", text: "Methemoglobinemia at 45% does not respond to bronchodilators, and the delay is the danger. The test that names the disease, co-oximetry, takes two minutes and was indicated the moment a gray patient ignored oxygen." }
+  },
+
+  intubate_metHb: {
+    step: 5,
+    title: "The Ventilator Cannot Carry What Hemoglobin Cannot",
+    narrative: "You intubate. The ventilator delivers an FiO2 of 100%, and the sat still reads 85%, because the sat is not measuring how much oxygen you are giving, it is measuring how much hemoglobin can bind it, and almost half of his hemoglobin is oxidized and cannot bind anything. He now has an unnecessary ventilator, a still-undrained workup, and a treatable poisoning losing time.",
+    vitals: {
+      "SpO2": "85% on FiO2 100%",
+      "Course": "Intubated, no improvement, methemoglobinemia untreated"
+    },
+    consequence: { type: "problematic", text: "Intubation does not treat methemoglobinemia: the problem is hemoglobin that cannot carry oxygen, not air that cannot deliver it. The diagnostic test, co-oximetry on a blood gas, is faster and less invasive than intubation, and the treatment, methylene blue, is a syringe. When 100% oxygen does not move a sat, the sat is telling you the problem is in the blood." }
+  },
+
+  coox: {
+    step: 5,
+    title: "Co-Oximetry Names It: Methemoglobin 45%",
+    narrative: "The blood gas with co-oximetry returns: pH 7.37, PCO2 30, PO2 120, oxyhemoglobin 60%, carboxyhemoglobin 1.7%, and methemoglobin <strong>45%</strong> (normal under 3%). Look at the PO2: the dissolved oxygen is perfect. The carrying capacity is destroyed. This is benzocaine-induced methemoglobinemia, oxidized hemoglobin that cannot release oxygen to tissue, and the gray lips were tissue hypoxia all along.",
+    vitals: {
+      "Methemoglobin": "45% (normal < 3.0%)",
+      "Oxyhemoglobin": "60% (normal 95-98%)",
+      "PO2": "120 mmHg, normal or elevated, the paradox of methemoglobinemia",
+      "Lactate": "1.8 mmol/L",
+      "WBC": "22.2 with 12% bands (the abscess, unchanged)"
+    },
+    consequence: { type: "optimal", text: "This is the published diagnosis, confirmed by the published numbers: methemoglobin 45%, oxyhemoglobin 60%, PO2 120. The sat gap, a pulse oximetry reading of 85% despite a PO2 of 120, is the signature: standard pulse oximetry cannot distinguish methemoglobin from oxyhemoglobin, which is why the number ignored your oxygen. Benzocaine is a classic oxidizing agent, and this is why the spray, not the needle, is the turning point of this case." },
+    prompt: "Methemoglobinemia at 45%, minutes after benzocaine. What is the treatment?",
+    choices: [
+      { id: "mb", text: "Methylene blue, 1-2 mg/kg IV over 5 minutes", path: "methylene_blue", rating: "optimal" },
+      { id: "watch", text: "Continue high-flow oxygen and observe, the level will drift down on its own", path: "observe_metHb", rating: "acceptable" },
+      { id: "exchange", text: "Arrange exchange transfusion", path: "exchange_bad", rating: "problematic" }
+    ]
+  },
+
+  observe_metHb: {
+    step: 5,
+    title: "Waiting Out a Poisoning",
+    narrative: "Twenty minutes of high-flow oxygen later: lips unchanged, sat 85%, and now he is confused, which at a methemoglobin level above 40% is the brain asking for help. The senior asks what exactly you are observing.",
+    vitals: {
+      "SpO2": "85% (unchanged)",
+      "Mental status": "New confusion",
+      "Methemoglobin": "45%, untreated"
+    },
+    consequence: { type: "acceptable", text: "Mild methemoglobinemia, under 20% in a well patient, can be observed while the agent clears. At 45% with symptoms, observation is not a plan. The threshold for treatment with symptoms is roughly 20%, and confusion means tissue hypoxia has arrived." },
+    prompt: "He is confused on 100% oxygen. What now?",
+    choices: [
+      { id: "mb_now", text: "Methylene blue, 1-2 mg/kg IV, now", path: "methylene_blue", rating: "optimal" },
+      { id: "keep_observing", text: "Keep observing", path: "observe_bad", rating: "problematic" }
+    ]
+  },
+
+  observe_bad: {
+    step: 5,
+    title: "Tissue Hypoxia Does Not Wait",
+    narrative: "He loses consciousness. ICU, intubation, and eventually, methylene blue given late, with a neurologist asking why an antidote that takes minutes to work was withheld for an hour.",
+    vitals: {
+      "Mental status": "Obtunded, then comatose",
+      "Methemoglobin": "45%, treated an hour late"
+    },
+    consequence: { type: "problematic", text: "Methylene blue is a fast, cheap, definitive antidote for symptomatic methemoglobinemia, and 45% is far past every conservative threshold. When the diagnosis is named and the antidote is a syringe, the observation period is over." }
+  },
+
+  exchange_bad: {
+    step: 5,
+    title: "A Transfusion Center for a Syringe Problem",
+    narrative: "While you arrange an exchange transfusion, crossmatching, line placement, and a call to the blood bank, the patient remains gray on 100% oxygen. The toxicologist on the phone is asking a very short question: why not methylene blue?",
+    vitals: {
+      "Methemoglobin": "45%, untreated during workup for exchange"
+    },
+    consequence: { type: "problematic", text: "Exchange transfusion exists for the patient who cannot receive methylene blue, G6PD deficiency with hemolysis, or the rare refractory case, and it takes hours you do not have. Methylene blue takes minutes, restores ferrous iron, and is first-line at this level. The right answer to a poisoning is the antidote, not the most aggressive option." }
+  },
+
+  methylene_blue: {
+    step: 5,
+    title: "Blue for Gray: The Antidote Works",
+    narrative: "You give methylene blue, 1-2 mg/kg IV over 5 minutes. Within minutes the gray recedes from his lips, his confusion clears, and the sat begins to climb, a pulse oximeter reads what it can see, and it is satisfied with what it sees now. The abscess is drained, the antibiotics are running, the poisoning is treated, and the patient who could not swallow this morning is asking, muffled but audible, when he can eat.",
+    vitals: {
+      "SpO2": "Climbing, with improving color and mental status",
+      "Temp": "100.8 \u00b0F, down",
+      "HR": "96 bpm",
+      "Aspirate": "8 mL purulent material, drained"
+    },
+    consequence: { type: "optimal", text: "Exactly the published critical actions: non-rebreather, co-oximetry to name the disease, methylene blue to reverse it, and admission. Notice the whole arc of this case: the diagnosis that changed everything was not made by the needle, the scan, or the ventilator, it was made by noticing that a documented allergy chose the anesthetic, the anesthetic was benzocaine, and a sat that ignores oxygen is a hemoglobin problem. That is clinical reasoning, and this is the reasoning path a hand-built case can capture, branch by branch." }
   }
 };
 
-// STATE
 let currentStep = "start";
 let decisionLog = [];
 let reasoningLog = [];
-let totalSteps = 4;
+let totalSteps = 5;
 
 // RENDER
 function render() {
@@ -485,10 +637,11 @@ function renderDebrief() {
   // Optimal pathway
   html += `<div class="optimal-path">`;
   html += `<h4>Optimal Decision Pathway</h4>`;
-  html += `<p><strong>Step 1:</strong> Treat hypoglycemia immediately with D50 AND/OR review medications (both reveal critical findings: glucose 68, INR 7.2)</p>`;
-  html += `<p><strong>Step 2:</strong> Address supratherapeutic INR (vitamin K), continue septic workup (UTI is precipitating cause)</p>`;
-  html += `<p><strong>Step 3:</strong> Get head CT given INR 7.2 + confusion → admit for comprehensive care</p>`;
-  html += `<p><strong>Key teaching:</strong> In any patient with altered mental status: (1) check glucose immediately, (2) review medications, (3) check INR if on warfarin, (4) look for infection. The UTI caused medication confusion → hypoglycemia + supratherapeutic INR → risk of intracranial bleed. Multiple problems needed simultaneous management.</p>`;
+  html += `<p><strong>Step 1:</strong> Monitor, focused history, and oropharyngeal inspection: left tonsillar mass, uvular deviation, trismus, and the documented lidocaine allergy</p>`;
+  html += `<p><strong>Step 2:</strong> IV antibiotics plus consent for incision and drainage, with a 1 cm guard on the needle, the carotid is posterior</p>`;
+  html += `<p><strong>Step 3:</strong> Benzocaine for topical anesthesia (the lidocaine allergy is the hinge), then the guarded drainage</p>`;
+  html += `<p><strong>Steps 4-5:</strong> Gray cyanosis with a sat of 85% that ignores oxygen, co-oximetry names methemoglobinemia at 45%, methylene blue reverses it, and the patient is admitted</p>`;
+  html += `<p><strong>Key teaching:</strong> One sore throat, two diseases. The exam, not the scan, made the first diagnosis; the allergy list, not the needle, chose the anesthetic; and the sat that would not move named the second disease. Every published number in this case, the vitals, the labs, the methemoglobin of 45%, comes from the MedEdPORTAL source files, which is exactly what the grounded version of this session does on purpose.</p>`;
   html += `</div>`;
   
   // Reasoning section

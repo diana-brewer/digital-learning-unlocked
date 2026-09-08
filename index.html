@@ -739,10 +739,10 @@ details.prompt-card[open] { background: #fbfcfe; }
     <a href="#topic4" data-section="4" title="AI Grounding">4</a>
     <a href="#topic5" data-section="5" title="Simulation Spectrum">5</a>
     <a href="#topic6" data-section="6" title="VR/AR">6</a>
-    <a href="#topic7" data-section="7" title="Capstone Workshop">7</a>
+    <a href="#topic7" data-section="7" title="The Build Block">7</a>
     <a href="#topic8" data-section="8" title="Resources">8</a>
   </div>
-  <div class="nav-legend">1 Welcome &middot; 2 Digital Tools &middot; 3 AI Chatbots &middot; 4 AI Grounding &middot; 5 Simulation Spectrum &middot; 6 VR/AR &middot; 7 Capstone &middot; 8 Resources</div>
+  <div class="nav-legend">1 Welcome &middot; 2 Digital Tools &middot; 3 AI Chatbots &middot; 4 AI Grounding &middot; 5 Simulation Spectrum &middot; 6 VR/AR &middot; 7 Build Block &middot; 8 Resources</div>
 
   <!-- TOPIC 1: WELCOME -->
   <section class="topic" id="topic1">
@@ -766,26 +766,13 @@ details.prompt-card[open] { background: #fbfcfe; }
         <li>Live demo links you can try yourself</li>
         <li>Tool reference tables with pricing and links</li>
         <li>Copy-paste AI prompt templates</li>
-        <li>Table group discussion prompts after each section</li>
-        <li>A design sprint worksheet you'll complete with your group</li>
+        <li>Short table conversations between demos, then a long build block at the end</li>
+        <li>A prompt-builder worksheet that assembles your prompt as you fill it in</li>
       </ul>
       <p><strong>Everything on this page stays available after the conference.</strong> Bookmark it, share it with
         colleagues, use it Monday morning.</p>
     </div>
-    <h3>The Map: Static or Dynamic? Grounded or Not?</h3>
-    <p>Every AI teaching tool you will meet today sits somewhere on this map, and we visit three of the four quadrants together, live: you build a static grounded case (Demo 1, Section 2), you run a dynamic ungrounded one (Demo 2, Section 3), and we finish in the payoff quadrant, dynamic and grounded (Demo 3, Section 4).</p>
-    <div style="display:grid; grid-template-columns:100px 1fr 1fr; gap:8px; margin:14px 0; font-size:0.85rem;">
-      <div></div>
-      <div style="text-align:center; font-size:0.78rem; font-weight:700; color:#5A6B7E;">STATIC · built once, fixed</div>
-      <div style="text-align:center; font-size:0.78rem; font-weight:700; color:#5A6B7E;">DYNAMIC · regenerated each time</div>
-      <div style="display:flex; align-items:center; justify-content:flex-end; font-size:0.78rem; font-weight:700; color:#5A6B7E;">UNGROUNDED</div>
-      <div style="background:#F0F4F8; border:1px solid #D5DDE5; border-radius:8px; padding:12px;"><div style="font-size:0.8rem; font-weight:700; color:#5A6B7E;">STATIC + UNGROUNDED</div><div style="margin-top:4px;">A made-up case, frozen. Not today's focus.</div></div>
-      <div style="background:#FDF6F0; border:1px solid #E8833A; border-radius:8px; padding:12px;"><div style="font-size:0.8rem; font-weight:700; color:#C66A28;">DYNAMIC + UNGROUNDED</div><div style="margin-top:4px;"><strong>Demo 2 (Section 3):</strong> the chatbot case. Fresh numbers every run; nobody wrote it.</div></div>
-      <div style="display:flex; align-items:center; justify-content:flex-end; font-size:0.78rem; font-weight:700; color:#5A6B7E;">GROUNDED</div>
-      <div style="background:#F0F6FA; border:1px solid #2D5F7C; border-radius:8px; padding:12px;"><div style="font-size:0.8rem; font-weight:700; color:#2D5F7C;">STATIC + GROUNDED</div><div style="margin-top:4px;"><strong>Demo 1 (Section 2):</strong> the AI-built branching case, grounded in the published MedEdPORTAL case.</div></div>
-      <div style="background:#F0F8F4; border:1px solid #2D8659; border-radius:8px; padding:12px;"><div style="font-size:0.8rem; font-weight:700; color:#2D8659;">DYNAMIC + GROUNDED</div><div style="margin-top:4px;"><strong>Demo 3 (Section 4):</strong> the case notebook. Every answer cites the source it came from.</div></div>
-    </div>
-  </section>
+      </section>
 
   <!-- TOPIC 2: DIGITAL TOOLS -->
   <section class="topic" id="topic2">
@@ -796,39 +783,65 @@ details.prompt-card[open] { background: #fbfcfe; }
     <div class="callout">
       <div class="callout-title">Explore the Tools</div>
       <p>The tool tables below include pricing, links, and use cases for every tool mentioned today. Take a moment to
-        scroll through, you'll come back to these during the workshop when selecting tools for your design sprint.</p>
+        scroll through, you'll come back to these during the build block when you pick your tools.</p>
     </div>
 
-    <h3>Demo 1: Build a Static, Grounded Case (~6 min, hands-on)</h3>
+    <div class="beyond-box" id="caseMaterials" style="margin-top: 28px;">
+      <h3>Running Example: A Real, Peer-Reviewed Case (Download It)</h3>
+      <p>Everything in this objective uses one running example: a published MedEdPORTAL simulation case, <strong>Peritonsillar Abscess / Methemoglobinemia</strong> (Ashurst J, Goyke TE. <em>MedEdPORTAL.</em> 2013;9:9364. <a href="https://www.mededportal.org/doi/10.15766/mep_2374-8265.9364" target="_blank" rel="noopener">doi:10.15766/mep_2374-8265.9364</a>, used under its Creative Commons license for this non-commercial educational session). A sore throat becomes a peritonsillar abscess, and benzocaine spray during drainage triggers medication-induced methemoglobinemia. Four clinical states, a critical-actions checklist, real lab values, imaging, and a faculty evaluation rubric. <strong>This is what ground truth looks like:</strong> peer-reviewed, citable, expert-vetted.</p>
+      <table class="beyond-table">
+        <tr><th>Download</th><th>What's inside</th></tr>
+        <tr><td><a href="case-materials/pta-1-case-narrative.docx" download>1 · Case narrative</a></td><td>Learning objectives, 4 clinical states, critical-actions checklist, room and manikin setup</td></tr>
+        <tr><td><a href="case-materials/pta-2-lab-values.docx" download>2 · Lab values</a></td><td>CBC + CMP with deranged values (WBC 22.2, bands 12%)</td></tr>
+        <tr><td><a href="case-materials/pta-3-ekg.docx" download>3 · EKG</a></td><td>Sinus tachycardia rhythm strip</td></tr>
+        <tr><td><a href="case-materials/pta-4-ct-images.docx" download>4 · CT images</a></td><td>Neck imaging of the abscess</td></tr>
+        <tr><td><a href="case-materials/pta-5-chest-xray.docx" download>5 · Chest X-ray</a></td><td>Comparison film</td></tr>
+        <tr><td><a href="case-materials/pta-6-faculty-rubric.docx" download>6 · Faculty evaluation rubric</a></td><td>The published checklist for assessing learners on this case</td></tr>
+      </table>
+      <p><strong>How it threads through today:</strong> ① In Demo 1, Prompt 1 turns these files into the static case you will play. ② In Demo 2, Prompt 2 turns the same files into a live, dynamic encounter. ③ In Section 4, the same six files sit inside the case notebook, every answer citing them. ④ In the build block, they are ready-made source material for whatever you make.</p>
+      <p><em>De-identification note: these files are published teaching material with no real-patient identifiers. Your own case notes are not, de-identify before uploading anything to a consumer AI tool.</em></p>
+    </div>
+<h3>Demo 1: AI Builds the Static Case (~5 min)</h3>
     <div class="demo-card">
-      <div class="demo-title">You Build It, Live: A Branching Case from a Real Source</div>
-      <div class="demo-desc">Open a chatbot with an in-chat preview, Claude (Artifacts) or ChatGPT (Canvas); both work on laptop or phone, and neither needs you to save or open a file. Copy the prompt card below, paste it in, and paste in the real source: the published MedEdPORTAL case facts from the Running Example (Section 4's download). About a minute later you have your own branching scenario, click through it as a student. This is the Static + Grounded quadrant: built once and fixed, and every number comes from a real, cited case, so every learner sees the same one. On your phone? Pair with a laptop neighbor for this one, or pick it up tonight: the prompt is saved right here in your guide. If anything fails, the reference version is linked below.</div>
+      <div class="demo-title">From Published Files to a Shareable Case, in One Prompt</div>
+      <div class="demo-desc">Instead of building it in H5P, AI writes the case as a single HTML file. Upload the six MedEdPORTAL files you just downloaded, paste Prompt 1 below, and out comes index.html: a complete branching scenario you can share with students by link, LMS, or email, no install, no code. Watch Diana build it once on screen, then play the finished version yourself as a student: click through the decisions, type your reasoning at each one, and on the debrief screen download your results file, exactly what your instructor would receive back. Static means every learner gets the same case with the same published numbers. On your phone? Pair with a laptop neighbor, or build it tonight: the prompt is saved right here.</div>
     </div>
-    <details class="prompt-card" id="demoOnePrompt" style="margin-top: 14px;"><summary><span class="prompt-title">Build It Now: A Branching Scenario in One Minute</span><span class="prompt-hint">tap to expand</span></summary>
-      <div class="prompt-desc">Demo 1's prompt. Use a chatbot that previews HTML in-chat: Claude (Artifacts) or ChatGPT (Canvas). Expand the Running Example in Section 4, copy the case narrative and the lab values into the slot below, then paste the whole prompt. Your branching case renders in about a minute, nothing to save or open.</div>
-      <pre>You are an expert in health professions education and front-end development. Build an interactive, single-page branching clinical scenario as ONE complete HTML file with inline JavaScript, no external libraries.
+      <details class="prompt-card" id="demoOnePrompt" style="margin-top: 14px;"><summary><span class="prompt-title">Prompt 1 · The Static Case Builder: Your Case as a Shareable HTML File</span><span class="prompt-hint">tap to expand</span></summary>
+    <div class="prompt-desc">The Demo 1 prompt, and it builds exactly what you just played: upload the six MedEdPORTAL files from the Running Example above (or any published case you have the right to use), paste this whole prompt, and the chatbot outputs one index.html file. A complete branching scenario: reasoning captured at every decision, a full debrief, and a results file the student downloads and hands back. Notice how much the prompt specifies. That is the lesson: the more you give the chatbot, the less you leave to chance.</div>
+    <pre>You are an expert in health professions education and a senior front-end developer. Your job: turn the attached published clinical case into a complete, self-contained interactive branching scenario that a teacher can share with students as a single HTML file.
 
-GROUNDING RULE: use ONLY the clinical facts provided below. Do not invent vitals, lab values, findings, or outcomes. If a detail is not provided, do not mention it.
+OUTPUT: one complete file named index.html. All CSS and JavaScript inline. No external libraries, no CDNs, no build step, no server. It must run by double-clicking the file or opening a shared link.
 
-CLINICAL FACTS, from the published MedEdPORTAL case (paste the case narrative and the lab values from the Running Example here, then delete this instruction line):
+GROUNDING RULES, non-negotiable:
+- Use ONLY clinical facts from the attached files: history, exam findings, vitals, lab values, imaging, critical actions, and the intended management path.
+- Copy numeric values EXACTLY as they appear in the files. Never invent, round, or improve a number.
+- If a detail you want to use is not in the files, leave it out rather than inventing it.
+- The intended, guideline-concordant management path comes from the files. If the files name specific critical actions with doses or timing, those actions appear on the optimal path with the files' exact wording.
 
-AUDIENCE: [for example: second-year APP fellows on an EM rotation]
+STRUCTURE, in this order:
+1. Title screen: case title, a two-to-three sentence stem using only the files' facts, the initial vitals exactly as published, and a Begin button.
+2. Decision points: at least 5. Each shows a short patient update with any new vitals or labs from the files, then 2 to 4 plausible options, including at least one tempting distractor the files' teaching points warn about.
+3. Before submitting each choice, the learner types one or two sentences of reasoning in a text box labeled "Why?". The choice only submits after the box has text.
+4. A consequence screen after every choice, labeled Optimal, Acceptable, or Problematic: what happens next clinically, why, and the next decision. Problematic choices still continue the case, and the patient's condition reflects the consequence.
+5. A final screen titled Debrief: the learner's full path step by step (decision, chosen option, classification, and their typed reasoning), the intended path from the files beside it, the key teaching points from the files, and the common learner errors the files list.
 
-REQUIREMENTS:
-1. A title screen: case stem and initial vitals, with a "Begin" button.
-2. At least 5 decision points, each with 2 to 4 plausible options.
-3. Every choice leads to a consequence screen labeled Optimal, Acceptable, or Problematic, explaining what happens next, then the next decision.
-4. Use the exact numeric values from the provided facts wherever vitals or labs appear.
-5. End with the learner's full path and a short debrief of the reasoning at each step.
-6. Clean single-column styling, readable on a phone, large tap targets.
-7. Output the complete HTML file in a single code block.</pre>
-      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </details>
-    <div class="demo-card" style="margin-top: 14px;">
-      <div class="demo-title">Reference Version: The Pre-Built Branching Case</div>
-      <div class="demo-desc">Diana's hand-built version of the same case: a 19-year-old with a sore throat he cannot swallow around. Every number comes from the published MedEdPORTAL case, and every branch was hand-written, about an hour of work that the prompt card above compresses to a minute. What it does well: it captures clinical reasoning, every decision has consequences, and every learner sees the same case. What it cannot do is mimic reality: real patients aren't multiple choice, and it only responds to what its author pre-imagined. In H5P, this same structure becomes a no-code authoring exercise for your faculty.</div>
-      <a href="workshop-branching-demo.html" class="demo-link" target="_blank">▶ Open the Pre-Built Branching Scenario</a>
-      <div class="demo-meta">Built with: HTML/JS (demonstrates the H5P concept) · Cost to recreate: $0 · By hand: ~1 hour · With the prompt card: ~1 minute</div>
+INSTRUCTOR RESULTS FILE, a required feature:
+On the final Debrief screen, include a button labeled "Download results for your instructor." Clicking it generates and downloads a plain text file (JavaScript Blob and URL.createObjectURL, an anchor element with the download attribute) named case-results.txt containing: the case title and today's date; for every step, the decision, the option chosen, its classification, and the learner's typed reasoning; and a one-line summary with the count of optimal, acceptable, and problematic choices. Implement this entirely in JavaScript inside the same HTML file. This file is how the student hands their path back to the teacher.
+
+DESIGN:
+- Single column, max-width 700px, centered. Mobile-first: readable on a phone, tap targets at least 44px tall.
+- Clean palette: white background, dark blue headings (#2D5F7C), one warm accent for buttons (#E8833A), light gray cards with rounded corners.
+- Every screen replaces the previous one, no scrolling wall of pages. A "Start over" button on the debrief screen.
+- Plain, jargon-free patient language in case dialogue; clinical precision in consequence explanations.
+
+QUALITY CHECK BEFORE YOU FINISH:
+Re-read your output and confirm: (1) every number traces to the attached files; (2) every choice leads somewhere, no dead ends; (3) the reasoning box blocks submission until filled; (4) the download button produces a text file with all steps; (5) the file is complete and opens standalone. Then output the entire index.html in a single code block, nothing else.</pre>
+    <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
+  </details>    <div class="demo-card" style="margin-top: 14px;">
+      <div class="demo-title">Play It Now: The Finished Static Case</div>
+      <div class="demo-desc">This is the exact case Prompt 1 builds from: a 19-year-old with a sore throat he cannot swallow around, every number from the published MedEdPORTAL files, every branch specified in the prompt. Play it as a student: make the decisions, type your reasoning, and on the debrief screen press Download results for your instructor to see what your learners would hand back. What a static case does well: every learner sees the same case, the path is standardized, and the reasoning file makes thinking visible. What it cannot do: mimic reality. Real patients are not multiple choice, and this case only responds to what its author pre-imagined.</div>
+      <a href="workshop-branching-demo.html" class="demo-link" target="_blank">▶ Play the Static Case</a>
+      <div class="demo-meta">One shareable HTML file · Cost: $0 · Build time with Prompt 1: about a minute · Runs anywhere, no install</div>
     </div>
 
     <h3>Tool Reference: Content Creation Platforms</h3>
@@ -993,46 +1006,54 @@ REQUIREMENTS:
     </table>
   
   <div class="demo-card" style="margin-top: 24px;">
-    <div class="demo-title">Demo 2: Run Today's Demo Case, and Compare With Your Neighbor (~5 min, hands-on)</div>
-    <div class="demo-desc">Paste this into any chatbot, ChatGPT, Claude, or Gemini, no sources needed. It generates a complete interactive case for a 19-year-old with a sore throat, the same presentation as the published MedEdPORTAL case in the Running Example (Section 4). Run it and role-play a few turns as the student: answer, get feedback, follow the case wherever it goes. Then trade screens with your neighbor: the vitals, the lab values, the exam details. They will not match, and that is the point. Every run invents fresh numbers, and your students would see the same inconsistency: you cannot evaluate learners uniformly on data that is not uniform. This is the Dynamic + Ungrounded quadrant, regenerated each time and invented from nothing. The debrief below pulls it together.</div>
+    <div class="demo-title">Demo 2: The Same Case, Live and Grounded (~5 min, you build it)</div>
+    <div class="demo-desc">Now level it up: the same 19-year-old, but the case runs live, in conversation, and grounded. In a NEW chat with the same six case files uploaded, paste Prompt 2 below. The chatbot becomes the patient, first person, from the published files: ask for labs and you get the file's values, perform the exam and you get the file's findings. Run the encounter as the student, introduce yourself, gather what you need, manage the case, and when you are done type encounter over for the full structured debrief, five domains rated with evidence, all inside the same prompt. This is also how you share it with students: run it once yourself, then use the chat's Share button and send them the link, exactly like Diana's shared conversation below.</div>
   </div>
-  <details class="prompt-card" id="todaysDemoCase" style="margin-top: 14px;"><summary><span class="prompt-title">Today's Demo Case, Pre-Filled</span><span class="prompt-hint">tap to expand</span></summary>
-      <div class="prompt-desc">The exact prompt from the live demo, run in Section 3. After it generates, compare Part 1 of its blueprint against the published case files 1 and 2 in the Running Example (Section 4). That comparison is the whole session in miniature.</div>
-      <pre>You are an expert clinical case designer for health professions education programs.
+    <details class="prompt-card" id="demoTwoPrompt" style="margin-top: 14px;"><summary><span class="prompt-title">Prompt 2 · The Dynamic Case: The Same Patient, Live and Grounded</span><span class="prompt-hint">tap to expand</span></summary>
+    <div class="prompt-desc">The Demo 2 prompt. In a NEW chat, with the same case files uploaded, paste this whole prompt and the chatbot runs the encounter live: first-person patient, real published numbers, and a full structured debrief built into the same prompt, five domains with evidence. This is the version you share with students as a chat link: run it once yourself, then use the chat's Share button and send the link. Every rule the encounter needs is already inside the prompt.</div>
+    <pre>You are an expert clinical educator running a simulated patient encounter for one learner. You will run the ENTIRE encounter yourself: the patient role, the results, and the final debrief. Everything clinical comes from the attached case files.
 
-OUTPUT CONTRACT, follow exactly:
-- Produce all three parts below, in order, using the headers given.
-- Part 2 is a WRITTEN PROMPT for the educator to paste into a NEW chat later. Do NOT begin role-playing in Part 2. Do not add content outside the three parts.
+SETUP, before the encounter:
+Confirm you have read the attached files. Then display, in exactly this format:
+CASE LOADED: [case title from the files]
+LENGTH: this encounter runs until the learner types "encounter over"
+START: tell the learner, in one line, "You are the clinician. Introduce yourself and begin whenever ready." Then become the patient.
 
-Create an interactive clinical case for [LEARNER LEVEL: second-year APP fellows] on [TOPIC: a 19-year-old otherwise healthy man with one week of worsening sore throat and several hours of inability to swallow his own saliva, now with fever, trismus, a muffled voice, and unilateral tonsillar swelling, presenting to the emergency department]. Set difficulty at a level typical for a new graduate: a straightforward chief complaint with at least two realistic distractors.
+GROUNDING RULES, non-negotiable:
+- Every clinical fact you reveal as the patient comes from the attached files: history, exam findings, vitals, lab and imaging values, and the intended management path.
+- Numbers are copied exactly as published. If the learner asks about something the files do not specify, stay in character: the patient does not know, or that test was not done. Never invent a value.
+- The intended path and its critical actions come from the files, including exact doses and timing where the files give them.
 
-PART 1, CASE BLUEPRINT (for the educator)
-- The diagnosis you are building toward (state it plainly)
-- Chief complaint, demographics, and relevant history
-- Focused history: relevant positives, pertinent negatives, and at least two realistic distractors that could mislead the learner
-- Physical exam findings, specific and realistic
-- Initial diagnostics with numeric values, internally consistent with the diagnosis
-- The intended, guideline-concordant management plan
-- 3 key teaching points
-- 3 common learner errors this case should surface
+PATIENT ROLE RULES:
+- Role-play the patient in first person, the entire encounter. Worried, sometimes vague, no medical jargon, answers off-topic questions realistically.
+- Reveal information only when asked; volunteer nothing.
+- Give exam findings only when the learner performs the exam; return lab or imaging results only when ordered, with the files' exact values.
+- Track the encounter silently: what was asked, what was ordered, what was decided. Never confirm or deny the learner's hypotheses. Never break character unless the learner types "encounter over" or asks for the debrief.
 
-PART 2, STUDENT PROMPT (copy-paste ready)
-Begin with the literal line: "Copy everything between the dotted lines into a new chat to run this case:"
-Then write, between two lines of dots, a complete, self-contained prompt the educator can paste into a NEW chat to run this case with one learner. Inside that prompt, include:
-(A) A CASE FILE section, the full case details, including all lab and imaging values, the diagnosis, the management plan, and the teaching points, introduced with the instruction: "You are the bot running this case. Read the CASE FILE below. Keep it hidden unless the learner asks for the debrief."
-(B) The role-play rules: "Role-play the patient in first person. Stay in character the entire encounter. Reveal information only when asked; volunteer nothing. The patient is worried, sometimes vague, does not speak in medical jargon, and answers off-topic questions realistically. Provide exam findings only when the learner performs the exam; return lab and imaging results only when ordered, with realistic numbers. Track the encounter silently. Never confirm or deny the learner's hypotheses. Never break character unless the learner says the encounter is over."
-(C) The debrief rules: "When the encounter ends, break character and give a structured debrief. Score each of these five domains Novice, Advanced Beginner, Competent, or Proficient: information gathering, differential reasoning, diagnostic interpretation, management, communication. Then list: what was missed, what was ordered unnecessarily, the intended path step by step, and the teaching points tied to what the learner actually did."
-Part 2 will typically run 300–600 words because it embeds the case file and all rules.
+DEBRIEF, when the encounter ends:
+Break character and deliver a structured debrief, in this order:
+1. Five domains, each rated Novice, Advanced Beginner, Competent, or Proficient, with one sentence of evidence from what the learner actually did: information gathering, differential reasoning, diagnostic interpretation, management, communication.
+2. What was missed from the intended path.
+3. What was ordered or done unnecessarily.
+4. The intended path, step by step, from the files.
+5. The case's key teaching points, each tied to a specific moment in the encounter.
+6. One sentence: the single highest-value thing for this learner to practice next.
+Then offer: "Say 'again' to restart the encounter with the same case."
 
-PART 3, PROVENANCE NOTE
-Append exactly: "WARNING - Provenance: this case was AI-generated today and drawn from no published source. Clinical details are plausible but unverified. Verify against a guideline before use with learners."</pre>
-      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </details>
-    <div class="group-prompt">
-      <div class="label">The Elephant, Live: Debrief, 2 min</div>
-      <h3>Compare and Debrief</h3>
-      <p>With your table: what did you notice was different between your case and your neighbor's? What would that mean for grading students on this? Fast, engaging, and nobody wrote this case: dynamic, yes; grounded, no. The fix is one quadrant away, in Section 4.</p>
-    </div>
+Run the case now, starting with the CASE LOADED block.</pre>
+    <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
+  </details>      <div class="demo-card" style="margin-top: 18px;">
+    <div class="demo-title">See It From the Student's Side: Diana's Shared Conversation</div>
+    <div class="demo-desc">This is the exact encounter from Prompt 2, already run and shared as a link, the same way you would send it to your students: open it and read the encounter from the student's point of view, then scroll to the debrief and see the five domains with evidence. Sharing a chat link is the distribution model: build once, share the link, every student meets the same grounded patient.</div>
+    <!-- REPLACE THIS HREF WITH DIANA'S SHARED CHATGPT CONVERSATION URL WHEN SHE SENDS IT -->
+    <a class="demo-link" href="#shared-conversation-pending" rel="noopener">Open the shared conversation (link pending until the session)</a>
+    <div class="demo-meta">A shared chat link, view-only, runs in any browser · The student needs no account to read it</div>
+  </div>
+  <div class="group-prompt">
+    <div class="label">Table Conversation, 2 min</div>
+    <h3>Static or Dynamic? When Would You Reach for Each?</h3>
+    <p>You just met the same case twice: as a static file every learner clicks through the same way, and as a dynamic encounter each learner runs differently. With your table: what is the static version best for, and what is the dynamic version best for? Think standardization, grading, replay, feedback, and the moment in training each one fits.</p>
+  </div>
 </section>
 
   <!-- TOPIC 4: AI GROUNDING -->
@@ -1045,8 +1066,8 @@ Append exactly: "WARNING - Provenance: this case was AI-generated today and draw
       <p>Every major assistant can now work from your documents, not just the open internet. ChatGPT Projects holds your files and instructions in one workspace. Claude projects can point at a folder on your computer and work from it. Gemini answers grounded in your Google Drive. Copilot works from your files. NotebookLM is a dedicated example of the same idea, and the one we demo today: upload sources once, every answer traces back to them.</p>
 
     <div class="demo-card" style="margin-top: 24px;">
-      <div class="demo-title">Demo 3: The Grounded, Dynamic Case (~5 min, Diana demos, you query)</div>
-      <div class="demo-desc">Open it: <a href="https://notebook.google.com/notebook/93b8b9b8-eb70-4a91-919c-9117d5d4fdd1" target="_blank" rel="noopener">Running Example: The PTA Case (MedEdPORTAL)</a>. All six published case files are already in it: the narrative, the labs, the EKG, the CT, the chest X-ray, and the faculty rubric. Ask what happens after the benzocaine spray and watch every answer cite the file it came from. Diana demos it on screen; your turn is read-only: open the link, ask it one question about the case, and watch where it points, every answer cites the file it came from. Ask again and you get a fresh answer, so it is dynamic; the answer always traces to the source, so it is grounded. This is the payoff quadrant. Prefer your existing assistant? The same flow works in a ChatGPT Project or a Claude project: upload the same files from the Running Example, ask the same question, expect the same citations.</div>
+      <div class="demo-title">Demo 3: The Case Notebook, and the Neat Things NotebookLM Does (~8 min)</div>
+      <div class="demo-desc">Open it: <a href="https://notebook.google.com/notebook/93b8b9b8-eb70-4a91-919c-9117d5d4fdd1" target="_blank" rel="noopener">Running Example: The PTA Case (MedEdPORTAL)</a>. All six published case files, the same ones you downloaded in Section 2, are already in it: the narrative, the labs, the EKG, the CT, the chest X-ray, and the faculty rubric. Diana tours it on screen: ask what happens after the benzocaine spray and watch every answer cite the file it came from, then the built-in creators, a quiz, flashcards, a study guide, an audio overview, all generated from the same grounded sources. Then it is your turn for five minutes: poke and prod. Open the link on your phone or laptop, ask it anything about the case, chase the citations, and try one creator. Prefer your existing assistant? The same flow works in a ChatGPT Project or a Claude project: upload the same six files from Section 2, ask the same question, expect the same citations.</div>
       <a class="demo-link" href="https://notebook.google.com/notebook/93b8b9b8-eb70-4a91-919c-9117d5d4fdd1" target="_blank" rel="noopener">Open the case notebook</a>
     </div>
 
@@ -1100,208 +1121,101 @@ Append exactly: "WARNING - Provenance: this case was AI-generated today and draw
       </ol>
     </div>
 
-        <div class="beyond-box" id="caseMaterials" style="margin-top: 28px;">
-      <h3>Running Example: A Real, Peer-Reviewed Case (Download It)</h3>
-      <p>Everything in this objective uses one running example: a published MedEdPORTAL simulation case, <strong>Peritonsillar Abscess / Methemoglobinemia</strong> (Ashurst J, Goyke TE. <em>MedEdPORTAL.</em> 2013;9:9364. <a href="https://www.mededportal.org/doi/10.15766/mep_2374-8265.9364" target="_blank" rel="noopener">doi:10.15766/mep_2374-8265.9364</a>, used under its Creative Commons license for this non-commercial educational session). A sore throat becomes a peritonsillar abscess, and benzocaine spray during drainage triggers medication-induced methemoglobinemia. Four clinical states, a critical-actions checklist, real lab values, imaging, and a faculty evaluation rubric. <strong>This is what ground truth looks like:</strong> peer-reviewed, citable, expert-vetted.</p>
-      <table class="beyond-table">
-        <tr><th>Download</th><th>What's inside</th></tr>
-        <tr><td><a href="case-materials/pta-1-case-narrative.docx" download>1 · Case narrative</a></td><td>Learning objectives, 4 clinical states, critical-actions checklist, room and manikin setup</td></tr>
-        <tr><td><a href="case-materials/pta-2-lab-values.docx" download>2 · Lab values</a></td><td>CBC + CMP with deranged values (WBC 22.2, bands 12%)</td></tr>
-        <tr><td><a href="case-materials/pta-3-ekg.docx" download>3 · EKG</a></td><td>Sinus tachycardia rhythm strip</td></tr>
-        <tr><td><a href="case-materials/pta-4-ct-images.docx" download>4 · CT images</a></td><td>Neck imaging of the abscess</td></tr>
-        <tr><td><a href="case-materials/pta-5-chest-xray.docx" download>5 · Chest X-ray</a></td><td>Comparison film</td></tr>
-        <tr><td><a href="case-materials/pta-6-faculty-rubric.docx" download>6 · Faculty evaluation rubric</a></td><td>The published checklist for assessing learners on this case</td></tr>
-      </table>
-      <p><strong>How it threads through today:</strong> ① In Demo 1 (Section 2), you build a <em>static</em> case grounded in these facts. ② In Demo 2 (Section 3), the chatbot invents an <em>ungrounded</em> version of the same presentation. ③ In Demo 3, these published files are already in the case notebook, and every answer cites them. ④ In the capstone sprint, your group can use these files as ready-made source material.</p>
-      <p><em>De-identification note: these files are published teaching material with no real-patient identifiers. Your own case notes are not, de-identify before uploading anything to a consumer AI tool.</em></p>
-    </div>
+        
+    <h3>The Prompt Pack: Take-Home Templates</h3>
+      <p style="margin: 8px 0 18px; color: #5B6B7C; font-size: 0.9rem;">Six prompts. Tap a title to expand it, then copy. They also print fully on paper.</p>
+  <p>Prompts 1 and 2, the ones we built live in Sections 2 and 3, stay there, next to their demos. The six below are the take-home pack: pick one for the build block at the end of the session, or for Monday morning. Every one of them runs against files you attach and cites what it uses, and every one that involves learner work has the feedback built into the same prompt. Notice how much each prompt specifies, roles, rules, output order, citations, quality checks: the more you give the chatbot, the less you leave to chance.</p>
 
-    <h3>Copy-Paste AI Prompt Templates</h3>
-      <p style="margin: 8px 0 18px; color: #5B6B7C; font-size: 0.9rem;">Nine prompts. Tap a title to expand it, then copy. They also print fully on paper.</p>
-    <p>Try these now on your laptop. Templates 1–4 are <strong>grounded</strong>: each includes the grounding instruction that prevents hallucinations. The Case Generator family (5–8) is deliberately <strong>ungrounded</strong>, that is the demo, and its provenance warning is the point.</p>
+      <details class="prompt-card" id="prompt3"><summary><span class="prompt-title">Prompt 3 · Journal Club in One Prompt</span><span class="prompt-hint">tap to expand</span></summary>
+    <div class="prompt-desc">For the build block and for Monday: upload a trial paper and its guideline or label context (the AML notebook's six sources are exactly this), paste this, and get the whole package: the numbers with citations, the limitations ranked, discussion questions, board-style questions with a cited answer key, and facilitator notes.</div>
+    <pre>You are an academic fellowship director who runs journal club monthly and personally checks every number. Build a complete journal club teaching session from the attached sources: the trial paper and any guideline, label, or registry documents.
 
-    <details class="prompt-card" id="prompt1"><summary><span class="prompt-title">1. Grounded Clinical Reasoning Case</span><span class="prompt-hint">tap to expand</span></summary>
-      <div class="prompt-desc">For use with NotebookLM (upload sources first) or ChatGPT/Claude (attach files first)
-      </div>
-      <pre>FIRST: Upload your source material (clinical guideline PDF, your 
-case notes, a journal article, or your lecture slides).
+GROUNDING RULES, non-negotiable:
+- Every number you state comes from the attached sources, copied exactly: enrollment, demographics, endpoints, effect sizes, confidence intervals, p-values, adverse event rates.
+- After every factual claim, cite in brackets which attached source and where, like [Trial, Table 2].
+- If a number is not in the sources, write "not in the provided sources" rather than estimating.
 
-THEN ASK:
-"Based ONLY on the attached document(s), create a clinical 
-reasoning case for APP fellows. Create a case of [CONDITION] 
-presenting to [SETTING].
+DELIVER, in this order, with these headers:
+1. ONE-LINE VERDICT: the trial's finding and its practice-changing claim, in one sentence.
+2. BACKGROUND, 5 bullets: the clinical problem, the prior standard, the knowledge gap, the intervention's mechanism in plain language, and why this trial mattered.
+3. DESIGN TABLE: study design, phase, centers, enrollment dates, randomization, blinding, primary endpoint, key secondary endpoints, prespecified subgroups, and funding source, each cited.
+4. RESULTS THAT MATTER: the primary endpoint with exact numbers, absolute and relative; the 3 most clinically meaningful secondary endpoints; and the adverse events a clinician will actually counsel patients about. Each cited.
+5. LIMITATIONS, honestly: at least 4, ranked by how much they threaten the conclusion, ending with what this trial cannot tell us.
+6. WHAT THE GUIDELINE SAYS: how the attached guideline or label incorporated, or did not incorporate, this evidence, cited.
+7. DISCUSSION QUESTIONS, 5, escalating in difficulty, each tied to a specific result or limitation.
+8. BOARD-STYLE QUESTIONS, 5, single best answer: stem, 4 options, the correct answer, one sentence on why each distractor is wrong, and the citation for the correct answer.
+9. FACILITATOR NOTES: the 3 places trainees usually misread this trial, and the one question to hold in reserve for a quiet room.</pre>
+    <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
+  </details>
+  <details class="prompt-card" id="prompt4"><summary><span class="prompt-title">Prompt 4 · New-Treatment Teaching Session</span><span class="prompt-hint">tap to expand</span></summary>
+    <div class="prompt-desc">When a drug or guideline lands mid-year: upload the label, the pivotal trial, and the guideline chapter, and get a complete 30-minute session, with a counseling practice script and its feedback rubric built into the same prompt. The AML notebook again is a ready-made example.</div>
+    <pre>You are a subspecialty educator building a 30-minute teaching session on a new treatment, from the attached sources only: the FDA label or approval letter, the pivotal trial, and the guideline.
 
-Include:
-- Patient demographic and chief complaint
-- Focused history consistent with the attached source material
-- Physical exam findings consistent with the attached source
-- Initial lab/imaging results from the attached source
-- 1 clinical reasoning exercise where the learner must:
-  (a) Interview the patient (what questions would you ask?)
-  (b) Build a prioritized differential with reasoning
-  (c) Order and interpret relevant diagnostics
-  (d) Justify their assessment with evidence
-- A structured feedback rubric that evaluates the REASONING 
-  PROCESS, not just the final answer
+GROUNDING RULES, non-negotiable: every clinical claim, dosing, schedule, monitoring, efficacy number, adverse event, and interaction comes from the attached sources with a bracketed citation like [Label, section 2] or [Trial, Table 3]. If something is not in the sources, say "not specified in the provided sources." Never round or convert numbers.
 
-IMPORTANT: Base all clinical content ONLY on the attached 
-document(s). If information is not in the attachments, say so. 
-Cite which section each element comes from."</pre>
-      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </details>
+DELIVER, in this order, with these headers:
+1. SESSION OBJECTIVES, 3, each observable: "by the end, the learner can..."
+2. WHAT CHANGED AND WHY IT MATTERS, 5 bullets: the clinical gap before this treatment, the mechanism in plain language, and the evidence that got it approved.
+3. THE EVIDENCE TABLE: the primary endpoint with exact numbers, the comparison group, the key secondary endpoints, and the adverse-event profile, all cited.
+4. PRACTICAL PRESCRIBING: starting dose and adjustments, the monitoring schedule and what to do about abnormal results, the 4 most important counseling points, and interactions or contraindications, each cited to the label.
+5. COUNSELING PRACTICE SCRIPT: a 5-minute role-play in which a fellow counsels a patient starting this treatment. Include the patient's opening line, the 4 concerns the patient raises in order, and realistic patient wording.
+6. FEEDBACK RUBRIC FOR THAT ROLE-PLAY, in this same prompt: 4 domains (accuracy of information, plain-language explanation, addressing concerns, shared decision-making), each rated Needs Work / Good / Excellent with one observable behavior that defines each level, plus the 3 errors trainees most often make in this conversation.
+7. TAKE-HOME CARD, one page: 8 lines a fellow can keep on service, with the doses and monitoring values, cited.
+8. TWO QUESTIONS: one to open the session, one to close it.</pre>
+    <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
+  </details>
+  <details class="prompt-card" id="prompt5"><summary><span class="prompt-title">Prompt 5 · The Cited Quiz Builder</span><span class="prompt-hint">tap to expand</span></summary>
+    <div class="prompt-desc">Upload any guideline, chapter, or your own de-identified notes, and get a 10-item quiz where every answer-key line shows where the answer lives in your source. Assessment you can verify yourself, which is the whole point.</div>
+    <pre>You are an assessment writer for a health professions program. Build a 10-item single-best-answer quiz from the attached source only.
 
-    <details class="prompt-card" id="prompt2"><summary><span class="prompt-title">2. Simulated Patient Encounter</span><span class="prompt-hint">tap to expand</span></summary>
-      <div class="prompt-desc">For ChatGPT (voice mode if available) or Claude</div>
-      <pre>"You will role-play as a patient in a clinical encounter for 
-educational purposes. You are [NAME], a [AGE] y/o [GENDER] 
-presenting with [CHIEF COMPLAINT].
+GROUNDING RULES, non-negotiable: every question must be answerable from the attached source alone. Each answer-key line ends with its citation in brackets, like [Guideline, section 3.2]. If two options could be defensible, rewrite the stem until only one is.
 
-Stay in character throughout. Reveal information progressively 
-based on what the learner asks. Do not volunteer unprompted 
-information. Show appropriate emotional response.
+DELIVER, in this order:
+1. THE QUIZ, 10 items, mixed difficulty: 3 easy recall, 4 application, 3 that require integrating two facts from different parts of the source. Realistic clinical stems, 4 options each, no "all of the above," no negatively phrased stems.
+2. THE ANSWER KEY, one block per item: the correct answer; one sentence on why each of the other three options is wrong; the citation for the correct answer.
+3. THE MAP: a table showing which part of the source each question came from, so the teacher can see coverage at a glance.
+4. THE FLAGS: any item where the source is ambiguous or thin, so the teacher knows to double-check before using it.</pre>
+    <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
+  </details>
+  <details class="prompt-card" id="prompt6"><summary><span class="prompt-title">Prompt 6 · The Study Guide That Builds Its Own Review Set</span><span class="prompt-hint">tap to expand</span></summary>
+    <div class="prompt-desc">Works in NotebookLM against your uploaded sources, or in any chatbot with files attached. A ranked concept guide, the common wrong answers, and a 15-question retrieval set for daily 10-minute reviews, everything cited.</div>
+    <pre>You are a learning specialist for a clinical fellowship. From the attached sources only, build a study guide for one fellow preparing for a rotation or in-service exam.
 
-When the learner indicates the encounter is complete, provide 
-feedback on:
-- Information gathering completeness
-- Clinical reasoning demonstrated
-- Communication and rapport
-- Areas for improvement"</pre>
-      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </details>
+GROUNDING RULES, non-negotiable: every fact cited to the attached sources in brackets. Nothing from memory. If the sources disagree, flag the disagreement rather than averaging it.
 
-    <details class="prompt-card" id="prompt3"><summary><span class="prompt-title">3. Structured Feedback Rubric</span><span class="prompt-hint">tap to expand</span></summary>
-      <div class="prompt-desc">For generating rubrics that evaluate reasoning, not just answers</div>
-      <pre>"Create a grading rubric for [ASSESSMENT TYPE: simulated 
-encounter / written case / oral presentation] evaluating APP 
-fellows on [COMPETENCY DOMAIN].
+DELIVER, in this order:
+1. WHAT THEY MUST MASTER: the 8 highest-yield concepts in the sources, ranked, with one line on why each matters clinically.
+2. THE GUIDE: each concept as a short section: the rule, the exception, the number to memorize, and a 3-sentence clinical example drawn from the sources.
+3. COMMON WRONG ANSWERS: for each concept, the misunderstanding that makes trainees miss it, phrased the way a trainee would actually think it.
+4. RETRIEVAL SET: 15 questions, each paired with its answer and citation, ordered from simple recall to integration, sized for a daily 10-minute review.
+5. SELF-CHECK: a 6-item quick quiz at the end, answers listed after a clear gap at the bottom.</pre>
+    <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
+  </details>
+  <details class="prompt-card" id="prompt7"><summary><span class="prompt-title">Prompt 7 · The Procedure Pre-Brief</span><span class="prompt-hint">tap to expand</span></summary>
+    <div class="prompt-desc">Upload the chapter, guideline, or institutional policy for a procedure, and get the pre-brief handout, the 90-second talk-through, the debrief rubric for after the supervised rep, and the portfolio log line, all in one prompt.</div>
+    <pre>You are a procedure educator. From the attached source only, the guideline, textbook chapter, or policy for the procedure, build the complete teaching material around one procedure.
 
-Structure the rubric with:
-- 4 competency levels (Novice → Advanced Beginner → 
-  Competent → Proficient)
-- 5 assessment domains: history-taking, physical exam, 
-  diagnostic reasoning, communication, clinical decision-making
-- Behavioral descriptors for each level in each domain
-- Weight guidance
+GROUNDING RULES, non-negotiable: every step, indication, contraindication, dose, and complication cited to the attached source in brackets. If your memory disagrees with the source, the source wins. If the source is silent on something, say so.
 
-Format as a table. Ensure language is observable and measurable."</pre>
-      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </details>
+DELIVER, in this order:
+1. PRE-BRIEF HANDOUT, one page: indications and contraindications; the landmarks and the danger zones the source names; the equipment list; the steps in order, numbered, each with its failure mode; the complications to watch for and their earliest signs; the exact numbers, depths, doses, and volumes, with citations.
+2. TALK-THROUGH SCRIPT: the 90-second verbal walkthrough a learner should be able to recite before touching the patient, written as spoken sentences.
+3. DEBRIEF RUBRIC, for after the supervised rep: 5 domains (preparation, technical sequence, situational awareness, communication, response to difficulty), each rated Needs Work / Good / Excellent with one observable behavior per level.
+4. THE 4 MOST COMMON ERRORS for this procedure from the source, each with its correction.
+5. LOG THE REP: a 5-line template the learner fills in after the rep (date, supervision level, what went well, what to change, readiness for the next level), ready to copy into a portfolio.</pre>
+    <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
+  </details>
+  <details class="prompt-card" id="prompt8"><summary><span class="prompt-title">Prompt 8 · Reflective Writing, With Its Own Grader</span><span class="prompt-hint">tap to expand</span></summary>
+    <div class="prompt-desc">The full cycle in one prompt: it writes the assignment brief for the learner with the rubric quoted in full, and later, when you paste a submission after the words GRADE THIS, it scores that same rubric with quoted evidence. One prompt, both jobs.</div>
+    <pre>You are a reflective-practice educator in a clinical fellowship. This prompt does two jobs in one: it writes the assignment for the learner, and it grades the submission against the same rubric it announced.
 
-    <details class="prompt-card" id="prompt4"><summary><span class="prompt-title">4. Reflective Writing Prompt Generator</span><span class="prompt-hint">tap to expand</span></summary>
-      <div class="prompt-desc">Creates prompts that require critical thinking, not AI-answerable questions</div>
-      <pre>"Create 3 reflective writing prompts for APP fellows who have 
-just completed [CLINICAL EXPERIENCE: a patient encounter / 
-a rotation week / a simulation case].
+JOB 1, THE ASSIGNMENT, deliver this first: a reflective writing brief on [CLINICAL EXPERIENCE: describe the experience, for example "a case that stayed with you this month"] for [LEARNER LEVEL: for example, second-year APP fellows]. It must specify: a 500-word target; the exact structure (what happened in plain narrative, what you were thinking at two decision points, what you would do differently, and one question you are left holding); the audience (their program director, not a journal); and the grading rubric below, quoted in full, so the learner sees exactly how it will be judged.
 
-Each prompt should:
-- Require the learner to draw on their specific personal 
-  experience (not generalizable knowledge AI could generate)
-- Ask them to identify a specific moment where they felt 
-  uncertain, made a decision, or learned something new
-- Require them to connect the experience to evidence or 
-  guidelines
-- Be impossible to answer meaningfully without having had 
-  the actual experience
+THE RUBRIC, quoted in both jobs: 4 domains, each rated Level 1 (descriptive) / Level 2 (examining) / Level 3 (integrative), with one observable marker per level: description with honest detail; analysis of own reasoning; connection to prior learning or literature; forward commitment, what they will actually change.
 
-Format as a numbered list with a brief rationale for each."</pre>
-      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </details>
-
-
-    <details class="prompt-card" id="prompt5"><summary><span class="prompt-title">5. The Case Generator: An Interactive Case in 60 Seconds</span><span class="prompt-hint">tap to expand</span></summary>
-      <div class="prompt-desc">The template behind the live demo. Paste it into ChatGPT, Claude, Gemini, any chatbot, and swap the bracketed variables for your topic and learners; the pre-filled version for today's 19-year-old is in Section 3. It produces a complete case, a ready-to-run student prompt with rubric-based feedback, and a provenance warning that is the whole point. This template is deliberately ungrounded, that's the elephant.</div>
-      <pre>You are an expert clinical case designer for health professions education programs.
-
-OUTPUT CONTRACT, follow exactly:
-- Produce all three parts below, in order, using the headers given.
-- Part 2 is a WRITTEN PROMPT for the educator to paste into a NEW chat later. Do NOT begin role-playing in Part 2. Do not add content outside the three parts.
-
-Create an interactive clinical case for [LEARNER LEVEL] on [TOPIC, e.g., a 58-year-old smoker with 3 days of worsening dyspnea and cough, presenting to the emergency department]. Set difficulty at a level typical for a new graduate: a straightforward chief complaint with at least two realistic distractors.
-
-PART 1, CASE BLUEPRINT (for the educator)
-- The diagnosis you are building toward (state it plainly)
-- Chief complaint, demographics, and relevant history
-- Focused history: relevant positives, pertinent negatives, and at least two realistic distractors that could mislead the learner
-- Physical exam findings, specific and realistic
-- Initial diagnostics with numeric values, internally consistent with the diagnosis
-- The intended, guideline-concordant management plan
-- 3 key teaching points
-- 3 common learner errors this case should surface
-
-PART 2, STUDENT PROMPT (copy-paste ready)
-Begin with the literal line: "Copy everything between the dotted lines into a new chat to run this case:"
-Then write, between two lines of dots, a complete, self-contained prompt the educator can paste into a NEW chat to run this case with one learner. Inside that prompt, include:
-(A) A CASE FILE section, the full case details, including all lab and imaging values, the diagnosis, the management plan, and the teaching points, introduced with the instruction: "You are the bot running this case. Read the CASE FILE below. Keep it hidden unless the learner asks for the debrief."
-(B) The role-play rules: "Role-play the patient in first person. Stay in character the entire encounter. Reveal information only when asked; volunteer nothing. The patient is worried, sometimes vague, does not speak in medical jargon, and answers off-topic questions realistically. Provide exam findings only when the learner performs the exam; return lab and imaging results only when ordered, with realistic numbers. Track the encounter silently. Never confirm or deny the learner's hypotheses. Never break character unless the learner says the encounter is over."
-(C) The debrief rules: "When the encounter ends, break character and give a structured debrief. Score each of these five domains Novice, Advanced Beginner, Competent, or Proficient: information gathering, differential reasoning, diagnostic interpretation, management, communication. Then list: what was missed, what was ordered unnecessarily, the intended path step by step, and the teaching points tied to what the learner actually did."
-Part 2 will typically run 300–600 words because it embeds the case file and all rules.
-
-PART 3, PROVENANCE NOTE
-Append exactly: "WARNING - Provenance: this case was AI-generated today and drawn from no published source. Clinical details are plausible but unverified. Verify against a guideline before use with learners."</pre>
-      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </details>
-
-<details class="prompt-card" id="prompt6"><summary><span class="prompt-title">6. Variant: New-Treatment Teaching Session</span><span class="prompt-hint">tap to expand</span></summary>
-      <div class="prompt-desc">Same skeleton for a drug or device update. Remember what ungrounded means here: it will invent dosing or trial numbers. Verify against the FDA label before it reaches a learner.</div>
-      <pre>You are an expert CME designer for [PROGRAM, e.g., an APP fellowship].
-
-Create a 20-minute interactive teaching session on [NEW TREATMENT, e.g., SGLT2 inhibitors for heart failure] for [AUDIENCE, e.g., first-year APP fellows]. Produce exactly three parts, using the headers given:
-
-PART 1, SESSION BLUEPRINT (for the educator)
-- The 5 learning objectives, ranked by importance
-- A session outline with timestamps
-- 5 decision checkpoints where the learner answers "what would you do next?", with the guideline-concordant answer and why
-- 3 pitfalls clinicians commonly hit with this treatment
-- 5 board-style questions with answer key and rationale
-
-PART 2, LEARNER PROMPT (copy-paste ready)
-Begin with the literal line: "Copy everything between the dotted lines into a new chat to run this session:", then write, between two lines of dots, a self-contained prompt that instructs a chatbot to run the session interactively: present one segment at a time, quiz the learner at each checkpoint, adapt follow-ups to the learner's answers, and end with a structured debrief scoring information recall, clinical application, and decision-making (Novice / Advanced Beginner / Competent / Proficient) plus the intended answers.
-
-PART 3, PROVENANCE NOTE
-Append exactly: "WARNING - Provenance: this session was AI-generated today and drawn from no published source. Dosing and trial data are plausible but unverified. Verify against the FDA label and current guideline before use with learners."</pre>
-      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </details>
-
-    <details class="prompt-card" id="prompt7"><summary><span class="prompt-title">7. Variant: Subspecialty Rotation Overview</span><span class="prompt-hint">tap to expand</span></summary>
-      <div class="prompt-desc">A rotation orientation module in one paste. The ungrounded risk is scope drift, teaching the wrong level or citing stale recommendations. Ground the final product with your society guideline and assigned chapter.</div>
-      <pre>You are an expert curriculum designer for [PROGRAM, e.g., an APP fellowship].
-
-Create a rotation orientation module for [SUBSPECIALTY, e.g., cardiology] for [LEARNER LEVEL, e.g., new APP fellows starting the rotation]. Produce exactly three parts, using the headers given:
-
-PART 1, MODULE BLUEPRINT (for the educator)
-- The 10 problems a learner at this level must be competent in on this rotation, ranked by frequency and stakes
-- For each: the one scenario that best represents it
-- A preceptor-ready checklist of observable behaviors for the rotation
-- The 3 rotation goals you would put on one page
-
-PART 2, LEARNER PROMPT (copy-paste ready)
-Begin with the literal line: "Copy everything between the dotted lines into a new chat to run this orientation:", then write, between two lines of dots, a self-contained prompt that instructs a chatbot to run a "day one on the rotation" experience: introduce the unit's workflow through one realistic scenario per problem family, quiz the learner after each, and end with a structured debrief scoring preparation, clinical reasoning, and communication (Novice / Advanced Beginner / Competent / Proficient) plus the rotation goals.
-
-PART 3, PROVENANCE NOTE
-Append exactly: "WARNING - Provenance: this module was AI-generated today and drawn from no published source. Scope and recommendations are plausible but unverified. Review against your society guideline before use with learners."</pre>
-      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </details>
-
-    <details class="prompt-card" id="prompt8"><summary><span class="prompt-title">8. Variant: Procedure Pre-Brief</span><span class="prompt-hint">tap to expand</span></summary>
-      <div class="prompt-desc">The safety-critical one: an ungrounded procedure trainer can scramble step order. Use it to see the power, then verify step order against your institutional protocol before any learner touches it.</div>
-      <pre>You are an expert procedural educator for [PROGRAM, e.g., an APP fellowship].
-
-Create a pre-procedure decision trainer for [PROCEDURE, e.g., ultrasound-guided central venous access] at [LEARNER LEVEL, e.g., first-year APP fellows]. Produce exactly three parts, using the headers given:
-
-PART 1, TRAINER BLUEPRINT (for the educator)
-- The full step sequence, numbered, with the rationale for each step
-- The 4 highest-yield decision checkpoints where the learner must choose the next step, with options and the correct answer, and why
-- Complications with their earliest warning signs and the response to each
-- A scoring rubric a faculty observer can use at the bedside
-
-PART 2, LEARNER PROMPT (copy-paste ready)
-Begin with the literal line: "Copy everything between the dotted lines into a new chat to run this trainer:", then write, between two lines of dots, a self-contained prompt that instructs a chatbot to quiz the learner through the procedure one decision at a time: pose each checkpoint with 3 answer options, do not reveal the answer until the learner commits, and end with a structured debrief scoring preparation, sterile technique, sequence, and complication response (Novice / Advanced Beginner / Competent / Proficient) plus the full correct sequence.
-
-PART 3, PROVENANCE NOTE
-Append exactly: "WARNING - Provenance: this trainer was AI-generated today and drawn from no published source. Step order and technique details are plausible but unverified. Verify against your institutional protocol before use with learners."</pre>
-      <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-    </details>
-
+JOB 2, THE FEEDBACK, when the educator pastes a submission after the words GRADE THIS: score each domain at its level with two sentences of evidence quoting the submission; name the single strongest sentence and why; name the one upgrade that would move the lowest domain up a level, phrased as a revision instruction the learner can act on; and end with one question that pushes the reflection deeper. Never invent quotes: if the submission is thin, score it honestly and say what is missing.</pre>
+    <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
+  </details>
     <div class="beyond-box">
       <h3>Beyond the Case: Same Tools, Any Curriculum</h3>
       <p>The OSCE case is one archetype. Every format in your curriculum has the same three-beat upgrade: <em>hand-built and static → AI-generated but ungrounded → grounded and trustworthy.</em> And the pitfall scales with the stakes, an ungrounded case is embarrassing; an ungrounded treatment update invents dosing; an ungrounded procedure pre-brief scrambles step order. In education, an error propagates to every learner who meets it.</p>
@@ -1317,22 +1231,22 @@ Append exactly: "WARNING - Provenance: this trainer was AI-generated today and d
         <tr><td>Board / in-service review questions</td><td>Wrong answer keys, outdated guidelines</td><td>Published review resources</td></tr>
       </table>
 
-      <div class="demo-card" style="margin-top: 18px;">
-      <div class="demo-title">Try Any Format From the Table: the AML Notebook</div>
-      <div class="demo-desc">Open it: <a href="https://notebook.google.com/notebook/fa7fb716-e25b-45d1-98d8-84b6b1ce38bf" target="_blank" rel="noopener">Ziftomenib: A New-Treatment Teaching Session</a>. It holds six free, published sources: the FDA label, the approval letter, the pivotal trial (KOMET-001), the ELN 2022 guideline, the NCI PDQ, and the trial registry record. Pick any row from the table above, a journal club prep on the pivotal trial, a new-treatment teaching session, board-style questions, and either use one of the prompts above (Section 4) or skip prompt-writing entirely and use the notebook's built-in creators: Reports, Flashcards, a Quiz, a Mind Map, a Slide Deck, or an Audio Overview, a two-host audio conversation you could play at journal club. Prefer your existing assistant? The same six sources work as attachments in ChatGPT or Claude.</div>
+      <div class="demo-card" id="amlNotebook" style="margin-top: 18px;">
+      <div class="demo-title">The AML Notebook: Ziftomenib, A New-Treatment Teaching Session</div>
+      <div class="demo-desc">Open it: <a href="https://notebook.google.com/notebook/fa7fb716-e25b-45d1-98d8-84b6b1ce38bf" target="_blank" rel="noopener">Ziftomenib: A New-Treatment Teaching Session</a>. It holds six free, published sources: the FDA label, the approval letter, the pivotal trial (KOMET-001), the ELN 2022 guideline, the NCI PDQ, and the trial registry record. Pick any row from the table above, a journal club prep on the pivotal trial, a new-treatment teaching session, board-style questions, and either use Prompt 3 (journal club in one prompt) or Prompt 4 (a new-treatment teaching session) from the prompt pack below, or skip prompt-writing entirely and use the notebook's built-in creators: Reports, Flashcards, a Quiz, a Mind Map, a Slide Deck, or an Audio Overview, a two-host audio conversation you could play at journal club. Prefer your existing assistant? The same six sources work as attachments in ChatGPT or Claude.</div>
       <a class="demo-link" href="https://notebook.google.com/notebook/fa7fb716-e25b-45d1-98d8-84b6b1ce38bf" target="_blank" rel="noopener">Open the AML notebook</a>
       <div style="margin-top:14px; padding-top:12px; border-top:1px solid #E8EDF2;">
         <div style="font-size:0.82rem; color:#5A6B7E; margin-bottom:8px;"><strong>Listen: the Audio Overview, already generated.</strong> This two-host audio conversation was created by the notebook's built-in Audio Overview tool from the same six sources, and it is hosted right here in the guide, no NotebookLM sign-in needed to play it. Generating your own (a quiz, flashcards, an audio overview) takes one click: try it after the session, or during the capstone if your table already has a notebook open.</div>
         <audio controls preload="metadata" style="width:100%; max-width:560px;" src="How_KOMZIFTI_Reprograms_Mutated_Leukemia_Cells.m4a"></audio>
       </div>
     </div>
-      <p class="phn-note"><strong>If you adapt this to real clinical material: de-identify everything.</strong> Never paste PHI into a public chatbot, that's a different elephant, and the one you can't ground your way out of.</p>
+      <p class="phn-note"><strong>If you adapt this to real clinical material: de-identify everything.</strong> Never paste PHI into a public chatbot: that is the one pitfall you cannot ground your way out of.</p>
     </div>
-    <div class="group-prompt">
-      <div class="label">Demo 3 is read-and-query only, on purpose</div>
-      <h3>Generate After the Session, or During the Capstone</h3>
-      <p>Generating a new artifact (quiz, flashcards, audio overview) from a grounded notebook needs edit access and can take a minute per table, so we don't do it live. Once your table has a notebook open and working, in the capstone or from home, one click turns the same grounded sources into new learning material, always citing the source. If you build your own, the MedEdPORTAL case files in the <a href="#caseMaterials">Running Example</a> are ready-made source material.</p>
-    </div>
+      <div class="group-prompt">
+    <div class="label">Your notebook turn, and the build block ahead</div>
+    <h3>From Poking to Making</h3>
+    <p>The five minutes of poking was the warm-up. In the build block at the end of the session (Section 7) you make something real: your own version of either case, a quiz or audio overview from the AML notebook, or anything else with the prompt pack. The Prompt Builder worksheet there assembles your prompt as you fill it in.</p>
+  </div>
   </section>
 
   <!-- TOPIC 5: SIMULATION SPECTRUM -->
@@ -1664,88 +1578,67 @@ Append exactly: "WARNING - Provenance: this trainer was AI-generated today and d
   </section>
 
   <!-- TOPIC 7: CAPSTONE WORKSHOP -->
-  <section class="topic" id="topic7">
+    <section class="topic" id="topic7">
     <div class="topic-number">7</div>
-    <h2>Capstone Design Sprint</h2>
-      <div class="phn-note"><strong>Need source material for your sprint?</strong> Use the published MedEdPORTAL case files in <a href="#caseMaterials">Section 4 → Running Example</a>, a complete, peer-reviewed simulation case ready to adapt.</div>
-    <p class="lead">You've been discussing tools and ideas with your table group throughout this session. Now let's turn
-      one of those ideas into a plan you can take back to your program.</p>
+    <h2>The Build Block: Make One Real Thing</h2>
+    <p class="lead">However much time we have left, minus a few minutes to share out. Pick a build, pick your sources, and make something you would actually use Monday.</p>
+        <div class="phn-note"><strong>Need source material?</strong> The published MedEdPORTAL case files in <a href="#caseMaterials">Section 2 → Running Example</a> are ready to adapt, and the AML notebook's six sources (<a href="#amlNotebook">Section 4</a>) are one click away. Or bring your own: any guideline, chapter, or de-identified case works.</div>
 
     <div class="callout accent">
-      <div class="callout-title">What This Is, and What It Isn't</div>
-      <p>This isn't the first time you've been planning today, you've been doing mini-design thinking after each
-        section. Now you'll extend that into a complete implementation plan. Pick the idea from your earlier discussions
-        that feels most feasible and most useful. Use the tool tables on this page to select your tools. Fill in the
-        worksheet below, type your answers directly on your phone.</p>
+      <div class="callout-title">Pick Your Build</div>
+      <ul>
+        <li><strong>Your own static case:</strong> any published case + <a href="#demoOnePrompt">Prompt 1 (Section 2)</a>, out comes a shareable HTML file with the results download built in.</li>
+        <li><strong>Your own dynamic case:</strong> the same files + <a href="#demoTwoPrompt">Prompt 2 (Section 3)</a>, a live grounded encounter with the debrief built in, shareable as a chat link.</li>
+        <li><strong>Something from a notebook:</strong> the <a href="#amlNotebook">AML notebook (Section 4)</a> or any notebook you build, then <a href="#prompt5">Prompt 5</a> or <a href="#prompt6">Prompt 6</a>, or the notebook's built-in creators, including an audio overview.</li>
+        <li><strong>A teaching session, journal club, pre-brief, or reflective writing:</strong> <a href="#prompt3">Prompts 3 through 8</a>, each complete with its feedback built in.</li>
+      </ul>
     </div>
 
     <div class="group-prompt">
-      <div class="label">Table Group Activity, 20 min</div>
-      <h3>The 5-Step Design Sprint</h3>
-      <p><strong>Project a timer:</strong> open <a href="https://www.google.com/search?q=20+minute+timer" target="_blank" rel="noopener">google.com/search?q=20 minute timer</a> in the browser.</p>
-      <p>Work through these 5 steps with your table group. You'll have 20 minutes. Write your answers in the worksheet
-        below.</p>
+      <div class="label">Build, then share out</div>
+      <h3>How the Block Runs</h3>
+      <p><strong>Project a timer:</strong> open <a href="https://www.google.com/search?q=25+minute+timer" target="_blank" rel="noopener">google.com/search?q=25 minute timer</a> in the browser. Work with your table or solo, Diana circulates. Near the end of the block we share out: a few cool things people made, and what you would still need to make it real Monday. If you get stuck, the answer is almost always the same: give the chatbot more, more source, more rules, more structure.</p>
     </div>
 
-    <div class="worksheet">
-      <h3 style="text-align:center; color:var(--primary-dark);">Digital Learning Activity Blueprint</h3>
-      <p style="text-align:center; font-size:0.82rem; color:var(--text-muted); margin-bottom:18px;">2026 APP Fellowship
-        Conference, Design Sprint Worksheet</p>
+    <div class="worksheet" id="promptBuilder">
+      <h3 style="text-align:center; color:var(--primary-dark);">The Prompt Builder: Your Worksheet</h3>
+      <p style="text-align:center; font-size:0.82rem; color:var(--text-muted); margin-bottom:18px;">2026 APP Fellowship Conference · Fill it in, pick a format, and your complete, ready-to-paste prompt assembles itself below, feedback included. Copy it, attach your sources, and build.</p>
 
       <div class="ws-field">
-        <label>Step 1: Educational Need</label>
-        <div class="hint">What specific learning challenge or gap will this address? From your own program.</div>
-        <textarea placeholder="e.g., Fellows struggle with breaking bad news in oncology settings..."
-          id="ws1"></textarea>
+        <label>Step 1: Your learners</label>
+        <div class="hint">Level, discipline, rotation or setting</div>
+        <textarea placeholder="e.g., second-year APP fellows on a hematology rotation" id="pbLevel"></textarea>
       </div>
       <div class="ws-field">
-        <label>Step 2: Learning Goal(s)</label>
-        <div class="hint">By the end of this activity, learners will be able to... (1-3 measurable objectives)</div>
-        <textarea placeholder="e.g., By the end, learners will be able to conduct a goals-of-care conversation..."
-          id="ws2"></textarea>
+        <label>Step 2: Your source material (what you will attach)</label>
+        <div class="hint">Where it comes from: a published MedEdPORTAL case, a guideline and trial, the AML notebook's sources, or your own de-identified notes</div>
+        <textarea placeholder="e.g., the ELN 2022 AML guideline chapter plus the KOMET-001 trial paper" id="pbSource"></textarea>
       </div>
       <div class="ws-field">
-        <label>Step 3: Selected Tool/Modality</label>
-        <div class="hint">Which point on the fidelity spectrum? Which specific tool? Why this tool for this need?</div>
-        <select id="ws3">
-          <option value="">Select a point on the spectrum...</option>
-          <option>Text & Audio (ChatGPT as patient simulator, Padlet)</option>
-          <option>Image-Based (H5P branching scenario)</option>
-          <option>Screen-Based (Body Interact, interactive case)</option>
-          <option>AR / Phone-Based (BioDigital Human, Visible Body)</option>
-          <option>Immersive VR (Meta Quest + simulation platform)</option>
-          <option>Combination / Not sure yet</option>
+        <label>Step 3: Your topic</label>
+        <div class="hint">The clinical topic of the thing you are building</div>
+        <textarea placeholder="e.g., a new-treatment teaching session on ziftomenib in relapsed AML" id="pbTopic"></textarea>
+      </div>
+      <div class="ws-field">
+        <label>Step 4: Pick what you are building</label>
+        <select id="pbFormat">
+          <option value="">Select a format...</option>
+          <option value="static">A static branching case (one HTML file, like Demo 1)</option>
+          <option value="dynamic">A dynamic patient encounter (like Demo 2)</option>
+          <option value="journal">A journal club package</option>
+          <option value="session">A new-treatment teaching session</option>
+          <option value="quiz">A cited quiz</option>
+          <option value="guide">A study guide with a retrieval set</option>
+          <option value="procedure">A procedure pre-brief with a debrief rubric</option>
+          <option value="reflect">Reflective writing with its own grader</option>
         </select>
-        <textarea style="margin-top:6px;" placeholder="Why this tool for this need?" id="ws3b"></textarea>
       </div>
       <div class="ws-field">
-        <label>Step 4: Pedagogical Rationale</label>
-        <div class="hint">How does this tool support learning? Deliberate practice? Feedback? Engagement? Assessment?
-        </div>
-        <textarea placeholder="e.g., Text-and-audio simulation keeps cognitive load on the communication skill..."
-          id="ws4"></textarea>
+        <label>Step 5: Your prompt, assembled</label>
+        <div class="hint">Updates as you type. Then copy it, open a new chat, attach your sources, and paste.</div>
+        <pre id="pbOutput" style="white-space:pre-wrap; font-size:0.78rem;">(fill in the steps above and pick a format)</pre>
+        <button class="demo-link" style="width:100%; text-align:center;" onclick="copyBuiltPrompt()">Copy My Prompt</button>
       </div>
-      <div class="ws-field">
-        <label>Step 5: Implementation Plan</label>
-        <div class="hint">Platform, build time, learner time, cost, assessment approach</div>
-        <input type="text" placeholder="Platform: ____________" id="ws5a" style="margin-bottom:5px;">
-        <input type="text" placeholder="Time to build: ____________" id="ws5b" style="margin-bottom:5px;">
-        <input type="text" placeholder="Learner time: ____________" id="ws5c" style="margin-bottom:5px;">
-        <input type="text" placeholder="Estimated cost: ____________" id="ws5d" style="margin-bottom:5px;">
-        <textarea placeholder="Assessment approach: How will you evaluate the learner's reasoning process?"
-          id="ws5e"></textarea>
-      </div>
-      <div class="ws-field">
-        <label>Potential Barrier & Mitigation</label>
-        <textarea placeholder="Barrier: ..." id="ws6a" style="margin-bottom:5px;"></textarea>
-        <textarea placeholder="Mitigation: ..." id="ws6b"></textarea>
-      </div>
-      <div class="ws-field">
-        <label>Group Members</label>
-        <input type="text" placeholder="Names..." id="ws7">
-      </div>
-      <button class="demo-link" style="width:100%; text-align:center;" onclick="saveWorksheet()">Save Worksheet
-        (downloads as text file)</button>
     </div>
   </section>
 
@@ -1915,7 +1808,35 @@ document.addEventListener('click', function (ev) {
   var pre = b.closest('.prompt-card').querySelector('pre');
   copyPrompt(b, pre.textContent.replace(/^\s+|\s+$/g, ''));
 });
-    function saveWorksheet() { var e = ['ws1', 'ws2', 'ws3', 'ws3b', 'ws4', 'ws5a', 'ws5b', 'ws5c', 'ws5d', 'ws5e', 'ws6a', 'ws6b', 'ws7'], t = { ws1: 'Educational Need', ws2: 'Learning Goal(s)', ws3: 'Selected Fidelity Level', ws3b: 'Why This Tool', ws4: 'Pedagogical Rationale', ws5a: 'Platform', ws5b: 'Build Time', ws5c: 'Learner Time', ws5d: 'Estimated Cost', ws5e: 'Assessment Approach', ws6a: 'Potential Barrier', ws6b: 'Mitigation Strategy', ws7: 'Group Members' }, n = 'DIGITAL LEARNING ACTIVITY BLUEPRINT\n2026 APP Fellowship Conference, Design Sprint\n' + '='.repeat(50) + '\n\n'; e.forEach(function (e) { var o = document.getElementById(e); o && o.value.trim() && (n += t[e] + ':\n' + o.value + '\n\n') }), n += '\nSaved: ' + new Date().toLocaleString(); var o = new Blob([n], { type: 'text/plain' }), i = URL.createObjectURL(o), s = document.createElement('a'); s.href = i, s.download = 'Digital Learning Activity Blueprint.txt', s.click(), URL.revokeObjectURL(i) }
+    function pbVal(id, ph){var v=document.getElementById(id).value.trim();return v||ph}
+    function buildPrompt(){
+      var level=pbVal('pbLevel','[YOUR LEARNERS]');
+      var source=pbVal('pbSource','[YOUR ATTACHED SOURCES]');
+      var topic=pbVal('pbTopic','[YOUR TOPIC]');
+      var fmt=document.getElementById('pbFormat').value;
+      var out;
+      if(!fmt){out='(fill in the steps above and pick a format)';}
+      else if(fmt==='static'){out='You are an expert in health professions education and a senior front-end developer. Turn the attached case material into a complete, self-contained interactive branching scenario that a teacher can share with students as a single HTML file.\n\nAUDIENCE: '+level+'.\nTOPIC: '+topic+'.\nSOURCE: the attached files only: '+source+'.\n\nOUTPUT: one complete file named index.html. All CSS and JavaScript inline. No external libraries, no CDNs, no build step, no server. It must run by double-clicking the file.\n\nGROUNDING RULES, non-negotiable: use only facts from the attached files, copy numeric values exactly, never invent or round a number, and if a detail you want is not in the files, leave it out. The intended management path comes from the files, including exact doses and timing where given.\n\nSTRUCTURE, in this order: (1) a title screen with a two-to-three sentence stem from the files, the initial vitals exactly as published, and a Begin button; (2) at least 5 decision points, each with a short patient update, then 2 to 4 plausible options including one tempting distractor; (3) a "Why?" text box before each choice, the choice only submits after the learner types their reasoning; (4) a consequence screen after every choice labeled Optimal, Acceptable, or Problematic, and the case continues, the patient reflects the consequence; (5) a final Debrief screen: the learner\'s full path with reasoning, the intended path beside it, the key teaching points, and the common errors.\n\nINSTRUCTOR RESULTS FILE, a required feature: on the Debrief screen a button labeled "Download results for your instructor" generates a text file (JavaScript Blob, an anchor with the download attribute) containing the case title, the date, every step with the chosen option, its classification, and the reasoning, plus a one-line summary.\n\nDESIGN: single column, max-width 700px, centered, mobile-first, tap targets at least 44px tall, one dark blue for headings, one accent for buttons, light gray rounded cards, a Start over button. Plain patient language in dialogue, clinical precision in explanations.\n\nQUALITY CHECK before you finish: every number traces to the files, no dead ends, the reasoning box blocks empty submissions, the download works, and the file opens standalone. Then output the entire index.html in a single code block, nothing else.';}
+      else if(fmt==='dynamic'){out='You are an expert clinical educator running a simulated patient encounter for one learner: '+level+'. You run the ENTIRE encounter yourself: the patient role, the results, and the final debrief. Everything clinical comes from the attached files: '+source+'. Topic: '+topic+'.\n\nSETUP, before the encounter: confirm you have read the attached files, then display exactly this block:\nCASE LOADED: [case title from the files]\nLENGTH: this encounter runs until the learner types "encounter over"\nSTART: "You are the clinician. Introduce yourself and begin whenever ready."\nThen become the patient.\n\nGROUNDING RULES, non-negotiable: every clinical fact you reveal comes from the attached files, numbers copied exactly as published. If the learner asks about something the files do not specify, stay in character: the patient does not know, or that test was not done. Never invent a value. The intended path and its critical actions come from the files, including exact doses and timing.\n\nPATIENT ROLE RULES: first person, worried, sometimes vague, no medical jargon, answers off-topic questions realistically. Reveal only when asked, volunteer nothing. Exam findings only when the learner performs the exam, lab or imaging results only when ordered, with the files\' exact values. Track silently what was asked, ordered, and decided. Never confirm or deny hypotheses. Never break character unless the learner types "encounter over" or asks for the debrief.\n\nDEBRIEF when the encounter ends, break character and deliver in this order: (1) five domains, each rated Novice, Advanced Beginner, Competent, or Proficient with one sentence of evidence from what the learner actually did: information gathering, differential reasoning, diagnostic interpretation, management, communication; (2) what was missed from the intended path; (3) what was done unnecessarily; (4) the intended path step by step from the files; (5) the key teaching points, each tied to a moment in the encounter; (6) the single highest-value thing to practice next. Then offer: "Say \'again\' to restart."\n\nRun the case now, starting with the CASE LOADED block.';}
+      else if(fmt==='journal'){out='You are an academic fellowship director who runs journal club monthly and personally checks every number. Build a complete journal club teaching session for '+level+' from the attached sources only: '+source+'. Topic: '+topic+'.\n\nGROUNDING RULES, non-negotiable: every number comes from the attached sources, copied exactly, enrollment through adverse event rates. After every factual claim, cite in brackets which source and where, like [Trial, Table 2]. If a number is not in the sources, write "not in the provided sources" rather than estimating.\n\nDELIVER, in this order, with these headers: (1) ONE-LINE VERDICT, the finding and its practice-changing claim; (2) BACKGROUND, 5 bullets; (3) DESIGN TABLE, design, phase, centers, randomization, blinding, endpoints, subgroups, funding, each cited; (4) RESULTS THAT MATTER, primary endpoint absolute and relative, the 3 most meaningful secondary endpoints, and the adverse events a clinician will counsel about, each cited; (5) LIMITATIONS, at least 4, ranked by how much they threaten the conclusion, ending with what this trial cannot tell us; (6) WHAT THE GUIDELINE SAYS, cited; (7) DISCUSSION QUESTIONS, 5, escalating, each tied to a specific result or limitation; (8) BOARD-STYLE QUESTIONS, 5, single best answer with why each distractor is wrong and the citation; (9) FACILITATOR NOTES, the 3 places trainees misread this trial and one question to hold in reserve.';}
+      else if(fmt==='session'){out='You are a subspecialty educator building a 30-minute teaching session on a new treatment for '+level+', from the attached sources only: '+source+'. Topic: '+topic+'.\n\nGROUNDING RULES, non-negotiable: every clinical claim, dosing, schedule, monitoring, efficacy number, adverse event, and interaction comes from the attached sources with a bracketed citation like [Label, section 2]. If something is not in the sources, say "not specified in the provided sources." Never round or convert numbers.\n\nDELIVER, in this order, with these headers: (1) SESSION OBJECTIVES, 3, each observable; (2) WHAT CHANGED AND WHY IT MATTERS, 5 bullets; (3) THE EVIDENCE TABLE, primary endpoint with exact numbers, comparison group, key secondary endpoints, adverse-event profile, all cited; (4) PRACTICAL PRESCRIBING, starting dose and adjustments, monitoring and what to do about abnormal results, the 4 most important counseling points, interactions, each cited to the label; (5) COUNSELING PRACTICE SCRIPT, a 5-minute role-play with the patient\'s opening line, the 4 concerns the patient raises in order, and realistic patient wording; (6) FEEDBACK RUBRIC FOR THAT ROLE-PLAY, in this same prompt, 4 domains each rated Needs Work / Good / Excellent with one observable behavior per level, plus the 3 errors trainees most often make; (7) TAKE-HOME CARD, one page, 8 lines with the doses and monitoring values, cited; (8) TWO QUESTIONS, one to open the session, one to close it.';}
+      else if(fmt==='quiz'){out='You are an assessment writer for a health professions program. Build a 10-item single-best-answer quiz for '+level+' from the attached source only: '+source+'. Topic: '+topic+'.\n\nGROUNDING RULES, non-negotiable: every question must be answerable from the attached source alone. Each answer-key line ends with its citation in brackets, like [Guideline, section 3.2]. If two options could be defensible, rewrite the stem until only one is.\n\nDELIVER, in this order: (1) THE QUIZ, 10 items, mixed difficulty, 3 easy recall, 4 application, 3 that integrate two facts from different parts of the source, realistic clinical stems, 4 options each, no "all of the above," no negatively phrased stems; (2) THE ANSWER KEY, one block per item: the correct answer, one sentence on why each other option is wrong, and the citation; (3) THE MAP, a table showing which part of the source each question came from; (4) THE FLAGS, any item where the source is ambiguous or thin.';}
+      else if(fmt==='guide'){out='You are a learning specialist for a clinical fellowship. From the attached sources only: '+source+', build a study guide for one '+level+' preparing for a rotation or in-service exam on '+topic+'.\n\nGROUNDING RULES, non-negotiable: every fact cited to the attached sources in brackets. Nothing from memory. If the sources disagree, flag the disagreement rather than averaging it.\n\nDELIVER, in this order: (1) WHAT THEY MUST MASTER, the 8 highest-yield concepts, ranked, with one line on why each matters clinically; (2) THE GUIDE, each concept with the rule, the exception, the number to memorize, and a 3-sentence clinical example from the sources; (3) COMMON WRONG ANSWERS, for each concept, the misunderstanding phrased the way a trainee would actually think it; (4) RETRIEVAL SET, 15 questions with answers and citations, ordered from recall to integration, sized for a daily 10-minute review; (5) SELF-CHECK, a 6-item quiz with answers after a clear gap.';}
+      else if(fmt==='procedure'){out='You are a procedure educator. From the attached source only: '+source+', build the complete teaching material around one procedure for '+level+'. Topic: '+topic+'.\n\nGROUNDING RULES, non-negotiable: every step, indication, contraindication, dose, and complication cited to the attached source in brackets. If your memory disagrees with the source, the source wins. If the source is silent, say so.\n\nDELIVER, in this order: (1) PRE-BRIEF HANDOUT, one page: indications and contraindications, landmarks and danger zones, equipment, the numbered steps each with its failure mode, complications and their earliest signs, and the exact numbers, depths, doses, volumes, cited; (2) TALK-THROUGH SCRIPT, the 90-second verbal walkthrough written as spoken sentences; (3) DEBRIEF RUBRIC for after the supervised rep, 5 domains each rated Needs Work / Good / Excellent with one observable behavior per level; (4) THE 4 MOST COMMON ERRORS with their corrections; (5) LOG THE REP, a 5-line portfolio template.';}
+      else{out='You are a reflective-practice educator in a clinical fellowship. This prompt does two jobs in one: it writes the assignment for the learner, and it grades the submission against the same rubric it announced.\n\nAUDIENCE: '+level+'. TOPIC: the reflective brief covers '+topic+'.\n\nJOB 1, THE ASSIGNMENT, deliver this first: a reflective writing brief with a 500-word target and the exact structure: what happened in plain narrative, what you were thinking at two decision points, what you would do differently, and one question you are left holding. The audience is their program director, not a journal. Quote the rubric below in full so the learner sees exactly how it will be judged.\n\nTHE RUBRIC, quoted in both jobs: 4 domains, each rated Level 1 (descriptive) / Level 2 (examining) / Level 3 (integrative) with one observable marker per level: description with honest detail, analysis of own reasoning, connection to prior learning or literature, forward commitment to what they will actually change.\n\nJOB 2, THE FEEDBACK, when the educator pastes a submission after the words GRADE THIS: score each domain with two sentences of evidence quoting the submission, name the strongest sentence and why, name the one upgrade that would move the lowest domain up a level as a revision instruction, and end with one question that pushes deeper. Never invent quotes: if the submission is thin, score it honestly and say what is missing.';}
+      document.getElementById('pbOutput').textContent=out;
+    }
+    function copyBuiltPrompt(){
+      var t=document.getElementById('pbOutput').textContent;
+      if(t.indexOf('(fill in')===0){alert('Fill in the steps above and pick a format first.');return}
+      var d=document.createElement('textarea');d.value=t;document.body.appendChild(d);d.select();
+      try{document.execCommand('copy')}catch(e){}
+      document.body.removeChild(d);
+      var b=document.querySelector('#promptBuilder button.demo-link');var old=b.textContent;
+      b.textContent='Copied!';setTimeout(function(){b.textContent=old},1600);
+    }
+    ['pbLevel','pbSource','pbTopic','pbFormat'].forEach(function(i){var el=document.getElementById(i);if(el){el.addEventListener('input',buildPrompt);el.addEventListener('change',buildPrompt)}});
+    buildPrompt();
   window.addEventListener('beforeprint', function () {
   document.querySelectorAll('details.prompt-card').forEach(function (d) { d.open = true; });
 });

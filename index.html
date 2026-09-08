@@ -786,66 +786,7 @@ details.prompt-card[open] { background: #fbfcfe; }
         scroll through, you'll come back to these during the build block when you pick your tools.</p>
     </div>
 
-    <div class="beyond-box" id="caseMaterials" style="margin-top: 28px;">
-      <h3>Running Example: A Real, Peer-Reviewed Case (Download It)</h3>
-      <p>Everything in this objective uses one running example: a published MedEdPORTAL simulation case, <strong>Peritonsillar Abscess / Methemoglobinemia</strong> (Ashurst J, Goyke TE. <em>MedEdPORTAL.</em> 2013;9:9364. <a href="https://www.mededportal.org/doi/10.15766/mep_2374-8265.9364" target="_blank" rel="noopener">doi:10.15766/mep_2374-8265.9364</a>, used under its Creative Commons license for this non-commercial educational session). A sore throat becomes a peritonsillar abscess, and benzocaine spray during drainage triggers medication-induced methemoglobinemia. Four clinical states, a critical-actions checklist, real lab values, imaging, and a faculty evaluation rubric. <strong>This is what ground truth looks like:</strong> peer-reviewed, citable, expert-vetted.</p>
-      <table class="beyond-table">
-        <tr><th>Download</th><th>What's inside</th></tr>
-        <tr><td><a href="case-materials/pta-1-case-narrative.docx" download>1 · Case narrative</a></td><td>Learning objectives, 4 clinical states, critical-actions checklist, room and manikin setup</td></tr>
-        <tr><td><a href="case-materials/pta-2-lab-values.docx" download>2 · Lab values</a></td><td>CBC + CMP with deranged values (WBC 22.2, bands 12%)</td></tr>
-        <tr><td><a href="case-materials/pta-3-ekg.docx" download>3 · EKG</a></td><td>Sinus tachycardia rhythm strip</td></tr>
-        <tr><td><a href="case-materials/pta-4-ct-images.docx" download>4 · CT images</a></td><td>Neck imaging of the abscess</td></tr>
-        <tr><td><a href="case-materials/pta-5-chest-xray.docx" download>5 · Chest X-ray</a></td><td>Comparison film</td></tr>
-        <tr><td><a href="case-materials/pta-6-faculty-rubric.docx" download>6 · Faculty evaluation rubric</a></td><td>The published checklist for assessing learners on this case</td></tr>
-      </table>
-      <p><strong>How it threads through today:</strong> ① In Demo 1, Prompt 1 turns these files into the static case you will play. ② In Demo 2, the same published facts ride inside Prompt 2 as a live, dynamic encounter. ③ In the build block, they are ready-made source material for whatever you make.</p>
-      <p><em>De-identification note: these files are published teaching material with no real-patient identifiers. Your own case notes are not, de-identify before uploading anything to a consumer AI tool.</em></p>
-    </div>
-<h3>Demo 1: AI Builds the Static Case (~5 min)</h3>
-    <div class="demo-card">
-      <div class="demo-title">From Published Files to a Shareable Case, in One Prompt</div>
-      <div class="demo-desc">Instead of building it in H5P, AI writes the case as a single HTML file. Upload the six MedEdPORTAL files you just downloaded, paste Prompt 1 below, and out comes index.html: a complete branching scenario you can share with students by link, LMS, or email, no install, no code. Watch Diana build it once on screen, then play the finished version yourself as a student: click through the decisions, type your reasoning at each one, and on the debrief screen download your results file, exactly what your instructor would receive back. Static means every learner gets the same case with the same published numbers. On your phone? Pair with a laptop neighbor, or build it tonight: the prompt is saved right here.</div>
-    </div>
-      <details class="prompt-card" id="demoOnePrompt" style="margin-top: 14px;"><summary><span class="prompt-title">Prompt 1 · The Static Case Builder: Your Case as a Shareable HTML File</span><span class="prompt-hint">tap to expand</span></summary>
-    <div class="prompt-desc">The Demo 1 prompt, and it builds exactly what you just played: upload the six MedEdPORTAL files from the Running Example above (or any published case you have the right to use), paste this whole prompt, and the chatbot outputs one index.html file. A complete branching scenario: reasoning captured at every decision, a full debrief, and a results file the student downloads and hands back. Notice how much the prompt specifies. That is the lesson: the more you give the chatbot, the less you leave to chance.</div>
-    <pre>You are an expert in health professions education and a senior front-end developer. Your job: turn the attached published clinical case into a complete, self-contained interactive branching scenario that a teacher can share with students as a single HTML file.
-
-OUTPUT: one complete file named index.html. All CSS and JavaScript inline. No external libraries, no CDNs, no build step, no server. It must run by double-clicking the file or opening a shared link.
-
-GROUNDING RULES, non-negotiable:
-- Use ONLY clinical facts from the attached files: history, exam findings, vitals, lab values, imaging, critical actions, and the intended management path.
-- Copy numeric values EXACTLY as they appear in the files. Never invent, round, or improve a number.
-- If a detail you want to use is not in the files, leave it out rather than inventing it.
-- The intended, guideline-concordant management path comes from the files. If the files name specific critical actions with doses or timing, those actions appear on the optimal path with the files' exact wording.
-
-STRUCTURE, in this order:
-1. Title screen: case title, a two-to-three sentence stem using only the files' facts, the initial vitals exactly as published, and a Begin button.
-2. Decision points: at least 5. Each shows a short patient update with any new vitals or labs from the files, then 2 to 4 plausible options, including at least one tempting distractor the files' teaching points warn about.
-3. Before submitting each choice, the learner types one or two sentences of reasoning in a text box labeled "Why?". The choice only submits after the box has text.
-4. A consequence screen after every choice, labeled Optimal, Acceptable, or Problematic: what happens next clinically, why, and the next decision. Problematic choices still continue the case, and the patient's condition reflects the consequence.
-5. A final screen titled Debrief: the learner's full path step by step (decision, chosen option, classification, and their typed reasoning), the intended path from the files beside it, the key teaching points from the files, and the common learner errors the files list.
-
-INSTRUCTOR RESULTS FILE, a required feature:
-On the final Debrief screen, include a button labeled "Download results for your instructor." Clicking it generates and downloads a plain text file (JavaScript Blob and URL.createObjectURL, an anchor element with the download attribute) named case-results.txt containing: the case title and today's date; for every step, the decision, the option chosen, its classification, and the learner's typed reasoning; and a one-line summary with the count of optimal, acceptable, and problematic choices. Implement this entirely in JavaScript inside the same HTML file. This file is how the student hands their path back to the teacher.
-
-DESIGN:
-- Single column, max-width 700px, centered. Mobile-first: readable on a phone, tap targets at least 44px tall.
-- Clean palette: white background, dark blue headings (#2D5F7C), one warm accent for buttons (#E8833A), light gray cards with rounded corners.
-- Every screen replaces the previous one, no scrolling wall of pages. A "Start over" button on the debrief screen.
-- Plain, jargon-free patient language in case dialogue; clinical precision in consequence explanations.
-
-QUALITY CHECK BEFORE YOU FINISH:
-Re-read your output and confirm: (1) every number traces to the attached files; (2) every choice leads somewhere, no dead ends; (3) the reasoning box blocks submission until filled; (4) the download button produces a text file with all steps; (5) the file is complete and opens standalone. Then output the entire index.html in a single code block, nothing else.</pre>
-    <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
-  </details>
-    <div class="demo-card" style="margin-top: 14px;">
-      <div class="demo-title">Play It Now: The Finished Static Case</div>
-      <div class="demo-desc">This is the exact case Prompt 1 builds from: a 19-year-old with a sore throat he cannot swallow around, every number from the published MedEdPORTAL files, every branch specified in the prompt. Play it as a student: make the decisions, type your reasoning, and on the debrief screen press Download results for your instructor to see what your learners would hand back. What a static case does well: every learner sees the same case, the path is standardized, and the reasoning file makes thinking visible. What it cannot do: mimic reality. Real patients are not multiple choice, and this case only responds to what its author pre-imagined.</div>
-      <a href="workshop-branching-demo.html" class="demo-link" target="_blank">▶ Play the Static Case</a>
-      <div class="demo-meta">One shareable HTML file · Cost: $0 · Build time with Prompt 1: about a minute · Runs anywhere, no install</div>
-    </div>
-
-    <h3>Tool Reference: Content Creation Platforms</h3>
+  <h3>Tool Reference: Content Creation Platforms</h3>
     <table class="tool-table">
       <thead>
         <tr>
@@ -950,7 +891,66 @@ Re-read your output and confirm: (1) every number traces to the attached files; 
       </tbody>
     </table>
 
-  </section>
+    <div class="beyond-box" id="caseMaterials" style="margin-top: 28px;">
+      <h3>Running Example: A Real, Peer-Reviewed Case (Download It)</h3>
+      <p>For the next few activities I chose this particular case from MedEdPORTAL: a published simulation case, <strong>Peritonsillar Abscess / Methemoglobinemia</strong> (Ashurst J, Goyke TE. <em>MedEdPORTAL.</em> 2013;9:9364. <a href="https://www.mededportal.org/doi/10.15766/mep_2374-8265.9364" target="_blank" rel="noopener">doi:10.15766/mep_2374-8265.9364</a>, used under its Creative Commons license for this non-commercial educational session). A sore throat becomes a peritonsillar abscess, and benzocaine spray during drainage triggers medication-induced methemoglobinemia. Four clinical states, a critical-actions checklist, real lab values, imaging, and a faculty evaluation rubric. <strong>This is what ground truth looks like:</strong> peer-reviewed, citable, expert-vetted.</p>
+      <table class="beyond-table">
+        <tr><th>Download</th><th>What's inside</th></tr>
+        <tr><td><a href="case-materials/pta-1-case-narrative.docx" download>1 · Case narrative</a></td><td>Learning objectives, 4 clinical states, critical-actions checklist, room and manikin setup</td></tr>
+        <tr><td><a href="case-materials/pta-2-lab-values.docx" download>2 · Lab values</a></td><td>CBC + CMP with deranged values (WBC 22.2, bands 12%)</td></tr>
+        <tr><td><a href="case-materials/pta-3-ekg.docx" download>3 · EKG</a></td><td>Sinus tachycardia rhythm strip</td></tr>
+        <tr><td><a href="case-materials/pta-4-ct-images.docx" download>4 · CT images</a></td><td>Neck imaging of the abscess</td></tr>
+        <tr><td><a href="case-materials/pta-5-chest-xray.docx" download>5 · Chest X-ray</a></td><td>Comparison film</td></tr>
+        <tr><td><a href="case-materials/pta-6-faculty-rubric.docx" download>6 · Faculty evaluation rubric</a></td><td>The published checklist for assessing learners on this case</td></tr>
+      </table>
+      <p><strong>How it threads through today:</strong> ① In Demo 1, Prompt 1 turns these files into the static case you will play. ② In Demo 2, the same published facts ride inside Prompt 2 as a live, dynamic encounter. ③ In the build block, they are ready-made source material for whatever you make.</p>
+      <p><em>De-identification note: these files are published teaching material with no real-patient identifiers. Your own case notes are not, de-identify before uploading anything to a consumer AI tool.</em></p>
+    </div>
+<h3>Demo 1: AI Builds the Static Case (~5 min)</h3>
+    <div class="demo-card">
+      <div class="demo-title">From Published Files to a Shareable Case, in One Prompt</div>
+      <div class="demo-desc">Instead of building it in H5P, AI writes the case as a single HTML file. Upload the six MedEdPORTAL files you just downloaded, paste Prompt 1 below, and out comes index.html: a complete branching scenario you can share with students by link, LMS, or email, no install, no code. Watch Diana build it once on screen, then play the finished version yourself as a student: click through the decisions, type your reasoning at each one, and on the debrief screen download your results file, exactly what your instructor would receive back. Static means every learner gets the same case with the same published numbers. On your phone? Pair with a laptop neighbor, or build it tonight: the prompt is saved right here.</div>
+    </div>
+      <details class="prompt-card" id="demoOnePrompt" style="margin-top: 14px;"><summary><span class="prompt-title">Prompt 1 · The Static Case Builder: Your Case as a Shareable HTML File</span><span class="prompt-hint">tap to expand</span></summary>
+    <div class="prompt-desc">The Demo 1 prompt, and it builds exactly what you just played: upload the six MedEdPORTAL files from the Running Example above (or any published case you have the right to use), paste this whole prompt, and the chatbot outputs one index.html file. A complete branching scenario: reasoning captured at every decision, a full debrief, and a results file the student downloads and hands back. Notice how much the prompt specifies. That is the lesson: the more you give the chatbot, the less you leave to chance.</div>
+    <pre>You are an expert in health professions education and a senior front-end developer. Your job: turn the attached published clinical case into a complete, self-contained interactive branching scenario that a teacher can share with students as a single HTML file.
+
+OUTPUT: one complete file named index.html. All CSS and JavaScript inline. No external libraries, no CDNs, no build step, no server. It must run by double-clicking the file or opening a shared link.
+
+GROUNDING RULES, non-negotiable:
+- Use ONLY clinical facts from the attached files: history, exam findings, vitals, lab values, imaging, critical actions, and the intended management path.
+- Copy numeric values EXACTLY as they appear in the files. Never invent, round, or improve a number.
+- If a detail you want to use is not in the files, leave it out rather than inventing it.
+- The intended, guideline-concordant management path comes from the files. If the files name specific critical actions with doses or timing, those actions appear on the optimal path with the files' exact wording.
+
+STRUCTURE, in this order:
+1. Title screen: case title, a two-to-three sentence stem using only the files' facts, the initial vitals exactly as published, and a Begin button.
+2. Decision points: at least 5. Each shows a short patient update with any new vitals or labs from the files, then 2 to 4 plausible options, including at least one tempting distractor the files' teaching points warn about.
+3. Before submitting each choice, the learner types one or two sentences of reasoning in a text box labeled "Why?". The choice only submits after the box has text.
+4. A consequence screen after every choice, labeled Optimal, Acceptable, or Problematic: what happens next clinically, why, and the next decision. Problematic choices still continue the case, and the patient's condition reflects the consequence.
+5. A final screen titled Debrief: the learner's full path step by step (decision, chosen option, classification, and their typed reasoning), the intended path from the files beside it, the key teaching points from the files, and the common learner errors the files list.
+
+INSTRUCTOR RESULTS FILE, a required feature:
+On the final Debrief screen, include a button labeled "Download results for your instructor." Clicking it generates and downloads a plain text file (JavaScript Blob and URL.createObjectURL, an anchor element with the download attribute) named case-results.txt containing: the case title and today's date; for every step, the decision, the option chosen, its classification, and the learner's typed reasoning; and a one-line summary with the count of optimal, acceptable, and problematic choices. Implement this entirely in JavaScript inside the same HTML file. This file is how the student hands their path back to the teacher.
+
+DESIGN:
+- Single column, max-width 700px, centered. Mobile-first: readable on a phone, tap targets at least 44px tall.
+- Clean palette: white background, dark blue headings (#2D5F7C), one warm accent for buttons (#E8833A), light gray cards with rounded corners.
+- Every screen replaces the previous one, no scrolling wall of pages. A "Start over" button on the debrief screen.
+- Plain, jargon-free patient language in case dialogue; clinical precision in consequence explanations.
+
+QUALITY CHECK BEFORE YOU FINISH:
+Re-read your output and confirm: (1) every number traces to the attached files; (2) every choice leads somewhere, no dead ends; (3) the reasoning box blocks submission until filled; (4) the download button produces a text file with all steps; (5) the file is complete and opens standalone. Then output the entire index.html in a single code block, nothing else.</pre>
+    <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
+  </details>
+    <div class="demo-card" style="margin-top: 14px;">
+      <div class="demo-title">Play It Now: The Finished Static Case</div>
+      <div class="demo-desc">This is the exact case Prompt 1 builds from: a 19-year-old with a sore throat he cannot swallow around, every number from the published MedEdPORTAL files, every branch specified in the prompt. Play it as a student: make the decisions, type your reasoning, and on the debrief screen press Download results for your instructor to see what your learners would hand back. What a static case does well: every learner sees the same case, the path is standardized, and the reasoning file makes thinking visible. What it cannot do: mimic reality. Real patients are not multiple choice, and this case only responds to what its author pre-imagined.</div>
+      <a href="workshop-branching-demo.html" class="demo-link" target="_blank">▶ Play the Static Case</a>
+      <div class="demo-meta">One shareable HTML file · Cost: $0 · Build time with Prompt 1: about a minute · Runs anywhere, no install</div>
+    </div>
+
+      </section>
 
   <!-- TOPIC 3: AI CHATBOTS -->
   <section class="topic" id="topic3">

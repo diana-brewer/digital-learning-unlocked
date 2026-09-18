@@ -491,13 +491,16 @@
     }
 
     .fidelity-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 12px;
       margin: 16px 0;
     }
 
     .fidelity-card {
+      flex: 1 1 210px;
+      max-width: calc(33.333% - 8px);
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -692,7 +695,11 @@
       }
 
       .fidelity-grid {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+      }
+
+      .fidelity-card {
+        max-width: none;
       }
     }
   

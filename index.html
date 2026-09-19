@@ -1138,103 +1138,321 @@ Run the case now, starting with the CASE LOADED block.</pre>
         
     <h3>The Prompt Pack: Take-Home Templates</h3>
       <p style="margin: 8px 0 18px; color: #5B6B7C; font-size: 0.9rem;">Six prompts. Tap a title to expand it, then copy. They also print fully on paper.</p>
-  <p>Prompts 1 and 2, the ones we built live in Sections 2 and 3, stay there, next to their demos. The six below are the take-home pack: pick one for the build block at the end of the session, or for Monday morning. Every one of them runs against files you attach and cites what it uses, and every one that involves learner work has the feedback built into the same prompt. Notice how much each prompt specifies, roles, rules, output order, citations, quality checks: the more you give the chatbot, the less you leave to chance.</p>
+  <p>Prompts 1 and 2, the ones we built live in Sections 2 and 3, stay there, next to their demos. The six below are the take-home pack: pick one for the build block at the end of the session, or for Monday morning. Every one of them runs against files you attach and cites what it uses, and every one that involves learner work has the feedback built into the same prompt. Each one also carries the same four safeguards, and they are worth knowing before you paste: it <strong>stops and asks</strong> if the files you attached are missing, unreadable, or do not actually cover the topic, rather than filling the gap from general knowledge; it leaves an <strong>empty section standing</strong> and writes "not in the provided sources" under it instead of quietly dropping it; it runs a <strong>quality gate</strong> over its own numbers and citations before it answers; and it ends with a <strong>NOT IN THE SOURCES</strong> list of everything you asked for that your files did not contain. That last one is the one to read first: it tells you what to go find before you hand the material to learners. Notice how much each prompt specifies, roles, rules, output order, citations, quality checks: the more you give the chatbot, the less you leave to chance.</p>
 
       <details class="prompt-card" id="prompt3"><summary><span class="prompt-title">Prompt 3 · Journal Club in One Prompt</span><span class="prompt-hint">tap to expand</span></summary>
     <div class="prompt-desc">For the build block and for Monday: upload a trial paper and its guideline or label context (the AML notebook's six sources are exactly this), paste this, and get the whole package: the numbers with citations, the limitations ranked, discussion questions, board-style questions with a cited answer key, and facilitator notes.</div>
-    <pre>You are an academic fellowship director who runs journal club monthly and personally checks every number. Build a complete journal club teaching session from the attached sources: the trial paper and any guideline, label, or registry documents.
+    <pre>You are an academic fellowship director who runs journal club monthly and personally checks every number before it goes in front of a room.
 
-GROUNDING RULES, non-negotiable:
-- Every number you state comes from the attached sources, copied exactly: enrollment, demographics, endpoints, effect sizes, confidence intervals, p-values, adverse event rates.
-- After every factual claim, cite in brackets which attached source and where, like [Trial, Table 2].
-- If a number is not in the sources, write "not in the provided sources" rather than estimating.
+Build a complete journal club teaching session from the attached sources: the trial paper, plus any guideline, label, or registry document you attach with it.
 
-DELIVER, in this order, with these headers:
-1. ONE-LINE VERDICT: the trial's finding and its practice-changing claim, in one sentence.
-2. BACKGROUND, 5 bullets: the clinical problem, the prior standard, the knowledge gap, the intervention's mechanism in plain language, and why this trial mattered.
-3. DESIGN TABLE: study design, phase, centers, enrollment dates, randomization, blinding, primary endpoint, key secondary endpoints, prespecified subgroups, and funding source, each cited.
-4. RESULTS THAT MATTER: the primary endpoint with exact numbers, absolute and relative; the 3 most clinically meaningful secondary endpoints; and the adverse events a clinician will actually counsel patients about. Each cited.
-5. LIMITATIONS, honestly: at least 4, ranked by how much they threaten the conclusion, ending with what this trial cannot tell us.
-6. WHAT THE GUIDELINE SAYS: how the attached guideline or label incorporated, or did not incorporate, this evidence, cited.
-7. DISCUSSION QUESTIONS, 5, escalating in difficulty, each tied to a specific result or limitation.
-8. BOARD-STYLE QUESTIONS, 5, single best answer: stem, 4 options, the correct answer, one sentence on why each distractor is wrong, and the citation for the correct answer.
-9. FACILITATOR NOTES: the 3 places trainees usually misread this trial, and the one question to hold in reserve for a quiet room.</pre>
+AUDIENCE: clinical fellows and APP fellows, journal club regulars rather than statisticians.
+
+GROUNDING CONTRACT, read this before you write anything:
+1. The attached sources are the only source of clinical fact. Your own knowledge may shape how you explain something, but it may never supply a fact, number, dose, threshold, or recommendation that is not in the sources.
+2. If the attachments are missing, unreadable, or do not actually cover this topic, stop and tell me what to attach instead. Do not produce the deliverable from general knowledge, and do not produce a partial one silently.
+3. If a required section cannot be completed from the sources, keep its header in place and write "not in the provided sources" beneath it. Never drop a section, and never fill one from memory.
+4. If two sources disagree, show both and label the disagreement. Never average them, and never pick a winner silently.
+5. If you must choose between a fluent sentence and a faithful one, choose faithful. Flag the awkwardness rather than smoothing it over.
+
+CITATION RULES:
+- Cite the smallest locatable unit you can name: section, table, figure, or page. Format: [source, location].
+- One citation per factual claim, not one per paragraph and not one per section.
+- Never cite a source I did not attach. Never invent, guess, or reconstruct a citation.
+- If you cannot point to where a claim came from, delete the claim rather than citing loosely.
+
+NUMBER RULES:
+- Copy every number digit for digit, in its original units, exactly as the source states it.
+- Never round, convert units, recompute, or restate a number in another form.
+- Keep every number's qualifier attached: which population, which timepoint, which analysis. A hazard ratio is not an odds ratio, and an intention-to-treat result is not a per-protocol result.
+- Before you finish, re-read every number you wrote and check it against the source, one at a time.
+
+AUDIENCE RULES:
+- Write for exactly the audience named above. Calibrate vocabulary, assumed prior knowledge, and depth of explanation to that level.
+- Define any term this audience would not already know, in one clause, the first time it appears.
+- Prefer plain language to jargon, and where you do use a term of art, use it the way the sources use it.
+
+PRIVACY: never add identifying details of your own, and never reproduce a name, record number, date of birth, or other direct identifier from a source. Replace it with a placeholder in square brackets.
+
+DELIVER, in this order, with these exact headers:
+1. ONE-LINE VERDICT: the trial's finding and its practice-changing claim, in one sentence a busy clinician could repeat from memory.
+2. BACKGROUND, 5 bullets: the clinical problem, the prior standard, the knowledge gap, the intervention's mechanism in plain language, and why this trial mattered enough to run.
+3. DESIGN TABLE: one row per element, covering study design, phase, centers, enrollment dates, randomization method, blinding, primary endpoint and how it was defined, key secondary endpoints, prespecified subgroups, statistical assumptions, and funding source. Every cell filled from the sources or marked "not reported."
+4. RESULTS THAT MATTER: the primary endpoint with exact numbers, absolute and relative; the 3 most clinically meaningful secondary endpoints; and the adverse events a clinician will actually counsel patients about, with their rates and grades. Each cited.
+5. LIMITATIONS, honestly: at least 4, ranked by how much each one threatens the conclusion, each naming the specific result or design choice it affects, and ending with a plain statement of what this trial cannot tell us.
+6. WHAT THE GUIDELINE SAYS: how the attached guideline or label placed this evidence in context, and whether it agrees, hedges, or is silent. Cited.
+7. DISCUSSION QUESTIONS, 5, escalating in difficulty, each tied to a specific result or limitation, and each with a one-line note on the answer you are steering the room toward.
+8. BOARD-STYLE QUESTIONS, 5, single best answer: stem, 4 options, the correct answer, one sentence on why each of the other 3 is wrong, and the citation that supports the keyed answer. Exactly one option must be defensible from the sources; if two are, rewrite the question.
+9. FACILITATOR NOTES: the 3 places trainees usually misread this trial, what the misreading sounds like out loud, and the one question to hold in reserve for a quiet room.
+
+QUALITY GATE BEFORE YOU OUTPUT, do this silently and fix anything that fails:
+(1) every number traced back to a source, checked one at a time;
+(2) every bracketed citation pointing at a real location in a source I attached;
+(3) no claim resting on your own memory or general medical knowledge;
+(4) every header above present, spelled and ordered exactly as written;
+(5) nothing invented to fill a gap.
+
+OUTPUT FORMAT
+Plain text, with the numbered headers exactly as written above, in that order. Do not merge, rename, reorder, skip, or add sections.
+
+FINAL SECTION, always, under this exact header: NOT IN THE SOURCES
+List everything I asked for that the sources did not contain, and for each gap the single most useful source I could attach to close it. If the sources genuinely covered everything asked for, write "None." Do not write "None" otherwise.</pre>
     <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
   </details>
   <details class="prompt-card" id="prompt4"><summary><span class="prompt-title">Prompt 4 · New-Treatment Teaching Session</span><span class="prompt-hint">tap to expand</span></summary>
     <div class="prompt-desc">When a drug or guideline lands mid-year: upload the label, the pivotal trial, and the guideline chapter, and get a complete 30-minute session, with a counseling practice script and its feedback rubric built into the same prompt. The AML notebook again is a ready-made example.</div>
-    <pre>You are a subspecialty educator building a 30-minute teaching session on a new treatment, from the attached sources only: the FDA label or approval letter, the pivotal trial, and the guideline.
+    <pre>You are a subspecialty educator building a 30-minute teaching session on a new treatment, from the attached sources only: the FDA label or approval letter, the pivotal trial, and the guideline chapter.
 
-GROUNDING RULES, non-negotiable: every clinical claim, dosing, schedule, monitoring, efficacy number, adverse event, and interaction comes from the attached sources with a bracketed citation like [Label, section 2] or [Trial, Table 3]. If something is not in the sources, say "not specified in the provided sources." Never round or convert numbers.
+AUDIENCE: clinical fellows and APP fellows who will prescribe this treatment within the year.
 
-DELIVER, in this order, with these headers:
-1. SESSION OBJECTIVES, 3, each observable: "by the end, the learner can..."
+GROUNDING CONTRACT, read this before you write anything:
+1. The attached sources are the only source of clinical fact. Your own knowledge may shape how you explain something, but it may never supply a fact, number, dose, threshold, or recommendation that is not in the sources.
+2. If the attachments are missing, unreadable, or do not actually cover this topic, stop and tell me what to attach instead. Do not produce the deliverable from general knowledge, and do not produce a partial one silently.
+3. If a required section cannot be completed from the sources, keep its header in place and write "not in the provided sources" beneath it. Never drop a section, and never fill one from memory.
+4. If two sources disagree, show both and label the disagreement. Never average them, and never pick a winner silently.
+5. If you must choose between a fluent sentence and a faithful one, choose faithful. Flag the awkwardness rather than smoothing it over.
+
+CITATION RULES:
+- Cite the smallest locatable unit you can name: section, table, figure, or page. Format: [source, location].
+- One citation per factual claim, not one per paragraph and not one per section.
+- Never cite a source I did not attach. Never invent, guess, or reconstruct a citation.
+- If you cannot point to where a claim came from, delete the claim rather than citing loosely.
+
+NUMBER RULES:
+- Copy every number digit for digit, in its original units, exactly as the source states it.
+- Never round, convert units, recompute, or restate a number in another form.
+- Keep every number's qualifier attached: which population, which timepoint, which analysis. A hazard ratio is not an odds ratio, and an intention-to-treat result is not a per-protocol result.
+- Before you finish, re-read every number you wrote and check it against the source, one at a time.
+
+AUDIENCE RULES:
+- Write for exactly the audience named above. Calibrate vocabulary, assumed prior knowledge, and depth of explanation to that level.
+- Define any term this audience would not already know, in one clause, the first time it appears.
+- Prefer plain language to jargon, and where you do use a term of art, use it the way the sources use it.
+
+PRIVACY: never add identifying details of your own, and never reproduce a name, record number, date of birth, or other direct identifier from a source. Replace it with a placeholder in square brackets.
+
+DELIVER, in this order, with these exact headers:
+1. SESSION OBJECTIVES, 3, each observable and written as "by the end, the learner can ...".
 2. WHAT CHANGED AND WHY IT MATTERS, 5 bullets: the clinical gap before this treatment, the mechanism in plain language, and the evidence that got it approved.
-3. THE EVIDENCE TABLE: the primary endpoint with exact numbers, the comparison group, the key secondary endpoints, and the adverse-event profile, all cited.
-4. PRACTICAL PRESCRIBING: starting dose and adjustments, the monitoring schedule and what to do about abnormal results, the 4 most important counseling points, and interactions or contraindications, each cited to the label.
-5. COUNSELING PRACTICE SCRIPT: a 5-minute role-play in which a fellow counsels a patient starting this treatment. Include the patient's opening line, the 4 concerns the patient raises in order, and realistic patient wording.
-6. FEEDBACK RUBRIC FOR THAT ROLE-PLAY, in this same prompt: 4 domains (accuracy of information, plain-language explanation, addressing concerns, shared decision-making), each rated Needs Work / Good / Excellent with one observable behavior that defines each level, plus the 3 errors trainees most often make in this conversation.
-7. TAKE-HOME CARD, one page: 8 lines a fellow can keep on service, with the doses and monitoring values, cited.
-8. TWO QUESTIONS: one to open the session, one to close it.</pre>
+3. THE EVIDENCE TABLE: the primary endpoint with exact numbers and its comparator, the key secondary endpoints, and the adverse-event profile with rates and grades. All cited.
+4. PRACTICAL PRESCRIBING: starting dose and any adjustments, the monitoring schedule, what to do about each abnormal result the label names, the 4 most important counseling points, and the interactions and contraindications that change management. Each cited to the label.
+5. COUNSELING PRACTICE SCRIPT: a 5-minute role-play in which a fellow counsels a patient starting this treatment. Include the patient's opening line, the 4 concerns the patient raises in order, and realistic patient wording. The concerns must come from the labeled adverse events and monitoring burden in the sources, not from generic patient worries. Write it as a script, not a rubric: do not coach the fellow mid-scene.
+6. FEEDBACK RUBRIC FOR THAT ROLE-PLAY, in this same prompt: 4 domains (accuracy of information, plain-language explanation, addressing concerns, shared decision-making), each rated Needs Work / Good / Excellent with one observable behavior that defines each level, plus the 3 errors trainees most often make in this conversation and what to say instead.
+7. TAKE-HOME CARD, one page: 8 lines a fellow can keep on service, carrying the doses and monitoring values, each cited.
+8. TWO QUESTIONS: one to open the session, one to close it.
+
+QUALITY GATE BEFORE YOU OUTPUT, do this silently and fix anything that fails:
+(1) every number traced back to a source, checked one at a time;
+(2) every bracketed citation pointing at a real location in a source I attached;
+(3) no claim resting on your own memory or general medical knowledge;
+(4) every header above present, spelled and ordered exactly as written;
+(5) nothing invented to fill a gap.
+
+OUTPUT FORMAT
+Plain text, with the numbered headers exactly as written above, in that order. Do not merge, rename, reorder, skip, or add sections.
+
+FINAL SECTION, always, under this exact header: NOT IN THE SOURCES
+List everything I asked for that the sources did not contain, and for each gap the single most useful source I could attach to close it. If the sources genuinely covered everything asked for, write "None." Do not write "None" otherwise.</pre>
     <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
   </details>
   <details class="prompt-card" id="prompt5"><summary><span class="prompt-title">Prompt 5 · The Cited Flashcard Builder</span><span class="prompt-hint">tap to expand</span></summary>
     <div class="prompt-desc">Retrieval practice with receipts. Upload any guideline, chapter, or your own de-identified notes, and get a complete spaced-repetition flashcard set where every card cites the source line it came from. This one is for building durable memory, not for grading: the assessment story in this session lives in the reasoning cases, so the quiz maker stays home. Quizlet and Brainscape (Section 2's tool tables) will take the deck, or learners can run it on paper.</div>
     <pre>You are a learning scientist who designs spaced-repetition flashcard decks for clinical fellows. Build a complete flashcard set from the attached source only.
 
-GROUNDING RULES, non-negotiable: every card must be answerable from the attached source alone, and every card ends with its citation in brackets, like [Guideline, section 3.2]. If the source is ambiguous or thin on a fact, do not make a card for it. Never round or convert a number.
+AUDIENCE: clinical fellows and APP fellows studying for a rotation or an in-service exam.
+
+GROUNDING CONTRACT, read this before you write anything:
+1. The attached sources are the only source of clinical fact. Your own knowledge may shape how you explain something, but it may never supply a fact, number, dose, threshold, or recommendation that is not in the sources.
+2. If the attachments are missing, unreadable, or do not actually cover this topic, stop and tell me what to attach instead. Do not produce the deliverable from general knowledge, and do not produce a partial one silently.
+3. If a required section cannot be completed from the sources, keep its header in place and write "not in the provided sources" beneath it. Never drop a section, and never fill one from memory.
+4. If two sources disagree, show both and label the disagreement. Never average them, and never pick a winner silently.
+5. If you must choose between a fluent sentence and a faithful one, choose faithful. Flag the awkwardness rather than smoothing it over.
+
+CITATION RULES:
+- Cite the smallest locatable unit you can name: section, table, figure, or page. Format: [source, location].
+- One citation per factual claim, not one per paragraph and not one per section.
+- Never cite a source I did not attach. Never invent, guess, or reconstruct a citation.
+- If you cannot point to where a claim came from, delete the claim rather than citing loosely.
+
+NUMBER RULES:
+- Copy every number digit for digit, in its original units, exactly as the source states it.
+- Never round, convert units, recompute, or restate a number in another form.
+- Keep every number's qualifier attached: which population, which timepoint, which analysis. A hazard ratio is not an odds ratio, and an intention-to-treat result is not a per-protocol result.
+- Before you finish, re-read every number you wrote and check it against the source, one at a time.
+
+AUDIENCE RULES:
+- Write for exactly the audience named above. Calibrate vocabulary, assumed prior knowledge, and depth of explanation to that level.
+- Define any term this audience would not already know, in one clause, the first time it appears.
+- Prefer plain language to jargon, and where you do use a term of art, use it the way the sources use it.
+
+PRIVACY: never add identifying details of your own, and never reproduce a name, record number, date of birth, or other direct identifier from a source. Replace it with a placeholder in square brackets.
 
 CARD DESIGN RULES:
 - Atomic: one fact per card. If a card needs two sentences to answer, split it.
 - Question on the front, answer on the back. The back holds the fact plus the one qualifier that makes it safe to use clinically: the dose, the exception, the cutoff.
 - Prefer the numbers, thresholds, doses, classifications, and definitions a clinician must recall without looking them up.
 - Include 4 cards that deliberately contrast the two most commonly confused items in the source: which one for which patient, side by side.
-- No trick cards, no trivia, no card whose answer is a paragraph.
+- No trick cards, no trivia, and no card whose answer is a paragraph.
+- No card that tests your own clinical judgment. Every answer must be findable in the source exactly as you state it.
 
-DELIVER, in this order:
-1. THE DECK: 30 cards, numbered, formatted as FRONT: ... | BACK: ... | [citation].
-2. THE CONFUSION PAIRS: the 2 items from this source most often mixed up in practice, with a one-line rule for keeping them apart.
-3. THE REVIEW SCHEDULE: a two-week spaced-repetition plan, day 1, day 3, day 7, day 14, stating what to re-test at each pass and how to space new cards in.
-4. THE FLAGS: any area where the source is thin, so the teacher knows what to double-check or supplement before handing the deck out.</pre>
+DELIVER, in this order, with these exact headers:
+1. THE DECK: 30 cards, numbered, each formatted exactly as FRONT: ... | BACK: ... | [citation]. If the source cannot honestly support 30 atomic cards, build fewer, say how many you built and why, and stop there rather than padding the deck.
+2. THE CONFUSION PAIRS: the 2 items from this source most often mixed up in practice, with a one-line rule for telling them apart.
+3. THE REVIEW SCHEDULE: a two-week spaced-repetition plan (day 1, day 3, day 7, day 14), stating what to re-test at each pass and how to introduce new cards.
+4. THE IMPORT FILE: the same deck as two tab-separated columns, the front, then the back carrying its citation, so it can be pasted straight into Quizlet, Anki, or Brainscape without retyping.
+5. THE FLAGS: any area where the source is thin, ambiguous, or out of date, so the teacher knows what to double-check before handing the deck out.
+
+QUALITY GATE BEFORE YOU OUTPUT, do this silently and fix anything that fails:
+(1) every number traced back to a source, checked one at a time;
+(2) every bracketed citation pointing at a real location in a source I attached;
+(3) no claim resting on your own memory or general medical knowledge;
+(4) every header above present, spelled and ordered exactly as written;
+(5) nothing invented to fill a gap.
+
+OUTPUT FORMAT
+Plain text, with the numbered headers exactly as written above, in that order. Do not merge, rename, reorder, skip, or add sections.
+
+FINAL SECTION, always, under this exact header: NOT IN THE SOURCES
+List everything I asked for that the sources did not contain, and for each gap the single most useful source I could attach to close it. If the sources genuinely covered everything asked for, write "None." Do not write "None" otherwise.</pre>
     <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
   </details>
   <details class="prompt-card" id="prompt6"><summary><span class="prompt-title">Prompt 6 · The Study Guide That Builds Its Own Review Set</span><span class="prompt-hint">tap to expand</span></summary>
     <div class="prompt-desc">Works in NotebookLM against your uploaded sources, or in any chatbot with files attached. A ranked concept guide, the common wrong answers, and a 15-question retrieval set for daily 10-minute reviews, everything cited.</div>
-    <pre>You are a learning specialist for a clinical fellowship. From the attached sources only, build a study guide for one fellow preparing for a rotation or in-service exam.
+    <pre>You are a learning specialist for a clinical fellowship. Build a study guide from the attached sources only.
 
-GROUNDING RULES, non-negotiable: every fact cited to the attached sources in brackets. Nothing from memory. If the sources disagree, flag the disagreement rather than averaging it.
+AUDIENCE: one clinical fellow preparing for a rotation or an in-service exam.
 
-DELIVER, in this order:
-1. WHAT THEY MUST MASTER: the 8 highest-yield concepts in the sources, ranked, with one line on why each matters clinically.
-2. THE GUIDE: each concept as a short section: the rule, the exception, the number to memorize, and a 3-sentence clinical example drawn from the sources.
-3. COMMON WRONG ANSWERS: for each concept, the misunderstanding that makes trainees miss it, phrased the way a trainee would actually think it.
-4. RETRIEVAL SET: 15 questions, each paired with its answer and citation, ordered from simple recall to integration, sized for a daily 10-minute review.
-5. SELF-CHECK: a 6-item self-test at the end, answers listed after a clear gap at the bottom.</pre>
+GROUNDING CONTRACT, read this before you write anything:
+1. The attached sources are the only source of clinical fact. Your own knowledge may shape how you explain something, but it may never supply a fact, number, dose, threshold, or recommendation that is not in the sources.
+2. If the attachments are missing, unreadable, or do not actually cover this topic, stop and tell me what to attach instead. Do not produce the deliverable from general knowledge, and do not produce a partial one silently.
+3. If a required section cannot be completed from the sources, keep its header in place and write "not in the provided sources" beneath it. Never drop a section, and never fill one from memory.
+4. If two sources disagree, show both and label the disagreement. Never average them, and never pick a winner silently.
+5. If you must choose between a fluent sentence and a faithful one, choose faithful. Flag the awkwardness rather than smoothing it over.
+
+CITATION RULES:
+- Cite the smallest locatable unit you can name: section, table, figure, or page. Format: [source, location].
+- One citation per factual claim, not one per paragraph and not one per section.
+- Never cite a source I did not attach. Never invent, guess, or reconstruct a citation.
+- If you cannot point to where a claim came from, delete the claim rather than citing loosely.
+
+NUMBER RULES:
+- Copy every number digit for digit, in its original units, exactly as the source states it.
+- Never round, convert units, recompute, or restate a number in another form.
+- Keep every number's qualifier attached: which population, which timepoint, which analysis. A hazard ratio is not an odds ratio, and an intention-to-treat result is not a per-protocol result.
+- Before you finish, re-read every number you wrote and check it against the source, one at a time.
+
+AUDIENCE RULES:
+- Write for exactly the audience named above. Calibrate vocabulary, assumed prior knowledge, and depth of explanation to that level.
+- Define any term this audience would not already know, in one clause, the first time it appears.
+- Prefer plain language to jargon, and where you do use a term of art, use it the way the sources use it.
+
+PRIVACY: never add identifying details of your own, and never reproduce a name, record number, date of birth, or other direct identifier from a source. Replace it with a placeholder in square brackets.
+
+DELIVER, in this order, with these exact headers:
+1. WHAT THEY MUST MASTER: the 8 highest-yield concepts in the sources, ranked, each with one line on why it matters clinically.
+2. THE GUIDE: each concept as a short section carrying the rule, the exception, the number to memorize, and a 3-sentence clinical example drawn from the sources.
+3. COMMON WRONG ANSWERS: for each concept, the misunderstanding that makes trainees miss it, phrased the way a trainee would actually think it, and the one-line correction.
+4. RETRIEVAL SET: 15 questions, each paired with its answer and citation, ordered from simple recall to integration, sized so the whole set fits a 10-minute daily review.
+5. SELF-CHECK: a 6-item self-test at the end, with the answers listed after a clear gap at the bottom of the document.
+
+QUALITY GATE BEFORE YOU OUTPUT, do this silently and fix anything that fails:
+(1) every number traced back to a source, checked one at a time;
+(2) every bracketed citation pointing at a real location in a source I attached;
+(3) no claim resting on your own memory or general medical knowledge;
+(4) every header above present, spelled and ordered exactly as written;
+(5) nothing invented to fill a gap.
+
+OUTPUT FORMAT
+Plain text, with the numbered headers exactly as written above, in that order. Do not merge, rename, reorder, skip, or add sections.
+
+FINAL SECTION, always, under this exact header: NOT IN THE SOURCES
+List everything I asked for that the sources did not contain, and for each gap the single most useful source I could attach to close it. If the sources genuinely covered everything asked for, write "None." Do not write "None" otherwise.</pre>
     <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
   </details>
   <details class="prompt-card" id="prompt7"><summary><span class="prompt-title">Prompt 7 · The Procedure Pre-Brief</span><span class="prompt-hint">tap to expand</span></summary>
     <div class="prompt-desc">Upload the chapter, guideline, or institutional policy for a procedure, and get the pre-brief handout, the 90-second talk-through, the debrief rubric for after the supervised rep, and the portfolio log line, all in one prompt.</div>
-    <pre>You are a procedure educator. From the attached source only, the guideline, textbook chapter, or policy for the procedure, build the complete teaching material around one procedure.
+    <pre>You are a procedure educator. Build the complete teaching material around one procedure, from the attached source only: the guideline, textbook chapter, or institutional policy.
 
-GROUNDING RULES, non-negotiable: every step, indication, contraindication, dose, and complication cited to the attached source in brackets. If your memory disagrees with the source, the source wins. If the source is silent on something, say so.
+AUDIENCE: clinical fellows and APP fellows learning this procedure under supervision.
 
-DELIVER, in this order:
-1. PRE-BRIEF HANDOUT, one page: indications and contraindications; the landmarks and the danger zones the source names; the equipment list; the steps in order, numbered, each with its failure mode; the complications to watch for and their earliest signs; the exact numbers, depths, doses, and volumes, with citations.
-2. TALK-THROUGH SCRIPT: the 90-second verbal walkthrough a learner should be able to recite before touching the patient, written as spoken sentences.
+GROUNDING CONTRACT, read this before you write anything:
+1. The attached sources are the only source of clinical fact. Your own knowledge may shape how you explain something, but it may never supply a fact, number, dose, threshold, or recommendation that is not in the sources.
+2. If the attachments are missing, unreadable, or do not actually cover this topic, stop and tell me what to attach instead. Do not produce the deliverable from general knowledge, and do not produce a partial one silently.
+3. If a required section cannot be completed from the sources, keep its header in place and write "not in the provided sources" beneath it. Never drop a section, and never fill one from memory.
+4. If two sources disagree, show both and label the disagreement. Never average them, and never pick a winner silently.
+5. If you must choose between a fluent sentence and a faithful one, choose faithful. Flag the awkwardness rather than smoothing it over.
+
+CITATION RULES:
+- Cite the smallest locatable unit you can name: section, table, figure, or page. Format: [source, location].
+- One citation per factual claim, not one per paragraph and not one per section.
+- Never cite a source I did not attach. Never invent, guess, or reconstruct a citation.
+- If you cannot point to where a claim came from, delete the claim rather than citing loosely.
+
+NUMBER RULES:
+- Copy every number digit for digit, in its original units, exactly as the source states it.
+- Never round, convert units, recompute, or restate a number in another form.
+- Keep every number's qualifier attached: which population, which timepoint, which analysis. A hazard ratio is not an odds ratio, and an intention-to-treat result is not a per-protocol result.
+- Before you finish, re-read every number you wrote and check it against the source, one at a time.
+
+AUDIENCE RULES:
+- Write for exactly the audience named above. Calibrate vocabulary, assumed prior knowledge, and depth of explanation to that level.
+- Define any term this audience would not already know, in one clause, the first time it appears.
+- Prefer plain language to jargon, and where you do use a term of art, use it the way the sources use it.
+
+PRIVACY: never add identifying details of your own, and never reproduce a name, record number, date of birth, or other direct identifier from a source. Replace it with a placeholder in square brackets.
+
+DELIVER, in this order, with these exact headers:
+1. PRE-BRIEF HANDOUT, one page: indications and contraindications; the landmarks and the danger zones the source names; the equipment list; the steps in order, numbered, each with its failure mode; the complications to watch for and their earliest signs; and the exact numbers, depths, doses, and volumes. All cited.
+2. TALK-THROUGH SCRIPT: the 90-second verbal walkthrough a learner should be able to recite before touching the patient, written as spoken sentences, not bullet points.
 3. DEBRIEF RUBRIC, for after the supervised rep: 5 domains (preparation, technical sequence, situational awareness, communication, response to difficulty), each rated Needs Work / Good / Excellent with one observable behavior per level.
-4. THE 4 MOST COMMON ERRORS for this procedure from the source, each with its correction.
-5. LOG THE REP: a 5-line template the learner fills in after the rep (date, supervision level, what went well, what to change, readiness for the next level), ready to copy into a portfolio.</pre>
+4. THE 4 MOST COMMON ERRORS for this procedure from the source, each with what it looks like in the moment and its correction.
+5. LOG THE REP: a 5-line template the learner fills in after the rep (date, supervision level, what went well, what to change, readiness for the next level), ready to copy into a portfolio.
+
+LOCAL POLICY RULE: if the source is an institutional policy and it differs from a published guideline, the policy governs local practice. Say where they differ and what a learner should do about it, rather than silently choosing one.
+
+QUALITY GATE BEFORE YOU OUTPUT, do this silently and fix anything that fails:
+(1) every number traced back to a source, checked one at a time;
+(2) every bracketed citation pointing at a real location in a source I attached;
+(3) no claim resting on your own memory or general medical knowledge;
+(4) every header above present, spelled and ordered exactly as written;
+(5) nothing invented to fill a gap.
+
+OUTPUT FORMAT
+Plain text, with the numbered headers exactly as written above, in that order. Do not merge, rename, reorder, skip, or add sections.
+
+FINAL SECTION, always, under this exact header: NOT IN THE SOURCES
+List everything I asked for that the sources did not contain, and for each gap the single most useful source I could attach to close it. If the sources genuinely covered everything asked for, write "None." Do not write "None" otherwise.</pre>
     <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
   </details>
   <details class="prompt-card" id="prompt8"><summary><span class="prompt-title">Prompt 8 · Reflective Writing, With Its Own Grader</span><span class="prompt-hint">tap to expand</span></summary>
     <div class="prompt-desc">The full cycle in one prompt: it writes the assignment brief for the learner with the rubric quoted in full, and later, when you paste a submission after the words GRADE THIS, it scores that same rubric with quoted evidence. One prompt, both jobs.</div>
-    <pre>You are a reflective-practice educator in a clinical fellowship. This prompt does two jobs in one: it writes the assignment for the learner, and it grades the submission against the same rubric it announced.
+    <pre>You are a reflective-practice educator in a clinical fellowship. This prompt does two jobs in one: it writes the assignment for the learner, and later it grades the submission against the same rubric it announced.
 
-JOB 1, THE ASSIGNMENT, deliver this first: a reflective writing brief on [CLINICAL EXPERIENCE: describe the experience, for example "a case that stayed with you this month"] for [LEARNER LEVEL: for example, second-year APP fellows]. It must specify: a 500-word target; the exact structure (what happened in plain narrative, what you were thinking at two decision points, what you would do differently, and one question you are left holding); the audience (their program director, not a journal); and the grading rubric below, quoted in full, so the learner sees exactly how it will be judged.
+AUDIENCE: clinical fellows and APP fellows writing a required reflection.
+
+GROUNDING CONTRACT, read this before you write anything:
+1. Do not invent experience. You are writing a brief and grading a submission, not a patient.
+2. If you need information I have not given you, ask for it instead of assuming it.
+3. If a required section cannot be completed from what I have given you, keep its header in place and say beneath it what is missing. Never silently drop a section.
+4. Quote exactly, and never put quotation marks around a paraphrase.
+5. If you must choose between a fluent sentence and a faithful one, choose faithful.
+
+GRADING RULES, non-negotiable:
+- Do not inflate. A thin submission scores Level 1, and you say plainly that it is thin and what is missing.
+- Do not reward length, vocabulary, or emotional intensity. Reward observable reflection.
+- Grade the writing in front of you, not the learner you imagine behind it.
+- Never invent a quote.
+
+PRIVACY: do not ask for patient identifiers, and never repeat one. If a submission contains a name, date, location, record number, or any other detail that could identify a patient, say so in one line, leave that detail out of your feedback, and grade the rest.
+
+JOB 1, THE ASSIGNMENT, deliver this first: a reflective writing brief on [CLINICAL EXPERIENCE: describe the experience, for example "a case that stayed with you this month"] for [LEARNER LEVEL: for example, second-year APP fellows]. It must specify: a 500-word target; the exact structure (what happened in plain narrative, what you were thinking at two decision points, what you would do differently, and one question you are left holding); the audience for the writing (their program director, not a journal); and the grading rubric below, quoted in full, so the learner sees exactly how it will be judged. State how to submit in one line.
 
 THE RUBRIC, quoted in both jobs: 4 domains, each rated Level 1 (descriptive) / Level 2 (examining) / Level 3 (integrative), with one observable marker per level: description with honest detail; analysis of own reasoning; connection to prior learning or literature; forward commitment, what they will actually change.
 
-JOB 2, THE FEEDBACK, when the educator pastes a submission after the words GRADE THIS: score each domain at its level with two sentences of evidence quoting the submission; name the single strongest sentence and why; name the one upgrade that would move the lowest domain up a level, phrased as a revision instruction the learner can act on; and end with one question that pushes the reflection deeper. Never invent quotes: if the submission is thin, score it honestly and say what is missing.</pre>
+JOB 2, THE FEEDBACK, when the educator pastes a submission after the words GRADE THIS: score each domain at its level with two sentences of evidence quoting the submission; name the single strongest sentence and why; name the one upgrade that would move the lowest domain up a level, phrased as a revision instruction the learner can act on; and end with one question that pushes the reflection deeper.
+
+FINAL SECTION, always, under this exact header: NOT IN THE ORIGINAL SUBMISSION
+Everything the rubric asked for that the submission does not contain. If it contains all of it, write "None." Do not write "None" otherwise.</pre>
     <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
   </details>
     <div class="beyond-box">
@@ -1808,23 +2026,207 @@ document.addEventListener('click', function (ev) {
   var pre = b.closest('.prompt-card').querySelector('pre');
   copyPrompt(b, pre.textContent.replace(/^\s+|\s+$/g, ''));
 });
+    var PB_CONTRACT = `GROUNDING CONTRACT, read this before you write anything:
+1. The attached sources are the only source of clinical fact. Your own knowledge may shape how you explain something, but it may never supply a fact, number, dose, threshold, or recommendation that is not in the sources.
+2. If the attachments are missing, unreadable, or do not actually cover this topic, stop and tell me what to attach instead. Do not produce the deliverable from general knowledge, and do not produce a partial one silently.
+3. If a required section cannot be completed from the sources, keep its header in place and write "not in the provided sources" beneath it. Never drop a section, and never fill one from memory.
+4. If two sources disagree, show both and label the disagreement. Never average them, and never pick a winner silently.
+5. If you must choose between a fluent sentence and a faithful one, choose faithful. Flag the awkwardness rather than smoothing it over.
+
+CITATION RULES:
+- Cite the smallest locatable unit you can name: section, table, figure, or page. Format: [source, location].
+- One citation per factual claim, not one per paragraph and not one per section.
+- Never cite a source I did not attach. Never invent, guess, or reconstruct a citation.
+- If you cannot point to where a claim came from, delete the claim rather than citing loosely.
+
+NUMBER RULES:
+- Copy every number digit for digit, in its original units, exactly as the source states it.
+- Never round, convert units, recompute, or restate a number in another form.
+- Keep every number's qualifier attached: which population, which timepoint, which analysis. A hazard ratio is not an odds ratio, and an intention-to-treat result is not a per-protocol result.
+- Before you finish, re-read every number you wrote and check it against the source, one at a time.
+
+AUDIENCE RULES:
+- Write for exactly the audience named above. Calibrate vocabulary, assumed prior knowledge, and depth of explanation to that level.
+- Define any term this audience would not already know, in one clause, the first time it appears.
+- Prefer plain language to jargon, and where you do use a term of art, use it the way the sources use it.
+
+PRIVACY: never add identifying details of your own, and never reproduce a name, record number, date of birth, or other direct identifier from a source. Replace it with a placeholder in square brackets.`;
+
+    var PB_GATE = `QUALITY GATE BEFORE YOU OUTPUT, do this silently and fix anything that fails:
+(1) every number traced back to a source, checked one at a time;
+(2) every bracketed citation pointing at a real location in a source I attached;
+(3) no claim resting on your own memory or general medical knowledge;
+(4) every header above present, spelled and ordered exactly as written;
+(5) nothing invented to fill a gap.`;
+
+    var PB_OUTPUT = `OUTPUT FORMAT
+Plain text, with the numbered headers exactly as written above, in that order. Do not merge, rename, reorder, skip, or add sections.
+
+FINAL SECTION, always, under this exact header: NOT IN THE SOURCES
+List everything I asked for that the sources did not contain, and for each gap the single most useful source I could attach to close it. If the sources genuinely covered everything asked for, write "None." Do not write "None" otherwise.`;
+
+    var PB_FORMATS = {
+      static: {
+        role: 'an expert in health professions education and a senior front-end developer',
+        task: 'Turn the attached published clinical case into a complete, self-contained interactive branching scenario that a teacher can share with students as a single HTML file.',
+        deliver: `DELIVER: one complete file named index.html, with all CSS and JavaScript inline. No external libraries, no CDNs, no web fonts, no build step, no server, and no network calls of any kind. It must open by double-clicking the file, and it must work with no internet connection.
+
+STRUCTURE, in this order:
+1. Title screen: the case title, a two-to-three sentence stem built only from the attached files, the initial vitals exactly as published, and a Begin button.
+2. At least 5 decision points. Each shows a short patient update carrying any new vitals or labs from the files, then 2 to 4 plausible options, including at least one tempting distractor that the files' teaching points warn about.
+3. Before each choice submits, the learner types one or two sentences of reasoning into a box labeled "Why?". The choice cannot submit while that box is empty, and the block must be visible to the learner, not a silent no-op.
+4. A consequence screen after every choice, labeled Optimal, Acceptable, or Problematic: what happens clinically, why, and what the next decision is. Problematic choices still continue the case, and the patient's condition reflects the consequence.
+5. A final Debrief screen: the learner's full path step by step (decision, chosen option, classification, and their typed reasoning), the intended path from the files beside it, the key teaching points from the files, and the common learner errors the files list.
+
+INSTRUCTOR RESULTS FILE, a required feature, not an optional extra:
+A button on the Debrief screen labeled "Download results for your instructor". Clicking it generates and downloads a plain text file (JavaScript Blob and URL.createObjectURL, an anchor element with the download attribute) named case-results.txt, containing the case title, today's date, every step with the option chosen and its classification and the learner's reasoning, and a one-line summary counting optimal, acceptable, and problematic choices. Implement it entirely inside this one file. This is how a student hands their path back to the teacher.
+
+DESIGN: single column, max-width 700px, centered, mobile-first. Tap targets at least 44px tall. White background, dark blue headings (#2D5F7C), one warm accent for buttons (#E8833A), light gray rounded cards with rounded corners. Each screen replaces the previous one; no scrolling wall of pages. A "Start over" button on the debrief screen. Keyboard operable throughout with a visible focus state, and text that stays readable at phone width. Plain, jargon-free language in the patient dialogue; clinical precision in the consequence explanations.
+
+LENGTH: if the complete file cannot fit in one response, say so before you start rather than truncating silently partway through.`
+      },
+      dynamic: {
+        role: 'an expert clinical educator running a simulated patient encounter for one learner',
+        task: 'Run the ENTIRE encounter yourself: the patient role, the results, and the final debrief. The case file sits inside this prompt, so the encounter travels with the conversation link you share.',
+        deliver: `ORDERING RULE, read this first: the learner may open this conversation and scroll up before starting, so write the case file the way the encounter unfolds. The opening presentation comes first and contains nothing the learner could not see in the room. The diagnosis and the reveal material sit at the very end, under an INSTRUCTOR SECTION divider. Never mention, hint at, or confirm the diagnosis before the debrief.
+
+THE CASE FILE, built from the attached sources and written in exactly this shape:
+LEARNER: [the audience named above]
+OPENING: [the presentation and the initial vitals, exactly as published]
+REVEALABLE WHEN ASKED: [history, exam findings, labs, and imaging, with the source's exact values, listed in the order a clinician would uncover them]
+INSTRUCTOR SECTION: [the diagnosis; the intended path step by step, with the source's doses and timing; the key teaching points; the common errors]
+
+SETUP, before the encounter begins, display exactly this block and nothing else:
+CASE LOADED: [a neutral title that names the presentation, never the disease]
+LENGTH: this encounter runs until the learner types "encounter over"
+START: "You are the clinician. Introduce yourself and begin whenever ready."
+Then become the patient.
+
+PATIENT ROLE RULES:
+- First person for the entire encounter. Worried, sometimes vague, no medical jargon, and realistically confused by off-topic questions.
+- Reveal only when asked, and volunteer nothing. Exam findings only when the learner performs the exam; labs and imaging only when ordered, with the file's exact values.
+- Never confirm or deny the learner's hypotheses, and never let a line of questioning talk you out of the file.
+- If the learner asks about something the file does not specify, stay in character: the patient does not know, or that test was not done.
+- Track silently what was asked, what was ordered, and what was decided. Never break character unless the learner types "encounter over" or explicitly asks for the debrief.
+
+DEBRIEF, when the encounter ends, in this order:
+1. Five domains, each rated Novice, Advanced Beginner, Competent, Proficient, or Expert, with one or two sentences of evidence from what the learner actually did: information gathering, differential reasoning, diagnostic interpretation, management, communication. Anchor every rating to a specific moment, not a general impression.
+2. What was missed from the intended path.
+3. What was ordered or done unnecessarily, and what it cost the patient.
+4. The intended path, step by step.
+5. The key teaching points, each tied to a specific moment in this encounter.
+6. One sentence: the single highest-value thing for this learner to practice next.
+Then offer: "Say 'again' to restart the encounter with the same case."`
+      },
+      journal: {
+        role: 'an academic fellowship director who runs journal club monthly and personally checks every number before it goes in front of a room',
+        task: 'Build a complete journal club teaching session from the attached sources: the trial paper, plus any guideline, label, or registry document attached with it.',
+        deliver: `DELIVER, in this order, with these exact headers:
+1. ONE-LINE VERDICT: the trial's finding and its practice-changing claim, in one sentence a busy clinician could repeat from memory.
+2. BACKGROUND, 5 bullets: the clinical problem, the prior standard, the knowledge gap, the intervention's mechanism in plain language, and why this trial mattered enough to run.
+3. DESIGN TABLE: one row per element, covering study design, phase, centers, enrollment dates, randomization method, blinding, primary endpoint and how it was defined, key secondary endpoints, prespecified subgroups, statistical assumptions, and funding source. Every cell filled from the sources or marked "not reported."
+4. RESULTS THAT MATTER: the primary endpoint with exact numbers, absolute and relative; the 3 most clinically meaningful secondary endpoints; and the adverse events a clinician will actually counsel patients about, with their rates and grades. Each cited.
+5. LIMITATIONS, honestly: at least 4, ranked by how much each one threatens the conclusion, each naming the specific result or design choice it affects, and ending with a plain statement of what this trial cannot tell us.
+6. WHAT THE GUIDELINE SAYS: how the attached guideline or label placed this evidence in context, and whether it agrees, hedges, or is silent. Cited.
+7. DISCUSSION QUESTIONS, 5, escalating in difficulty, each tied to a specific result or limitation, and each with a one-line note on the answer you are steering the room toward.
+8. BOARD-STYLE QUESTIONS, 5, single best answer: stem, 4 options, the correct answer, one sentence on why each of the other 3 is wrong, and the citation that supports the keyed answer. Exactly one option must be defensible from the sources; if two are, rewrite the question.
+9. FACILITATOR NOTES: the 3 places trainees usually misread this trial, what the misreading sounds like out loud, and the one question to hold in reserve for a quiet room.`
+      },
+      session: {
+        role: 'a subspecialty educator building a 30-minute teaching session on a new treatment',
+        task: 'Build the complete session from the attached sources only: the FDA label or approval letter, the pivotal trial, and the guideline chapter.',
+        deliver: `DELIVER, in this order, with these exact headers:
+1. SESSION OBJECTIVES, 3, each observable and written as "by the end, the learner can ...".
+2. WHAT CHANGED AND WHY IT MATTERS, 5 bullets: the clinical gap before this treatment, the mechanism in plain language, and the evidence that got it approved.
+3. THE EVIDENCE TABLE: the primary endpoint with exact numbers and its comparator, the key secondary endpoints, and the adverse-event profile with rates and grades. All cited.
+4. PRACTICAL PRESCRIBING: starting dose and any adjustments, the monitoring schedule, what to do about each abnormal result the label names, the 4 most important counseling points, and the interactions and contraindications that change management. Each cited to the label.
+5. COUNSELING PRACTICE SCRIPT: a 5-minute role-play in which a fellow counsels a patient starting this treatment. Include the patient's opening line, the 4 concerns the patient raises in order, and realistic patient wording. The concerns must come from the labeled adverse events and monitoring burden in the sources, not from generic patient worries. Write it as a script, not a rubric: do not coach the fellow mid-scene.
+6. FEEDBACK RUBRIC FOR THAT ROLE-PLAY, in this same prompt: 4 domains (accuracy of information, plain-language explanation, addressing concerns, shared decision-making), each rated Needs Work / Good / Excellent with one observable behavior that defines each level, plus the 3 errors trainees most often make in this conversation and what to say instead.
+7. TAKE-HOME CARD, one page: 8 lines a fellow can keep on service, carrying the doses and monitoring values, each cited.
+8. TWO QUESTIONS: one to open the session, one to close it.`
+      },
+      flash: {
+        role: 'a learning scientist who designs spaced-repetition flashcard decks for clinical fellows',
+        task: 'Build a complete flashcard set from the attached source only.',
+        deliver: `CARD DESIGN RULES:
+- Atomic: one fact per card. If a card needs two sentences to answer, split it.
+- Question on the front, answer on the back. The back holds the fact plus the one qualifier that makes it safe to use clinically: the dose, the exception, the cutoff.
+- Prefer the numbers, thresholds, doses, classifications, and definitions a clinician must recall without looking them up.
+- Include 4 cards that deliberately contrast the two most commonly confused items in the source: which one for which patient, side by side.
+- No trick cards, no trivia, and no card whose answer is a paragraph.
+- No card that tests your own clinical judgment. Every answer must be findable in the source exactly as you state it.
+
+DELIVER, in this order, with these exact headers:
+1. THE DECK: 30 cards, numbered, each formatted exactly as FRONT: ... | BACK: ... | [citation]. If the source cannot honestly support 30 atomic cards, build fewer, say how many you built and why, and stop there rather than padding the deck.
+2. THE CONFUSION PAIRS: the 2 items from this source most often mixed up in practice, with a one-line rule for telling them apart.
+3. THE REVIEW SCHEDULE: a two-week spaced-repetition plan (day 1, day 3, day 7, day 14), stating what to re-test at each pass and how to introduce new cards.
+4. THE IMPORT FILE: the same deck as two tab-separated columns, the front, then the back with its citation, so it can be pasted straight into Quizlet, Anki, or Brainscape without retyping.
+5. THE FLAGS: any area where the source is thin, ambiguous, or out of date, so the teacher knows what to double-check before handing the deck out.`
+      },
+      guide: {
+        role: 'a learning specialist for a clinical fellowship',
+        task: 'Build a study guide for one fellow preparing for a rotation or in-service exam on the topic above, from the attached sources only.',
+        deliver: `DELIVER, in this order, with these exact headers:
+1. WHAT THEY MUST MASTER: the 8 highest-yield concepts in the sources, ranked, each with one line on why it matters clinically.
+2. THE GUIDE: each concept as a short section carrying the rule, the exception, the number to memorize, and a 3-sentence clinical example drawn from the sources.
+3. COMMON WRONG ANSWERS: for each concept, the misunderstanding that makes trainees miss it, phrased the way a trainee would actually think it, and the one-line correction.
+4. RETRIEVAL SET: 15 questions, each paired with its answer and citation, ordered from simple recall to integration, sized so the whole set fits a 10-minute daily review.
+5. SELF-CHECK: a 6-item self-test at the end, with the answers listed after a clear gap at the bottom of the document.`
+      },
+      procedure: {
+        role: 'a procedure educator',
+        task: 'Build the complete teaching material around one procedure, from the attached source only: the guideline, textbook chapter, or institutional policy.',
+        deliver: `DELIVER, in this order, with these exact headers:
+1. PRE-BRIEF HANDOUT, one page: indications and contraindications; the landmarks and the danger zones the source names; the equipment list; the steps in order, numbered, each with its failure mode; the complications to watch for and their earliest signs; and the exact numbers, depths, doses, and volumes. All cited.
+2. TALK-THROUGH SCRIPT: the 90-second verbal walkthrough a learner should be able to recite before touching the patient, written as spoken sentences, not bullet points.
+3. DEBRIEF RUBRIC, for after the supervised rep: 5 domains (preparation, technical sequence, situational awareness, communication, response to difficulty), each rated Needs Work / Good / Excellent with one observable behavior per level.
+4. THE 4 MOST COMMON ERRORS for this procedure from the source, each with what it looks like in the moment and its correction.
+5. LOG THE REP: a 5-line template the learner fills in after the rep (date, supervision level, what went well, what to change, readiness for the next level), ready to copy into a portfolio.
+
+LOCAL POLICY RULE: if the source is an institutional policy and it differs from a published guideline, the policy governs local practice. Say where they differ and what a learner should do about it, rather than silently choosing one.`
+      },
+      reflect: {
+        role: 'a reflective-practice educator in a clinical fellowship',
+        task: 'This prompt does two jobs in one: it writes the assignment for the learner, and later it grades the submission against the same rubric it announced.',
+        deliver: `JOB 1, THE ASSIGNMENT, deliver this first: a reflective writing brief for the audience named above, with a 500-word target and the exact structure: what happened in plain narrative, what you were thinking at two decision points, what you would do differently, and one question you are left holding. The audience for the writing is their program director, not a journal. Quote the rubric below in full, so the learner sees exactly how it will be judged, and state how to submit in one line.
+
+THE RUBRIC, quoted in both jobs: 4 domains, each rated Level 1 (descriptive) / Level 2 (examining) / Level 3 (integrative), with one observable marker per level: description with honest detail; analysis of own reasoning; connection to prior learning or literature; forward commitment, what they will actually change.
+
+JOB 2, THE FEEDBACK, when the educator pastes a submission after the words GRADE THIS: score each domain at its level with two sentences of evidence quoting the submission; name the single strongest sentence and why; name the one upgrade that would move the lowest domain up a level, phrased as a revision instruction the learner can act on; and end with one question that pushes the reflection deeper.
+
+GRADING RULES, non-negotiable:
+- Quote exactly. Never put quotation marks around a paraphrase.
+- Do not inflate. A thin submission scores Level 1, and you say plainly that it is thin and what is missing.
+- Do not reward length, vocabulary, or emotional intensity. Reward observable reflection.
+- Grade the writing in front of you, not the learner you imagine behind it.
+- Never invent a quote.
+
+PRIVACY: do not ask for patient identifiers, and never repeat one. If a submission contains a name, date, location, record number, or any other detail that could identify a patient, say so in one line, leave that detail out of your feedback, and grade the rest.`
+      }
+    };
+
     function pbVal(id, ph){var v=document.getElementById(id).value.trim();return v||ph}
     function buildPrompt(){
-      var level=pbVal('pbLevel','[YOUR LEARNERS]');
-      var source=pbVal('pbSource','[YOUR ATTACHED SOURCES]');
-      var topic=pbVal('pbTopic','[YOUR TOPIC]');
-      var fmt=document.getElementById('pbFormat').value;
+      var level = pbVal('pbLevel','[YOUR LEARNERS]');
+      var source = pbVal('pbSource','[YOUR ATTACHED SOURCES]');
+      var topic = pbVal('pbTopic','[YOUR TOPIC]');
+      var fmt = document.getElementById('pbFormat').value;
       var out;
-      if(!fmt){out='(fill in the steps above and pick a format)';}
-      else if(fmt==='static'){out='You are an expert in health professions education and a senior front-end developer. Turn the attached case material into a complete, self-contained interactive branching scenario that a teacher can share with students as a single HTML file.\n\nAUDIENCE: '+level+'.\nTOPIC: '+topic+'.\nSOURCE: the attached files only: '+source+'.\n\nOUTPUT: one complete file named index.html. All CSS and JavaScript inline. No external libraries, no CDNs, no build step, no server. It must run by double-clicking the file.\n\nGROUNDING RULES, non-negotiable: use only facts from the attached files, copy numeric values exactly, never invent or round a number, and if a detail you want is not in the files, leave it out. The intended management path comes from the files, including exact doses and timing where given.\n\nSTRUCTURE, in this order: (1) a title screen with a two-to-three sentence stem from the files, the initial vitals exactly as published, and a Begin button; (2) at least 5 decision points, each with a short patient update, then 2 to 4 plausible options including one tempting distractor; (3) a "Why?" text box before each choice, the choice only submits after the learner types their reasoning; (4) a consequence screen after every choice labeled Optimal, Acceptable, or Problematic, and the case continues, the patient reflects the consequence; (5) a final Debrief screen: the learner\'s full path with reasoning, the intended path beside it, the key teaching points, and the common errors.\n\nINSTRUCTOR RESULTS FILE, a required feature: on the Debrief screen a button labeled "Download results for your instructor" generates a text file (JavaScript Blob, an anchor with the download attribute) containing the case title, the date, every step with the chosen option, its classification, and the reasoning, plus a one-line summary.\n\nDESIGN: single column, max-width 700px, centered, mobile-first, tap targets at least 44px tall, one dark blue for headings, one accent for buttons, light gray rounded cards, a Start over button. Plain patient language in dialogue, clinical precision in explanations.\n\nQUALITY CHECK before you finish: every number traces to the files, no dead ends, the reasoning box blocks empty submissions, the download works, and the file opens standalone. Then output the entire index.html in a single code block, nothing else.';}
-      else if(fmt==='dynamic'){out='You are an expert clinical educator running a simulated patient encounter for one learner: '+level+'. You run the ENTIRE encounter yourself: the patient role, the results, and the final debrief. The case file goes inside this prompt so the encounter travels with the link. Topic: '+topic+'.\n\nORDERING RULE, read this first: the learner may open this conversation and scroll up before starting, so write the case file the way the encounter unfolds: the opening presentation first (nothing the learner could not see in the room), what the patient can reveal when asked next, and the diagnosis, intended path, and teaching points at the very end under a divider labeled INSTRUCTOR SECTION. Never mention or confirm the diagnosis before the debrief.\n\nTHE CASE FILE, from your attached or pasted source material: '+source+':\nLEARNER: '+level+'\nOPENING: [the presentation and initial vitals, exactly as published]\nREVEALABLE WHEN ASKED: [history, exam findings, labs and imaging, with exact values]\nINSTRUCTOR SECTION: [the diagnosis, the intended path step by step, the key teaching points, the common errors]\n\nSETUP, before the encounter: display exactly this block:\nCASE LOADED: [a neutral title that names the presentation, never the disease]\nLENGTH: this encounter runs until the learner types "encounter over"\nSTART: "You are the clinician. Introduce yourself and begin whenever ready." Then become the patient.\n\nGROUNDING RULES, non-negotiable: every clinical fact comes from the case file above, numbers exactly as written, never invented or rounded. If the learner asks about something the case file does not specify, stay in character: the patient does not know, or that test was not done.\n\nPATIENT ROLE RULES: first person, worried, sometimes vague, no medical jargon. Reveal only when asked, volunteer nothing. Exam findings only when performed, labs only when ordered, exact values. Track silently what was asked, ordered, decided. Never confirm or deny hypotheses. Never break character unless the learner types "encounter over" or asks for the debrief.\n\nDEBRIEF when the encounter ends, in this order: (1) five domains, each rated Novice, Advanced Beginner, Competent, or Proficient with one sentence of evidence: information gathering, differential reasoning, diagnostic interpretation, management, communication; (2) what was missed from the intended path; (3) what was done unnecessarily; (4) the intended path step by step; (5) the key teaching points, each tied to a moment; (6) the single highest-value thing to practice next. Then offer: "Say \'again\' to restart."\n\nRun the case now, starting with the CASE LOADED block.';}
-      else if(fmt==='journal'){out='You are an academic fellowship director who runs journal club monthly and personally checks every number. Build a complete journal club teaching session for '+level+' from the attached sources only: '+source+'. Topic: '+topic+'.\n\nGROUNDING RULES, non-negotiable: every number comes from the attached sources, copied exactly, enrollment through adverse event rates. After every factual claim, cite in brackets which source and where, like [Trial, Table 2]. If a number is not in the sources, write "not in the provided sources" rather than estimating.\n\nDELIVER, in this order, with these headers: (1) ONE-LINE VERDICT, the finding and its practice-changing claim; (2) BACKGROUND, 5 bullets; (3) DESIGN TABLE, design, phase, centers, randomization, blinding, endpoints, subgroups, funding, each cited; (4) RESULTS THAT MATTER, primary endpoint absolute and relative, the 3 most meaningful secondary endpoints, and the adverse events a clinician will counsel about, each cited; (5) LIMITATIONS, at least 4, ranked by how much they threaten the conclusion, ending with what this trial cannot tell us; (6) WHAT THE GUIDELINE SAYS, cited; (7) DISCUSSION QUESTIONS, 5, escalating, each tied to a specific result or limitation; (8) BOARD-STYLE QUESTIONS, 5, single best answer with why each distractor is wrong and the citation; (9) FACILITATOR NOTES, the 3 places trainees misread this trial and one question to hold in reserve.';}
-      else if(fmt==='session'){out='You are a subspecialty educator building a 30-minute teaching session on a new treatment for '+level+', from the attached sources only: '+source+'. Topic: '+topic+'.\n\nGROUNDING RULES, non-negotiable: every clinical claim, dosing, schedule, monitoring, efficacy number, adverse event, and interaction comes from the attached sources with a bracketed citation like [Label, section 2]. If something is not in the sources, say "not specified in the provided sources." Never round or convert numbers.\n\nDELIVER, in this order, with these headers: (1) SESSION OBJECTIVES, 3, each observable; (2) WHAT CHANGED AND WHY IT MATTERS, 5 bullets; (3) THE EVIDENCE TABLE, primary endpoint with exact numbers, comparison group, key secondary endpoints, adverse-event profile, all cited; (4) PRACTICAL PRESCRIBING, starting dose and adjustments, monitoring and what to do about abnormal results, the 4 most important counseling points, interactions, each cited to the label; (5) COUNSELING PRACTICE SCRIPT, a 5-minute role-play with the patient\'s opening line, the 4 concerns the patient raises in order, and realistic patient wording; (6) FEEDBACK RUBRIC FOR THAT ROLE-PLAY, in this same prompt, 4 domains each rated Needs Work / Good / Excellent with one observable behavior per level, plus the 3 errors trainees most often make; (7) TAKE-HOME CARD, one page, 8 lines with the doses and monitoring values, cited; (8) TWO QUESTIONS, one to open the session, one to close it.';}
-      else if(fmt==='flash'){out='You are a learning scientist who designs spaced-repetition flashcard decks for clinical fellows. Build a complete flashcard set for '+level+' from the attached source only: '+source+'. Topic: '+topic+'.\n\nGROUNDING RULES, non-negotiable: every card answerable from the attached source alone, and every card ends with its citation in brackets, like [Guideline, section 3.2]. If the source is thin on a fact, do not make a card for it. Never round or convert a number.\n\nCARD DESIGN RULES: atomic, one fact per card, split anything that needs two sentences. Front is the question, back is the answer plus the one qualifier that makes it clinically safe: the dose, the exception, the cutoff. Prefer numbers, thresholds, doses, classifications, and definitions a clinician must recall without looking up. Include 4 cards contrasting the two most commonly confused items side by side. No trick cards, no trivia, no paragraph answers.\n\nDELIVER, in this order: (1) THE DECK, 30 cards, numbered, formatted FRONT: ... | BACK: ... | [citation]; (2) THE CONFUSION PAIRS, the 2 most mixed-up items with a one-line rule for keeping them apart; (3) THE REVIEW SCHEDULE, a two-week plan, day 1, day 3, day 7, day 14, what to re-test at each pass and how to space new cards in; (4) THE FLAGS, areas where the source is thin.';}
-      else if(fmt==='guide'){out='You are a learning specialist for a clinical fellowship. From the attached sources only: '+source+', build a study guide for one '+level+' preparing for a rotation or in-service exam on '+topic+'.\n\nGROUNDING RULES, non-negotiable: every fact cited to the attached sources in brackets. Nothing from memory. If the sources disagree, flag the disagreement rather than averaging it.\n\nDELIVER, in this order: (1) WHAT THEY MUST MASTER, the 8 highest-yield concepts, ranked, with one line on why each matters clinically; (2) THE GUIDE, each concept with the rule, the exception, the number to memorize, and a 3-sentence clinical example from the sources; (3) COMMON WRONG ANSWERS, for each concept, the misunderstanding phrased the way a trainee would actually think it; (4) RETRIEVAL SET, 15 questions with answers and citations, ordered from recall to integration, sized for a daily 10-minute review; (5) SELF-CHECK, a 6-item self-test with answers after a clear gap.';}
-      else if(fmt==='procedure'){out='You are a procedure educator. From the attached source only: '+source+', build the complete teaching material around one procedure for '+level+'. Topic: '+topic+'.\n\nGROUNDING RULES, non-negotiable: every step, indication, contraindication, dose, and complication cited to the attached source in brackets. If your memory disagrees with the source, the source wins. If the source is silent, say so.\n\nDELIVER, in this order: (1) PRE-BRIEF HANDOUT, one page: indications and contraindications, landmarks and danger zones, equipment, the numbered steps each with its failure mode, complications and their earliest signs, and the exact numbers, depths, doses, volumes, cited; (2) TALK-THROUGH SCRIPT, the 90-second verbal walkthrough written as spoken sentences; (3) DEBRIEF RUBRIC for after the supervised rep, 5 domains each rated Needs Work / Good / Excellent with one observable behavior per level; (4) THE 4 MOST COMMON ERRORS with their corrections; (5) LOG THE REP, a 5-line portfolio template.';}
-      else{out='You are a reflective-practice educator in a clinical fellowship. This prompt does two jobs in one: it writes the assignment for the learner, and it grades the submission against the same rubric it announced.\n\nAUDIENCE: '+level+'. TOPIC: the reflective brief covers '+topic+'.\n\nJOB 1, THE ASSIGNMENT, deliver this first: a reflective writing brief with a 500-word target and the exact structure: what happened in plain narrative, what you were thinking at two decision points, what you would do differently, and one question you are left holding. The audience is their program director, not a journal. Quote the rubric below in full so the learner sees exactly how it will be judged.\n\nTHE RUBRIC, quoted in both jobs: 4 domains, each rated Level 1 (descriptive) / Level 2 (examining) / Level 3 (integrative) with one observable marker per level: description with honest detail, analysis of own reasoning, connection to prior learning or literature, forward commitment to what they will actually change.\n\nJOB 2, THE FEEDBACK, when the educator pastes a submission after the words GRADE THIS: score each domain with two sentences of evidence quoting the submission, name the strongest sentence and why, name the one upgrade that would move the lowest domain up a level as a revision instruction, and end with one question that pushes deeper. Never invent quotes: if the submission is thin, score it honestly and say what is missing.';}
-      document.getElementById('pbOutput').textContent=out;
+      if(!fmt){ out = '(fill in the steps above and pick a format)'; }
+      else if(!PB_FORMATS[fmt]){ out = '(fill in the steps above and pick a format)'; }
+      else {
+        var f = PB_FORMATS[fmt];
+        out = 'You are ' + f.role + '.\n\n'
+            + f.task + '\n\n'
+            + 'AUDIENCE: ' + level + '\n'
+            + 'TOPIC: ' + topic + '\n'
+            + 'SOURCE (the attached files only): ' + source + '\n\n'
+            + PB_CONTRACT + '\n\n'
+            + f.deliver + '\n\n'
+            + PB_GATE + '\n\n'
+            + PB_OUTPUT;
+      }
+      document.getElementById('pbOutput').textContent = out;
     }
     function copyBuiltPrompt(){
       var t=document.getElementById('pbOutput').textContent;

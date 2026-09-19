@@ -187,7 +187,10 @@ label.field-label .req{color:var(--accent)}
 
 /* ============================ BUTTONS ============================ */
 .btn{
-  display:inline-block;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
   padding:0.7rem 1.6rem;
   border:none;
   border-radius:8px;
@@ -217,7 +220,7 @@ label.field-label .req{color:var(--accent)}
 }
 .btn-outline:hover{border-color:var(--primary-light);background:rgba(74,136,168,0.05)}
 .btn:disabled{opacity:0.45;cursor:not-allowed}
-.btn-sm{padding:0.45rem 1rem;font-size:0.85rem}
+.btn-sm{padding:0.45rem 1rem;font-size:0.85rem;min-height:44px}
 .btn-block{width:100%;text-align:center}
 
 /* ============================ CHAT ============================ */
@@ -328,7 +331,8 @@ label.field-label .req{color:var(--accent)}
   display:flex;justify-content:space-between;align-items:center;
 }
 .ecg-container .ecg-title .speed{font-size:0.72rem;color:var(--text-muted)}
-.ecg-svg{width:100%;height:auto;display:block}
+.ecg-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.ecg-svg{width:100%;height:auto;display:block;min-width:560px}
 .ecg-interpretation{
   margin-top:0.8rem;
   padding:0.7rem 0.9rem;
@@ -344,7 +348,8 @@ label.field-label .req{color:var(--accent)}
   margin-top:1rem;
   border:1px solid var(--border);
   border-radius:8px;
-  overflow:hidden;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
 }
 .lab-results table{width:100%;border-collapse:collapse;font-size:0.88rem}
 .lab-results th{
@@ -519,6 +524,16 @@ label.field-label .req{color:var(--accent)}
 }
 .complete-badge .icon{font-size:2rem}
 .complete-badge h3{color:var(--success);margin:0.3rem 0}
+.download-row{
+  text-align:center;
+  margin-top:1.2rem;
+  padding:1.2rem;
+  background:#f8fafc;
+  border:1px solid var(--border);
+  border-radius:8px;
+}
+.download-row .btn{margin-bottom:0.6rem}
+.download-row p{max-width:520px;margin:0 auto}
 
 /* ============================ MOBILE ============================ */
 @media(max-width:600px){
@@ -642,7 +657,7 @@ label.field-label .req{color:var(--accent)}
 
     <div class="field-group">
       <label class="field-label" for="examLooking">What are you looking for on exam? <span class="req">*</span></label>
-      <textarea class="input-textarea" id="examLooking" placeholder="e.g., I'm listening for a pericardial friction rub, checking for JVD, listening for murmurs, assessing breath sounds..."></textarea>
+      <textarea class="input-textarea" id="examLooking" placeholder="e.g., Which systems will you examine, and in each one, what are you listening or looking for?"></textarea>
     </div>
 
     <button class="btn btn-accent btn-block" onclick="performExam()">Perform Examination</button>
@@ -665,12 +680,12 @@ label.field-label .req{color:var(--accent)}
 
     <div class="field-group">
       <label class="field-label" for="diagOrders">Orders, list labs/imaging/studies <span class="req">*</span></label>
-      <textarea class="input-textarea" id="diagOrders" style="min-height:100px" placeholder="e.g.,&#10;12-lead ECG, expect diffuse ST elevations&#10;CBC, check for leukocytosis&#10;CRP/ESR, expect elevated inflammatory markers&#10;Troponin, rule out myocarditis/MI&#10;Chest X-ray, check heart size, rule out effusion&#10;Bedside echo, look for pericardial effusion"></textarea>
+      <textarea class="input-textarea" id="diagOrders" style="min-height:100px" placeholder="e.g.,&#10;One order per line&#10;What you would order first, and why&#10;What you would add if the first round is unrevealing"></textarea>
     </div>
 
     <div class="field-group">
       <label class="field-label" for="diagExpect">What do you expect to find, and why? <span class="req">*</span></label>
-      <textarea class="input-textarea" id="diagExpect" placeholder="e.g., I expect diffuse ST elevations on ECG consistent with pericarditis. CRP should be elevated given inflammation. Troponin may be mildly elevated if there's myopericarditis but should not be dramatically high like in MI..."></textarea>
+      <textarea class="input-textarea" id="diagExpect" placeholder="e.g., For each order above, what do you expect it to show, and what would a normal or abnormal result mean for your thinking?"></textarea>
     </div>
 
     <button class="btn btn-accent btn-block" onclick="submitOrders()">Submit Orders & Get Results</button>
@@ -692,7 +707,7 @@ label.field-label .req{color:var(--accent)}
     </div>
 
     <div class="diff-input-group">
-      <input type="text" class="input-text" id="diffName" placeholder="Differential diagnosis (e.g., Acute pericarditis)">
+      <input type="text" class="input-text" id="diffName" placeholder="Differential diagnosis">
       <select class="input-text" id="diffProb" style="max-width:140px">
         <option value="">Probability…</option>
         <option value="high">High</option>
@@ -732,17 +747,17 @@ label.field-label .req{color:var(--accent)}
 
     <div class="field-group">
       <label class="field-label" for="assessmentText">One-liner / Assessment <span class="req">*</span></label>
-      <textarea class="input-textarea" id="assessmentText" style="min-height:80px" placeholder="e.g., 19yo M presenting with pleuritic L-sided chest pain after viral URI, exam with pericardial friction rub, ECG with diffuse ST elevations and PR depressions, consistent with acute pericarditis."></textarea>
+      <textarea class="input-textarea" id="assessmentText" style="min-height:80px" placeholder="e.g., One or two sentences: who this patient is, what you found on history and exam, what the studies showed, and what you think is going on."></textarea>
     </div>
 
     <div class="field-group">
       <label class="field-label" for="planText">Plan, management steps <span class="req">*</span></label>
-      <textarea class="input-textarea" id="planText" style="min-height:120px" placeholder="e.g.,&#10;1. NSAIDs (ibuprofen 600mg q6h) for 7-14 days with gastroprotection&#10;2. Colchicine 0.6mg BID × 3 months to reduce recurrence&#10;3. Rest, avoid strenuous activity until symptom resolution&#10;4. Outpatient follow-up in 1 week; return if worsening&#10;5. Echo follow-up to ensure resolution of effusion&#10;6. Patient education: warning signs (worsening dyspnea, syncope)"></textarea>
+      <textarea class="input-textarea" id="planText" style="min-height:120px" placeholder="e.g.,&#10;1. What you would start, at what dose, and for how long&#10;2. What you would add to reduce the chance of recurrence&#10;3. Activity guidance while symptoms persist&#10;4. When and how you would follow up&#10;5. What the patient should watch for at home and when to return"></textarea>
     </div>
 
     <div class="field-group">
       <label class="field-label" for="safetyText">Safety netting, what would change your plan? <span class="req">*</span></label>
-      <textarea class="input-textarea" id="safetyText" style="min-height:60px" placeholder="e.g., If patient develops tamponade physiology → urgent pericardiocentesis. If troponin markedly elevated → consider myocarditis, admit for monitoring. If fevers persist → consider bacterial pericarditis, blood cultures..."></textarea>
+      <textarea class="input-textarea" id="safetyText" style="min-height:60px" placeholder="e.g., What would bring this patient back urgently? What are you watching for, and what would you tell them to do about it?"></textarea>
     </div>
 
     <div class="stage-nav">
@@ -772,6 +787,11 @@ label.field-label .req{color:var(--accent)}
       <div class="icon">✅</div>
       <h3>Case Complete</h3>
       <p class="text-muted text-small">Thank you for completing this interactive clinical reasoning demo.</p>
+    </div>
+
+    <div class="download-row">
+      <button class="btn btn-primary" onclick="downloadResults()">Download Your Results (.txt)</button>
+      <p class="text-muted text-small">Saves every question you asked, the systems you examined, the orders you placed, your differential, your assessment and plan, and the feedback below, so you have a record to take away.</p>
     </div>
 
     <div class="stage-nav">
@@ -811,7 +831,7 @@ var patientResponses = [
     response: "It's sharp, like a stabbing pain. Definitely not dull or burning. It feels like it's right on the surface, you know? Not deep inside."
   },
   {
-    keywords: ['radiat','spread','move','travel','go anywhere','shoot'],
+    keywords: ['radiat','spread','move','go anywhere','shoot'],
     response: "It's mostly right here on the left side of my chest. It sort of radiates to my left shoulder a little bit, but it doesn't go down my arm or to my jaw."
   },
   {
@@ -827,7 +847,7 @@ var patientResponses = [
     response: "Sitting up and leaning forward seems to help a little bit. Over-the-counter ibuprofen took the edge off slightly but it didn't really go away."
   },
   {
-    keywords: ['viral','sick','ill','cold','flu','fever','infection','cough','runny','recent illness',' URI','upper respir'],
+    keywords: ['viral','sick','cold','flu','infection','runny','recent illness','uri symptoms','upper respir'],
     response: "Yeah, actually I had a cold about a week and a half ago, runny nose, sore throat, felt crummy for a few days. It mostly went away, and then this started. No fever since then though."
   },
   {
@@ -851,7 +871,7 @@ var patientResponses = [
     response: "No nausea or vomiting. My appetite has been okay."
   },
   {
-    keywords: ['leg','swelling','edema','calf','DVT'],
+    keywords: ['leg','swelling','edema','calf','dvt'],
     response: "No leg swelling or pain. I've been active, playing basketball a couple times a week."
   },
   {
@@ -910,12 +930,14 @@ function matchResponse(question) {
   var q = question.toLowerCase();
   var bestMatch = null;
   var bestScore = 0;
-  for (var i = 0; i < patientResponses.length; i++) i;
+  // Longest matching keyword wins, not the most matches, so a specific phrase
+  // ("sick contact") beats a general one ("sick") that also happens to appear.
+  // Patient responses are ordered specific-first as a further tiebreak.
   for (var i = 0; i < patientResponses.length; i++) {
     var score = 0;
     var kws = patientResponses[i].keywords;
     for (var j = 0; j < kws.length; j++) {
-      if (q.indexOf(kws[j]) !== -1) score++;
+      if (q.indexOf(kws[j]) !== -1 && kws[j].length > score) score = kws[j].length;
     }
     if (score > bestScore) {
       bestScore = score;
@@ -986,7 +1008,7 @@ var examFindingsData = {
     title: "Cardiac Exam",
     findings: [
       ["Inspection", "No visible precordial impulse abnormalities, no JVD"],
-      ["Auscultation", "Normal S1 and S2. **Audible pericardial friction rub**, a scratchy, grating, three-component sound best heard at the left sternal border with the patient leaning forward. Present throughout the cardiac cycle."],
+      ["Auscultation", "Normal S1 and S2. Audible pericardial friction rub, a scratchy, grating, three-component sound best heard at the left sternal border with the patient leaning forward. Present throughout the cardiac cycle."],
       ["Murmurs", "No murmurs, gallops, or rubs other than the friction rub described"],
       ["Point of maximal impulse", "Normal, 5th ICS midclavicular line, non-displaced"]
     ]
@@ -1055,6 +1077,11 @@ function performExam() {
     return;
   }
   var looking = document.getElementById('examLooking').value.trim();
+  if (!looking) {
+    alert("Before you examine, write what you are looking for. The reasoning is the point of the exercise.");
+    document.getElementById('examLooking').focus();
+    return;
+  }
   state.examSystems = selected;
   state.examLooking = looking;
   state.examFindingsShown = true;
@@ -1096,6 +1123,11 @@ function submitOrders() {
     alert("Please enter at least one order.");
     return;
   }
+  if (!expect) {
+    alert("Before you see the results, write what you expect each order to show. That prediction is what the feedback is built on.");
+    document.getElementById('diagExpect').focus();
+    return;
+  }
   state.diagOrders = orders;
   state.diagExpect = expect;
   state.diagSubmitted = true;
@@ -1128,8 +1160,10 @@ function submitOrders() {
   // ECG
   html += '<div class="ecg-container">';
   html += '<div class="ecg-title"><span>12-Lead ECG (Lead II rhythm strip representation)</span><span class="speed">25 mm/s · 10 mm/mV</span></div>';
+  html += '<div class="ecg-scroll">';
   html += generateECG();
-  html += '<div class="ecg-interpretation"><strong>ECG Interpretation:</strong> Sinus tachycardia at ~95 bpm. <strong>Diffuse ST-segment elevations</strong> seen across multiple leads (I, II, III, aVF, V2–V6) with concave upward morphology. <strong>PR segment depressions</strong> noted in lead II and aVF. No reciprocal changes. No pathologic Q waves. These findings are classic for <strong>acute pericarditis</strong>. The concave ST morphology and diffuse distribution help distinguish from STEMI, which typically shows convex ST elevations localized to a vascular territory with reciprocal changes.</div>';
+  html += '</div>';
+  html += '<div class="ecg-interpretation"><strong>ECG Interpretation:</strong> Sinus rhythm at 92 bpm, matching the recorded heart rate. <strong>Diffuse ST-segment elevations</strong> seen across multiple leads (I, II, III, aVF, V2–V6) with concave upward morphology. <strong>PR segment depressions</strong> noted in lead II and aVF. No reciprocal changes. No pathologic Q waves. These findings are classic for <strong>acute pericarditis</strong>. The concave ST morphology and diffuse distribution help distinguish from STEMI, which typically shows convex ST elevations localized to a vascular territory with reciprocal changes.</div>';
   html += '</div>';
 
   // Interpretation note
@@ -1170,9 +1204,10 @@ function generateECG() {
   var baseline = 100;
 
   // Generate 5 PQRST complexes with ST elevation and PR depression
-  // Each complex spans ~160px (about 1.5 seconds at this scale)
+  // Each complex spans ~155px (about 1.5 seconds at this scale), sized so the
+  // full strip fits inside the 800-unit viewBox with no clipping at the right edge
   var complexes = 5;
-  var spacing = 160;
+  var spacing = 155;
   var startX = 20;
 
   // Build path for the ECG trace
@@ -1232,20 +1267,20 @@ function generateECG() {
   svg += '<path d="' + pathD + '" stroke="#2D5F7C" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round"/>';
 
   // Annotations
-  svg += '<text x="20" y="18" font-family="sans-serif" font-size="10" fill="#2D5F7C" font-weight="bold">Lead II</text>';
-  svg += '<text x="20" y="32" font-family="sans-serif" font-size="9" fill="#6b7a8a">25 mm/s</text>';
+  svg += '<text x="20" y="26" font-family="sans-serif" font-size="18" fill="#2D5F7C" font-weight="bold">Lead II</text>';
+  svg += '<text x="20" y="46" font-family="sans-serif" font-size="16" fill="#6b7a8a">25 mm/s</text>';
 
   // ST elevation annotation with arrow
-  svg += '<text x="200" y="70" font-family="sans-serif" font-size="10" fill="#E8833A" font-weight="bold">↑ Diffuse ST elevation (concave)</text>';
-  svg += '<line x1="195" y1="75" x2="200" y2="92" stroke="#E8833A" stroke-width="1.2" marker-end="url(#arrowhead)"/>';
+  svg += '<text x="200" y="70" font-family="sans-serif" font-size="18" fill="#E8833A" font-weight="bold">↑ Diffuse ST elevation (concave)</text>';
+  svg += '<line x1="195" y1="80" x2="200" y2="92" stroke="#E8833A" stroke-width="1.6" marker-end="url(#arrowhead)"/>';
 
   // PR depression annotation
-  svg += '<text x="380" y="135" font-family="sans-serif" font-size="10" fill="#E8833A" font-weight="bold">↓ PR segment depression</text>';
-  svg += '<line x1="375" y1="125" x2="368" y2="110" stroke="#E8833A" stroke-width="1.2" marker-end="url(#arrowhead)"/>';
+  svg += '<text x="380" y="146" font-family="sans-serif" font-size="18" fill="#E8833A" font-weight="bold">↓ PR segment depression</text>';
+  svg += '<line x1="375" y1="126" x2="368" y2="108" stroke="#E8833A" stroke-width="1.6" marker-end="url(#arrowhead)"/>';
 
   // T wave annotation
-  svg += '<text x="560" y="70" font-family="sans-serif" font-size="10" fill="#2e7d6b" font-weight="bold">Upright T waves</text>';
-  svg += '<line x1="560" y1="75" x2="565" y2="88" stroke="#2e7d6b" stroke-width="1.2"/>';
+  svg += '<text x="560" y="70" font-family="sans-serif" font-size="18" fill="#2e7d6b" font-weight="bold">Upright T waves</text>';
+  svg += '<line x1="576" y1="80" x2="583" y2="94" stroke="#2e7d6b" stroke-width="1.6" marker-end="url(#arrowhead)"/>';
 
   // Arrowhead marker
   svg += '<defs><marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#E8833A"/></marker></defs>';
@@ -1316,17 +1351,16 @@ function renderDifferentials() {
 }
 
 function ruleOutFromList(index) {
-  var reason = prompt("Why are you ruling out " + state.differentials[index].name + "?\n\nEnter your reasoning:");
-  if (reason !== null) {
-    state.differentials[index].ruledOut = true;
-    state.differentials[index].ruleOutReason = reason;
-    state.ruledOut.push({
-      name: state.differentials[index].name,
-      reason: reason
-    });
-    renderDifferentials();
-    renderRuledOut();
-  }
+  // Route through the "Mark as Ruled Out" form rather than a native prompt()
+  // dialog: prompts are blocked silently once a student dismisses one, which
+  // left this button appearing to do nothing at all.
+  var d = state.differentials[index];
+  if (!d) return;
+  document.getElementById('ruleOutName').value = d.name;
+  var box = document.getElementById('ruleOutReason');
+  box.placeholder = 'Why can you rule out ' + d.name + '? What evidence excludes it?';
+  if (box.scrollIntoView) box.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  box.focus();
 }
 
 function ruleOutDiff() {
@@ -1342,8 +1376,10 @@ function ruleOutDiff() {
   }
   // Check if it's already in the list
   var found = false;
+  var alreadyRuledOut = false;
   for (var i = 0; i < state.differentials.length; i++) {
     if (state.differentials[i].name.toLowerCase() === name.toLowerCase()) {
+      alreadyRuledOut = state.differentials[i].ruledOut;
       state.differentials[i].ruledOut = true;
       state.differentials[i].ruleOutReason = reason;
       found = true;
@@ -1359,7 +1395,9 @@ function ruleOutDiff() {
       ruleOutReason: reason
     });
   }
-  state.ruledOut.push({ name: name, reason: reason });
+  if (!alreadyRuledOut) {
+    state.ruledOut.push({ name: name, reason: reason });
+  }
   document.getElementById('ruleOutName').value = '';
   document.getElementById('ruleOutReason').value = '';
   renderDifferentials();
@@ -1597,6 +1635,82 @@ function renderReasoningCapture() {
   }
 
   container.innerHTML = html;
+}
+
+// ============================ DOWNLOAD ============================
+function plainText(el) {
+  if (!el) return '';
+  return (el.textContent || '').replace(/\s+/g, ' ').trim();
+}
+
+function downloadResults() {
+  var L = [];
+  L.push('Interactive Clinical Reasoning Case Results');
+  L.push('Case: 19-year-old man with pleuritic left-sided chest pain after a viral illness (acute pericarditis)');
+  L.push('Demo: Digital Learning Unlocked, Interactive Case Demo');
+  L.push('Date: ' + new Date().toLocaleDateString());
+  L.push('');
+
+  L.push('STAGE 1, HISTORY (' + state.historyQuestions.length + ' questions)');
+  L.push('-------------------------------------------');
+  if (state.historyQuestions.length === 0) {
+    L.push('(none)');
+  } else {
+    state.historyQuestions.forEach(function (h) {
+      L.push('You: ' + h.q);
+      L.push('Patient: ' + h.a);
+      L.push('');
+    });
+  }
+
+  L.push('STAGE 2, PHYSICAL EXAM');
+  L.push('-------------------------------------------');
+  L.push('Systems examined: ' + (state.examSystems.length ? state.examSystems.join(', ') : '(none)'));
+  if (state.examLooking) L.push('Looking for: ' + state.examLooking);
+  L.push('');
+
+  L.push('STAGE 3, DIAGNOSTIC ORDERS');
+  L.push('-------------------------------------------');
+  L.push('Orders: ' + (state.diagOrders || '(none)'));
+  if (state.diagExpect) L.push('Expected findings: ' + state.diagExpect);
+  L.push('');
+
+  L.push('STAGE 4, DIFFERENTIAL DIAGNOSIS');
+  L.push('-------------------------------------------');
+  if (state.differentials.length === 0) {
+    L.push('(none)');
+  } else {
+    state.differentials.forEach(function (d) {
+      L.push('- ' + d.name + ' (' + d.probability + ' probability)' + (d.ruledOut ? ' [RULED OUT]' : ''));
+      if (d.reason) L.push('    Reasoning: ' + d.reason);
+      if (d.ruleOutReason) L.push('    Rule-out reasoning: ' + d.ruleOutReason);
+    });
+  }
+  L.push('');
+
+  L.push('STAGE 5, ASSESSMENT & PLAN');
+  L.push('-------------------------------------------');
+  L.push('Assessment: ' + (state.assessment || '(none)'));
+  L.push('Plan: ' + (state.plan || '(none)'));
+  L.push('Safety netting: ' + (state.safety || '(none)'));
+  L.push('');
+
+  L.push('STAGE 6, FEEDBACK');
+  L.push('-------------------------------------------');
+  L.push(plainText(document.getElementById('feedbackContent')) || '(none)');
+  L.push('');
+  L.push('-------------------------------------------');
+  L.push('Generated by the Digital Learning Unlocked interactive case demo.');
+
+  var blob = new Blob([L.join('\n')], { type: 'text/plain' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'pericarditis-case-results.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 
 // ============================ RESTART ============================

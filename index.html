@@ -721,6 +721,28 @@ details.prompt-card[open] > summary::after { content: '\2212'; }
 details.prompt-card[open] > summary { border-bottom: 1px solid rgba(45, 95, 124, 0.18); margin-bottom: 14px; }
 details.prompt-card[open] { background: #fbfcfe; }
 
+/* print: the prompt cards promise to print fully on paper. The dark code
+   blocks only survive if the reader leaves "Background graphics" checked,
+   which is off by default, so force light-on-white for print. */
+@media print {
+  .prompt-card pre {
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid #999999;
+  }
+  .prompt-hint,
+  .copy-btn,
+  details.prompt-card > summary::after { display: none; }
+  details.prompt-card > summary { padding: 0; margin: 0 0 8px 0; }
+  section.topic { max-width: none; padding: 0 0 18px 0; }
+  .fidelity-card,
+  .prompt-card,
+  .demo-card,
+  tr { page-break-inside: avoid; }
+  h1, h2, h3, h4 { page-break-after: avoid; }
+  a { color: #000000; text-decoration: none; }
+}
+
 </style>
 </head>
 
@@ -805,7 +827,7 @@ details.prompt-card[open] { background: #fbfcfe; }
       <tbody>
         <tr>
           <td class="tool-name"><a href="https://www.canva.com/education/" target="_blank" rel="noopener">Canva</a></td>
-          <td class="price-freemium">Free / ~$14/mo (edu may be free)</td>
+          <td class="price-freemium">Free / $18/mo Pro</td>
           <td>Infographics, visual case presentations, AI-assisted design</td>
         </tr>
         <tr>
@@ -815,7 +837,7 @@ details.prompt-card[open] { background: #fbfcfe; }
         </tr>
         <tr>
           <td class="tool-name"><a href="https://nearpod.com/" target="_blank" rel="noopener">Nearpod</a></td>
-          <td class="price-freemium">Free / $120/yr</td>
+          <td class="price-freemium">Free / $159/yr</td>
           <td>Live interactive lectures, real-time formative assessment</td>
         </tr>
         <tr>
@@ -1007,7 +1029,7 @@ Re-read your output and confirm: (1) every number traces to the attached files; 
         </tr>
         <tr>
           <td class="tool-name"><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener">Microsoft Copilot</a></td>
-          <td class="price-freemium">Free / $10/mo Pro</td>
+          <td class="price-freemium">Free / $19.99/mo Microsoft 365 Premium</td>
           <td>M365 integration. Many institutions already include it, check with IT.</td>
         </tr>
       </tbody>
@@ -1026,7 +1048,7 @@ ORDERING RULE, read this first: the learner may open this conversation and scrol
 THE CASE FILE:
 LEARNER: a second-year APP fellow at new-graduate level.
 OPENING, what the learner sees from the first moment: a 19-year-old otherwise healthy man with one week of worsening sore throat, and for several hours an inability to swallow his own saliva; he is spitting into a cup. Initial vitals: temperature 102.4°F, heart rate 118, respiratory rate 19, blood pressure 135/92, oxygen saturation 100% on room air. Documented allergy: lidocaine.
-REVEALABLE WHEN ASKED, exact published values: on exam, when performed, trismus, a left tonsillar mass, and uvular deviation; labs when ordered, WBC 22.2 with 12% bands, lactate 1.8; after benzocaine spray for the drainage, within minutes gray cyanosis, heart rate 115, respiratory rate 22, blood pressure 184/86, saturation 85% on a non-rebreather; on co-oximetry when ordered, methemoglobin 45% (normal under 3%), oxyhemoglobin 60%, PO2 120.
+REVEALABLE WHEN ASKED, exact published values: on exam, when performed, trismus, a left tonsillar mass, and uvular deviation; labs when ordered, the complete published panel, CBC with WBC 22.2, neutrophils 81%, bands 12%, lymphocytes 10%, monocytes 2%, eosinophils 0%, hemoglobin 13.5 g/dL, hematocrit 38.0%, RBC 4.3 mill/cmm, platelets 267 thou/cmm, MCV 88 fL, MCH 29 pg, MCHC 34 g/dL, RDW 13.7%; CMP with glucose 165 mg/dL, BUN 10 mg/dL, creatinine 1.2 mg/dL, sodium 138 mEq/L, potassium 3.9 mEq/L, chloride 101 mEq/L, bicarbonate 25 mEq/L, albumin 4.1 g/dL, calcium 9.1 mg/dL, total bilirubin 0.8 mg/dL, AST 16 U/L, ALT 22 U/L, alkaline phosphatase 128 U/L; magnesium 2.2 mg/dL, phosphorus 3.1 mg/dL, lactate 1.8 mmol/L; after benzocaine spray for the drainage, within minutes gray cyanosis, heart rate 115, respiratory rate 22, blood pressure 184/86, saturation 85% on a non-rebreather; on co-oximetry when ordered, arterial blood gas with pH 7.37, PCO2 30 mm Hg, PO2 120 mm Hg, HCO3 26 mEq/L, methemoglobin 45% (normal under 3%), oxyhemoglobin 60%, carboxyhemoglobin 1.7%. Every value above is from the published case file, so when a learner orders a test, read the value from this list; if a test is not on this list, say it was not ordered rather than inventing a result.
 INSTRUCTOR SECTION, hidden until the debrief: the two diagnoses, peritonsillar abscess and benzocaine-induced methemoglobinemia; the intended path, oropharyngeal inspection first, IV antibiotics plus consent for incision and drainage using an 18g needle guarded to 1 cm, benzocaine for topical anesthesia because of the lidocaine allergy, co-oximetry when the saturation ignores oxygen, methylene blue 1-2 mg/kg IV, then admission; the key teaching points, the exam not the scan made the first diagnosis, the allergy list chose the anesthetic, the saturation that ignored oxygen named the second disease; and the common errors, imaging before exam, lidocaine-based anesthesia, chasing the wrong cause of cyanosis.
 
 SETUP, before the encounter: display, in exactly this format:
@@ -1051,7 +1073,7 @@ Run the case now, starting with the CASE LOADED block.</pre>
     <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
   </details>      <div class="demo-card" style="margin-top: 18px;">
     <div class="demo-title">See It From the Student's Side: Diana's Shared Conversation</div>
-    <div class="demo-desc">This is the exact encounter from Prompt 2, already run and shared as a link, the same way you would send it to your students: open it and read the encounter from the student's point of view, then scroll to the debrief and see the five domains with evidence. Sharing a chat link is the distribution model: build once, share the link, every student meets the same grounded patient.</div>
+    <div class="demo-desc">This is the encounter from Prompt 2, already run and shared as a link, the same way you would send it to your students. The case file rides inside the prompt and is written the way the encounter unfolds, so the opening holds nothing the patient could not say in the room: the diagnosis and the reveal material sit at the very end, under the INSTRUCTOR SECTION divider. Open it and read the encounter from the student's point of view, then scroll to the debrief to see the five domains with evidence. Sharing a chat link is the distribution model: build once, share the link, every student meets the same grounded patient.</div>
     <a class="demo-link" href="https://chatgpt.com/share/6a9f7c05-3b8c-83e8-ad8a-bbe33838cd95" target="_blank" rel="noopener">▶ Open the Shared Demo Conversation (the student's side)</a>
     <div class="demo-meta">A shared chat link, view-only, runs in any browser · The student needs no account to read it</div>
   </div>
@@ -1081,7 +1103,7 @@ Run the case now, starting with the CASE LOADED block.</pre>
       <a class="demo-link" href="https://notebook.google.com/notebook/fa7fb716-e25b-45d1-98d8-84b6b1ce38bf" target="_blank" rel="noopener">Open the AML notebook</a>
       <div style="margin-top:14px; padding-top:12px; border-top:1px solid #E8EDF2;">
         <div style="font-size:0.82rem; color:#5A6B7E; margin-bottom:8px;"><strong>Listen: the Audio Overview, already generated.</strong> This two-host audio conversation was created by the notebook's built-in Audio Overview tool from the same six sources, and it is hosted right here in the guide, no NotebookLM sign-in needed to play it. Generating your own (a flashcard set, a study guide, an audio overview) takes one click: try it after the session, or during the build block if your table already has a notebook open.</div>
-        <audio controls preload="metadata" style="width:100%; max-width:560px;" src="How_KOMZIFTI_Reprograms_Mutated_Leukemia_Cells.m4a"></audio>
+        <audio controls preload="none" style="width:100%; max-width:560px;" src="How_KOMZIFTI_Reprograms_Mutated_Leukemia_Cells.m4a"></audio>
       </div>
     </div>
 
@@ -1530,7 +1552,7 @@ Everything the rubric asked for that the submission does not contain. If it cont
         <div class="fid-title">Immersive VR</div>
         <div class="fid-desc">Full head-mounted display. 6DoF movement, hand tracking. Physical interaction in virtual
           clinical environment.</div>
-        <div class="fid-cost">Cost: $100  to $600/headset</div>
+        <div class="fid-cost">Cost: $100 to $600/headset</div>
       </div>
     </div>
 
@@ -1565,12 +1587,6 @@ Everything the rubric asked for that the submission does not contain. If it cont
           <td>Learners record themselves doing patient counseling, case presentations. Peer/faculty video feedback.</td>
         </tr>
         <tr>
-          <td class="tool-name"><a href="https://www.sketchy.com/" target="_blank" rel="noopener">Sketchy</a></td>
-          <td class="price-freemium">Subscription</td>
-          <td>Visual mnemonic learning, animated scenes teach microbiology, pharmacology, and pathology through
-            memorable stories. Video-based with integrated quizzes.</td>
-        </tr>
-        <tr>
           <td class="tool-name"><a href="https://xuron.io/" target="_blank" rel="noopener">Xuron</a></td>
           <td class="price-freemium">Subscription</td>
           <td>AI-powered virtual patient encounters. Learners interview, examine, and build differentials with adaptive
@@ -1581,18 +1597,6 @@ Everything the rubric asked for that the submission does not contain. If it cont
           <td class="price-freemium">Subscription</td>
           <td>AI-powered communication skills simulator. Practice patient counseling, breaking bad news, and OSCE-style
             encounters with AI avatars.</td>
-        </tr>
-        <tr>
-          <td class="tool-name"><a href="https://geekymedics.com/" target="_blank" rel="noopener">Geeky Medics</a></td>
-          <td class="price-freemium">Free / Premium</td>
-          <td>OSCE guides, interactive clinical cases, and exam prep. Text-based scenarios with step-by-step clinical
-            reasoning walkthroughs.</td>
-        </tr>
-        <tr>
-          <td class="tool-name"><a href="https://www.lecturio.com/" target="_blank" rel="noopener">Lecturio</a></td>
-          <td class="price-freemium">Subscription</td>
-          <td>Medical education video library with interactive clinical cases, spaced repetition quizzes, and a
-            USMLE/NCLEX question bank.</td>
         </tr>
         <tr>
           <td class="tool-name"><a href="https://sapientclinician.com/" target="_blank" rel="noopener">Sapient Clinician</a></td>
@@ -1815,7 +1819,7 @@ Everything the rubric asked for that the submission does not contain. If it cont
     <div class="group-prompt">
       <div class="label">Build, then share out</div>
       <h3>How the Block Runs</h3>
-      <p><strong>Project a timer:</strong> open <a href="https://www.google.com/search?q=25+minute+timer" target="_blank" rel="noopener">google.com/search?q=25 minute timer</a> in the browser. Work with your table or solo, Diana circulates. Near the end of the block we share out: a few cool things people made, and what you would still need to make it real Monday. If you get stuck, the answer is almost always the same: give the chatbot more, more source, more rules, more structure.</p>
+      <p><strong>Project a timer:</strong> whatever time is actually left, minus a few minutes to share out. Work with your table or solo, Diana circulates. Near the end of the block we share out: a few cool things people made, and what you would still need to make it real Monday. If you get stuck, the answer is almost always the same: give the chatbot more, more source, more rules, more structure.</p>
     </div>
 
     <div class="worksheet" id="promptBuilder">
@@ -1876,7 +1880,7 @@ Everything the rubric asked for that the submission does not contain. If it cont
     
     <div class="resource-section"><h4>From Today's Notebooks: Audio</h4>
       <p style="font-size:0.85rem; color:#5A6B7E; margin:0 0 8px;">The Audio Overview generated by the AML notebook (Section 4, "Ziftomenib: A New-Treatment Teaching Session") from its six published sources: the FDA label, the approval letter, KOMET-001, the ELN 2022 guideline, the NCI PDQ, and the trial registry record. Play it here, no sign-in needed; it also sits next to the notebook card in Section 4.</p>
-      <audio controls preload="metadata" style="width:100%; max-width:560px;" src="How_KOMZIFTI_Reprograms_Mutated_Leukemia_Cells.m4a"></audio>
+      <audio controls preload="none" style="width:100%; max-width:560px;" src="How_KOMZIFTI_Reprograms_Mutated_Leukemia_Cells.m4a"></audio>
     </div>
 
     <div class="resource-section">
@@ -1890,7 +1894,7 @@ Everything the rubric asked for that the submission does not contain. If it cont
         </li>
         <li><a href="https://grok.com" target="_blank">Grok</a> <span class="price-tag">Free w/ X / ~$30/mo</span></li>
         <li><a href="https://copilot.microsoft.com" target="_blank">Microsoft Copilot</a> <span class="price-tag">Free /
-            $10/mo Pro</span></li>
+            $19.99/mo Microsoft 365 Premium</span></li>
       </ul>
     </div>
     <div class="resource-section">
@@ -1905,10 +1909,10 @@ Everything the rubric asked for that the submission does not contain. If it cont
     <div class="resource-section">
       <h4>Content Creation & Interactive Lessons</h4>
       <ul class="resource-list">
-        <li><a href="https://canva.com" target="_blank">Canva</a> <span class="price-tag">Free / ~$14/mo (edu may be
-            free)</span></li>
+        <li><a href="https://canva.com" target="_blank">Canva</a> <span class="price-tag">Free / $18/mo Pro (free
+            education tier is K-12 only, higher ed is paid)</span></li>
         <li><a href="https://h5p.org" target="_blank">H5P</a> <span class="price-tag">Free (self-host)</span></li>
-        <li><a href="https://nearpod.com" target="_blank">Nearpod</a> <span class="price-tag">Free / $120/yr</span></li>
+        <li><a href="https://nearpod.com" target="_blank">Nearpod</a> <span class="price-tag">Free / $159/yr</span></li>
         <li><a href="https://peardeck.com" target="_blank">Pear Deck</a> <span class="price-tag">Free / $150/yr</span>
         </li>
         <li><a href="https://gamma.app" target="_blank">Gamma</a> <span class="price-tag">Free / $10/mo</span></li>
@@ -1923,9 +1927,6 @@ Everything the rubric asked for that the submission does not contain. If it cont
             $36/yr</span></li>
         <li><a href="https://brainscape.com" target="_blank">Brainscape</a> <span class="price-tag">Free / $10/mo</span>
         </li>
-        <li><a href="https://geekymedics.com/" target="_blank">Geeky Medics</a> <span class="price-tag">Free / Premium</span></li>
-        <li><a href="https://www.lecturio.com/" target="_blank">Lecturio</a> <span class="price-tag">Subscription (free trial)</span></li>
-        <li><a href="https://www.sketchy.com/" target="_blank">Sketchy</a> <span class="price-tag">Subscription (free trial)</span></li>
       </ul>
     </div>
     <div class="resource-section">

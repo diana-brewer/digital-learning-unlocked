@@ -60,7 +60,7 @@
   .reflection { margin-top: 12px; }
   .reflection label { display: block; font-weight: 600; font-size: 0.85rem; color: var(--primary-dark); margin-bottom: 4px; }
   .reflection textarea { width: 100%; min-height: 80px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit; font-size: 0.88rem; resize: vertical; margin-bottom: 8px; }
-  .reflection .next-btn { background: var(--primary); color: white; border: none; padding: 8px 20px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
+  .reflection .next-btn { background: var(--primary); color: white; border: none; padding: 12px 20px; min-height: 44px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; cursor: pointer; }
   .reflection .next-btn:hover { background: var(--primary-dark); }
   
   .debrief { background: var(--surface); border: 2px solid var(--primary); border-radius: var(--radius); padding: 24px; margin-top: 16px; box-shadow: var(--shadow); }
@@ -82,9 +82,9 @@
   .debrief .reasoning-section h4 { color: var(--primary); margin-bottom: 6px; }
   .debrief .reasoning-entry { border-bottom: 1px solid var(--border-light); padding: 8px 0; font-size: 0.85rem; }
   .debrief .reasoning-entry:last-child { border-bottom: none; }
-  .debrief .restart-btn { background: var(--accent); color: white; border: none; padding: 10px 24px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; cursor: pointer; margin-top: 16px; }
+  .debrief .restart-btn { background: var(--accent); color: white; border: none; padding: 12px 24px; min-height: 44px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; cursor: pointer; margin-top: 16px; }
   .debrief .restart-btn:hover { background: var(--accent-dark); }
-  .debrief .download-btn { background: var(--primary); color: white; border: none; padding: 10px 24px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; cursor: pointer; margin-top: 16px; margin-left: 8px; }
+  .debrief .download-btn { background: var(--primary); color: white; border: none; padding: 12px 24px; min-height: 44px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; cursor: pointer; margin-top: 16px; margin-left: 8px; }
   .debrief .download-btn:hover { background: var(--primary-dark); }
   
   .progress-bar { height: 4px; background: var(--border-light); border-radius: 2px; margin-bottom: 16px; overflow: hidden; }
@@ -108,7 +108,7 @@
 
 <div id="scenarioContainer"></div>
 
-<div style="margin-top:20px; text-align:center;"><a href="index.html" style="color: var(--primary); font-weight:600; text-decoration:none;">← Back to the Workshop Guide</a></div>
+<div style="margin-top:20px; text-align:center;"><a href="index.html" style="display:inline-block; padding:12px 16px; min-height:44px; color: var(--primary); font-weight:600; text-decoration:none;">← Back to the Workshop Guide</a></div>
 
 <script>
 // BRANCHING SCENARIO DATA
@@ -161,7 +161,7 @@ const scenarios = {
   ct_first: {
     step: 2,
     title: "Imaging First, Exam Later",
-    narrative: "The CT of the neck with IV contrast shows what you suspected: a large left-sided peritonsillar abscess. On your way back from radiology, you notice he is still leaning forward, spitting into his cup, and the nurse mentions he has not moved his bowels of saliva in an hour.",
+    narrative: "The CT of the neck with IV contrast shows what you suspected: a large left-sided peritonsillar abscess. On your way back from radiology, you notice he is still leaning forward, spitting into his cup, and the nurse mentions he has not swallowed his own saliva in an hour.",
     vitals: {
       "CT neck w/ contrast": "Large left-sided peritonsillar abscess",
       "Temp": "102.4 \u00b0F",
@@ -209,7 +209,7 @@ const scenarios = {
   discharge_home: {
     step: 2,
     title: "The Abscess That Came Back",
-    narrative: "He returns six hours later, by ambulance, unable to swallow at all, with a fever of 104 and a muffled voice that has become muffled speech. The roommate says he could not lie down at home.",
+    narrative: "He returns six hours later, by ambulance, unable to swallow at all, with a fever of 104 and a voice that has gone muffled and thick. The roommate says he could not lie down at home.",
     vitals: {
       "Temp": "104.0 \u00b0F",
       "HR": "131 bpm",
@@ -339,7 +339,7 @@ const scenarios = {
   lidocaine_allergy: {
     step: 3,
     title: "The Allergy List Was There the Whole Time",
-    narrative: "Urticaria climb his neck within two minutes and his voice thickens. Epinephrine, diphenhydramine, and a very quiet discussion about who reads allergy lists. The reaction resolves. His throat still needs draining, and now it needs draining on top of an allergic reaction.",
+    narrative: "Wheals climb his neck within two minutes and his voice thickens. Epinephrine, diphenhydramine, and a very quiet discussion about who reads allergy lists. The reaction resolves. His throat still needs draining, and now it needs draining on top of an allergic reaction.",
     vitals: {
       "Reaction": "Urticaria, voice change, treated with epinephrine and antihistamines",
       "HR": "126 bpm (transient)"
@@ -501,27 +501,35 @@ const scenarios = {
 let currentStep = "start";
 let decisionLog = [];
 let reasoningLog = [];
-let totalSteps = 5;
+
+// The case is designed around a five-decision path, the one the debrief lays out
+// as the Optimal Decision Pathway. Detour branches run longer than that (the
+// intubate branch loops back through hx_exam and can reach ten decisions), so
+// the counter shows the learner's own ordinal with no fixed total rather than
+// advertising a length the designed path never reaches. The bar is capped so it
+// fills rather than stalling or running backwards on a detour.
+const IDEAL_STEPS = 5;
 
 // RENDER
 function render() {
   const s = scenarios[currentStep];
   if (!s) return;
-  
+
   const container = document.getElementById('scenarioContainer');
-  
+
   // Check if this is a final step (no choices)
   if (!s.choices || s.choices.length === 0) {
     renderDebrief();
     return;
   }
-  
-  // Update progress
-  const progress = ((s.step - 1) / totalSteps) * 100;
+
+  // Update progress from the learner's own ordinal, capped at the designed length
+  const ordinal = decisionLog.length + 1;
+  const progress = (Math.min(ordinal, IDEAL_STEPS) / IDEAL_STEPS) * 100;
   document.getElementById('progressBar').style.width = progress + '%';
-  
+
   let html = `<div class="scenario-card">`;
-  html += `<div class="step-label">Decision Point ${s.step} of ${totalSteps}</div>`;
+  html += `<div class="step-label">Decision Point ${ordinal}</div>`;
   html += `<h3>${s.title}</h3>`;
   html += `<p class="narrative">${s.narrative}</p>`;
   
@@ -578,25 +586,37 @@ function selectChoice(choiceId, path, rating, btn) {
   
   selectedChoice = { choiceId, path, rating, choiceText: btn.textContent };
   
-  // Show reflection
+  // Show reflection. Only steal focus where there is no on-screen keyboard;
+  // on a phone the auto-focus raised the keyboard straight over Continue.
   document.getElementById('reflection').style.display = 'block';
-  document.getElementById('reasoningInput').focus();
+  if (window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.getElementById('reasoningInput').focus();
+  }
 }
 
 function proceed() {
   const reasoning = document.getElementById('reasoningInput').value.trim();
-  
-  // Log decision
+
+  // The reasoning path IS the assessment, so an empty box never advances.
+  if (!reasoning) {
+    document.getElementById('reasoningInput').focus();
+    alert('Type one or two sentences of reasoning before continuing. The reasoning is what this demo is assessing.');
+    return;
+  }
+
+  // Log decision. Number by the learner's own ordinal, not the scenario node's
+  // number, which repeats on detour branches and produced duplicate "Decision 3"
+  // lines in the downloaded results.
   const s = scenarios[currentStep];
   const choice = selectedChoice;
   decisionLog.push({
-    step: s.step,
+    step: decisionLog.length + 1,
     title: s.title,
     choice: choice.choiceText,
     rating: choice.rating,
-    reasoning: reasoning || '(no reasoning provided)'
+    reasoning: reasoning
   });
-  
+
   // Move to next scenario
   currentStep = choice.path;
   selectedChoice = null;
@@ -631,7 +651,7 @@ function renderDebrief() {
     html += `<div class="de-step">Decision ${d.step}</div>`;
     html += `<div class="de-choice">${d.choice}</div>`;
     html += `<div class="de-rating ${d.rating}">${d.rating === 'optimal' ? '✓ Optimal' : d.rating === 'acceptable' ? '⚠ Acceptable' : '✗ Problematic'}</div>`;
-    html += `<div class="de-reasoning">Your reasoning: ${d.reasoning}</div>`;
+    html += `<div class="de-reasoning">Your reasoning: ${escapeHtml(d.reasoning)}</div>`;
     html += `</div>`;
   });
   html += `</div>`;
@@ -651,7 +671,7 @@ function renderDebrief() {
   html += `<h4>Your Reasoning Process</h4>`;
   html += `<p style="font-size:0.85rem; color:var(--text-muted);">This is what you wrote at each decision point. Download your results below and hand them to your instructor: they see not just what you decided, but how you reasoned.</p>`;
   decisionLog.forEach(d => {
-    html += `<div class="reasoning-entry"><strong>Decision ${d.step}:</strong> ${d.reasoning}</div>`;
+    html += `<div class="reasoning-entry"><strong>Decision ${d.step}:</strong> ${escapeHtml(d.reasoning)}</div>`;
   });
   html += `</div>`;
   
@@ -661,6 +681,12 @@ function renderDebrief() {
   
   document.getElementById('scenarioContainer').innerHTML = html;
   document.getElementById('scenarioContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
 }
 
 function restart() {

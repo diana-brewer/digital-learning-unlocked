@@ -1,0 +1,50 @@
+[
+  {
+    "id": "demo-1-prompt-1-filled",
+    "question": "Based ONLY on the attached documents, create a clinical reasoning case for APP fellows from this published simulation: a patient with a sore throat presenting to the emergency department. Include the patient presentation, the differential diagnosis, the progression through each clinical state, and the key decision points a learner must make. Cite the source files for each element.",
+    "answer": "Thoughts\nexpand_more\nI have created the clinical reasoning case study clinical_reasoning_case.md and published it directly to your Studio panel.\nThe case guides learners through the evaluation and procedural management of a peritonsillar abscess (PTA) in a 19-year-old male with a documented lidocaine allergy\n1\nmore_horiz\n. Following the necessary use of benzocaine spray for procedural anesthesia, the patient develops life-threatening, drug-induced methemoglobinemia, prompting the fellow to diagnose a significant \"oxygen saturation gap\" on co-oximetry and immediately initiate IV methylene blue therapy\n2\nmore_horiz\n.\nWould you like to adjust the clinical difficulty of this case, or perhaps add a section detailing specific pediatric versus adult dosing parameters for the antibiotics and methylene blue\n6\n8\n?",
+    "citations": [
+      "1",
+      "more_horiz",
+      "2",
+      "more_horiz",
+      "6",
+      "8",
+      "How would you adjust the clinical difficulty for an experienced fellow?",
+      "Add the pediatric versus adult dosing parameters for antibiotics and methylene blue.",
+      "What other medications besides benzocaine can trigger methemoglobinemia?"
+    ]
+  },
+  {
+    "id": "demo-2-benzocaine-twist",
+    "question": "What happens after the benzocaine spray is used for the peritonsillar abscess drainage in this case? How does the patient change, what is the complication and its diagnosis, and what are the critical actions on the faculty checklist? Cite the case narrative and the faculty rubric.",
+    "answer": "Thoughts\nexpand_more\nFollowing the administration of benzocaine spray for peritonsillar abscess anesthesia, the patient experiences a rapid and severe clinical decline\n1\n2\n. Because the patient has a documented lidocaine allergy\n3\n, benzocaine is chosen as the alternative local anesthetic\n2\n, which triggers a critical toxicological emergency.\nHere is how the patient changes, how the complication is diagnosed, and the critical actions required of the learner:\n1. Patient Progression and Clinical Changes\nUpon transitioning to Clinical State 3 (Methemoglobinemia), the patient's condition deteriorates significantly\n1\n4\n:\nSubjective Symptoms: The patient begins complaining of acute shortness of breath\n4\n.\nVital Signs: His oxygen saturation drops to 85% on room air, while his respiratory rate rises to 22 breaths/min and his blood pressure spikes to 184/86 mmHg (with a heart rate of 115 bpm)\n4\n.\nPhysical Exam: The patient develops noticeable peri-oral and peripheral cyanosis, and bilateral breath sounds become decreased\n4\n.\n2. The Complication and Its Diagnosis\nThe Complication: The patient has developed drug-induced methemoglobinemia\n1\nmore_horiz\n. Benzocaine acts as a direct or indirect oxidizing agent, converting normal hemoglobin into methemoglobin, which is incapable of binding and releasing oxygen to tissues\n5\n.\nDiagnosis: This complication is clinically suspected when a patient's central and peripheral cyanosis remains completely unresponsive to high-flow oxygen therapy\n6\n. Definitive diagnosis is obtained via co-oximetry\n6\n7\n. In this case, the patient's arterial blood gas with co-oximetry reveals a methemoglobin level of 45% (reference range <3.0%) and an oxyhemoglobin level of 60% (reference range 95–98%), despite a high arterial PO2 of 120 mmHg\n8\n.\n3. Critical Actions on the Faculty Checklist\nAccording to both the case narrative and the Faculty Evaluation Form, the learner must successfully execute these critical steps to stabilize the patient\n1\nmore_horiz\n:\nProvide High-Flow Oxygen: Place the patient on a non-rebreather mask (NRB) for high-flow oxygen therapy\n1\n7\n.\nAssess Oxygenation: Determine and recognize that the patient’s pulse oximetry remains stuck at 85% despite being on the NRB\n1\n7\n.\nOrder Advanced Diagnostics: Draw repeat labs specifically including either a venous blood gas (VBG) with co-oximetry or an arterial blood gas (ABG) with co-oximetry\n1\n7\n.\nAdminister Antidote: Correctly diagnose methemoglobinemia and immediately treat with intravenous methylene blue\n7\n10\n (dosed at 1–2 mg/kg IV over 5 minutes)\n6\n.\nArrange Disposition: Call for patient admission once the clinical symptoms begin to stabilize\n10\n12\n.\n🧠 What next? Would you like me to generate a clinical quiz based on this case to test learners on the physiological differences between standard pulse oximetry, blood gas PO2, and co-oximetry?",
+    "citations": [
+      "4",
+      "4",
+      "1",
+      "more_horiz",
+      "5",
+      "6",
+      "6",
+      "7",
+      "8",
+      "1",
+      "more_horiz",
+      "1",
+      "7",
+      "1",
+      "7",
+      "1",
+      "7",
+      "7",
+      "10",
+      "6",
+      "10",
+      "12",
+      "Generate a clinical quiz on co-oximetry",
+      "Explain adult dosing for methylene blue",
+      "What are the carotid vessel risks?"
+    ]
+  }
+]

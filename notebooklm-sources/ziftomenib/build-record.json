@@ -1,0 +1,20 @@
+{
+  "notebook": "Ziftomenib: A New-Treatment Teaching Session",
+  "url": "https://notebook.google.com/notebook/fa7fb716-e25b-45d1-98d8-84b6b1ce38bf",
+  "shareLink": "https://notebook.google.com/notebook/fa7fb716-e25b-45d1-98d8-84b6b1ce38bf",
+  "sources": [
+    "01-komzifti-fda-label.pdf (FDA full prescribing information, accessdata.fda.gov/drugsatfda_docs/label/2025/220305s000lbl.pdf)",
+    "02-komzifti-fda-approval-letter.pdf (FDA approval letter, NDA 220305)",
+    "03-komet-001-abstract.txt (faithful transcription of JCO 2025 ASCO abstract 6506, doi 10.1200/JCO.2025.43.16_suppl.6506, plus the published phase 2 primary analysis numbers from JCO-25-01694)",
+    "Web: Acute Myeloid Leukemia Treatment (PDQ) - NCI (cancer.gov/types/leukemia/hp/adult-aml-treatment-pdq)",
+    "Web: ELN 2022 AML recommendations (PubMed 35797463)",
+    "Web: ClinicalTrials.gov NCT04067336 (KOMET-001 registry record)"
+  ],
+  "demoQuestions": [
+    "Teaching-session builder (see demo-pre-run-answers.json, demo-1-teaching-session)",
+    "Label drilldown: dose modifications + minimum treatment duration + acid-reducing agents (demo-2-label-drilldown)"
+  ],
+  "audioOverview": "generate launched from the Studio panel; check the notebook for the finished file",
+  "built": "2026-09-07T06:03:04.011Z",
+  "note": "NotebookLM is rebranding as Gemini Notebook (notebook.google.com). The MCP server v3.2.0 predates the rebrand; this notebook was built with direct patchright automation using the saved auth cookies (browser_state/state.json injected per session)."
+}

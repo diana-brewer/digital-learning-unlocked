@@ -1,0 +1,14 @@
+{
+  "notebook": "Running Example: The PTA Case (MedEdPORTAL)",
+  "url": "https://notebook.google.com/notebook/93b8b9b8-eb70-4a91-919c-9117d5d4fdd1",
+  "sources": [
+    "pta-1-case-narrative.docx",
+    "pta-2-lab-values.docx",
+    "pta-3-ekg.docx",
+    "pta-4-ct-images.docx",
+    "pta-5-chest-xray.docx",
+    "pta-6-faculty-rubric.docx"
+  ],
+  "built": "2026-09-07T14:51:07.324Z",
+  "note": "All six MedEdPORTAL case files from the Workshop Guide Running Example (digital-learning-unlocked/case-materials/), uploaded as .docx. This is the notebook attendees are asked to build during the Try It Now (files 1 and 2 at minimum); this one has all six."
+}

@@ -330,7 +330,7 @@ const scenarios = {
     consequence: { type: "optimal", text: "Textbook preparation, and notice what just happened quietly: the needle guard is in place, the antibiotics are running, and the allergy list is in front of you BEFORE the topical anesthetic is chosen, not after. The published case specifies this exact setup, and the lidocaine allergy is the hinge of everything that follows." },
     prompt: "The oropharynx needs topical anesthesia before the needle. Which agent?",
     choices: [
-      { id: "benzocaine", text: "Benzocaine spray: his documented lidocaine allergy makes benzocaine the alternative", path: "benzocaine_applied", rating: "optimal" },
+      { id: "benzocaine", text: "Benzocaine spray for topical anesthesia", path: "benzocaine_applied", rating: "optimal" },
       { id: "lidocaine_anyway", text: "Lidocaine spray anyway, the allergy is probably not real", path: "lidocaine_allergy", rating: "problematic" },
       { id: "no_topical", text: "No topical anesthetic, proceed with the needle directly", path: "no_anesthesia", rating: "acceptable" }
     ]
@@ -381,7 +381,7 @@ const scenarios = {
     consequence: { type: "optimal", text: "This is the published clinical state 3, arriving on schedule. Hold the pieces together: gray cyanosis that does not match a normal lung exam, a normal chest X-ray, and a saturation that ignores high-flow oxygen. Oxygen saturation probes read what hemoglobin can carry, not what is dissolved in plasma, and an agent on the mucosa minutes ago is in the differential. What single test settles it?" },
     prompt: "SpO2 85% that will not climb on high-flow oxygen. What is happening, and what do you do?",
     choices: [
-      { id: "coox", text: "Draw a blood gas with co-oximetry: a sat that ignores oxygen after benzocaine is methemoglobinemia", path: "coox", rating: "optimal" },
+      { id: "coox", text: "Draw a blood gas with co-oximetry", path: "coox", rating: "optimal" },
       { id: "intubate_methb", text: "Intubate for refractory hypoxia", path: "intubate_metHb", rating: "problematic" },
       { id: "wheeze_path", text: "Treat it as bronchospasm: nebulizers and reassess", path: "wheeze_path", rating: "acceptable" }
     ]
@@ -398,7 +398,7 @@ const scenarios = {
     consequence: { type: "acceptable", text: "A fair reflex in a patient who reports shortness of breath, but the data argue against it: no wheeze on exam, a normal chest X-ray, and a saturation completely indifferent to oxygen. When hypoxia ignores oxygen delivery, the problem is not the airway, it is the hemoglobin." },
     prompt: "No improvement. The benzocaine canister is on the counter. What now?",
     choices: [
-      { id: "coox_now", text: "Draw a blood gas with co-oximetry: this is methemoglobinemia until proven otherwise", path: "coox", rating: "optimal" },
+      { id: "coox_now", text: "Draw a blood gas with co-oximetry", path: "coox", rating: "optimal" },
       { id: "keep_nebulizing", text: "Continue bronchodilators and escalate oxygen", path: "wheeze_bad", rating: "problematic" }
     ]
   },
@@ -510,6 +510,18 @@ let reasoningLog = [];
 // fills rather than stalling or running backwards on a detour.
 const IDEAL_STEPS = 5;
 
+// Fisher-Yates shuffle of a decision's options, so the optimal answer is not
+// always in the same position. Only the display order changes; each option
+// keeps its own id, path, and rating, so the branch and debrief stay correct.
+function shuffledChoices(choices) {
+  const copy = choices.slice();
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
 // RENDER
 function render() {
   const s = scenarios[currentStep];
@@ -553,9 +565,10 @@ function render() {
   // Prompt
   html += `<p style="font-weight:600; color:var(--primary-dark); margin-top:14px;">${s.prompt}</p>`;
   
-  // Choices
+  // Choices, shuffled so the optimal answer is not always in the same position.
+  // The learner should reason about the choice, not learn its location.
   html += `<div class="choices">`;
-  s.choices.forEach((c, i) => {
+  shuffledChoices(s.choices).forEach((c) => {
     html += `<button class="choice-btn" onclick="selectChoice('${c.id}', '${c.path}', '${c.rating}', this)">${c.text}</button>`;
   });
   html += `</div>`;

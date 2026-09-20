@@ -959,6 +959,17 @@ STRUCTURE, in this order:
 4. A consequence screen after every choice, labeled Optimal, Acceptable, or Problematic: what happens next clinically, why, and the next decision. Problematic choices still continue the case, and the patient's condition reflects the consequence.
 5. A final screen titled Debrief: the learner's full path step by step (decision, chosen option, classification, and their typed reasoning), the intended path from the files beside it, the key teaching points from the files, and the common learner errors the files list.
 
+FEEDBACK RULES, non-negotiable:
+- The consequence screen is the ONLY thing shown after a choice. Between one decision and the next, show nothing but that screen: no extra panels, banners, tips, commentary, scores, streaks, encouragement, or "what you should have done" box.
+- Never evaluate the learner's choice in the moment. Do not open or close a consequence with praise or judgment such as "Excellent decision," "Great job," "Correct," "Textbook," or "Well done." The Optimal, Acceptable, or Problematic label is the only judgment shown mid-case, and what follows it stays clinical: what happened, why, and the next decision. No coaching, hints, or pep talks.
+- Do not tell the learner what they missed, what the ideal move was, or how they are doing until the final Debrief screen. Keep all evaluation, teaching points, and encouragement for the debrief.
+- A decision point contains only: the patient update, the options, and the "Why?" box. A consequence screen contains only: the label, the clinical outcome, the reason, and the next decision. Nothing else.
+
+OPTION ORDER RULE, non-negotiable:
+- The optimal option must not always sit in the same position. Never place it first, last, or anywhere fixed. Shuffle the options of each decision independently at render time (for example, a Fisher-Yates shuffle in JavaScript) so the correct answer's position varies from decision to decision and cannot be predicted from where it sits.
+- The option wording must not give the answer away either: no "best," "most appropriate," or similar giveaway phrasing that makes the optimal option identifiable by how it reads rather than by clinical reasoning.
+- Shuffle the display order only. Keep each option's id, path, and rating bound to its text so the branch, the consequence, and the debrief stay correct.
+
 INSTRUCTOR RESULTS FILE, a required feature:
 On the final Debrief screen, include a button labeled "Download results for your instructor." Clicking it generates and downloads a plain text file (JavaScript Blob and URL.createObjectURL, an anchor element with the download attribute) named case-results.txt containing: the case title and today's date; for every step, the decision, the option chosen, its classification, and the learner's typed reasoning; and a one-line summary with the count of optimal, acceptable, and problematic choices. Implement this entirely in JavaScript inside the same HTML file. This file is how the student hands their path back to the teacher.
 
@@ -969,7 +980,7 @@ DESIGN:
 - Plain, jargon-free patient language in case dialogue; clinical precision in consequence explanations.
 
 QUALITY CHECK BEFORE YOU FINISH:
-Re-read your output and confirm: (1) every number traces to the attached files; (2) every choice leads somewhere, no dead ends; (3) the reasoning box blocks submission until filled; (4) the download button produces a text file with all steps; (5) the file is complete and opens standalone. Then output the entire index.html in a single code block, nothing else.</pre>
+Re-read your output and confirm: (1) every number traces to the attached files; (2) every choice leads somewhere, no dead ends; (3) the reasoning box blocks submission until filled; (4) the download button produces a text file with all steps; (5) the file is complete and opens standalone; (6) nothing appears between decisions except the consequence screen, and no praise, coaching, or evaluation shows anywhere before the debrief; (7) the options are shuffled at render time so the optimal choice is not always in the same position. Then output the entire index.html in a single code block, nothing else.</pre>
     <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
   </details>
     <div class="demo-card" style="margin-top: 14px;">

@@ -1828,27 +1828,27 @@ Everything the rubric asked for that the submission does not contain. If it cont
 
     <div class="worksheet" id="promptBuilder">
       <h3 style="text-align:center; color:var(--primary-dark);">The Prompt Builder: Your Worksheet</h3>
-      <p style="text-align:center; font-size:0.82rem; color:var(--text-muted); margin-bottom:18px;">2026 APP Fellowship Conference · Fill it in, pick a format, and your complete, ready-to-paste prompt assembles itself below, feedback included. Copy it, attach your sources, and build.</p>
+      <p style="text-align:center; font-size:0.82rem; color:var(--text-muted); margin-bottom:18px;">2026 APP Fellowship Conference · Fill in as much or as little as you like, every field is optional, and your complete, ready-to-paste prompt assembles itself below, feedback included. Copy it, attach your sources, and build.</p>
 
       <div class="ws-field">
-        <label>Step 1: Your learners</label>
+        <label>Step 1: Your learners (optional)</label>
         <div class="hint">Level, discipline, rotation or setting</div>
         <textarea placeholder="e.g., second-year APP fellows on a hematology rotation" id="pbLevel"></textarea>
       </div>
       <div class="ws-field">
-        <label>Step 2: Your source material (what you will attach)</label>
+        <label>Step 2: Your source material (optional)</label>
         <div class="hint">Where it comes from: a published MedEdPORTAL case, a guideline and trial, the AML notebook's sources, or your own de-identified notes</div>
         <textarea placeholder="e.g., the ELN 2022 AML guideline chapter plus the KOMET-001 trial paper" id="pbSource"></textarea>
       </div>
       <div class="ws-field">
-        <label>Step 3: Your topic</label>
+        <label>Step 3: Your topic (optional)</label>
         <div class="hint">The clinical topic of the thing you are building</div>
         <textarea placeholder="e.g., a new-treatment teaching session on ziftomenib in relapsed AML" id="pbTopic"></textarea>
       </div>
       <div class="ws-field">
-        <label>Step 4: Pick what you are building</label>
+        <label>Step 4: Pick what you are building (optional)</label>
         <select id="pbFormat">
-          <option value="">Select a format...</option>
+          <option value="">No format yet — build a general prompt</option>
           <option value="static">A static branching case (one HTML file, like Demo 1)</option>
           <option value="dynamic">A dynamic patient encounter (like Demo 2)</option>
           <option value="journal">A journal club package</option>
@@ -1861,8 +1861,8 @@ Everything the rubric asked for that the submission does not contain. If it cont
       </div>
       <div class="ws-field">
         <label>Step 5: Your prompt, assembled</label>
-        <div class="hint">Updates as you type. Then copy it, open a new chat, attach your sources, and paste.</div>
-        <pre id="pbOutput" style="white-space:pre-wrap; font-size:0.78rem;">(fill in the steps above and pick a format)</pre>
+        <div class="hint">Updates as you type; every field is optional. Then copy it, open a new chat, attach your sources, and paste.</div>
+        <pre id="pbOutput" style="white-space:pre-wrap; font-size:0.78rem;">(your prompt builds here as you type; every field is optional)</pre>
         <button class="demo-link" style="width:100%; text-align:center;" onclick="copyBuiltPrompt()">Copy My Prompt</button>
       </div>
     </div>
@@ -2071,6 +2071,15 @@ FINAL SECTION, always, under this exact header: NOT IN THE SOURCES
 List everything I asked for that the sources did not contain, and for each gap the single most useful source I could attach to close it. If the sources genuinely covered everything asked for, write "None." Do not write "None" otherwise.`;
 
     var PB_FORMATS = {
+      general: {
+        role: 'an expert in health professions education and clinical education design',
+        task: 'Build the teaching or learning resource I describe, using only the attached sources as the clinical ground truth.',
+        deliver: `DELIVER: the resource I ask for, in plain text, with these numbered sections in order:
+1. LEARNING OBJECTIVES: what the learner should be able to do afterward, each written as an observable action.
+2. THE RESOURCE: the learner-facing material itself, in the form that best fits the request, a case, a session plan, a study guide, a question set, a reflection brief, or similar.
+3. ANSWER KEY OR FEEDBACK: the correct answers, model responses, or feedback the educator needs, each tied to the source it comes from.
+If TOPIC is not specified, read the attached sources first, name the single most useful resource they support, and say in one line what you are about to build before you build it.`
+      },
       static: {
         role: 'an expert in health professions education and a senior front-end developer',
         task: 'Turn the attached published clinical case into a complete, self-contained interactive branching scenario that a teacher can share with students as a single HTML file.',
@@ -2210,32 +2219,30 @@ PRIVACY: do not ask for patient identifiers, and never repeat one. If a submissi
       }
     };
 
-    function pbVal(id, ph){var v=document.getElementById(id).value.trim();return v||ph}
+    function pbVal(id){return document.getElementById(id).value.trim()}
     function buildPrompt(){
-      var level = pbVal('pbLevel','[YOUR LEARNERS]');
-      var source = pbVal('pbSource','[YOUR ATTACHED SOURCES]');
-      var topic = pbVal('pbTopic','[YOUR TOPIC]');
+      var level = pbVal('pbLevel');
+      var source = pbVal('pbSource');
+      var topic = pbVal('pbTopic');
       var fmt = document.getElementById('pbFormat').value;
-      var out;
-      if(!fmt){ out = '(fill in the steps above and pick a format)'; }
-      else if(!PB_FORMATS[fmt]){ out = '(fill in the steps above and pick a format)'; }
-      else {
-        var f = PB_FORMATS[fmt];
-        out = 'You are ' + f.role + '.\n\n'
-            + f.task + '\n\n'
-            + 'AUDIENCE: ' + level + '\n'
-            + 'TOPIC: ' + topic + '\n'
-            + 'SOURCE (the attached files only): ' + source + '\n\n'
-            + PB_CONTRACT + '\n\n'
-            + f.deliver + '\n\n'
-            + PB_GATE + '\n\n'
-            + PB_OUTPUT;
-      }
+      // Every field is optional: a blank field becomes a short instruction that
+      // keeps the prompt coherent instead of blocking the build, and no format
+      // falls back to the general builder.
+      var f = PB_FORMATS[fmt] || PB_FORMATS.general;
+      var out = 'You are ' + f.role + '.\n\n'
+          + f.task + '\n\n'
+          + 'AUDIENCE: ' + (level || '(not specified: if the sources make the audience clear, proceed and state your assumption in one line; otherwise ask me before you write)') + '\n'
+          + 'TOPIC: ' + (topic || '(not specified: take it from the attached sources; if they cover more than one, ask me which to build)') + '\n'
+          + 'SOURCE (the attached files only): ' + (source || 'whatever files I attach in this chat. If none are attached, stop and ask me for them') + '\n\n'
+          + PB_CONTRACT + '\n\n'
+          + f.deliver + '\n\n'
+          + PB_GATE + '\n\n'
+          + PB_OUTPUT;
       document.getElementById('pbOutput').textContent = out;
     }
     function copyBuiltPrompt(){
       var t=document.getElementById('pbOutput').textContent;
-      if(t.indexOf('(fill in')===0){alert('Fill in the steps above and pick a format first.');return}
+      if(!t.trim()){return}
       var d=document.createElement('textarea');d.value=t;document.body.appendChild(d);d.select();
       try{document.execCommand('copy')}catch(e){}
       document.body.removeChild(d);

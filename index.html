@@ -932,7 +932,7 @@ details.prompt-card[open] { background: #fbfcfe; }
         <tr><td><a href="case-materials/pta-5-chest-xray.docx" download>5 · Chest X-ray</a></td><td>Comparison film</td></tr>
         <tr><td><a href="case-materials/pta-6-faculty-rubric.docx" download>6 · Faculty evaluation rubric</a></td><td>The published checklist for assessing learners on this case</td></tr>
       </table>
-      <p><strong>How it threads through today:</strong> ① In Demo 1, Prompt 1 turns these files into the static case you will play. ② In Demo 2, the same published files, attached to Prompt 2, become a live, dynamic encounter. ③ In the build block, they are ready-made source material for whatever you make.</p>
+      <p><strong>How it threads through today:</strong> ① In Demo 1, Prompt 1 turns these files into the static case you will play. ② In Demo 2, Prompt 2 reads the same files and writes the live encounter prompt you paste to run, a dynamic encounter shareable by link. ③ In the build block, they are ready-made source material for whatever you make.</p>
       <p><em>De-identification note: these files are published teaching material with no real-patient identifiers. Your own case notes are not, de-identify before uploading anything to a consumer AI tool.</em></p>
     </div>
 <h3>Demo 1: AI Builds the Static Case (~5 min)</h3>
@@ -1048,47 +1048,35 @@ Re-read your output and confirm: (1) every number traces to the attached files; 
   
   <div class="demo-card" style="margin-top: 24px;">
     <div class="demo-title">Demo 2: The Same Case, Live and Grounded (~5 min, you build it)</div>
-    <div class="demo-desc">Now level it up: the same 19-year-old, but the case runs live, in conversation, and grounded. In a NEW chat, attach the same published case files you used for Prompt 1, then paste Prompt 2 below: the encounter runs from those files, so it stays grounded and travels with the conversation link you share. The chatbot becomes the patient, first person, from the published facts: ask for labs and you get the exact published values, perform the exam and you get the documented findings. Run the encounter as the student, introduce yourself, gather what you need, manage the case: order any test with <code>order:</code> and the result comes back as a system readout in asterisks, not in the patient's voice, and when you are done type <code>End Scenario</code> for the full structured debrief, five domains rated with evidence, all inside the same chat. It is also deliberately spoiler-safe: a student who opens your shared link reads the opening presentation first, and nothing that names the diagnosis until the debrief. That is the distribution model: attach your files and run it once yourself, hit Share, send the link, exactly like Diana's shared conversation below.</div>
+    <div class="demo-desc">Now level it up: the same 19-year-old, but the case runs live, in conversation, and grounded. In the same NEW chat, attach the same published case files you used for Prompt 1 and paste Prompt 2 below. Prompt 2 does not run the case itself: it reads your files and writes the finished encounter as a second prompt, handed back in one copyable block. Paste that second prompt right below, in that same conversation where the files still are, and the encounter runs from there: the chatbot becomes the patient, first person, from the published facts: ask for labs and you get the exact published values, perform the exam and you get the documented findings. Run the encounter as the student, introduce yourself, gather what you need, manage the case: order any test with <code>order:</code> and the result comes back as a system readout in asterisks, not in the patient's voice, and when you are done type <code>End Scenario</code> for the full structured debrief, five domains rated with evidence, all inside the same chat. The generated encounter prompt is ordered to be spoiler-safe: the opening presentation comes first and nothing names the diagnosis until the debrief. That is the distribution model: run it once, hit Share, send the link, exactly like Diana's shared conversation below.</div>
   </div>
-      <details class="prompt-card" id="demoTwoPrompt" style="margin-top: 14px;"><summary><span class="prompt-title">Prompt 2 · The Dynamic Case: The Same Patient, Live and Grounded</span><span class="prompt-hint">tap to expand</span></summary>
-    <div class="prompt-desc">The Demo 2 prompt, and it works like Prompt 1: attach the same published case files beside it, so the case lives in the files, not in the prompt, and the encounter stays grounded in your material. It is also ordered so it does not give the answer away: a student who opens the shared conversation reads the opening presentation first, and nothing that names the diagnosis until the debrief. Paste it into a new chat with your files attached, run the encounter as the student, and when you are done type End Scenario for the structured debrief. The prompt hands the learner both commands up front, in the case-loaded block: <code>order:</code> to order a test, lab, or diagnostic and receive the result as a system readout in asterisks rather than in the patient's voice, and <code>End Scenario</code> to close the encounter and get the debrief. It is also ordered with the shared link in mind: the learner-facing setup and the case rules sit in the middle of the prompt, and the dry operational instructions sit at the top and bottom, so a student who opens the shared conversation is less likely to land on anything that points at the diagnosis. To reuse with your own case, attach your own published material and keep everything exactly as written.</div>
-    <pre>You are an expert clinical educator running a simulated patient encounter for one learner. You will run the ENTIRE encounter yourself: the patient role, the results, and the final debrief. The case runs from the attached published case files, so the encounter travels with the conversation link you share.
+      <details class="prompt-card" id="demoTwoPrompt" style="margin-top: 14px;"><summary><span class="prompt-title">Prompt 2 · The Dynamic Case Builder: Generate the Live Encounter Prompt</span><span class="prompt-hint">tap to expand</span></summary>
+    <div class="prompt-desc">The Demo 2 prompt is a builder, not the encounter itself: attach the same published case files beside it, and it reads them and writes the finished encounter prompt, delivered as a single copyable block. Paste that block into the same conversation, below the builder, and the case runs from the files already attached. The two learner commands are listed at the start of the generated prompt: <code>order:</code> to order a test, lab, or diagnostic and receive the result as a system readout in asterisks rather than in the patient's voice, and <code>End Scenario</code> to close the encounter and get the debrief. The builder is told to order the generated prompt so the dry operational rules open it, the case facts and diagnosis sit in the middle, and the debrief specification closes it, so a student who opens the shared conversation is less likely to land on a spoiler. If your files are missing or unreadable, the builder asks for them rather than inventing a case. To reuse with your own case, attach your own published material and keep everything exactly as written.</div>
+    <pre>You are an expert clinical educator and prompt engineer. Read the attached published clinical case files and write ONE complete prompt that will run the entire simulated patient encounter. You are writing that prompt, not running the case yourself.
 
-HOW THIS PROMPT IS ORDERED, read this first: everything below is one instruction to you, and the learner can open the shared conversation and read the whole prompt. So the parts the learner needs sit in the middle of this prompt, and the operational rules that are for you alone sit at the top and at the bottom. Read the entire prompt before you begin, and never treat any line of these instructions as the learner's case content.
+WHAT YOU OUTPUT: a single fenced code block containing the finished encounter prompt, ready to copy and paste right here in this same conversation, where the files are still attached. Outside the block, write only one short line telling the reader to paste it below to run the encounter. Do not run the case, do not summarise the case, and do not add commentary.
 
-GROUNDING RULES, non-negotiable: every clinical fact you reveal comes from the attached files, with the exact values written there, never invented, rounded, or improved. Copy numeric values exactly as they appear, in their original units. If the learner asks about something the files do not specify, stay in character: the patient does not know, or that test was not done. If the attached files are missing, unreadable, or are not a published clinical case, stop and ask the learner to attach them rather than filling the gap from general knowledge.
-
-PATIENT ROLE RULES: role-play the patient in first person, the entire encounter. Worried, sometimes vague, no medical jargon, answers off-topic questions realistically. Reveal information only when asked, volunteer nothing. Give exam findings only when the learner performs the exam; return lab or imaging results only when ordered, with the file's exact values. Track the encounter silently: what was asked, what was ordered, what was decided. Never confirm or deny the learner's hypotheses. Never break character unless the learner types "End Scenario" or asks for the debrief.
-
-THE CASE FILES:
-The attached files are the entire clinical source. From them take the learner level, the opening presentation, the initial vitals, every exam finding, every lab and imaging value, the intended management path, the diagnosis or diagnoses, and the teaching points. Do not add clinical facts of your own.
-
-SPOILER RULE, non-negotiable: never state, hint at, or confirm the diagnosis anywhere except the debrief. The diagnosis and any instructor or reveal material in the attached files stay with you until then. Reveal only what the learner asks for, in the order they ask.
-
-SETUP, before the encounter: read the attached files, then display, in exactly this format:
-CASE LOADED: [the case title from the attached files]
+THE ENCOUNTER PROMPT YOU WRITE MUST DO ALL OF THIS:
+1. Run from the attached files. It will be pasted into this same conversation, so the files you were given are still in front of it. Point the encounter at them instead of restating the case: it must tell the model to take the learner level, the opening presentation, the initial vitals, every exam finding, every lab and imaging value, the intended management path, the diagnosis or diagnoses, and the teaching points from the attached files, copying every number exactly as it appears, in its original units; never invent, round, or improve a value, and if a detail is not in the files, leave it out rather than filling the gap.
+2. Order itself so the learner is not met with a spoiler. The first thing in the generated prompt must be dry operational instruction that says nothing about the diagnosis: the role, the grounding rule, and the patient-role rule. Keep the case-source instruction and any reference to the diagnosis in the middle, and put the debrief specification at the end, so a learner who opens the shared conversation is less likely to land on anything that points at the diagnosis.
+3. Open the encounter with a setup block in exactly this format:
+CASE LOADED: [the case title from the files]
 LENGTH: this encounter runs until the learner types "End Scenario"
 COMMANDS: order: [a test, lab, or diagnostic] to order an investigation, returned as a system readout in asterisks; End Scenario to end the encounter and get the debrief.
 START: tell the learner, in one line, "You are the clinician. Introduce yourself and begin whenever ready." Then become the patient.
+4. Define two learner commands, listed in the setup block:
+- order: [a test, lab, or diagnostic] — the learner is ordering an investigation, not talking to the patient. Break from the patient's voice and return the result as a system readout on its own, wrapped in asterisks, for example *CBC: WBC 22.2, hemoglobin 13.5, platelets 267*. The asterisks mark it as the result, not dialogue: never deliver an ordered result in the patient's first-person voice. Use only the exact values embedded from the files; if the case does not contain that test, say so inside the asterisks, for example *Not available in this case*, rather than inventing a result. Then return to the patient.
+- End Scenario — the learner is ending the encounter. Break character and deliver the debrief.
+5. Include a spoiler rule: never state, hint at, or confirm the diagnosis anywhere before the debrief, and keep any instructor or reveal material from the files until then.
+6. Role-play the patient in first person for the entire encounter: worried, sometimes vague, no medical jargon, answers off-topic questions realistically. Reveal information only when asked, volunteer nothing, give exam findings only when the learner performs the exam, and return results only when ordered. Track the encounter silently. Never confirm or deny the learner's hypotheses, and never break character except for "End Scenario" or a request for the debrief.
+7. Give no evaluation before the debrief: what the learner sees mid-case is the patient's condition, not praise, coaching, or hints.
+8. End with a debrief in this order: five domains, each rated Novice, Advanced Beginner, Competent, Proficient, Expert with one or two sentences of evidence from what the learner actually did (information gathering, differential reasoning, diagnostic interpretation, management, communication); what was missed from the intended path; what was ordered or done unnecessarily; the intended path step by step, including the diagnosis or diagnoses; the key teaching points, each tied to a specific moment; and one sentence on the single highest-value thing to practice next.
 
-COMMANDS, available from the first moment and listed in the CASE LOADED block:
-- order: [a test, lab, or diagnostic] — the learner is ordering an investigation, not talking to the patient. Break from the patient's voice and return the result as a system readout on its own, wrapped in asterisks, for example *CBC: WBC 22.2, hemoglobin 13.5, platelets 267*. The asterisks mark it as the result, not dialogue: never deliver an ordered result in the patient's first-person voice. Use only the exact values from the attached files. If the files do not contain that test, say so inside the asterisks, for example *Not available in the published case*, rather than inventing a result. Then return to the patient.
-- End Scenario — the learner is ending the encounter. Break character and deliver the debrief below.
-
-DEBRIEF, when the encounter ends: break character and deliver in this order:
-1. Five domains, each rated Novice, Advanced Beginner, Competent, Proficient, Expert with one or two sentences of evidence from what the learner actually did: information gathering, differential reasoning, diagnostic interpretation, management, communication.
-2. What was missed from the files' intended path.
-3. What was ordered or done unnecessarily.
-4. The files' intended path, step by step, including the diagnosis or diagnoses the files name.
-5. The files' key teaching points, each tied to a specific moment in the encounter.
-6. One sentence: the single highest-value thing for this learner to practice next.
-Then offer: "Say 'again' to restart the encounter with the same case."
-
-QUALITY CHECK BEFORE YOU BEGIN: confirm the attached files contain a published clinical case, that the opening presentation, initial vitals, and learner level you use come from them, that nothing in your setup names a diagnosis, and that the CASE LOADED block lists both commands (order: and End Scenario). Then run the case, starting with the CASE LOADED block.</pre>
+QUALITY CHECK BEFORE YOU OUTPUT: confirm the generated prompt runs from the attached files with their exact values, opens with instruction that does not reveal the diagnosis, lists both commands, includes the setup block, and ends with the full debrief. If the attached files are missing, unreadable, or are not a published clinical case, stop and ask for them rather than writing the encounter from general knowledge.</pre>
     <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
   </details>      <div class="demo-card" style="margin-top: 18px;">
     <div class="demo-title">See It From the Student's Side: Diana's Shared Conversation</div>
-    <div class="demo-desc">This is the encounter from Prompt 2, already run and shared as a link, the same way you would send it to your students. It is grounded in the published files, so the opening holds nothing the patient could not say in the room: the diagnosis and the reveal material are kept back until the debrief. Open it and read the encounter from the student's point of view, then scroll to the debrief to see the five domains with evidence. Sharing a chat link is the distribution model: build once, share the link, every student meets the same grounded patient.</div>
+    <div class="demo-desc">This is the encounter the Prompt 2 builder generated, already run and shared as a link, the same way you would send it to your students. It is grounded in the published files, so the opening holds nothing the patient could not say in the room: the diagnosis and the reveal material are kept back until the debrief. Open it and read the encounter from the student's point of view, then scroll to the debrief to see the five domains with evidence. Sharing a chat link is the distribution model: build once, share the link, every student meets the same grounded patient.</div>
     <a class="demo-link" href="https://chatgpt.com/share/6a9f7c05-3b8c-83e8-ad8a-bbe33838cd95" target="_blank" rel="noopener">▶ Open the Shared Demo Conversation (the student's side)</a>
     <div class="demo-meta">A shared chat link, view-only, runs in any browser · The student needs no account to read it</div>
   </div>
@@ -1173,6 +1161,23 @@ QUALITY CHECK BEFORE YOU BEGIN: confirm the attached files contain a published c
     </div>
 
         
+    <div class="beyond-box">
+      <h3>Beyond the Case: Same Tools, Any Curriculum</h3>
+      <p>The OSCE case is one archetype. Every format in your curriculum upgrades the same way: pick the format, attach the published source, and write the detailed prompt, the pairing you have been using all session. And the stakes scale: an ungrounded case is embarrassing; an ungrounded treatment update invents dosing; an ungrounded procedure pre-brief scrambles step order. In education, an error propagates to every learner who meets it.</p>
+      <table class="beyond-table">
+        <tr><th>Format</th><th>Ungrounded pitfall</th><th>Ground it with</th></tr>
+        <tr><td>New-treatment teaching session</td><td>Invented dosing or trial results</td><td>FDA label, pivotal trial, society guideline</td></tr>
+        <tr><td>Subspecialty rotation overview</td><td>Scope drift, stale recommendations</td><td>Society guidelines, assigned chapter</td></tr>
+        <tr><td>Journal club prep</td><td>Hallucinated study findings</td><td>The actual PDF, citation-forced prompts</td></tr>
+        <tr><td>Procedure pre-brief</td><td>Scrambled step order, wrong landmark</td><td>Institutional protocol, ATLS/society refs</td></tr>
+        <tr><td>Patient education handout</td><td>Invented statistics, wrong precautions</td><td>Society patient-facing guideline</td></tr>
+        <tr><td>Difficult-conversation roleplay</td><td>Cultural clichés, non-evidence framing</td><td>Published communication curricula</td></tr>
+        <tr><td>"Chat with your handbook"</td><td>Policy paraphrase drift</td><td>The handbook itself (the NotebookLM pattern)</td></tr>
+        <tr><td>Board / in-service review questions</td><td>Wrong answer keys, outdated guidelines</td><td>Published review resources</td></tr>
+      </table>
+      <p class="phn-note"><strong>If you adapt this to real clinical material: de-identify everything.</strong> Never paste PHI into a public chatbot: that is the one pitfall you cannot ground your way out of.</p>
+    </div>
+
     <h3>The Prompt Pack: Take-Home Templates</h3>
       <p style="margin: 8px 0 18px; color: #5B6B7C; font-size: 0.9rem;">Six prompts. Tap a title to expand it, then copy. They also print fully on paper.</p>
   <p>Prompts 1 and 2, the ones we built live in Sections 2 and 3, stay there, next to their demos. The six below are the take-home pack: pick one for the build block at the end of the session, or for Monday morning. Every one of them runs against files you attach and cites what it uses, and every one that involves learner work has the feedback built into the same prompt. Each one also carries the same four safeguards, and they are worth knowing before you paste: it <strong>stops and asks</strong> if the files you attached are missing, unreadable, or do not actually cover the topic, rather than filling the gap from general knowledge; it leaves an <strong>empty section standing</strong> and writes "not in the provided sources" under it instead of quietly dropping it; it runs a <strong>quality gate</strong> over its own numbers and citations before it answers; and it ends with a <strong>NOT IN THE SOURCES</strong> list of everything you asked for that your files did not contain. That last one is the one to read first: it tells you what to go find before you hand the material to learners. Notice how much each prompt specifies, roles, rules, output order, citations, quality checks: the more you give the chatbot, the less you leave to chance.</p>
@@ -1492,22 +1497,6 @@ FINAL SECTION, always, under this exact header: NOT IN THE ORIGINAL SUBMISSION
 Everything the rubric asked for that the submission does not contain. If it contains all of it, write "None." Do not write "None" otherwise.</pre>
     <button class="copy-btn" data-copy-from-card>Copy Prompt</button>
   </details>
-    <div class="beyond-box">
-      <h3>Beyond the Case: Same Tools, Any Curriculum</h3>
-      <p>The OSCE case is one archetype. Every format in your curriculum upgrades the same way: pick the format, attach the published source, and write the detailed prompt, the pairing you have been using all session. And the stakes scale: an ungrounded case is embarrassing; an ungrounded treatment update invents dosing; an ungrounded procedure pre-brief scrambles step order. In education, an error propagates to every learner who meets it.</p>
-      <table class="beyond-table">
-        <tr><th>Format</th><th>Ungrounded pitfall</th><th>Ground it with</th></tr>
-        <tr><td>New-treatment teaching session</td><td>Invented dosing or trial results</td><td>FDA label, pivotal trial, society guideline</td></tr>
-        <tr><td>Subspecialty rotation overview</td><td>Scope drift, stale recommendations</td><td>Society guidelines, assigned chapter</td></tr>
-        <tr><td>Journal club prep</td><td>Hallucinated study findings</td><td>The actual PDF, citation-forced prompts</td></tr>
-        <tr><td>Procedure pre-brief</td><td>Scrambled step order, wrong landmark</td><td>Institutional protocol, ATLS/society refs</td></tr>
-        <tr><td>Patient education handout</td><td>Invented statistics, wrong precautions</td><td>Society patient-facing guideline</td></tr>
-        <tr><td>Difficult-conversation roleplay</td><td>Cultural clichés, non-evidence framing</td><td>Published communication curricula</td></tr>
-        <tr><td>"Chat with your handbook"</td><td>Policy paraphrase drift</td><td>The handbook itself (the NotebookLM pattern)</td></tr>
-        <tr><td>Board / in-service review questions</td><td>Wrong answer keys, outdated guidelines</td><td>Published review resources</td></tr>
-      </table>
-      <p class="phn-note"><strong>If you adapt this to real clinical material: de-identify everything.</strong> Never paste PHI into a public chatbot: that is the one pitfall you cannot ground your way out of.</p>
-    </div>
       <div class="group-prompt">
     <div class="label">Your notebook turn, and the build block ahead</div>
     <h3>From Poking to Making</h3>
@@ -1825,7 +1814,7 @@ Everything the rubric asked for that the submission does not contain. If it cont
       <div class="callout-title">Pick Your Build</div>
       <ul>
         <li><strong>Your own static case:</strong> any published case + <a href="#demoOnePrompt">Prompt 1 (Section 2)</a>, out comes a shareable HTML file with the results download built in.</li>
-        <li><strong>Your own dynamic case:</strong> the same files + <a href="#demoTwoPrompt">Prompt 2 (Section 3)</a>, a live grounded encounter with the debrief built in, shareable as a chat link.</li>
+        <li><strong>Your own dynamic case:</strong> the same files + <a href="#demoTwoPrompt">Prompt 2 (Section 3)</a>, which reads your files and writes the live encounter prompt you paste to run: a grounded encounter with the debrief built in, shareable as a chat link.</li>
         <li><strong>Something from a notebook:</strong> the <a href="#amlNotebook">AML notebook (Section 4)</a> or any notebook you build, then <a href="#prompt5">Prompt 5</a> or <a href="#prompt6">Prompt 6</a>, or the notebook's built-in creators, including an audio overview.</li>
         <li><strong>A teaching session, journal club, pre-brief, or reflective writing:</strong> <a href="#prompt3">Prompts 3 through 8</a>, each complete with its feedback built in.</li>
       </ul>
